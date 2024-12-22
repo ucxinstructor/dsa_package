@@ -1,13 +1,23 @@
 # UC Berkeley Extension - Data Structures and Algorithms Class 
 
 A collection of classes and functions for use in Comp Sci X404.1: Data Structures and Algorithms Class.
+
+[API Documentation](src/html/dsa)	
+## 2024.12.22
+* Created Github Pages access to documentation
+* Added more details to documentation
+
 ## 2024.08.16.1
 * Fixed versioning issue. Can now determine version by typing:
+```
 import dsa
 dsa.version
+```
 or
-dsa.__version__
 
+```
+dsa.__version__
+```
 ## 2024.08.16
 * moved Trie end_marker from an instance variable to a class variable (Trie.end_marker)
 
