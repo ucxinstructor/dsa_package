@@ -59,4 +59,6 @@ renamed Node class to TreeNode
 Misc. code improvements, documentation updates and API consistency
 
 # TODO
-* copy() method for LinkedList, DoublyLinkedList, Trie, Heap and Graph
+* Separate the Dijkstra code from graph
+* Add Prim's algorithm
+* General: Add more type hints
