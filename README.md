@@ -8,7 +8,7 @@ A collection of classes and functions for use in Comp Sci X404.1: Data Structure
 * Added more details to documentation
 
 ## 2024.08.16.1
-* Fixed versioning issue. Can now determine version by typing:
+Fixed versioning issue. Can now determine version by typing:
 ```
 import dsa
 dsa.version
@@ -19,7 +19,7 @@ or
 dsa.__version__
 ```
 ## 2024.08.16
-* moved Trie end_marker from an instance variable to a class variable (Trie.end_marker)
+moved Trie end_marker from an instance variable to a class variable (Trie.end_marker)
 
 ## 2024.08.15
 ### dsa.draw
@@ -30,13 +30,14 @@ dsa.__version__
 * heaps
 
 ### dsa module
-* ran code through RUFF
+ran code through RUFF
+
 ### dsa.graphs module
 * Added vertices() method to AdjacencyListGraph, AdjacencyListWeightedGraph
 * Dropped Vertex classes
 
 ### dsa.tree
-* renamed Node class to TreeNode
+renamed Node class to TreeNode
 
 ## 2024.7.23
 ### dsa.graphs module
@@ -55,7 +56,7 @@ dsa.__version__
 * Added Priority Queue class
 
 ### dsa package
-* Misc. code improvements, documentation updates and API consistency
+Misc. code improvements, documentation updates and API consistency
 
 # TODO
 * copy() method for LinkedList, DoublyLinkedList, Trie, Heap and Graph
