@@ -6,8 +6,10 @@ class HashTable:
     """
     def __init__(self, capacity=20):
         """
+        Initialize a hashtable with a given capacity.
+
         Args:
-            capacity: the capacity of the hashtable
+            capacity: The capacity of the hashtable.
         """
         self.capacity = capacity
 
@@ -23,25 +25,23 @@ class HashTable:
         Return a hash value based on a given key. 
 
         Args:
-            key: the key to convert to a hashvalue
+            key: The key to convert to a hashvalue.
         Returns:
-        hash value modded to the hashtable capacity
+            Hash value modded to the hashtable capacity.
         """
         charsum = sum(ord(c) * i for i, c in enumerate(key, 1))
         return charsum % self.capacity      
         
     def key_exists(self, key) -> bool:
         """ 
-        Returns a Boolean on whether a key exists in the hashtable or not 
+        Returns a Boolean on whether a key exists in the hashtable or not .
 
         Args:
-            key: the key to check for in the hashtable
+            key: The key to check for in the hashtable.
         Returns:
-        Boolean of key existence
+            Boolean of key existence.
         """
         bucket = self.hash_function(key)
-        if self.array[bucket] is None:
-            return False
         
         for e in self.array[bucket]:
             if e[0] == key:
@@ -50,11 +50,13 @@ class HashTable:
 
     def set(self, key, value):
         """ 
-        if key exists, replace the value 
-        otherwise, create a new key-pair
+        Set a key-value pair in the hashtable.
+
+        If key exists, replace the value otherwise, create a new key-pair.
+
         Args:
-            key: the key to check for
-            value: the value to set or create
+            key: The key to check for.
+            value: The value to set or create.
         """
 
         bucket = self.hash_function(key)
@@ -70,14 +72,14 @@ class HashTable:
 
     def get(self, key):
         """ 
-        get corresponding value of key
+        Get corresponding value of a given key in the hash table.
 
         Args:
-            key: the key to check for
-            value: the value to set or create
+            key: The key to check for.
+            value: The value to set or create.
         Returns:
-        corresponding value of key
-        None if key is not found
+            corresponding value of key.
+            None if key is not found.
         """
         bucket = self.hash_function(key)
 
@@ -89,10 +91,10 @@ class HashTable:
 
     def delete(self, key):
         """ 
-        Delete key-value pair if specified key is found 
+        Delete key-value pair if specified key is found. 
 
         Args:
-            key: the key to check for
+            key: The key to check for.
         """
         bucket = self.hash_function(key)
 
@@ -104,6 +106,9 @@ class HashTable:
                 break
     
     def __repr__(self):
+        """
+        Return a string representation of the hashtable.
+        """
         s = ""
         for i, bucket in enumerate(self.array):
             s += f"Bucket {i}: {bucket}\n"
