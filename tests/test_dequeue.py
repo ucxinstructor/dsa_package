@@ -268,6 +268,80 @@ class TestQueue(unittest.TestCase):
         with self.assertRaises(Exception):
             ddq.pop_right()
 
+    def test_static_deque_append_pop(self):
+        dq = Deque(5)
+        dq.append_right(1)
+        dq.append_right(2)
+        dq.append_left(0)
+        self.assertEqual(dq.to_list(), [0, 1, 2])
+        self.assertEqual(dq.pop_left(), 0)
+        self.assertEqual(dq.pop_right(), 2)
+        self.assertEqual(dq.to_list(), [1])
 
-if __name__ == '__main__':
+    def test_static_deque_overflow(self):
+        dq = Deque(3)
+        dq.append_right(1)
+        dq.append_right(2)
+        dq.append_right(3)
+        with self.assertRaises(Exception) as context:
+            dq.append_right(4)
+        self.assertEqual(str(context.exception), "Deque Full")
+
+    def test_static_deque_underflow(self):
+        dq = Deque(3)
+        with self.assertRaises(Exception) as context:
+            dq.pop_left()
+        self.assertEqual(str(context.exception), "Empty Deque")
+
+    def test_static_deque_peek(self):
+        dq = Deque(5)
+        dq.append_right(10)
+        dq.append_left(5)
+        self.assertEqual(dq.peek_left(), 5)
+        self.assertEqual(dq.peek_right(), 10)
+
+    def test_static_deque_from_list(self):
+        dq = Deque.from_list([1, 2, 3])
+        self.assertEqual(dq.to_list(), [1, 2, 3])
+
+class TestDynamicDeque(unittest.TestCase):
+    def test_dynamic_deque_grow(self):
+        dq = DynamicDeque(2)
+        dq.append_right(1)
+        dq.append_right(2)
+        dq.append_right(3)  # Should trigger grow
+        self.assertEqual(dq.capacity(), 4)
+        self.assertEqual(dq.to_list(), [1, 2, 3])
+
+    def test_dynamic_deque_shrink(self):
+        dq = DynamicDeque(8)
+        for i in range(6):
+            dq.append_right(i)
+        for _ in range(4):
+            dq.pop_left()  # Should trigger shrink
+        self.assertEqual(dq.capacity(), 8)
+        self.assertEqual(dq.to_list(), [4, 5])
+
+    def test_dynamic_deque_append_pop(self):
+        dq = DynamicDeque()
+        dq.append_left(10)
+        dq.append_right(20)
+        self.assertEqual(dq.pop_left(), 10)
+        self.assertEqual(dq.pop_right(), 20)
+
+    def test_dynamic_deque_underflow(self):
+        dq = DynamicDeque()
+        with self.assertRaises(Exception) as context:
+            dq.pop_left()
+        self.assertEqual(str(context.exception), "Empty Deque")
+
+    def test_dynamic_deque_overflow_and_resize(self):
+        dq = DynamicDeque(2)
+        dq.append_right(1)
+        dq.append_right(2)
+        dq.append_right(3)  # Should grow capacity
+        self.assertEqual(dq.capacity(), 4)
+        self.assertEqual(dq.to_list(), [1, 2, 3])
+
+if __name__ == "__main__":
     unittest.main()

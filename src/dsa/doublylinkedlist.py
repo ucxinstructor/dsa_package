@@ -1,4 +1,4 @@
-""" Module containing doubly linked list  class. """
+""" Module containing doubly linked list class. """
 
 class Node:
     """ 
@@ -7,7 +7,7 @@ class Node:
     def __init__(self, value):
         """ 
         Args:
-            value: the value of the node
+            value: The value of the node.
         """
         #: value of the node
         self.value = value
@@ -24,14 +24,13 @@ class DoublyLinkedList:
         """ 
         Initialize a singly linked list.
         
-        if only the head node is specified, tail is set to the head node and count is automatically set to 0
-        if both head and tail nodes are specified, count should be specified as well
+        if only the head node is specified, tail is set to the head node and count is automatically set to 0.
+        if both head and tail nodes are specified, count should be specified as well.
         
         Args:
-            head: reference to the head node
-            tail: reference to the tail node
-            count: the number of nodes in the linked list
-
+            head: Reference to the head node.
+            tail: Reference to the tail node.
+            count: The number of nodes in the linked list.
         """        
         self.head = head
         if head and tail is None:
@@ -44,26 +43,26 @@ class DoublyLinkedList:
     @classmethod
     def from_list(cls, mylist=None):
         """
-        Create a linked list from a list.
+        Create a doubly linked list from a list.
 
         Args:
-            mylist: a list or container to convert from
+            mylist: A list or container to convert from.
         
         Returns:
-            Linked List
+            Doubly linked list with the contents of the list.
         """
-        ll = cls()
+        dll = cls()
         for value in mylist:
-            ll.append(value)
+            dll.append(value)
 
-        return ll
+        return dll
     
     def to_list(self) -> list:
         """
-        Create a list with contents of the linked list.
+        Create a list with contents of the doubly linked list.
 
         Returns:
-            list with contents of linked list
+            A list with contents of the doubly linked list.
         """
         mylist = []
         current = self.head
@@ -86,7 +85,9 @@ class DoublyLinkedList:
         Return value at a specified index. Raise exception if index is out of bounds.
         
         Args:
-            index: index of value
+            index: The index of the value.
+        Raises:
+            IndexError: if index is out of bounds.
         """        
         i = 0
         current = self.head
@@ -98,14 +99,20 @@ class DoublyLinkedList:
         raise IndexError("Index Out of Bounds")
     
     def __len__(self) -> int:
+        """
+        Return the number of elements in the doubly linked list.
+        """
         return self.count
     
     def is_empty(self) -> bool:
+        """
+        Return True if the doubly linked list is empty.
+        """
         return self.count == 0
 
     def print(self):
         """
-        Print the contents of the linked list.
+        Print the contents of the doubly linked list.
         """
         current = self.head
         while current:
@@ -115,7 +122,7 @@ class DoublyLinkedList:
 
     def print_reverse(self):
         """
-        Print the contents of the linked list in reverse order.
+        Print the contents of the doubly linked list in reverse order.
         """
         current = self.tail
         while current:
@@ -128,10 +135,13 @@ class DoublyLinkedList:
         Search for a value in the linked list. Raise exception if value is not found.
 
         Args:
-            value: value to search for
+            value: The value to search for in the doubly linked list.
 
         Returns:
-            return index of found value
+            return index of found value.
+
+        Raises:
+            Exception: if value is not found.
         """
         i = 0
         current = self.head
@@ -147,8 +157,11 @@ class DoublyLinkedList:
         Insert a value at a specified index. Raise exception if index is out of bounds.
 
         Args:
-            index: the index to insert a value
-            value: a value to append
+            index: The index to insert a value.
+            value: The value to insert in the doubly linked list.
+
+        Raises:
+            IndexError: if index is out of bounds.
         """
         
         # insert front
@@ -178,10 +191,10 @@ class DoublyLinkedList:
         
     def prepend(self, value):
         """
-        Place a value at the beginning of the linked list.
+        Place a value at the beginning of the doubly linked list.
 
         Args:
-            value: a value to append
+            value: The value to prepend to the doubly linked list.
         """
         new_node = Node(value)
         new_node.next = self.head
@@ -191,10 +204,10 @@ class DoublyLinkedList:
 
     def append(self, value):
         """
-        Place a value at the end of the linked list.
+        Place a value at the end of the doubly linked list.
 
         Args:
-            value: a value to append
+            value: The value to append to the doubly linked list.
         """
         if self.head is None:
             self.head = Node(value)
@@ -214,10 +227,13 @@ class DoublyLinkedList:
 
     def delete(self, index):
         """
-        Delete a node at a specified index. Raise Exception if linked list is empty or if index is not found.
+        Delete a node at a specified index. Raises exception if linked list is empty or if index is not found.
 
         Args:
-            index: index of element to be deleted
+            index: The index of element to be deleted.
+
+        Raises:
+            IndexError: If linked list is empty or index is not found.
         """
         if self.head is None:
             raise IndexError("DoublyLinkedList is Empty")

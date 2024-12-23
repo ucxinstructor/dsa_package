@@ -8,28 +8,63 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 class Draw:
+    """
+    A base class for drawing various data structures.
+    
+    This class provides basic functionalities for rendering, saving, and displaying
+    visual representations of data structures.
+    """
     def __init__(self):
+        """
+        Initialize the Draw class with default figure size.
+        """
         self.figsize = (5, 3)
         
     def render(self, **kwargs):
+        """
+        Render the visual representation of the data structure.
+        
+        This method should be overridden by subclasses to provide specific rendering logic.
+        Args:
+            **kwargs: Additional keyword arguments.
+        """
         pass
 
     def set_figsize(self, figsize):
+        """
+        Set the figure size for the plot.
+        
+        Args:
+            figsize (tuple): A tuple representing the figure size (width, height).
+        """
         self.figsize = figsize
 
     def save(self, filename, **kwargs):
+        """
+        Save the rendered plot to a file.
+        
+        Args:
+            filename (str): The name of the file to save the plot to.
+            **kwargs: Additional keyword arguments.
+        """
         plt = self.render(**kwargs)
         plt.axis('off')
         plt.savefig(filename)
 
     def draw(self, **kwargs):
+        """
+        Display the rendered plot.
+
+        Args:
+            **kwargs: Additional keyword arguments.
+        """
         plt = self.render(**kwargs)
         plt.axis('off')
         plt.show()
 
 class TreeDraw(Draw):
     """
-    A class for drawing a tree structure using the networkx library.
+    A class for drawing a tree structure using the NetworkX library.
 
     This class extends the `Draw` class to visualize tree structures. It organizes the nodes
     in a hierarchical tree layout and provides options for customization through the `render` method.
@@ -87,6 +122,9 @@ class TreeDraw(Draw):
         This method generates a graphical representation of the tree with nodes positioned
         in a hierarchical layout. Customization options can be provided via keyword arguments.
 
+        Args:
+            **kwargs: Additional keyword arguments for customization.
+
         Returns:
             matplotlib.pyplot: The Matplotlib plot object for further customization or display.
         """
@@ -99,7 +137,7 @@ class TreeDraw(Draw):
 
 class HeapDraw(Draw):
     """
-    A class for drawing a heap structure using the networkx library.
+    A class for drawing a heap structure using the NetworkX library.
 
     This class extends the `Draw` class to visualize heap structures, such as binary heaps or min-heaps.
 
@@ -167,7 +205,7 @@ class HeapDraw(Draw):
     
 class TrieDraw(Draw):
     """
-    A class for drawing a Trie structure using the networkx library.
+    A class for drawing a Trie structure using the NetworkX library.
 
     This class extends the `Draw` class to visualize Trie structures, commonly used for storing strings
     or prefix trees. It provides methods to convert the Trie into a networkx graph, arrange nodes
@@ -298,7 +336,7 @@ class TrieDraw(Draw):
 
 class GraphDraw(Draw):
     """
-    A class for drawing graphs using the networkx library.
+    A class for drawing graphs using the NetworkX library.
 
     This class extends the `Draw` class to visualize graphs. It supports both directed 
     and undirected graphs, as well as weighted and unweighted graphs. Additionally, 
@@ -314,12 +352,18 @@ class GraphDraw(Draw):
         gd.draw()
     """
     def __init__(self, graph, directed=False, weighted=False):
+        """
+        Initializes the GraphDraw object.
+        """
         super().__init__()
         self.graph = graph
         self.directed = directed
         self.weighted = weighted
             
     def render(self, pos=None, show_mst=False, mst_only=False, **kwargs):
+        """
+        Renders the graph using Matplotlib. Not to be called directly. Call draw() instead.
+        """
         super().render(**kwargs)
         edges = self.graph.edges()
 

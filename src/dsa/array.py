@@ -17,8 +17,8 @@ class Array:
         Initialize the array with optional contents and a fixed capacity.
 
         Args:
-            contents: An optional iterable to fill array with default values.
-            capacity: The initial size of the array (default is 10).
+            contents: an optional iterable to fill array with default values
+            capacity: the initial size of the array (default is 10)
         """
         self._array = [ None ] * capacity
         #: number of elements currently in array
@@ -32,7 +32,7 @@ class Array:
         Append an element to the array. Raise an exception if capacity is exceeded.
 
         Args:
-            element: The element to append.
+            element: the element to append
         
         Raises:
             Exception: If the array is full.
@@ -48,7 +48,7 @@ class Array:
         Append multiple elements from a given array.  
         
         Args:
-            array: An iterable containing elements to append.
+            array: an iterable containing elements to append
 
         Raises:
             Exception: If appending the elements exceeds the array's capacity.
@@ -61,8 +61,8 @@ class Array:
         Insert an element at a specified index, shifting existing elements to the right.
 
         Args:
-            index: The index at which to insert the element.
-            element: The element to insert.
+            index: the index at which to insert the element
+            element: the element to insert
 
         Raises:
             IndexError: If the index is out of bounds.        
@@ -79,8 +79,8 @@ class Array:
         Helper method to shift elements to the right between the specified range.
 
         Args:
-            start: The starting index of the shift.
-            end: The ending index of the shift.
+            start: the starting index of the shift
+            end: the ending index of the shift
         """
         for i in range(start, end, -1):
             self._array[i] = self._array[i - 1]
@@ -90,7 +90,7 @@ class Array:
         Delete an element at a specified index, shifting subsequent elements to the left.
 
         Args:
-            index: The index of the element to delete.
+            index: the index of the element to delete
 
         Raises:     
             IndexError: If index is out of bounds.        

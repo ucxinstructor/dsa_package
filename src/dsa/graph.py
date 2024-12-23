@@ -1,18 +1,20 @@
 """ Module containing graph classes. """
 
 from dsa.queue import Queue
-from dsa.heap import MinHeap
 
 class AdjacencyMatrixGraph:
     """ 
-    An unweighted adjacency matrix graph implementation
-    (allows either directed or undirected representation)
-    vertex labels are string types
+    An unweighted adjacency matrix graph implementation.
+    
+    This class allows either directed or undirected representation of a graph.
+    Vertex labels are string types.
     """
     def __init__(self, labels: list[str]):
         """ 
+        Initialize the graph with a list of vertex labels.
+
         Args:
-            labels: list of labels for each vertex
+            labels (list[str]): List of labels for each vertex.
         """
         self.labels = labels
         self.label_index = { label: index for index, label  in enumerate(labels) }
@@ -22,21 +24,21 @@ class AdjacencyMatrixGraph:
 
     def add_edge(self, a_label: str, b_label: str):
         """ 
-        Add an undirected edge between one vertex to another (same as add_edge())
-
+        Add an undirected edge between two vertices.
+        
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
+            a_label (str): Starting vertex label.
+            b_label (str): Ending vertex label.
         """
         self.add_adjacent_vertex(a_label, b_label)
         
     def add_adjacent_vertex(self, a_label: str, b_label: str):
         """ 
-        Add an undirected edge between one vertex to another (same as add_adjacent_vertex()).
-
+        Add an undirected edge between two vertices.
+        
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
+            a_label (str): Starting vertex label.
+            b_label (str): Ending vertex label.
         """
         a = self.label_index[a_label]
         b = self.label_index[b_label]
@@ -51,8 +53,8 @@ class AdjacencyMatrixGraph:
         Add a directed edge between one vertex to another (same as add_directed_adjacent_vertex() and add_adjacent_directed_vertex())
 
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
+            a_label (str): Starting vertex label.
+            b_label (str): Ending vertex label.
         """
         self.add_adjacent_directed_vertex(a_label, b_label)
 
@@ -61,8 +63,8 @@ class AdjacencyMatrixGraph:
         Add a directed edge between one vertex to another (same as add_adjacent_directed_vertex()  and add_directed_edge())
  
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
+            a_label (str): Starting vertex label.
+            b_label (str): Ending vertex label.
         """
         self.add_adjacent_directed_vertex(a_label, b_label)
         
@@ -71,8 +73,8 @@ class AdjacencyMatrixGraph:
         Add a directed edge between one vertex to another (same as add_directed_adjacent_vertex() and add_directed_edge())
  
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
+            a_label (str): Starting vertex label.
+            b_label (str): Ending vertex label.
         """
         a = self.label_index[a_label]
         b = self.label_index[b_label]
@@ -85,7 +87,10 @@ class AdjacencyMatrixGraph:
         Perform depth first traversal in an adjacency matrix
  
         Args:
-            start_label: starting vertex label
+            start_label (str): Starting vertex label.
+        
+        Returns:
+            Array with depth first order traversal.
         """
         return self._df_rec_traverse(start_label, set(), [])
         
@@ -106,13 +111,13 @@ class AdjacencyMatrixGraph:
 
     def bf_traverse(self, start_label: str):
         """ 
-        Perform breadth first traversal in an adjacency matrix
+        Perform breadth first traversal in an adjacency matrix.
  
         Args:
-            start_label: starting vertex label
+            start_label (str): Starting vertex label.
         
         Returns:
-            array with breadth first order traversal
+            Array with breadth first order traversal.
         """
         bfs = []
         q = Queue()
@@ -132,7 +137,7 @@ class AdjacencyMatrixGraph:
     
     def vertices(self) -> list:
         """"
-        return a list of vertex labels of the graph
+        Return a list of vertex labels of the graph
         """
         return self.labels
     
@@ -151,13 +156,14 @@ class AdjacencyMatrixGraph:
 
     def is_edge(self, start: str, end: str) -> bool:
         """ 
-        Return boolean if an edge exists
+        Return boolean if an edge exists.
+
         Args:
-            start_label: starting vertex label
-            end_label: starting vertex label
+            start_label (str): starting vertex label
+            end_label (str): starting vertex label
         
-        Returns:
-            boolean of whether there is an edge from start to end
+        Returns:0
+            A boolean of whether there is an edge from start to end.
         """
         start_index = self.label_index[start]
         end_index = self.label_index[end]
@@ -167,16 +173,16 @@ class AdjacencyMatrixGraph:
     def __getitem__(self, vertex: str) -> list:
         """ 
         Args:
-            vertex: vertex label
+            vertex (str): The vertex label.
         Returns:
-            a list of adjacent vertex labels
+            A list of adjacent vertex labels.
         """
         index = self.label_index[vertex]
         return [self.labels[i] for i in range(len(self.array[index])) if self.array[index][i]]
     
     def print_graph(self):
         """ 
-        Print the contents of the graph
+        Print the contents of the graph.
         """
         print("   |", end="")
         for label in self.labels:
@@ -209,9 +215,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         Add an undirected edge between one vertex to another (same as add_edge())
 
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
-            weight: weight of the vertex
+            a_label (str): The starting vertex label.
+            b_label (str): The ending vertex label.
+            weight: The weight of the vertex.
         """
         self.add_adjacent_vertex(a_label, b_label, weight)
 
@@ -220,9 +226,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         Add an undirected edge between one vertex to another (same as add_edge())
 
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
-            weight: weight of the vertex
+            a_label (str): The starting vertex label.
+            b_label (str): The ending vertex label.
+            weight: The weight of the vertex.
         """
         a = self.label_index[a_label]
         b = self.label_index[b_label]
@@ -238,9 +244,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         Add a weighted directed edge between one vertex to another (same as add_adjacent_directed_vertex(), add_directed_adjacent_vertex())
 
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
-            weight: weight of the vertex
+            a_label (str): The starting vertex label.
+            b_label (str): The ending vertex label.
+            weight: The weight of the vertex.
         """
         self.add_adjacent_directed_vertex(a_label, b_label, weight)
 
@@ -249,9 +255,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         Add a weighted directed edge between one vertex to another (same as add_directed_edge(), add_adjacent_directed_vertex())
 
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
-            weight: weight of the vertex
+            a_label (str): The starting vertex label.
+            b_label (str): The ending vertex label.
+            weight: The weight of the vertex.
         """
         self.add_adjacent_directed_vertex(a_label, b_label, weight)
 
@@ -260,9 +266,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         Add a weighted directed edge between one vertex to another (same as add_directed_edge(), add_directed_adjacent_vertex())
 
         Args:
-            a_label: starting vertex label
-            b_label: ending vertex label
-            weight: weight of the vertex
+            a_label (str): The starting vertex label.
+            b_label (str): The ending vertex label.
+            weight: The weight of the vertex.
         """
         a = self.label_index[a_label]
         b = self.label_index[b_label]
@@ -290,7 +296,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
 
     def edges(self) -> list:
         """ 
-        Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight)
+        Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight).
         """
         edges = []
         vertex_count = len(self.labels)
@@ -302,17 +308,19 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     
         return edges
     
-    def is_edge(self, start: str, end: str) -> bool:
+    def is_edge(self, start_label: str, end_label: str) -> bool:
         """ 
-        Return boolean if an edge exists
+        Return boolean if an edge exists.
+
+        
         Args:
-            start_label: starting vertex label
-            end_label: starting vertex label
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
         
         Returns:
-            boolean of whether there is an edge from start to end
+            A boolean of whether there is an edge from start to end.
         """
-        return super().is_edge(start, end) is not None
+        return super().is_edge(start_label, end_label) is not None
     
     def weightx(self, start: str, end: str) -> bool:
         """ 
@@ -351,8 +359,8 @@ class AdjacencyListGraph:
         Add an undirected vertex to the adjacency list (same as add_edge()).
 
         Args:
-            start_label: starting vertex label 
-            end_label: ending vertex label 
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
         """
         self.add_directed_adjacent_vertex(start_label, end_label)
         if end_label not in self._adjacents:
@@ -366,8 +374,8 @@ class AdjacencyListGraph:
         Add an undirected vertex to the adjacency list (same as add_adjacent_vertex()).
 
         Args:
-            start_label: starting vertex label 
-            end_label: ending vertex label 
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
         """
         self.add_adjacent_vertex(start_label, end_label)
 
@@ -376,8 +384,8 @@ class AdjacencyListGraph:
         Add a directed vertex to the adjacency list (same as add_directed_adjacent_vertex()).
 
         Args:
-            start_label: starting vertex label 
-            end_label: ending vertex label 
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
         """
         self.add_directed_adjacent_vertex(start_label, end_label)
         
@@ -386,8 +394,8 @@ class AdjacencyListGraph:
         Add a directed vertex to the adjacency list (same as add_directed_edge()).
 
         Args:
-            start_label: starting vertex label 
-            end_label: ending vertex label 
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
         """
         if start_label not in self._adjacents:
             self._adjacents[start_label] = [end_label]
@@ -399,31 +407,33 @@ class AdjacencyListGraph:
       
     def vertices(self) -> list:
         """"
-        return a list of vertex labels of the graph
+        Return a list of vertex labels of the graph
         """
         return list(self._adjacents.keys())
   
     def adjacents(self, vertex: str) -> list:
         """
         Return a list of adjacents of a given vertex
+
         Args:
-            vertex: starting vertex label 
+            vertex (str): The label of the vertex.
         """
         return self._adjacents[vertex]
 
     def df_traverse(self, start_label: str):
         """
-        Return a list of vertices through depth first traversal starting at a given vertex
+        Return a list of vertices through depth first traversal starting at a given vertex.
+
         Args:
-            start_label: starting vertex label 
+            start_label (str): The starting vertex label.
         Returns:
-            a list of vertex labels
+            A list of vertex labels.
         """
         return self._df_rec_traverse(start_label, set(), [])
 
     def _df_rec_traverse(self, start_label: str, visited, dflist):
         """
-        helper depth first traversal recursive function
+        Helper depth first traversal recursive function.
         """
         visited.add(start_label)
         dflist.append(start_label)
@@ -437,9 +447,9 @@ class AdjacencyListGraph:
         """
         Return a list of vertices through breadth first traversal starting at a given vertex
         Args:
-            start_label: starting vertex label 
+            start_label (str): The starting vertex label.
         Returns:
-            a list of vertex labels
+            A list of vertex labels.
         """
         visited = set()
         q = Queue()
@@ -464,10 +474,11 @@ class AdjacencyListGraph:
         Recursive depth first search.
 
         Args:
-            start: beginning vertex
-            end: vertex to search for
+            start_label (str): The starting vertex label.
+            end_label (str): The vertex label to search for.
+
         Returns:
-        vertex in the graph if found, None otherwise.
+            A vertex in the graph if found, None otherwise.
         """
         def dfs_rec(current: str, end: str, visited):
             if current == end:
@@ -487,13 +498,14 @@ class AdjacencyListGraph:
     
     def bfs(self, start_label: str, end_label: str) -> str:
         """ 
-        breadth first search.
+        Breadth first search.
 
         Args:
-            start_label: beginning vertex
-            end_label: vertex to search for
+            start_label (str): The starting vertex label.
+            end_label (str): The vertex label to search for.
+
         Returns:
-        vertex in the graph if found, None otherwise.
+            A vertex in the graph if found, None otherwise.
         """
         visited = set()
         queue = Queue()
@@ -528,11 +540,11 @@ class AdjacencyListGraph:
         """ 
         Return boolean if an edge exists
         Args:
-            start_label: starting vertex label
-            end_label: starting vertex label
+            start_label (str): The starting vertex label.
+            end_label (str): The ending vertex label.
         
         Returns:
-            boolean of whether there is an edge from start to end
+            A boolean of whether there is an edge from start to end
         """
         return end_label in self[start_label]
 
@@ -564,9 +576,9 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Add an undirected vertex to the adjacency list (same as add_edge()).
 
         Args:
-            start: starting vertex label 
-            end: ending vertex label 
-            weight: edge weight
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+            weight: The edge weight.
         """
         self.add_directed_adjacent_vertex(start_label, end_label, weight)
         if end_label not in self._adjacents:
@@ -578,9 +590,9 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Add an undirected vertex to the adjacency list (same as add_adjacent_vertex()).
 
         Args:
-            start: starting vertex label 
-            end: ending vertex label 
-            weight: edge weight
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+            weight: The edge weight.
         """
         self.add_adjacent_vertex(start_label, end_label, weight)
 
@@ -589,9 +601,9 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Add a directed vertex to the adjacency list (same as add_directed_adjacent_vertex()).
 
         Args:
-            start: starting vertex label 
-            end: ending vertex label 
-            weight: edge weight
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+            weight: The edge weight.
         """
         self.add_directed_adjacent_vertex(start_label, end_label, weight)
         
@@ -600,9 +612,9 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Add a directed vertex to the adjacency list (same as add_directed_edge()).
 
         Args:
-            start: starting vertex label 
-            end: ending vertex label 
-            weight: edge weight
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+            weight: The edge weight.
         """
         if start_label not in self._adjacents:
             self._adjacents[start_label] = {}
@@ -659,11 +671,11 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Recursive depth first search.
 
         Args:
-            start_label: beginning vertex
-            end_label: vertex to search for
+            start_label: The starting vertex label. 
+            end_label: The vertex label to search for. 
         Returns:
-        vertex in the graph
-        none if not found.
+            vertex in the graph
+            none if not found.
         """
         return self.dfs_rec(start_label, end_label, set())
         
@@ -672,12 +684,12 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Helper depth-first search recursive function.
 
         Args:
-        current: Current vertex
-        end_label: Target vertex label
-        visited: Set of visited vertices 
+            current: Current vertex
+            end_label: Target vertex label
+            visited: Set of visited vertices 
 
         Returns:
-        vertex in the graph if found, None otherwise.
+            vertex in the graph if found, None otherwise.
         """
         if visited is None:
             visited = set()
@@ -702,9 +714,10 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
 
         Args:
             end: vertex to search for
+
         Returns:
-        vertex in the graph
-        None if not found.
+            vertex in the graph
+            None if not found.
         """
         visited = set()
         queue = Queue()
@@ -753,90 +766,13 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         """ 
         Return boolean if an edge exists
         Args:
-            start_label: starting vertex label
-            end_label: starting vertex label
+            start_label (str): starting vertex label
+            end_label (str): starting vertex label
         
         Returns:
-            boolean of whether there is an edge from start to end
+            A boolean of whether there is an edge from start to end.
         """
         return end_label in self[start_label]
 
-
-#### Dijkstra's Algorithm Functions
-def shortest_path(graph, start: str, end: str, debug=False):
-    """ 
-    Helper function that returns a weight table and a previous vertex table using Dijkstra's Algorithm.
-
-    Args:
-        graph: adjacency list graph
-        start: starting vertex
-        end: ending vertex
-        debug: if True, display weight table as it is being built
-    
-    Returns:
-    a tuple of a weight table dictionary and a previous path dictionary
-    """
-    weight_table = {}
-    previous = {}
-    visited = set()
-    h = MinHeap()
-
-    current = start
-    h.insert(current)
-    weight_table[current] = 0
-    previous[current] = current
-    
-    while not h.is_empty():
-        current_weight = weight_table.get(current, float('inf'))
-        visited.add(current)
-
-        for adjacent in graph[current]:
-            weight = graph[current][adjacent]
-            if adjacent not in visited:
-                h.insert(adjacent)
-
-            wt = weight_table.get(adjacent, float('inf'))
-            if wt > weight + current_weight:
-                weight_table[adjacent] = weight + current_weight
-                previous[adjacent] = current
-                if debug:
-                    print(weight_table)
-
-        current = h.pop()
-
-    return weight_table, previous
-
-def find_path(graph, start: str, end: str, debug=False):
-    """ 
-    Return the shortest path of two vertices using Dijkstra's Algorithm.
-
-    Args:
-        graph: graph object (adjacency list)
-        start: starting vertex
-        end: ending vertex
-        debug: if True, display the weight table 
-
-    Returns:
-    A list of vertices that form a shortest path
-    """
-    weight_table, previous = shortest_path(graph, start, end, debug)
-    path = []
-
-    current = end
-    path.append(current)
-    while current != start:
-        current = previous[current]
-        path.append(current)
-        
-    path.reverse()
-
-    if debug:
-        print("previous table")
-        print(previous)
-
-        print("weight table")
-        print(weight_table)
-        print("price ", weight_table[end])
-    return path
 
 

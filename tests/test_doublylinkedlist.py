@@ -119,5 +119,45 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.assertEqual(ll[0], 0)
         self.assertEqual(ll[19], 19)
 
+    def test_init_empty(self):
+        dll = DoublyLinkedList()
+        self.assertIsNone(dll.head)
+        self.assertIsNone(dll.tail)
+        self.assertEqual(dll.count, 0)
+
+    def test_init_with_head(self):
+        node = Node(1)
+        dll = DoublyLinkedList(head=node)
+        self.assertEqual(dll.head, node)
+        self.assertEqual(dll.tail, node)
+        self.assertEqual(dll.count, 1)
+
+    def test_init_with_head_and_tail(self):
+        head = Node(1)
+        tail = Node(2)
+        dll = DoublyLinkedList(head=head, tail=tail, count=2)
+        self.assertEqual(dll.head, head)
+        self.assertEqual(dll.tail, tail)
+        self.assertEqual(dll.count, 2)
+
+    def test_from_list(self):
+        values = [1, 2, 3, 4]
+        dll = DoublyLinkedList.from_list(values)
+        self.assertEqual(dll.to_list(), values)
+        self.assertEqual(dll.count, len(values))
+
+    def test_to_list(self):
+        values = [1, 2, 3, 4]
+        dll = DoublyLinkedList.from_list(values)
+        self.assertEqual(dll.to_list(), values)
+
+    def test_repr(self):
+        values = [1, 2, 3, 4]
+        dll = DoublyLinkedList.from_list(values)
+        expected_repr = "[ 1 2 3 4 ] Count: 4"
+        self.assertEqual(repr(dll), expected_repr)
+
+if __name__ == '__main__':
+    unittest.main()
 if __name__ == '__main__':
     unittest.main()

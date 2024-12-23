@@ -2,12 +2,15 @@
 
 class Deque:
     """ 
-    A static deque implementation.
+    A static deque implementation that supports appending and popping elements 
+    from both ends, with a fixed capacity.
     """
     def __init__(self, capacity=10):
         """ 
+        Initialize a deque with a fixed capacity.
+
         Args:
-            capacity: the initial size of the stack (defaults to 10)
+            capacity: The initial size of the deque (default is 10).
         """
         self._array = [None] * capacity
         self._left = -1
@@ -16,10 +19,13 @@ class Deque:
         
     def append_left(self, element):
         """
-        Append an element to the right of a deque. Raise Exception when trying to append more elements than the capacity.
+        Append an element to the left of the deque. Raises an exception when the deque is full.
 
         Args:
-            element: the element to append
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
         """
         if self.count >= self.capacity():
             raise Exception("Deque Full")
@@ -31,10 +37,13 @@ class Deque:
         
     def append_right(self, element):
         """
-        Append an element to the right of a deque. Raise Exception when trying to append more elements than the capacity.
+        Append an element to the right of the deque. Raises an exception when the deque is full.
 
         Args:
-            element: the element to append
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
         """
         if self.count >= self.capacity():
             raise Exception("Deque Full")
@@ -46,10 +55,13 @@ class Deque:
 
     def pop_left(self):
         """
-        Pop an element from the left of the deque. Raise Exception when there are no elements to pop.
+        Remove and return the element from the left of the deque. Raises an exception if the deque is empty.
 
         Returns:
-            the leftmost element of the deque
+            The leftmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
         """
         if self.is_empty():
             raise Exception("Empty Deque")
@@ -63,10 +75,13 @@ class Deque:
     
     def pop_right(self):
         """
-        Pop an element from right the deque. Raise Exception when there are no elements to pop.
+        Pop an element from right the deque. Raise an exception if the deque is empty.
 
         Returns:
-            the rightmost element of the deque
+            The rightmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
         """
         if self.is_empty():
             raise Exception("Empty Deque")
@@ -80,7 +95,14 @@ class Deque:
 
     def peek_left(self):
         """
-        Return the element from the left of the deque. Raise Exception if deque is empty.
+        Get the element at the left of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element.
+
+        Raises:
+            Exception: If the deque is empty.
         """
         if self.is_empty():
             raise Exception("Empty deque")
@@ -88,7 +110,14 @@ class Deque:
 
     def peek_right(self):
         """
-        Return the element from the right of the deque. Raise Exception if deque is empty.
+        Get the element at the right of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The rightmost element.
+
+        Raises:
+            Exception: If the deque is empty.
         """
         if self.is_empty():
             raise Exception("Empty deque")
@@ -103,10 +132,16 @@ class Deque:
     @classmethod
     def from_list(cls, alist: list):
         """
-        Set the contents of a queue into an array. Raise Exception when trying to enqueue more elements than the capacity.
+        Create a deque from a given list. Raises an exception if list exceeds the deque's capacity.
 
         Args:
-            alist: the list with contents to enqueue
+            alist: The list to initialize the deque with.
+
+        Returns:
+            a deque instance with elements from the list.
+
+        Raises:
+            Exception: If list exceeds the deque's capacity.
         """
         dq = cls()
         for e in alist:
@@ -115,7 +150,10 @@ class Deque:
 
     def to_list(self):
         """
-        Return the contents of the queue as an array.
+        Convert the deque's contents into a list.
+
+        Returns:
+            A list containg the elements in the deque.
         """
         arr = []
         for i in range(self.count):
@@ -125,17 +163,29 @@ class Deque:
 
     def capacity(self):
         """
-        Return the capacity of the deque.
+        Get the maximum capacity of the deque.
+
+        Returns:
+            The capacity of the deque.
         """
         return len(self._array)
     
     def __len__(self):
         """
-        Return the number of elements in the deque
+        Get the number of elements in the deque.
+
+        Returns:
+            The count of elements.
         """
         return self.count
     
     def __repr__(self):
+        """
+        String representation of the deque for debugging purposes.
+
+        Returns:
+            A string displaying the contents and size of the deque.
+        """
         arr = []
         for i in range(self.count):
             index = (i + self._left + 1) % len(self._array) 
@@ -145,11 +195,11 @@ class Deque:
     
 class DynamicDeque(Deque):
     """ 
-    A dynamic deque implementation.
+    A dynamic deque implementation that adjusts its capacity as needed.
     """
     def grow(self):
         """ 
-        double the capacity of the current array 
+        Helper method to double the capacity of the deque.
         """
         new_array = [ None ] * self.capacity() * 2
         
@@ -164,7 +214,7 @@ class DynamicDeque(Deque):
 
     def shrink(self):
         """ 
-        halve the capacity of the current array 
+        Helper method to halve the capacity of the deque. 
         """
         if self.capacity() < 10:
             return
@@ -184,8 +234,9 @@ class DynamicDeque(Deque):
 
     def check_capacity(self):
         """ 
-        if count >= capacity, grow the array
-        if count <= 1/4 of capacity, shrink the array
+        Helper method to adjust the capacity of the deque based on its count:
+        if count >= capacity, grow the deque
+        if count <= 1/4 of capacity, shrink the deque
         """
         if self.count >= self.capacity():
             self.grow()
@@ -194,27 +245,30 @@ class DynamicDeque(Deque):
         
     def append_left(self, element):
         """
-        Append an element into the dequeue. Automatically grows array if capacity needs to increase.
+        Append an element to the left, adjusting capacity if needed.
 
         Args:
-            element: the element to append
-        """
+            element: The element to append.
+         """
         self.check_capacity()
         super().append_left(element)
         
     def append_right(self, element):
         """
-        Append an element into the dequeue. Automatically grows array if capacity needs to increase.
+        Append an element to the right, adjusting capacity if needed.
 
         Args:
-            element: the element to append
+            element: The element to append.
         """
         self.check_capacity()
         super().append_right(element)
 
     def pop_left(self):
         """
-        Return an element from the left dequeue. Automatically shrinks array if capacity is 4x the count.
+        Remove and return the element from the left, adjusting capacity if needed.
+
+        Returns:
+            The leftmost element.
         """
         self.check_capacity()
         return super().pop_left()
@@ -222,7 +276,10 @@ class DynamicDeque(Deque):
 
     def pop_right(self):
         """
-        Return an element from the right dequeue. Automatically shrinks array if capacity is 4x the count.
+        Remove and return the element from the right, adjusting capacity if needed.
+
+        Returns:
+            The rightmost element.
         """
         self.check_capacity()
         return super().pop_right()
