@@ -86,6 +86,8 @@ renamed Node class to TreeNode
 Misc. code improvements, documentation updates and API consistency
 
 # TODO
-* Separate the Dijkstra code from graph
+* test RUFF
+* Add Dijkstra test
 * Add Prim's algorithm
+* Add Prim's algorithm test
 * General: Add more type hints
