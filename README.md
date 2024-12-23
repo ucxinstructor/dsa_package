@@ -1,8 +1,35 @@
 # UC Berkeley Extension - Data Structures and Algorithms Class 
 
-A collection of classes and functions for use in Comp Sci X404.1: Data Structures and Algorithms Class.
+A collection of classes and functions for use in UC Berkeley Extension's Comp Sci X404.1: Data Structures and Algorithms Class.
 
 [API Documentation](src/html/dsa)	
+
+Command Line Installation
+```
+pip install ucxdsa
+```
+
+Updating an existing version of the DSA package
+
+```
+pip install --upgrade ucxdsa
+```
+
+Quick Usage Guide
+
+```
+from dsa.modulename import classname
+```
+
+To determine the version, enter the following in Python or Jupyter:
+
+```
+import dsa
+print(dsa.version)
+``` 
+***
+# Revision History
+
 ## 2024.12.22
 * Created Github Pages access to documentation
 * Added more details to documentation
