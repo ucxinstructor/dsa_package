@@ -3,6 +3,14 @@ import unittest
 from dsa.array import Array, DynamicArray
 
 class TestArray(unittest.TestCase):
+    def setUp(self):
+        """Set up common test objects."""
+        self.array = Array(capacity=5)
+        self.array_with_elements = Array([1, 2, 3], capacity=5)
+
+        self.dynarray = DynamicArray(capacity=5)
+        self.dynarray_with_elements = DynamicArray([1, 2, 3], capacity=5)
+
     def test_create(self):
         a = Array()
         self.assertEqual(len(a), 0)
@@ -70,6 +78,136 @@ class TestArray(unittest.TestCase):
         self.assertEqual(da.count, 16)
         self.assertFalse(da.is_empty())
 
+    def test_initialization_empty(self):
+        """Test initializing an empty array."""
+        self.assertEqual(len(self.array), 0)
+        self.assertEqual(self.array.capacity(), 5)
+        self.assertTrue(self.array.is_empty())
 
-if __name__ == '__main__':
+        self.assertEqual(len(self.dynarray), 0)
+        self.assertEqual(self.dynarray.capacity(), 5)
+        self.assertTrue(self.dynarray.is_empty())
+
+
+    def test_initialization_with_contents(self):
+        """Test initializing an array with contents."""
+        self.assertEqual(len(self.array_with_elements), 3)
+        self.assertEqual(self.array_with_elements.to_list(), [1, 2, 3])
+        self.assertFalse(self.array_with_elements.is_empty())
+
+        self.assertEqual(len(self.dynarray_with_elements), 3)
+        self.assertEqual(self.dynarray_with_elements.to_list(), [1, 2, 3])
+        self.assertFalse(self.dynarray_with_elements.is_empty())
+
+    def test_append_within_capacity(self):
+        """Test appending elements within capacity."""
+        self.array.append(10)
+        self.assertEqual(self.array.to_list(), [10])
+        self.assertEqual(len(self.array), 1)
+
+        self.dynarray.append(10)
+        self.assertEqual(self.dynarray.to_list(), [10])
+        self.assertEqual(len(self.dynarray), 1)
+
+    def test_append_exceed_capacity(self):
+        """Test appending elements exceeding capacity."""
+        with self.assertRaises(Exception) as context:
+            for i in range(6):
+                self.array.append(i)
+        self.assertEqual(str(context.exception), "Capacity Error: Maximum capacity 5 reached.")
+
+        for i in range(1000):
+            self.dynarray.append(i)
+        self.assertEqual(self.dynarray.count, 1000)
+
+    def test_insert_valid_index(self):
+        """Test inserting an element at a valid index."""
+        self.array_with_elements.insert(1, 99)
+        self.assertEqual(self.array_with_elements.to_list(), [1, 99, 2, 3])
+        self.assertEqual(len(self.array_with_elements), 4)
+
+        self.dynarray_with_elements.insert(1, 99)
+        self.assertEqual(self.dynarray_with_elements.to_list(), [1, 99, 2, 3])
+        self.assertEqual(len(self.dynarray_with_elements), 4)
+
+    def test_insert_invalid_index(self):
+        """Test inserting an element at an invalid index."""
+        with self.assertRaises(IndexError):
+            self.array.insert(-1, 10)
+            self.dynarray.insert(-1, 10)
+        with self.assertRaises(IndexError):
+            self.array.insert(10, 10)
+            self.dynarray.insert(10, 10)
+
+    def test_delete_valid_index(self):
+        """Test deleting an element at a valid index."""
+        self.array_with_elements.delete(1)
+        self.assertEqual(self.array_with_elements.to_list(), [1, 3])
+        self.assertEqual(len(self.array_with_elements), 2)
+
+        self.dynarray_with_elements.delete(1)
+        self.assertEqual(self.dynarray_with_elements.to_list(), [1, 3])
+        self.assertEqual(len(self.dynarray_with_elements), 2)
+
+    def test_delete_invalid_index(self):
+        """Test deleting an element at an invalid index."""
+        with self.assertRaises(IndexError):
+            self.array.delete(-1)
+            self.dynarray.delete(-1)
+        with self.assertRaises(IndexError):
+            self.array.delete(10)
+            self.dynarray.delete(-1)
+
+    def test_get_item(self):
+        """Test retrieving an element using the index operator."""
+        self.assertEqual(self.array_with_elements[1], 2)
+        self.assertEqual(self.dynarray_with_elements[1], 2)
+
+    def test_get_item_invalid_index(self):
+        """Test retrieving an element with an invalid index."""
+        with self.assertRaises(IndexError):
+            _ = self.array_with_elements[-1]
+            _ = self.dynarray_with_elements[-1]
+        with self.assertRaises(IndexError):
+            _ = self.array_with_elements[10]
+            _ = self.dynarray_with_elements[10]
+
+    def test_set_item(self):
+        """Test setting a value using the index operator."""
+        self.array_with_elements[1] = 99
+        self.assertEqual(self.array_with_elements.to_list(), [1, 99, 3])
+        self.dynarray_with_elements[1] = 99
+        self.assertEqual(self.dynarray_with_elements.to_list(), [1, 99, 3])
+
+    def test_set_item_invalid_index(self):
+        """Test setting a value with an invalid index."""
+        with self.assertRaises(IndexError):
+            self.array_with_elements[-1] = 10
+            self.dynarray_with_elements[-1] = 10
+        with self.assertRaises(IndexError):
+            self.array_with_elements[10] = 10
+            self.dynarray_with_elements[10] = 10
+
+    def test_from_list(self):
+        """Test creating an array from a standard Python list."""
+        new_array = Array.from_list([5, 6, 7])
+        self.assertEqual(new_array.to_list(), [5, 6, 7])
+        self.assertEqual(len(new_array), 3)
+        self.assertEqual(new_array.capacity(), 10)
+
+        new_dynarray = DynamicArray.from_list([5, 6, 7])
+        self.assertEqual(new_dynarray.to_list(), [5, 6, 7])
+        self.assertEqual(len(new_dynarray), 3)
+        self.assertEqual(new_dynarray.capacity(), 4)
+
+    def test_repr(self):
+        """Test the string representation of the array."""
+        self.assertEqual(
+            repr(self.array_with_elements), "[1, 2, 3] Count: 3 Capacity: 5"
+        )
+        self.assertEqual(
+            repr(self.dynarray_with_elements), "[1, 2, 3] Count: 3 Capacity: 4"
+        )
+
+if __name__ == "__main__":
     unittest.main()
