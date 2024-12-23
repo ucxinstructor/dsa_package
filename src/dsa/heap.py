@@ -1,12 +1,7 @@
-""" Module containing heap classes. """
+""" Module containing heap (max heap), min heap and priority queue classes. """
 class Heap:
     """ 
-    A heap implementation.
-
-    Args:
-        maxheap: return a max-heap if True  (default), otherwise return a min-heap
-    Todo:
-        make heap_print work with pq
+    A max heap implementation.
     """
     def __init__(self):
         self._array = []
@@ -27,7 +22,7 @@ class Heap:
         Get the root value.
 
         Returns:
-        The root node's value. None if count is 0.
+            The root node's value. None if count is 0.
         """
         if self.count() == 0:
             return None
@@ -36,19 +31,20 @@ class Heap:
     
     def peek(self):
         """
-        Get the max value if max-heap and min value if min-heap.
+        Get the max value of the max heap.
 
         Returns:
-        Get the max value if max-heap and min value if min-heap.
+            The maximum value of the max heap.
         """
         return self.root()
 
     def last(self):
         """
-        Get the last node of the heap.
+        Get the last node of the max heap.
 
         Returns:
-        The last node's value. None if count is 0.
+            The last node's value. 
+            None if count is 0.
         """
         if self.count() == 0:
             return None
@@ -57,37 +53,37 @@ class Heap:
     
     def left_index(self, index: int) -> int:
         """
-        Get the value of the left child.
+        Get the index of the left child.
 
         Args:
-            index: current index  
+            index (int): The index of the node.
 
         Returns:
-        the index of the left child
+            Return the index of the left child.
         """
         return (index * 2) + 1
 
     def right_index(self, index: int) -> int:
         """
-        Get the value of the right child.
+        Get the index of the right child.
 
         Args:
-            index: current node index  
+            index (int): The index of the node.
 
         Returns:
-        the index of the right child
+            Return the index of the right child.
         """
         return (index * 2) + 2
 
     def parent_index(self, index: int) -> int:
         """
-        Get the value of the parent child.
+        Get the index of the parent node.
 
         Args:
-            index: current node index  
+            index (int): The index of the node.  
 
         Returns:
-        the index of the parent child
+            Return the index of the parent child.
         """
         return (index - 1) // 2
     
@@ -96,10 +92,10 @@ class Heap:
         Check if current node has an left child.
 
         Args:
-            index: current node index  
+            index (int): The index of the node.
 
         Returns:
-        the index of the left child
+            Boolean on whether a node has a left child node.
         """
         return self.left_index(index) < self.count()
     
@@ -108,22 +104,22 @@ class Heap:
         Check if current node has an right child.
 
         Args:
-            index: current node index  
+            index (int): The index of the node.  
 
         Returns:
-        the index of the left child
+            Boolean on whether a node has a right child node.
         """
         return self.right_index(index) < self.count()
 
     def has_parent(self, index: int) -> bool:
         """
-        Check if current node has a parent node.
+        Check if a node has a parent node.
 
         Args:
-            index: current index  
+            index (int): The index of the node. 
 
         Returns:
-        the index of the left child
+            Boolean on whether a node has a parent node.
         """
         return self.parent_index(index) >= 0
     
@@ -132,7 +128,7 @@ class Heap:
         Insert a value into the heap.
 
         Args:
-            value: value to insert  
+            value: The value to insert. 
         """
         self._array.append(value)
         
@@ -144,7 +140,7 @@ class Heap:
         Perform heapify up starting at a given index.
 
         Args:
-            index: starting index  
+            index (int): The starting index.
         """
         parent_index = self.parent_index(index)
         while self.has_parent(index) and self._array[index] > self._array[parent_index]:
@@ -154,10 +150,10 @@ class Heap:
 
     def pop(self):
         """
-        Get the value of the root node and remove it from the heap.
+        Return the value of the root node (max value) and remove it from the heap.
 
         Returns:
-        value of the root node
+            Return the value from the root node.
         """
         root_value = self.root()
         
@@ -178,7 +174,7 @@ class Heap:
         Perform heapify down starting at a given index.
 
         Args:
-            index: starting index  
+            index (int): The starting index.
         """
         while self.has_left(index):
             higher_index = self.left_index(index)
@@ -198,7 +194,7 @@ class Heap:
         Return the enumeration of a heap.
 
         Returns:
-        enumeration of a heap
+            Enumeration of a heap.
         """
         return enumerate(self._array)
 
@@ -207,7 +203,7 @@ class Heap:
         Return the number of items in the heap.
 
         Returns:
-        the number of items in the heap
+            The number of items in the heap.
         """
         return len(self._array)
     
@@ -216,8 +212,8 @@ class Heap:
         Check if a heap has any items.
 
         Returns:
-        True if heap has no items.
-        False if heap has more than 0 items.
+            True if heap has no items.
+            False if heap has more than 0 items.
         """
         return self.count() == 0
 
@@ -237,7 +233,7 @@ class Heap:
         Get the number of items in the priority queue.
 
         Returns:
-        Number of items in the priority queue
+            Number of items in the priority queue
         """
         return self.count()
 
@@ -247,7 +243,7 @@ class MinHeap(Heap):
         Perform heapify up starting at a given index.
 
         Args:
-            index: starting index  
+            index (int): The starting index.
         """
         parent_index = self.parent_index(index)
         while self.has_parent(index) and self._array[index] < self._array[parent_index]:
@@ -260,7 +256,7 @@ class MinHeap(Heap):
         Perform heapify down starting at a given index.
 
         Args:
-            index: starting index  
+            index (int): The starting index.
         """
         while self.has_left(index):
             higher_index = self.left_index(index)
@@ -282,30 +278,30 @@ class PriorityQueue(MinHeap):
     """
     def push(self, item, priority: int):
         """
-        Insert an item with a priority into the priority queue
+        Insert an item with a priority into the priority queue.
 
         Args:
-            item: item to insert  
-            priority: priority of value
+            item: The item to insert.
+            priority (int): Priority of item.
         """
         super().insert((priority, item))
 
     def pop(self):
         """
-        Return and remove the highest priority value in the heap
+        Return and remove the highest priority value in the heap.
 
         Returns:
-        Return the highest priority value in the heap
+            Return The highest priority value in the heap.
         """
         priority, item = super().pop()
         return item
 
     def peek(self):
         """
-        Return the highest priority value in the heap
+        Return the highest priority value in the heap.
 
         Returns:
-        Return the highest priority value in the heap
+            Return The highest priority value in the heap.
         """
         priority, item = super().peek()
         return item
