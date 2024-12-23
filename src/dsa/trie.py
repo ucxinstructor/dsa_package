@@ -27,7 +27,10 @@ class Trie:
         Insert a word into a trie.
         
         Args:
-            word: word to insert into a trie
+            word: The word to insert.
+
+        Returns:
+            None
         """        
         current = self.root
         for c in word:
@@ -43,10 +46,10 @@ class Trie:
         Search for a substring in a trie.
         
         Args:
-            word: word to search for
+            word: The word to search for.
         
         Returns:
-        True if the complete word is found
+            True if the complete word is found.
         """        
         if len(word) == 0:
             return False
@@ -63,11 +66,11 @@ class Trie:
         Search for a substring in a trie.
         
         Args:
-            word: word to search for
+            word: The word to search for.
         
         Returns:
-        TriedNode where the string begins
-        None if the word is not found
+            TriedNode where the string begins
+            None if the word is not found
         """        
         if len(word) == 0:
             return None
@@ -79,17 +82,20 @@ class Trie:
             current = current.children[c]
         return current
     
-    def delete(self, word: str, i=0, current=None):
+    def delete(self, word: str, i: int=0, current=None):
         """ 
         Delete a word from the trie.
         
         Args:
-            word: word to delete
-            i: index of character
-            current: current node
+            word: The word to delete.
+            i: The index of character.
+            current: The current node.
 
         Returns:
-        Boolean indicating if child node can be deleted
+            Boolean indicating if child node can be deleted
+
+        Raises:
+            ValueError: If the word is not found.
         """        
         if i == len(word):
             return True
@@ -116,17 +122,20 @@ class Trie:
             return len(current.children) == 0
         return False
     
-    def delete_preorder(self, word, i=0, current=None):
+    def delete_preorder(self, word, i: int=0, current=None):
         """ 
         Delete a word using preorder (Do not use! For demonstration purposes only).
         
         Args:
-            word: word to delete
-            i: index of character
-            current: current node
+            word: The word to delete.
+            i: The index of character.
+            current: The current node.
 
         Returns:
-        Boolean indicating if child node can be deleted
+            Boolean indicating if child node can be deleted.
+
+        Raises:
+            ValueError: If the word is not found.
         """        
         if i == len(word):
             return True
@@ -152,12 +161,15 @@ class Trie:
         Return a list of words.
         
         Args:
-            node: current trie node
-            word: word to build after each recursive call
-            words: list of words
+            node: The current trie node.
+            word: The word to build after each recursive call.
+            words: The list of words.
 
         Returns:
-        List of words that begin with a given prefix.
+            List of words that begin with a given prefix.
+
+        Raises:
+            ValueError: If the word is not found.
         """        
         if words is None:
             words = []
@@ -178,11 +190,14 @@ class Trie:
         Return a list of words that begin with a given prefix.
         
         Args:
-            prefix: prefix to search for
+            prefix: The prefix to search for.
 
         Returns:
-        List of words that begin with a given prefix.
-        None if there are no matching words.
+            List of words that begin with a given prefix.
+            None if there are no matching words.
+
+        Raises:
+            ValueError: If the word is not found.
         """        
         current = self.search_node(prefix)
         if current is None:
@@ -194,11 +209,14 @@ class Trie:
         Return a list of close words with a given prefix.
         
         Args:
-            prefix: prefix to search for
+            prefix: The prefix to search for.
 
         Returns:
-        List of words that are similar to a given prefix.
-        None if there are no matching words.
+            List of words that are similar to a given prefix.
+            None if there are no matching words.
+
+        Raises:
+            ValueError: If the word is not found.
         """        
         if prefix is None or len(prefix) == 0:
             return None
@@ -208,9 +226,15 @@ class Trie:
         else:
             return suggestions
     
-    def copy_node(self, node):
+    def copy_node(self, node: TrieNode):
         """
         Recursively deep copy a node and its children.
+
+        Args:
+            node: The node to copy.
+        
+        Returns:
+            A deep copy of the node.
         """
         if not node:
             return
@@ -222,6 +246,9 @@ class Trie:
     def copy(self):
         """
         Create a deep copy of the Trie.
+
+        Returns:
+            A deep copy of the trie.
         """
         new_trie = Trie()
         new_trie.root = self.copy_node(self.root)

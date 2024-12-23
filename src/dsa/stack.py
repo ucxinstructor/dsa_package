@@ -4,10 +4,12 @@ class Stack:
     """ 
     A static stack implementation.
     """
-    def __init__(self, capacity=10):
+    def __init__(self, capacity: int=10):
         """ 
+        Initialize the stack with a given capacity.
+
         Args:
-            capacity: the initial size of the stack (defaults to 10)
+            capacity (int): The initial size of the stack (defaults to 10).
         """
         self._array = [None] * capacity
         #: number of elements in stack
@@ -18,7 +20,9 @@ class Stack:
         Push an element into the stack. Raise Exception when trying to push more elements than the capacity.
 
         Args:
-            element: the element to push
+            element: The element to push.
+        Raises:
+            Exception: When the capacity is reached.
         """
         if len(self) >= len(self._array):
             raise Exception("Capacity Reached")
@@ -30,7 +34,10 @@ class Stack:
         Pop an element from the stack. Raise Exception when there are no elements to pop.
 
         Returns:
-            the top element in the stack
+            The top element in the stack.
+        
+        Raises:
+            Exception: When the stack is empty.
         """
         if self.is_empty():
             raise Exception("Empty Stack")
@@ -41,12 +48,21 @@ class Stack:
     def peek(self):
         """
         Return the element from the top of the stack. Raise Exception if stack is empty.
+
+        Returns:
+            The top element in the stack.
+        
+        Raises:
+            Exception: When the stack is empty. 
         """
         if self.is_empty():
             raise Exception("Empty Stack")
         return self._array[self.top()]
     
     def __len__(self):
+        """
+        Return the number of elements in the stack.
+        """
         return self.count
     
     def is_empty(self):
@@ -73,7 +89,7 @@ class Stack:
         Set the contents of a stack from a list. Raise Exception when trying to push more elements than the capacity.
 
         Args:
-            alist: the list with contents to set as an array
+            alist: The list with contents to set as an array.
         """
         st = cls()
         for e in alist:
@@ -87,6 +103,9 @@ class Stack:
         return self._array[:self.count]
 
     def __repr__(self):
+        """
+        Return a string representation of the stack.
+        """
         return f"{self._array[0:self.count]} Top: {self.top()} Capacity: {self.capacity()}"
     
     
@@ -96,7 +115,7 @@ class DynamicStack(Stack):
     """
     def grow(self):
         """ 
-        double the capacity of the current array 
+        Helper method to double the capacity of the current array. 
         """
         new_array = [ None ] * len(self._array) * 2
         
@@ -108,7 +127,7 @@ class DynamicStack(Stack):
 
     def shrink(self):
         """ 
-        halve the capacity of the current array 
+        Helper method to halve the capacity of the current array.
         """
         if self.capacity() < 10:
             return
@@ -124,9 +143,10 @@ class DynamicStack(Stack):
 
 
     def check_capacity(self):
-        """ 
-        if count >= capacity, grow the array
-        if count <= 1/4 of capacity, shrink the array
+        """
+        Check the capacity of the stack. 
+        If count >= capacity, grow the array
+        If count <= 1/4 of capacity, shrink the array
         """
         if self.count >= self.capacity():
             self.grow()
@@ -138,7 +158,10 @@ class DynamicStack(Stack):
         Push an element into the stack. Automatically grows array if capacity needs to increase.
 
         Args:
-            element: the element to push
+            element: The element to push.
+
+        Returns:
+            None
         """
         self.check_capacity()
         super().push(element)
@@ -147,6 +170,11 @@ class DynamicStack(Stack):
         """
         Return an element from the stack. Automatically shrinks array if capacity is 4x the count.
 
+        Returns:
+            The top element in the stack.
+
+        Raises:
+            Exception: When the stack is empty.
         """
         self.check_capacity()
         return super().pop()

@@ -6,16 +6,21 @@ class TreeNode:
     """
     def __init__(self, value, left=None, right=None):
         """ 
+        TreeNode constructor.
+        
         Args:
-            value: value of the node
-            left: left node
-            right: right node
+            value: The value of the node.
+            left: Reference to the left node.
+            right: Reference to the right node.
         """
         self.value = value
         self.left = left
         self.right = right
 
     def copy(self):
+        """
+        Return a copy of the node.
+        """
         new_node = TreeNode(self.value) 
         if self.left:
             new_node.left = self.left.copy()
@@ -43,7 +48,7 @@ class Tree:
     def __init__(self, root=None):
         """ 
         Args:
-            root: root node of the Tree
+            root: Root node of the Tree.
         """
         self.root = root
         
@@ -52,11 +57,14 @@ class Tree:
         Search for a value in the binary search tree.
 
         Args:
-            value: value to search for
+            value: Value to search for.
         
         Returns:
-        node with matching value
-        None if not found
+            node with matching value
+            None if not found
+
+        Raises:
+            ValueError: if value is not found
         """
         current = self.root
         
@@ -77,10 +85,13 @@ class Tree:
         Insert a value in the binary search tree.
 
         Args:
-            value: value to insert
+            value: The value to insert.
         
         Returns:
-        None
+            None
+
+        Raises:
+            ValueError: if value is already in the tree
         """
         current = self.root
         if self.root is None:
@@ -108,10 +119,13 @@ class Tree:
         Delete a value from the binary search tree.
 
         Args:
-            value: value to delete
+            value: The value to delete.
         
         Returns:
-        None
+            None
+        
+        Raises:
+            ValueError: if value is not found.
         """
         return self.delete_node(value, self.root)
         
@@ -120,8 +134,14 @@ class Tree:
         Helper function to delete a value from the binary search tree. (Use delete() instead)
 
         Args:
-            value: value to delete
-            node: current node
+            value: The value to delete.
+            node: The current node.
+
+        Returns:
+            None
+        
+        Raises:
+            ValueError: if value is not found.
         """
         if node is None:
             return None
@@ -151,11 +171,14 @@ class Tree:
         Return the successor node (the minimum value in a binary search tree's right subtree).
 
         Args:
-            node: starting node
+            node: The starting node.
         
         Returns:
-        node with the lowest value in the BST
-        None if not found
+            node with the lowest value in the BST
+            None if not found
+
+        Raises:
+            ValueError: if value is not found.
         """
         if node is None:
             node = self.root
@@ -170,11 +193,14 @@ class Tree:
         Return the predecessor node (the maximum value in a binary search tree's left subtree).
 
         Args:
-            node: starting node
+            node: The starting node.
         
         Returns:
-        node with the lowest value in the BST
-        None if not found
+            node with the lowest value in the BST
+            None if not found
+
+        Raises:
+            ValueError: if value is not found.
         """
         if node is None:
             node = self.root

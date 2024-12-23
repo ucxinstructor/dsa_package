@@ -3,41 +3,42 @@ import random
 
 def rand_int_array(n: int, maxnum: int) -> list:
     """ 
-    return an array of n integers of random numbers from 0 to maxnum
+    Return an array of n integers of random numbers from 0 to maxnum.
 
     Args:
-        n: the number of integers to generate
-        maxnum: the maximum number in a range (0-maxnum inclusive)
+        n (int): The number of integers to generate.
+        maxnum (int): The maximum number in a range (0-maxnum inclusive).
     Returns:
-    array of n integers of random numbers from 0 to maxnum
+        Array of n integers of random numbers from 0 to maxnum.
     """
     array = [None] * n
     for i in range(n):
         array[i] = random.randint(0, maxnum)
     return array
 
-def filled_array(n):
+def filled_array(n: int) -> list:
     """ 
-    return an array filled with integers from 0 to n-1
+    Return an array filled with integers from 0 to n-1.
 
     Args:
-        n: the number of integers to generate
+        n (int): the number of integers to generate.
+
     Returns:
-    array filled with integers from 0 to n-1
+        Array filled with integers from 0 to n-1.
     """
     array = [None] * n
     for i in range(n):
         array[i] = i
     return array    
 
-def shuffle_array(n):
+def shuffle_array(n: int) -> list:
     """ 
-    return a shuffled array filled with integers from 0 to n-1
+    Return a shuffled array filled with integers from 0 to n-1.
 
     Args:
-        n: the number of integers to generate
+        n (int): The number of integers to generate.
     Returns:
-    array shuffled with integers from 0 to n-1
+        Array shuffled with integers from 0 to n-1.
     """
     array = filled_array(n)
     for i in range(n):

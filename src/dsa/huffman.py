@@ -18,7 +18,15 @@ class Node:
             return self.value
 
 def character_frequency(s: str):
-    """ takes a string a returns a dictionary on character frequency """
+    """ 
+    Takes a string a returns a dictionary of character frequencies.
+
+    Args:
+        s (str): The string to analyze.
+
+    Returns:
+        Dictionary containing character frequency.
+    """
     d = {}
     for c in s:
         if c not in d:
@@ -28,7 +36,15 @@ def character_frequency(s: str):
     return d
 
 def build_frequency_table(s: str):
-    """ accepts a string to encode and returns a heap of the characters """
+    """ 
+    Accepts a string to encode and returns a heap of the characters.
+
+    Args:
+        s (str): The string to encode.
+
+    Returns:
+        A heap of the characters based on frequencies.
+    """
     frequency_dictionary = character_frequency(s)
     
     # add to priority queue
@@ -39,7 +55,15 @@ def build_frequency_table(s: str):
     return h
 
 def build_huffman_tree(heap):
-    """ accepts a heap and returns a Huffman Tree """
+    """ 
+    Accepts a heap and returns a Huffman Tree.
+
+    Args:
+        heap (list): A heap of characters based on frequencies. 
+
+    Returns:
+        A Huffman Tree.
+    """
     while len(heap) > 1:
         n1 = heapq.heappop(heap)
         n2 = heapq.heappop(heap)
@@ -48,7 +72,16 @@ def build_huffman_tree(heap):
     return heap[0][1]
 
 def build_huffman_dictionary(node, bit_string: str=""):
-    """ given a Huffman Node, build a Huffman Dictionary """
+    """
+    Given a Huffman Node, build a Huffman Dictionary.
+
+    Args:
+        node (Node): The Huffman Node.
+        bit_string (str): The bit string.
+
+    Returns:
+        A Huffman Dictionary.
+    """
     d = {}
     if node.left is None and node.right is None:
         return {node.value: bit_string}
@@ -59,12 +92,33 @@ def build_huffman_dictionary(node, bit_string: str=""):
     return d
 
 def huffman_encode(st, hd):
+    """
+    Encode the string using the Huffman Dictionary.
+
+    Args:
+        st (str): The string to encode.
+        hd (dict): The Huffman Dictionary.
+
+    Returns:
+        The encoded string.
+    """
     s = ""
     for c in st:
         s += hd[c]
     return s
 
 def huffman_decode(encoded_data, tree):
+    """
+    Decode the encoded data using the Huffman Tree.
+    
+    Args:
+        encoded_data (str): The encoded data.
+        tree (Node): The Huffman Tree.
+
+    Returns:
+        The decoded data.
+    """
+
     root = tree
     s = ""
     for bit in encoded_data:
@@ -78,10 +132,29 @@ def huffman_decode(encoded_data, tree):
             tree = root
     return s
 
-def bitstring_to_bytes(s):
+def bitstring_to_bytes(s: str):
+    """
+    Convert a bitstring to bytes.
+
+    Args:
+        s (str): The bitstring.
+
+    Returns:
+        Bitstring converted to bytes.
+    """
     return bytes(int(s[i : i + 8], 2) for i in range(0, len(s), 8))
 
 def bytes_to_bitstring(ba, bitlength=8):
+    """
+    Convert bytes to bitstring.
+
+    Args:
+        ba (bytes): The bytes to convert.
+        bitlength (int): The bit length.
+    
+    Returns:
+        The bytes converted to bitstring.
+    """
     s = ""
     for b in ba[:-1]:
         byte = f"{b:08b}"

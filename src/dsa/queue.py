@@ -6,8 +6,10 @@ class Queue:
     """
     def __init__(self, capacity=10):
         """ 
+        Initialize the queue with a given capacity.
+
         Args:
-            capacity: the initial size of the stack (defaults to 10)
+            capacity: The initial size of the stack (defaults to 10).
         """
         self._array = [None] * capacity
         self._front = 0
@@ -19,7 +21,13 @@ class Queue:
         Enqueue an element into the queue. Raise Exception when trying to enqueue more elements than the capacity.
 
         Args:
-            element: the element to enqueue
+            element: The element to enqueue.
+
+        Raises:
+            Exception: When trying to enqueue more elements than the capacity.
+
+        Returns:
+            None
         """
         if self.count >= len(self._array):
             raise Exception("Capacity Reached")
@@ -32,8 +40,11 @@ class Queue:
         """
         Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.
 
+        Raises:
+            Exception: When there are no elements to dequeue.
+
         Returns:
-            the from element in the queue
+            The from element in the queue.
         """
         if self.is_empty():
             raise Exception("Empty Queue")
@@ -49,6 +60,12 @@ class Queue:
     def peek(self):
         """
         Return the element in front of the queue. Raise Exception if queue is empty.
+
+        Returns:
+            The element in front of the queue.
+
+        Raises:
+            Exception: When the queue is empty.
         """
         if self.is_empty():
             raise Exception("Empty Queue")
@@ -58,12 +75,18 @@ class Queue:
     def is_empty(self):
         """
         Return a Boolean on whether the stack is empty or not.
+
+        Returns:
+            True if the stack is empty, False otherwise.
         """
         return self.count == 0
     
     def capacity(self):
         """
         Return the capacity of the queue.
+
+        Returns:
+            The capacity of the queue.
         """
         return len(self._array)
     
@@ -73,7 +96,10 @@ class Queue:
         Set the contents of a queue into an array. Raise Exception when trying to enqueue more elements than the capacity.
 
         Args:
-            alist: the list with contents to enqueue
+            alist: The list with contents to enqueue.
+
+        Returns:
+            The queue with the contents of the list.
         """
         q = cls()
         for e in alist:
@@ -83,12 +109,18 @@ class Queue:
     def to_list(self):
         """
         Return the contents of the queue as an array.
+
+        Returns:
+            The contents of the queue as an array.
         """
         return self._array[self._front: self._front + self.count]
 
     def __repr__(self):
         """
         Return a string with details of the queue.
+
+        Returns:
+            A string with details of the queue.
         """
         arr = []
         for i in range(self.count):
@@ -100,6 +132,9 @@ class Queue:
     def __len__(self):
         """
         Return the count of items in the queue.
+
+        Returns:
+            The count of items in the queue.
         """
         return self.count
     
@@ -109,11 +144,20 @@ class DynamicQueue(Queue):
     A dynamic queue implementation. Note that shrink is not impelmented.
     """
     def __init__(self, capacity=10):
+        """
+        Initialize the queue with a given capacity.
+        
+        Args:
+            capacity: The initial size of the stack (defaults to 10).
+        """
         super().__init__(capacity)
     
     def grow(self):
         """ 
-        double the capacity of the current array 
+        Double the capacity of the current array.
+
+        Returns:
+            None
         """
         new_array = [ None ] * len(self._array) * 2
         
@@ -125,7 +169,10 @@ class DynamicQueue(Queue):
 
     def check_capacity(self):
         """ 
-        if count >= capacity, grow the array
+        If count >= capacity, grow the array.
+
+        Returns:
+            None
         """
         if self._front + self.count >= len(self._array):
             self.grow()
@@ -136,6 +183,9 @@ class DynamicQueue(Queue):
 
         Args:
             element: the element to enqueue
+
+        Returns:
+            None
         """
         self.check_capacity()
         index = self._front + self.count

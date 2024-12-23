@@ -24,11 +24,10 @@ class TestDijkstra(unittest.TestCase):
         self.assertEqual(previous['A'], 'A')
 
     def test_shortest_path_no_path(self):
-#        self.graph.add_vertex('E')
-#        weight_table, previous = shortest_path(self.graph, 'A', 'E')
-#        self.assertNotIn('E', weight_table)
-#        self.assertNotIn('E', previous)
-        pass
+        self.graph.add_edge('E', 'E', 0)
+        weight_table, previous = shortest_path(self.graph, 'A', 'E')
+        self.assertNotIn('E', weight_table)
+        self.assertNotIn('E', previous)
 
 if __name__ == '__main__':
     unittest.main()

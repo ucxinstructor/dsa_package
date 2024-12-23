@@ -6,8 +6,9 @@ class Node:
     """
     def __init__(self, value):
         """ 
+        A singly linked list node.
         Args:
-            value: the value of the node
+            value: The value of the node.
         """
         #: value of the node
         self.value = value
@@ -26,9 +27,9 @@ class LinkedList:
         if both head and tail nodes are specified, count should be specified as well
         
         Args:
-            head: reference to the head node
-            tail: reference to the tail node
-            count: the number of nodes in the linked list
+            head: The reference to the head node.
+            tail: The reference to the tail node.
+            count: The number of nodes in the linked list.
 
         """        
         self.head = head
@@ -45,12 +46,11 @@ class LinkedList:
         Create a linked list from a list.
 
         Args:
-            mylist: a list or container to convert from
+            mylist: A list or container to convert from.
         
         Returns:
-            Linked List
+            A  linked list containing the items from mylist.
         """
-        '''  '''
         ll = cls()
         for value in mylist:
             ll.append(value)
@@ -62,7 +62,7 @@ class LinkedList:
         Create a list with contents of the linked list.
 
         Returns:
-            list with contents of linked list
+            List with contents of linked list.
         """
         mylist = []
         current = self.head
@@ -83,6 +83,12 @@ class LinkedList:
 
             
     def __repr__(self):
+        """
+        Return a string representation of the linked list.
+
+        Returns:
+            A string representation of the linked list.
+        """
         s = ""
         current = self.head
         while current:
@@ -96,7 +102,13 @@ class LinkedList:
         Return value at a specified index. Raise IndexError if index is out of bounds.
         
         Args:
-            index: index of value
+            index: Index of value.
+
+        Raises:
+            IndexError: If index is out of bounds.
+
+        Returns:
+            The value at the specified index.
         """        
         i = 0
         current = self.head
@@ -108,9 +120,15 @@ class LinkedList:
         raise IndexError("Index Out of Bounds")
 
     def __len__(self) -> int:
+        """
+        Return the number of elements in the linked list.
+        """
         return self.count
     
     def is_empty(self) -> bool:
+        """
+        Check if the linked list is empty.
+        """
         return self.count == 0
         
     def search(self, value) -> int:
@@ -118,10 +136,13 @@ class LinkedList:
         Search for a value in the linked list.
 
         Args:
-            value: value to search for
+            value: The value to search for.
 
         Returns:
-            return index of found value
+            Return index of found value.
+        
+        Raises:
+            Exception: If value is not found.
         """
         i = 0
         current = self.head
@@ -137,8 +158,14 @@ class LinkedList:
         Insert a value at a specified index. Raise exception if index is out of bounds.
 
         Args:
-            index: the index to insert a value
-            value: a value to append
+            index (int): The index to insert a value.
+            value: The value to append.
+
+        Returns:
+            None
+
+        Raises:
+            IndexError: If index is out of bounds.
         """
         i = 0
         
@@ -169,7 +196,10 @@ class LinkedList:
         Place a value at the beginning of the linked list.
 
         Args:
-            value: a value to append
+            value: A value to append.
+
+        Returns:
+            None
         """
         new_node = Node(value)
         new_node.next = self.head
@@ -181,7 +211,13 @@ class LinkedList:
         Place a value at the end of the linked list.
 
         Args:
-            value: a value to append
+            value: A value to append.
+
+        Returns:
+            None
+        
+        Raises:
+            IndexError: If linked list is empty or index is not found.
         """
         if self.head is None:
             self.head = Node(value)
@@ -202,7 +238,13 @@ class LinkedList:
         Delete a node at a specified index. Raise Exception if linked list is empty or if index is not found.
 
         Args:
-            index: index of element to be deleted
+            index: Index of element to be deleted.
+        
+        Returns:
+            None
+            
+        Raises:
+            IndexError: If linked list is empty or index is not found.
         """
         if index == 0:
             if self.head is None:

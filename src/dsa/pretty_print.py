@@ -6,7 +6,7 @@ def heap_print(heap):
     Print a heap from root to leaves.
 
     Args:
-        heap: heap object to print
+        heap: The heap object to print.
     """
     if not heap or heap.count() == 0:
         return
@@ -19,7 +19,7 @@ def _array_print(node_count, enum_sequence):
     Print a heap from root to leaves.
 
     Args:
-        heap: heap object to print
+        heap: The heap object to print.
     """
     height = math.floor(math.log2(node_count))
     level_str = ""
@@ -40,17 +40,17 @@ def _array_print(node_count, enum_sequence):
     print()
 
 
-def tree_to_array(node, index=0, tree_array=None):
+def tree_to_array(node, index: int=0, tree_array=None):
     """
     (helper function) Create an array filled with index and value pairs from a node based tree.
 
     Args:
-        node: starting node
-        index: starting index
-        tree_array: destination array
+        node: The starting node.
+        index (int): The starting index.
+        tree_array: The destination array.
 
     Returns:
-        array filled with tree values
+        Array filled with tree values.
     """
     if not tree_array:
         tree_array = []
@@ -67,10 +67,10 @@ def get_tree_height(node) -> int:
     (helper function) Calculate the height of a tree.
 
     Args:
-        node: starting node
+        node: The starting node.
 
     Returns:
-        the height of a tree
+        The height of a tree.
     """
     if node is None:
         return 0
@@ -82,10 +82,10 @@ def fill_complete_tree(tree):
     (helper function) Force a binary tree to be a complete tree by filling any empty nodes.
 
     Args:
-        tree: tree to fill
+        tree: The tree to fill.
 
     Returns:
-        new tree that is complete
+        A new tree that is complete.
     """
     if tree is None:
         return None
@@ -110,10 +110,10 @@ def tree_print(tree):
     Print a tree from root to leaves.
 
     Args:
-        tree: tree object to print
+        tree: The tree object to print.
 
     Notes:
-        reuses heap_print() by converting tree into a complete tree array
+        Reuses heap_print() by converting tree into a complete tree array.
     """
     complete_tree = fill_complete_tree(tree)
     if complete_tree:
