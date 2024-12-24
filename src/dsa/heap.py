@@ -347,3 +347,4 @@ class PriorityQueue(MinHeap):
         self._array = temp_array
 
         return "[" + " ".join(result) + "]"
+

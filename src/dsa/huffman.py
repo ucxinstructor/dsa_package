@@ -2,19 +2,6 @@
 from dsa.tree import Tree, TreeNode
 from dsa.heap import PriorityQueue
 
-#import heapq
-
-class HuffmanNode(TreeNode):
-    """ binary node implementation """
-    def __lt__(self, other):
-        return self.value < other.value
-    
-    def __repr__(self):
-        if self.value is None:
-            return "none"
-        else:
-            return self.value
-
 def character_frequency(s: str) -> dict:
     """ 
     Takes a string a returns a dictionary of character frequencies.
@@ -45,19 +32,14 @@ def build_frequency_table(s: str) -> PriorityQueue:
     """
     frequency_dictionary = character_frequency(s)
     
-    # add to priority queue
-#    h = []
     pq = PriorityQueue()
-#    for item in frequency_dictionary.items():
- #       pq.push(item[1], TreeNode(None, None, item[0]))
-        #heapq.heappush(h, (item[1], Node(None, None, item[0])))
 
     for char, count in frequency_dictionary.items():
-        pq.push(count, TreeNode(char, None, None))
+        pq.push(count, TreeNode(char))#, None, None))
 
     return pq
 
-def build_huffman_tree(pq: PriorityQueue):
+def build_huffman_tree(pq: PriorityQueue) -> Tree:
     """ 
     Accepts a priority queue and returns a Huffman Tree.
 
@@ -68,26 +50,19 @@ def build_huffman_tree(pq: PriorityQueue):
         A Huffman Tree.
     """
     while len(pq) > 1:
+        priority1, node1 = pq.pop_pair()
+        priority2, node2 = pq.pop_pair()
+        node = TreeNode(node1.value + node2.value, node1, node2)
+        pq.push(priority1 + priority2, node)
 
-#    while len(heap) > 1:
-#        n1 = heapq.heappop(heap)
- #       n2 = heapq.heappop(heap)
-        n1 = pq.pop_pair()
-        n2 = pq.pop_pair()
-        print(n1)
-        print(n2)
-        node = TreeNode(n1[1], n2[1], n1[1] + n2[1])
-  #      heapq.heappush(heap, (n1[0] + n2[0], node))
-        pq.push(n1[0] + n2[0], node)
-#    return heap[0][1]
-    return pq.pop()
+    return Tree(pq.pop())
 
-def build_huffman_dictionary(node, bit_string: str=""):
+def build_huffman_dictionary(node: TreeNode, bit_string: str="") -> dict:
     """
-    Given a Huffman Node, build a Huffman Dictionary.
+    Given a TreeNode, build a Huffman Dictionary.
 
     Args:
-        node (Node): The Huffman Node.
+        node (TreeNode): The Huffman Node.
         bit_string (str): The bit string.
 
     Returns:
@@ -102,7 +77,7 @@ def build_huffman_dictionary(node, bit_string: str=""):
 
     return d
 
-def huffman_encode(st: str, hd: dict):
+def huffman_encode(st: str, hd: dict) -> str:               
     """
     Encode the string using the Huffman Dictionary.
 
@@ -118,32 +93,31 @@ def huffman_encode(st: str, hd: dict):
         s += hd[c]
     return s
 
-def huffman_decode(encoded_data, tree):
+def huffman_decode(encoded_data: str, tree: Tree) -> str:
     """
     Decode the encoded data using the Huffman Tree.
     
     Args:
         encoded_data (str): The encoded data.
-        tree (Node): The Huffman Tree.
+        tree (Tree): The Huffman Tree.
 
     Returns:
         The decoded data.
     """
-
-    root = tree
+    node = tree.root
     s = ""
     for bit in encoded_data:
         if int(bit) == 0:
-            tree = tree.left
+            node = node.left
         else:
-            tree = tree.right
+            node = node.right
 
-        if tree.left is None and tree.right is None: 
-            s += tree.value
-            tree = root
+        if node.left is None and node.right is None: 
+            s += node.value
+            node = tree.root
     return s
 
-def bitstring_to_bytes(s: str):
+def bitstring_to_bytes(s: str) -> bytes:
     """
     Convert a bitstring to bytes.
 
@@ -155,7 +129,7 @@ def bitstring_to_bytes(s: str):
     """
     return bytes(int(s[i : i + 8], 2) for i in range(0, len(s), 8))
 
-def bytes_to_bitstring(ba, bitlength=8):
+def bytes_to_bitstring(ba: bytes, bitlength: int=8) -> str:
     """
     Convert bytes to bitstring.
 
@@ -166,6 +140,9 @@ def bytes_to_bitstring(ba, bitlength=8):
     Returns:
         The bytes converted to bitstring.
     """
+    if not ba:
+        return ""
+    
     s = ""
     for b in ba[:-1]:
         byte = f"{b:08b}"
@@ -175,5 +152,3 @@ def bytes_to_bitstring(ba, bitlength=8):
     s += byte
 
     return s
-
-

@@ -41,6 +41,21 @@ class TreeNode:
         if self.left:
             self.left.print(level + 1)
 
+    def __lt__(self, other):
+        """
+        Compare the value of two nodes.
+        """
+        return self.value < other.value
+    
+    def __repr__(self):
+        """
+        Return the string representation of a node.
+        """
+        if self.value is None:
+            return "none"
+        else:
+            return self.value
+
 class Tree:
     """ 
     A binary search tree (BST) implementation. Can be treated as a plain binary tree if operations (insert, search, delete) are not used and nodes are set manually.

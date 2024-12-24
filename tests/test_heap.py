@@ -1,6 +1,7 @@
 import unittest
 
 from dsa.heap import Heap, MinHeap, PriorityQueue
+from dsa.tree import TreeNode
 
 class TestHeap(unittest.TestCase):
     def test_create(self):
@@ -88,3 +89,11 @@ class TestHeap(unittest.TestCase):
             v2 = pq.pop_pair()
             print(pq)
             self.assertEqual(v1, v2)
+
+    def test_pq_misc_types(self):
+        pq = PriorityQueue()
+        pq.push(3, TreeNode("a"))
+        pq.push(2, TreeNode(" "))
+        pq.push(1, TreeNode("m"))
+        pq.push(0, TreeNode("n"))
+        pq.push(4, TreeNode("p"))
