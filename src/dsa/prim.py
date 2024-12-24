@@ -1,3 +1,4 @@
+""" Module to access functions for Prim's Algorithm. """
 from dsa.graph import AdjacencyListWeightedGraph
 from dsa.heap import PriorityQueue
 
