@@ -228,6 +228,18 @@ class Heap:
                 node_count *= 2
             print(self._array[i], end=" ")
 
+    def __repr__(self):
+        """
+        Return string representation of a heap in order of priority.
+        """
+        temp_array = self._array[:]
+        result = []
+        while not self.is_empty():
+            result.append(str(self.pop()))
+        self._array = temp_array
+
+        return "[" + " ".join(result) + "]"
+
     def __len__(self):
         """
         Get the number of items in the priority queue.
@@ -274,15 +286,15 @@ class MinHeap(Heap):
 
 class PriorityQueue(MinHeap):
     """ 
-    A priority queue implementation in Python
+    A priority queue implementation in Python.
     """
-    def push(self, item, priority: int):
+    def push(self, priority: int, item):
         """
         Insert an item with a priority into the priority queue.
 
         Args:
-            item: The item to insert.
             priority (int): Priority of item.
+            item: The item to insert.
         """
         super().insert((priority, item))
 
@@ -296,6 +308,15 @@ class PriorityQueue(MinHeap):
         priority, item = super().pop()
         return item
 
+    def pop_pair(self) -> tuple:
+        """
+        Return and remove the highest priority value pair in the heap.
+
+        Returns:
+            Return the highest priority, value pair (tuple) in the heap.
+        """
+        return super().pop()
+
     def peek(self):
         """
         Return the highest priority value in the heap.
@@ -306,3 +327,23 @@ class PriorityQueue(MinHeap):
         priority, item = super().peek()
         return item
 
+    def peek_pair(self) -> tuple:
+        """
+        Return the highest priority value pair in the heap.
+
+        Returns:
+            Return the highest priority, value pair (tuple) in the heap.
+        """
+        return super().peek()
+
+    def to_string_pair(self):
+        """
+        Return string representation of a heap in order of priority.
+        """
+        temp_array = self._array[:]
+        result = []
+        while not self.is_empty():
+            result.append(str(self.pop_pair()))
+        self._array = temp_array
+
+        return "[" + " ".join(result) + "]"

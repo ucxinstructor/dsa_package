@@ -1,5 +1,8 @@
 """ Module to access functions for Huffman Compression. """
-import heapq
+from dsa.tree import Tree, TreeNode
+from dsa.heap import PriorityQueue
+
+#import heapq
 
 class Node:
     """ binary node implementation """
@@ -17,7 +20,7 @@ class Node:
         else:
             return self.value
 
-def character_frequency(s: str):
+def character_frequency(s: str) -> dict:
     """ 
     Takes a string a returns a dictionary of character frequencies.
 
@@ -29,13 +32,13 @@ def character_frequency(s: str):
     """
     d = {}
     for c in s:
-        if c not in d:
-            d[c] = 1
-        else:
+        if c in d:
             d[c] += 1
+        else:
+            d[c] = 1
     return d
 
-def build_frequency_table(s: str):
+def build_frequency_table(s: str) -> PriorityQueue:
     """ 
     Accepts a string to encode and returns a heap of the characters.
 
@@ -43,18 +46,23 @@ def build_frequency_table(s: str):
         s (str): The string to encode.
 
     Returns:
-        A heap of the characters based on frequencies.
+        A priority queue of the characters based on frequencies.
     """
     frequency_dictionary = character_frequency(s)
     
     # add to priority queue
-    h = []
-    for item in frequency_dictionary.items():
-        heapq.heappush(h, (item[1], Node(None, None, item[0])))
+#    h = []
+    pq = PriorityQueue()
+#    for item in frequency_dictionary.items():
+ #       pq.push(item[1], TreeNode(None, None, item[0]))
+        #heapq.heappush(h, (item[1], Node(None, None, item[0])))
 
-    return h
+    for char, count in frequency_dictionary.items():
+        pq.push(count, char) #item[1], TreeNode(None, None, item[0]))
 
-def build_huffman_tree(heap):
+    return pq
+
+def build_huffman_tree(pq: PriorityQueue):
     """ 
     Accepts a heap and returns a Huffman Tree.
 
@@ -64,12 +72,19 @@ def build_huffman_tree(heap):
     Returns:
         A Huffman Tree.
     """
-    while len(heap) > 1:
-        n1 = heapq.heappop(heap)
-        n2 = heapq.heappop(heap)
-        node = Node(n1[1], n2[1])
-        heapq.heappush(heap, (n1[0] + n2[0], node))
-    return heap[0][1]
+    while len(pq) > 1:
+#    while len(heap) > 1:
+#        n1 = heapq.heappop(heap)
+ #       n2 = heapq.heappop(heap)
+        n1 = pq.pop()
+        n2 = pq.pop()
+        print(n1)
+        print(n2)
+#        node = Node(n1[1], n2[1])
+  #      heapq.heappush(heap, (n1[0] + n2[0], node))
+ #       pq.push(n1[0] + n2[0], node)
+#    return heap[0][1]
+    return pq.pop()
 
 def build_huffman_dictionary(node, bit_string: str=""):
     """
@@ -91,7 +106,7 @@ def build_huffman_dictionary(node, bit_string: str=""):
 
     return d
 
-def huffman_encode(st, hd):
+def huffman_encode(st: str, hd: dict):
     """
     Encode the string using the Huffman Dictionary.
 

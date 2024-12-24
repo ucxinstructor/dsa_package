@@ -58,17 +58,32 @@ class TestHeap(unittest.TestCase):
 
     def test_pq(self):
         pq = PriorityQueue()
-        pq.push("a", 2)
-        pq.push("b", 1)
-        pq.push("c", 3)
-        pq.push("d", 4)
-        pq.push("e", 5)
+        pq.push(2, "a")
+        pq.push(1, "b")
+        pq.push(3, "c")
+        pq.push(4, "d")
+        pq.push(5, "e")
 
         self.assertEqual(pq.peek(), "b")
+        self.assertEqual(pq.peek_pair(), (1, "b"))
         self.assertEqual(len(pq), 5)
         self.assertEqual(pq.count(), 5)
 
         while not pq.is_empty():
             v1 = pq.peek()
             v2 = pq.pop()
+            self.assertEqual(v1, v2)
+
+    def test_pq_pair(self):
+        pq = PriorityQueue()
+        pq.push(2, "a")
+        pq.push(1, "b")
+        pq.push(3, "c")
+        pq.push(4, "d")
+        pq.push(5, "e")
+
+        while not pq.is_empty():
+            v1 = pq.peek_pair()
+            v2 = pq.pop_pair()
+            print(v1, v2)
             self.assertEqual(v1, v2)
