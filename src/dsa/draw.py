@@ -250,9 +250,9 @@ class TrieDraw(Draw):
             graph.add_edge(current_path, new_path, label=char)
             self._add_edges(graph, child, new_path)
     
-    def to_networkx(self):
+    def to_networkx(self) -> nx.DiGraph:
         """
-        Converts the Trie into a networkx directed graph (DiGraph).
+        Converts the Trie into a NetworkX directed graph (DiGraph).
 
         This method creates a networkx graph representation of the Trie, where each node
         represents a prefix and each edge represents a character transition.
@@ -326,11 +326,13 @@ class TrieDraw(Draw):
         nx.draw_networkx_edges(trie_graph, pos, arrows=True)
         
         ax = plt.gca()
+        rect_width = 0.05
+        rect_height = 0.15
         for node in pos:
             x, y = pos[node]
-            rectangle = plt.Rectangle((x - 0.025, y - 0.05), 0.05, 0.1, color="tab:blue")
+            rectangle = plt.Rectangle((x - (rect_width / 2), y - (rect_height / 2)), rect_width, rect_height, color="tab:blue")
             ax.add_patch(rectangle)
-            plt.text(x, y, node[-1] if node else "", verticalalignment='center', horizontalalignment='center', fontsize=10, color="white")
+            plt.text(x, y, node[-1] if node else "", verticalalignment='center', horizontalalignment='center', fontsize=12, color="white")
         return plt
 
 
