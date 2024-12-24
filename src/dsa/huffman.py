@@ -4,15 +4,10 @@ from dsa.heap import PriorityQueue
 
 #import heapq
 
-class Node:
+class HuffmanNode(TreeNode):
     """ binary node implementation """
-    def __init__(self, left, right, value=None):
-        self.left = left
-        self.right = right
-        self.value = value
-    
     def __lt__(self, other):
-        return False
+        return self.value < other.value
     
     def __repr__(self):
         if self.value is None:
@@ -58,31 +53,32 @@ def build_frequency_table(s: str) -> PriorityQueue:
         #heapq.heappush(h, (item[1], Node(None, None, item[0])))
 
     for char, count in frequency_dictionary.items():
-        pq.push(count, char) #item[1], TreeNode(None, None, item[0]))
+        pq.push(count, TreeNode(char, None, None))
 
     return pq
 
 def build_huffman_tree(pq: PriorityQueue):
     """ 
-    Accepts a heap and returns a Huffman Tree.
+    Accepts a priority queue and returns a Huffman Tree.
 
     Args:
-        heap (list): A heap of characters based on frequencies. 
+        pq (PriorityQueue): A PriorityQueue containing TreeNodes of characters based on frequencies. 
 
     Returns:
         A Huffman Tree.
     """
     while len(pq) > 1:
+
 #    while len(heap) > 1:
 #        n1 = heapq.heappop(heap)
  #       n2 = heapq.heappop(heap)
-        n1 = pq.pop()
-        n2 = pq.pop()
+        n1 = pq.pop_pair()
+        n2 = pq.pop_pair()
         print(n1)
         print(n2)
-#        node = Node(n1[1], n2[1])
+        node = TreeNode(n1[1], n2[1], n1[1] + n2[1])
   #      heapq.heappush(heap, (n1[0] + n2[0], node))
- #       pq.push(n1[0] + n2[0], node)
+        pq.push(n1[0] + n2[0], node)
 #    return heap[0][1]
     return pq.pop()
 
