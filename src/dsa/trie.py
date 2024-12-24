@@ -40,7 +40,7 @@ class Trie:
             current = current.children[c]
         current.children[Trie.end_marker] = None
     
-    def search(self, word: str):
+    def search(self, word: str) -> bool:
         """ 
         Search for a word in a trie.
         
@@ -60,7 +60,7 @@ class Trie:
             current = current.children[c]
         return True
 
-    def search_node(self, substr: str):
+    def search_node(self, substr: str) -> TrieNode:
         """ 
         Search for a substring in a trie.
         
@@ -81,7 +81,7 @@ class Trie:
             current = current.children[c]
         return current
     
-    def delete(self, word: str, i: int=0, current: TrieNode=None):
+    def delete(self, word: str, i: int=0, current: TrieNode=None) -> bool:
         """ 
         Delete a word from the trie.
         
@@ -155,7 +155,10 @@ class Trie:
         
         return False
             
-    def list_words(self, node: TrieNode=None, word: str = "", words=None):
+    def word_list(self):
+        return self.build_word_list(self.root, "", [])
+
+    def build_word_list(self, node: TrieNode=None, word: str = "", words=None):
         """ 
         Helper method to return a list of words given a starting node.
         
@@ -182,7 +185,7 @@ class Trie:
             if key == Trie.end_marker:
                 words.append(word)
             else:
-                self.list_words(node, word + key, words)
+                self.build_word_list(node, word + key, words)
         return words
     
     def autocomplete(self, prefix: str):
@@ -201,8 +204,8 @@ class Trie:
         """        
         current = self.search_node(prefix)
         if current is None:
-            return None
-        return self.list_words(current, prefix)
+            return None #self.list_words(current, "")
+        return self.build_word_list(current, prefix)
     
     def suggest(self, prefix: str):
         """ 
