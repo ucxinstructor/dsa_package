@@ -336,7 +336,7 @@ class PriorityQueue(MinHeap):
         """
         return super().peek()
 
-    def to_string_pair(self):
+    def to_string_with_priority(self):
         """
         Return string representation of a heap in order of priority.
         """

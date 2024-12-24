@@ -154,6 +154,19 @@ class AdjacencyMatrixGraph:
     
         return edges
 
+    def undirected_edges(self) -> list:
+        """ 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)
+        """
+        edges = []
+        vertex_count = len(self.labels)
+        for i in range(vertex_count):
+            for j in range(vertex_count):
+                if self.array[i][j] and i != j and (self.labels[j], self.labels[i]) not in edges:  
+                    edges.append((self.labels[i], self.labels[j]))
+    
+        return edges
+
     def is_edge(self, start: str, end: str) -> bool:
         """ 
         Return boolean if an edge exists.
@@ -308,6 +321,20 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     
         return edges
     
+    def undirected_edges(self) -> list:
+        """ 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight).
+        """
+        edges = []
+        vertex_count = len(self.labels)
+        for i in range(vertex_count):
+            for j in range(vertex_count):
+                weight = self.array[i][j]
+                if weight and i != j and (self.labels[j], self.labels[i], weight) not in edges:  
+                    edges.append((self.labels[i], self.labels[j], weight))
+    
+        return edges
+
     def is_edge(self, start_label: str, end_label: str) -> bool:
         """ 
         Return boolean if an edge exists.
@@ -551,7 +578,7 @@ class AdjacencyListGraph:
     def __len__(self):
         return len(self._adjacents)
 
-    def edges(self):
+    def edges(self) -> list:
         """ 
         Return a list of edges in the graph. Each edge is represented by a tuple (start, end)
         """
@@ -559,6 +586,17 @@ class AdjacencyListGraph:
         for start in self._adjacents.keys():
             for end in self.adjacents(start):
                 if start != end:  
+                    edges.append((start, end))
+        return edges
+
+    def undirected_edges(self) -> list:
+        """ 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)
+        """
+        edges = []
+        for start in self._adjacents.keys():
+            for end in self.adjacents(start):
+                if start != end and (end, start) not in edges:  
                     edges.append((start, end))
         return edges
 
@@ -750,7 +788,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
     def __len__(self):
         return len(self._adjacents)
 
-    def edges(self):
+    def edges(self) -> list:
         """ 
         Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight)
         """
@@ -759,6 +797,18 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
             for end in self.adjacents(start):
                 weight = self[start][end]
                 if start != end:  
+                    edges.append((start, end, weight))
+        return edges
+
+    def undirected_edges(self) -> list:
+        """ 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight)
+        """
+        edges = []
+        for start in self._adjacents.keys():
+            for end in self.adjacents(start):
+                weight = self[start][end]
+                if start != end and (end, start, weight) not in edges:  
                     edges.append((start, end, weight))
         return edges
 

@@ -140,13 +140,13 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.assertEqual(dll.tail, tail)
         self.assertEqual(dll.count, 2)
 
-    def test_from_list(self):
+    def test_from_list_short(self):
         values = [1, 2, 3, 4]
         dll = DoublyLinkedList.from_list(values)
         self.assertEqual(dll.to_list(), values)
         self.assertEqual(dll.count, len(values))
 
-    def test_to_list(self):
+    def test_to_list_empty(self):
         values = [1, 2, 3, 4]
         dll = DoublyLinkedList.from_list(values)
         self.assertEqual(dll.to_list(), values)

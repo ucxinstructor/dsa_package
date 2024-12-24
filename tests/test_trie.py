@@ -85,15 +85,6 @@ class TestTrie(unittest.TestCase):
         self.assertIsNone(self.trie.search_node("world"))
         self.assertIsNone(self.trie.search_node("helloo"))
         self.assertIsNone(self.trie.search_node("heavens"))
-        self.assertIsNone(self.trie.search_node("goodby"))
-
-    def test_search_node_empty_string(self):
-        self.assertIsNone(self.trie.search_node(""))
-
-    def test_search_node_partial_word(self):
-        self.assertIsNotNone(self.trie.search_node("he"))
-        self.assertIsNotNone(self.trie.search_node("goo"))
-
 
     def test_delete_existing_word(self):
         self.trie.insert("test")
@@ -124,17 +115,6 @@ class TestTrie(unittest.TestCase):
     def test_delete_empty_string(self):
         # perhaps this should be false?
         self.assertTrue(self.trie.delete(""))
-
-    def test_search_node_existing_word(self):
-        self.assertIsNotNone(self.trie.search_node("hello"))
-        self.assertIsNotNone(self.trie.search_node("hell"))
-        self.assertIsNotNone(self.trie.search_node("heaven"))
-        self.assertIsNotNone(self.trie.search_node("goodbye"))
-
-    def test_search_node_non_existing_word(self):
-        self.assertIsNone(self.trie.search_node("world"))
-        self.assertIsNone(self.trie.search_node("helloo"))
-        self.assertIsNone(self.trie.search_node("heavens"))
 
     def test_search_node_empty_string(self):
         self.assertIsNone(self.trie.search_node(""))

@@ -229,6 +229,7 @@ class TrieDraw(Draw):
             **kwargs: Additional keyword arguments passed to the parent `Draw` class.
         """
         super().__init__(**kwargs)
+        self.figsize = (10, 6)
         self.trie = trie
         
     def _add_edges(self, graph, node, current_path):

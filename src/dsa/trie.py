@@ -155,7 +155,10 @@ class Trie:
         
         return False
             
-    def word_list(self):
+    def list_words(self) -> list:
+        """
+        Return a list of all words in the trie.
+        """
         return self.build_word_list(self.root, "", [])
 
     def build_word_list(self, node: TrieNode=None, word: str = "", words=None):

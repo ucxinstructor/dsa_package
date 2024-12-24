@@ -29,6 +29,12 @@ print(dsa.version)
 ``` 
 ***
 # Revision History
+## 2024.12.24
+* Made default size for Trie Graph larger
+* Cleaned up Heap module
+* Cleaned up Huffman module to use dsa data structures
+* Added more tests
+* Added more details to documentation
 
 ## 2024.12.22
 * Created Github Pages access to documentation
@@ -86,8 +92,4 @@ renamed Node class to TreeNode
 Misc. code improvements, documentation updates and API consistency
 
 # TODO
-* test RUFF
-* Add Dijkstra test
-* Add Prim's algorithm
-* Add Prim's algorithm test
-* General: Add more type hints
+* Make an abstract Graph class
