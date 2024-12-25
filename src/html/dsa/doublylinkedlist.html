@@ -38,7 +38,7 @@ hljs.highlightAll();
 <dl>
 <dt id="dsa.doublylinkedlist.DoublyLinkedList"><code class="flex name class">
 <span>class <span class="ident">DoublyLinkedList</span></span>
-<span>(</span><span>head=None, tail=None, count=0)</span>
+<span>(</span><span>head: <a title="dsa.doublylinkedlist.Node" href="#dsa.doublylinkedlist.Node">Node</a> = None, tail: <a title="dsa.doublylinkedlist.Node" href="#dsa.doublylinkedlist.Node">Node</a> = None, count: int = 0)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A doubly linked list implementation.</p>
@@ -47,11 +47,11 @@ hljs.highlightAll();
 if both head and tail nodes are specified, count should be specified as well.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>head</code></strong></dt>
+<dt><strong><code>head</code></strong> :&ensp;<code><a title="dsa.doublylinkedlist.Node" href="#dsa.doublylinkedlist.Node">Node</a></code></dt>
 <dd>Reference to the head node.</dd>
-<dt><strong><code>tail</code></strong></dt>
+<dt><strong><code>tail</code></strong> :&ensp;<code><a title="dsa.doublylinkedlist.Node" href="#dsa.doublylinkedlist.Node">Node</a></code></dt>
 <dd>Reference to the tail node.</dd>
-<dt><strong><code>count</code></strong></dt>
+<dt><strong><code>count</code></strong> :&ensp;<code>int</code></dt>
 <dd>The number of nodes in the linked list.</dd>
 </dl></div>
 <details class="source">
@@ -62,7 +62,7 @@ if both head and tail nodes are specified, count should be specified as well.</p
     &#34;&#34;&#34; 
     A doubly linked list implementation.
     &#34;&#34;&#34;
-    def __init__(self, head=None, tail=None, count=0):
+    def __init__(self, head: Node=None, tail: Node=None, count: int=0):
         &#34;&#34;&#34; 
         Initialize a singly linked list.
         
@@ -70,9 +70,9 @@ if both head and tail nodes are specified, count should be specified as well.</p
         if both head and tail nodes are specified, count should be specified as well.
         
         Args:
-            head: Reference to the head node.
-            tail: Reference to the tail node.
-            count: The number of nodes in the linked list.
+            head (Node): Reference to the head node.
+            tail (Node): Reference to the tail node.
+            count (int): The number of nodes in the linked list.
         &#34;&#34;&#34;        
         self.head = head
         if head and tail is None:
@@ -127,7 +127,7 @@ if both head and tail nodes are specified, count should be specified as well.</p
         Return value at a specified index. Raise exception if index is out of bounds.
         
         Args:
-            index: The index of the value.
+            index (int): The index of the value.
         Raises:
             IndexError: if index is out of bounds.
         &#34;&#34;&#34;        
@@ -180,7 +180,7 @@ if both head and tail nodes are specified, count should be specified as well.</p
             value: The value to search for in the doubly linked list.
 
         Returns:
-            return index of found value.
+            Return index of found value.
 
         Raises:
             Exception: if value is not found.
@@ -199,7 +199,7 @@ if both head and tail nodes are specified, count should be specified as well.</p
         Insert a value at a specified index. Raise exception if index is out of bounds.
 
         Args:
-            index: The index to insert a value.
+            index (int): The index to insert a value.
             value: The value to insert in the doubly linked list.
 
         Raises:
@@ -267,12 +267,12 @@ if both head and tail nodes are specified, count should be specified as well.</p
         self.count += 1
         
 
-    def delete(self, index):
+    def delete(self, index: int):
         &#34;&#34;&#34;
         Delete a node at a specified index. Raises exception if linked list is empty or if index is not found.
 
         Args:
-            index: The index of element to be deleted.
+            index (int): The index of element to be deleted.
 
         Raises:
             IndexError: If linked list is empty or index is not found.
@@ -333,13 +333,13 @@ if both head and tail nodes are specified, count should be specified as well.</p
 </dl></div>
 </dd>
 <dt id="dsa.doublylinkedlist.DoublyLinkedList.delete"><code class="name flex">
-<span>def <span class="ident">delete</span></span>(<span>self, index)</span>
+<span>def <span class="ident">delete</span></span>(<span>self, index: int)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete a node at a specified index. Raises exception if linked list is empty or if index is not found.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>index</code></strong></dt>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
 <dd>The index of element to be deleted.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
@@ -355,7 +355,7 @@ if both head and tail nodes are specified, count should be specified as well.</p
 <div class="desc"><p>Insert a value at a specified index. Raise exception if index is out of bounds.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>index</code></strong></dt>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
 <dd>The index to insert a value.</dd>
 <dt><strong><code>value</code></strong></dt>
 <dd>The value to insert in the doubly linked list.</dd>
@@ -406,7 +406,7 @@ if both head and tail nodes are specified, count should be specified as well.</p
 <dd>The value to search for in the doubly linked list.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>return index of found value.</p>
+<p>Return index of found value.</p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>Exception</code></dt>

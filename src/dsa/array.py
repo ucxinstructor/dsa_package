@@ -12,13 +12,13 @@ class Array:
         Assignment: 
             array[index] = value
     """
-    def __init__(self, contents=None, capacity=10):
+    def __init__(self, contents=None, capacity: int=10):
         """ 
         Initialize the array with optional contents and a fixed capacity.
 
         Args:
-            contents: an optional iterable to fill array with default values
-            capacity: the initial size of the array (default is 10)
+            contents: An optional iterable to fill array with default values.
+            capacity (int): The initial size of the array (default is 10)
         """
         self._array = [ None ] * capacity
         #: number of elements currently in array
@@ -32,7 +32,7 @@ class Array:
         Append an element to the array. Raise an exception if capacity is exceeded.
 
         Args:
-            element: the element to append
+            element: The element to append.
         
         Raises:
             Exception: If the array is full.
@@ -48,7 +48,7 @@ class Array:
         Append multiple elements from a given array.  
         
         Args:
-            array: an iterable containing elements to append
+            array: An iterable containing elements to append.
 
         Raises:
             Exception: If appending the elements exceeds the array's capacity.
@@ -61,8 +61,8 @@ class Array:
         Insert an element at a specified index, shifting existing elements to the right.
 
         Args:
-            index: the index at which to insert the element
-            element: the element to insert
+            index (int): The index at which to insert the element.
+            element: The element to insert.
 
         Raises:
             IndexError: If the index is out of bounds.        
@@ -79,8 +79,8 @@ class Array:
         Helper method to shift elements to the right between the specified range.
 
         Args:
-            start: the starting index of the shift
-            end: the ending index of the shift
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
         """
         for i in range(start, end, -1):
             self._array[i] = self._array[i - 1]
@@ -90,7 +90,7 @@ class Array:
         Delete an element at a specified index, shifting subsequent elements to the left.
 
         Args:
-            index: the index of the element to delete
+            index (int): The index of the element to delete.
 
         Raises:     
             IndexError: If index is out of bounds.        
@@ -106,8 +106,8 @@ class Array:
         Helper method to shift elements to the left between the specified range.
 
         Args:
-            start: The starting index of the shift.
-            end: The ending index of the shift.
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
         """
         for i in range(start, end):
             self._array[i] = self._array[i + 1]
@@ -117,7 +117,7 @@ class Array:
         Retrieve the element at the specified index.
 
         Args:
-            index: The index of the element.
+            index (int): The index of the element.
 
         Returns:
             The element at the specified index.
@@ -134,7 +134,7 @@ class Array:
         Set a new value at the specified index.
 
         Args:
-            index: The index at which to set the value.
+            index (int): The index at which to set the value.
             value: The new value to assign.
 
         Raises:
@@ -144,7 +144,7 @@ class Array:
             raise IndexError
         self._array[index] = value
         
-    def __len__(self):
+    def __len__(self) -> int:
         """ 
         Return the number of elements in the array.
 
@@ -281,7 +281,7 @@ class DynamicArray(Array):
         Insert an element at a specified index, shifting existing elements to the right. Adjust the capacity as needed.
 
         Args:
-            index: The index at which to insert the element.
+            index (int): The index at which to insert the element.
             element: The element to insert.
         """
         if index >= self.count or index < 0:
@@ -298,7 +298,7 @@ class DynamicArray(Array):
         Delete an element at a specified index, shifting subsequent elements to the left. Adjust the capacity as needed.
 
         Args:
-            index: The index of the element to delete.
+            index (int): The index of the element to delete.
         """
         if index >= self.count or index < 0:
             raise IndexError

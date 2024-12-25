@@ -38,7 +38,7 @@ hljs.highlightAll();
 <dl>
 <dt id="dsa.array.Array"><code class="flex name class">
 <span>class <span class="ident">Array</span></span>
-<span>(</span><span>contents=None, capacity=10)</span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A static array implementation.</p>
@@ -53,9 +53,9 @@ Assignment:
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>contents</code></strong></dt>
-<dd>an optional iterable to fill array with default values</dd>
-<dt><strong><code>capacity</code></strong></dt>
-<dd>the initial size of the array (default is 10)</dd>
+<dd>An optional iterable to fill array with default values.</dd>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the array (default is 10)</dd>
 </dl></div>
 <details class="source">
 <summary>
@@ -73,13 +73,13 @@ Assignment:
         Assignment: 
             array[index] = value
     &#34;&#34;&#34;
-    def __init__(self, contents=None, capacity=10):
+    def __init__(self, contents=None, capacity: int=10):
         &#34;&#34;&#34; 
         Initialize the array with optional contents and a fixed capacity.
 
         Args:
-            contents: an optional iterable to fill array with default values
-            capacity: the initial size of the array (default is 10)
+            contents: An optional iterable to fill array with default values.
+            capacity (int): The initial size of the array (default is 10)
         &#34;&#34;&#34;
         self._array = [ None ] * capacity
         #: number of elements currently in array
@@ -93,7 +93,7 @@ Assignment:
         Append an element to the array. Raise an exception if capacity is exceeded.
 
         Args:
-            element: the element to append
+            element: The element to append.
         
         Raises:
             Exception: If the array is full.
@@ -109,7 +109,7 @@ Assignment:
         Append multiple elements from a given array.  
         
         Args:
-            array: an iterable containing elements to append
+            array: An iterable containing elements to append.
 
         Raises:
             Exception: If appending the elements exceeds the array&#39;s capacity.
@@ -122,8 +122,8 @@ Assignment:
         Insert an element at a specified index, shifting existing elements to the right.
 
         Args:
-            index: the index at which to insert the element
-            element: the element to insert
+            index (int): The index at which to insert the element.
+            element: The element to insert.
 
         Raises:
             IndexError: If the index is out of bounds.        
@@ -140,8 +140,8 @@ Assignment:
         Helper method to shift elements to the right between the specified range.
 
         Args:
-            start: the starting index of the shift
-            end: the ending index of the shift
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
         &#34;&#34;&#34;
         for i in range(start, end, -1):
             self._array[i] = self._array[i - 1]
@@ -151,7 +151,7 @@ Assignment:
         Delete an element at a specified index, shifting subsequent elements to the left.
 
         Args:
-            index: the index of the element to delete
+            index (int): The index of the element to delete.
 
         Raises:     
             IndexError: If index is out of bounds.        
@@ -167,8 +167,8 @@ Assignment:
         Helper method to shift elements to the left between the specified range.
 
         Args:
-            start: The starting index of the shift.
-            end: The ending index of the shift.
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
         &#34;&#34;&#34;
         for i in range(start, end):
             self._array[i] = self._array[i + 1]
@@ -178,7 +178,7 @@ Assignment:
         Retrieve the element at the specified index.
 
         Args:
-            index: The index of the element.
+            index (int): The index of the element.
 
         Returns:
             The element at the specified index.
@@ -195,7 +195,7 @@ Assignment:
         Set a new value at the specified index.
 
         Args:
-            index: The index at which to set the value.
+            index (int): The index at which to set the value.
             value: The new value to assign.
 
         Raises:
@@ -205,7 +205,7 @@ Assignment:
             raise IndexError
         self._array[index] = value
         
-    def __len__(self):
+    def __len__(self) -&gt; int:
         &#34;&#34;&#34; 
         Return the number of elements in the array.
 
@@ -303,7 +303,7 @@ Assignment:
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>element</code></strong></dt>
-<dd>the element to append</dd>
+<dd>The element to append.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
 <dl>
@@ -326,8 +326,8 @@ Assignment:
 <div class="desc"><p>Delete an element at a specified index, shifting subsequent elements to the left.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>index</code></strong></dt>
-<dd>the index of the element to delete</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the element to delete.</dd>
 </dl>
 <p>Raises:
 <br>
@@ -342,7 +342,7 @@ IndexError: If index is out of bounds.</p></div>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>array</code></strong></dt>
-<dd>an iterable containing elements to append</dd>
+<dd>An iterable containing elements to append.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
 <dl>
@@ -357,10 +357,10 @@ IndexError: If index is out of bounds.</p></div>
 <div class="desc"><p>Insert an element at a specified index, shifting existing elements to the right.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>index</code></strong></dt>
-<dd>the index at which to insert the element</dd>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index at which to insert the element.</dd>
 <dt><strong><code>element</code></strong></dt>
-<dd>the element to insert</dd>
+<dd>The element to insert.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
 <dl>
@@ -383,9 +383,9 @@ IndexError: If index is out of bounds.</p></div>
 <div class="desc"><p>Helper method to shift elements to the left between the specified range.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>start</code></strong></dt>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
 <dd>The starting index of the shift.</dd>
-<dt><strong><code>end</code></strong></dt>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
 <dd>The ending index of the shift.</dd>
 </dl></div>
 </dd>
@@ -396,10 +396,10 @@ IndexError: If index is out of bounds.</p></div>
 <div class="desc"><p>Helper method to shift elements to the right between the specified range.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>start</code></strong></dt>
-<dd>the starting index of the shift</dd>
-<dt><strong><code>end</code></strong></dt>
-<dd>the ending index of the shift</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>The starting index of the shift.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>The ending index of the shift.</dd>
 </dl></div>
 </dd>
 <dt id="dsa.array.Array.to_list"><code class="name flex">
@@ -414,7 +414,7 @@ IndexError: If index is out of bounds.</p></div>
 </dd>
 <dt id="dsa.array.DynamicArray"><code class="flex name class">
 <span>class <span class="ident">DynamicArray</span></span>
-<span>(</span><span>contents=None, capacity=10)</span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A dynamic array implementation. Capacity will adjust as needed.</p>
@@ -429,9 +429,9 @@ Assignment:
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>contents</code></strong></dt>
-<dd>an optional iterable to fill array with default values</dd>
-<dt><strong><code>capacity</code></strong></dt>
-<dd>the initial size of the array (default is 10)</dd>
+<dd>An optional iterable to fill array with default values.</dd>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the array (default is 10)</dd>
 </dl></div>
 <details class="source">
 <summary>
@@ -513,7 +513,7 @@ Assignment:
         Insert an element at a specified index, shifting existing elements to the right. Adjust the capacity as needed.
 
         Args:
-            index: The index at which to insert the element.
+            index (int): The index at which to insert the element.
             element: The element to insert.
         &#34;&#34;&#34;
         if index &gt;= self.count or index &lt; 0:
@@ -530,7 +530,7 @@ Assignment:
         Delete an element at a specified index, shifting subsequent elements to the left. Adjust the capacity as needed.
 
         Args:
-            index: The index of the element to delete.
+            index (int): The index of the element to delete.
         &#34;&#34;&#34;
         if index &gt;= self.count or index &lt; 0:
             raise IndexError
@@ -571,7 +571,7 @@ if count &lt;= 1/4 of capacity, shrink the array.</p></div>
 <div class="desc"><p>Delete an element at a specified index, shifting subsequent elements to the left. Adjust the capacity as needed.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>index</code></strong></dt>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
 <dd>The index of the element to delete.</dd>
 </dl></div>
 </dd>
@@ -600,7 +600,7 @@ Adjust the capacity as needed.</p>
 <div class="desc"><p>Insert an element at a specified index, shifting existing elements to the right. Adjust the capacity as needed.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>index</code></strong></dt>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
 <dd>The index at which to insert the element.</dd>
 <dt><strong><code>element</code></strong></dt>
 <dd>The element to insert.</dd>

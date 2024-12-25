@@ -5,12 +5,12 @@ class Deque:
     A static deque implementation that supports appending and popping elements 
     from both ends, with a fixed capacity.
     """
-    def __init__(self, capacity=10):
+    def __init__(self, capacity: int=10):
         """ 
         Initialize a deque with a fixed capacity.
 
         Args:
-            capacity: The initial size of the deque (default is 10).
+            capacity (int): The initial size of the deque (default is 10).
         """
         self._array = [None] * capacity
         self._left = -1
@@ -123,7 +123,7 @@ class Deque:
             raise Exception("Empty deque")
         return self._array[self._right - 1]
     
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         Return a Boolean on whether the deque is empty or not.
         """
@@ -161,7 +161,7 @@ class Deque:
             arr.append(self._array[index])
         return arr
 
-    def capacity(self):
+    def capacity(self) -> int:
         """
         Get the maximum capacity of the deque.
 
@@ -170,7 +170,7 @@ class Deque:
         """
         return len(self._array)
     
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Get the number of elements in the deque.
 

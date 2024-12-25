@@ -20,7 +20,7 @@ class DoublyLinkedList:
     """ 
     A doubly linked list implementation.
     """
-    def __init__(self, head=None, tail=None, count=0):
+    def __init__(self, head: Node=None, tail: Node=None, count: int=0):
         """ 
         Initialize a singly linked list.
         
@@ -28,9 +28,9 @@ class DoublyLinkedList:
         if both head and tail nodes are specified, count should be specified as well.
         
         Args:
-            head: Reference to the head node.
-            tail: Reference to the tail node.
-            count: The number of nodes in the linked list.
+            head (Node): Reference to the head node.
+            tail (Node): Reference to the tail node.
+            count (int): The number of nodes in the linked list.
         """        
         self.head = head
         if head and tail is None:
@@ -85,7 +85,7 @@ class DoublyLinkedList:
         Return value at a specified index. Raise exception if index is out of bounds.
         
         Args:
-            index: The index of the value.
+            index (int): The index of the value.
         Raises:
             IndexError: if index is out of bounds.
         """        
@@ -138,7 +138,7 @@ class DoublyLinkedList:
             value: The value to search for in the doubly linked list.
 
         Returns:
-            return index of found value.
+            Return index of found value.
 
         Raises:
             Exception: if value is not found.
@@ -157,7 +157,7 @@ class DoublyLinkedList:
         Insert a value at a specified index. Raise exception if index is out of bounds.
 
         Args:
-            index: The index to insert a value.
+            index (int): The index to insert a value.
             value: The value to insert in the doubly linked list.
 
         Raises:
@@ -225,12 +225,12 @@ class DoublyLinkedList:
         self.count += 1
         
 
-    def delete(self, index):
+    def delete(self, index: int):
         """
         Delete a node at a specified index. Raises exception if linked list is empty or if index is not found.
 
         Args:
-            index: The index of element to be deleted.
+            index (int): The index of element to be deleted.
 
         Raises:
             IndexError: If linked list is empty or index is not found.

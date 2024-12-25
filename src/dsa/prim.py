@@ -1,33 +1,18 @@
 """ Module to access functions for Prim's Algorithm. """
 from dsa.graph import AdjacencyListWeightedGraph
 from dsa.heap import PriorityQueue
-
-def is_equal_set(visited: set, edges: list) -> bool:
-    """
-    *Deprecated* This function is not necessary. 
-    Checks if the set of visited vertices is equal to the set of vertices in the edges list.
-
-    Args:
-        visited (set): A set of visited vertices.
-        edges (list): A list of edges represented as tuples of vertices.
-
-    Returns:
-        bool: True if visited set is equal to the set of vertices in edges, False otherwise.
-    """
-    vertices_set = {vertex for edge in edges for vertex in edge}
-    return visited == vertices_set
     
 def prims_mst(graph, start: str, mst_graph=None) -> AdjacencyListWeightedGraph:
     """
-    Returns an MST given a graph and starting vertex
+    Returns an MST given a graph and starting vertex.
 
     Args:
-        graph: the graph to search an MST from
-        start (string): the starting vertex label
-        mst_graph: an empty graph object to output the MST in to (can be either an AdjacencyListWeightedGraph or AdjacencyMatrixWeightedGraph)
+        graph: The graph to search an MST from. (can be either an AdjacencyListWeightedGraph or AdjacencyMatrixWeightedGraph)
+        start (string): The starting vertex label.
+        mst_graph: an empty graph object to output the MST in to 
 
     Returns:
-        AdjacencyListWeightedGraph: the MST of the graph
+        AdjacencyListWeightedGraph: the MST of the graph.
     """
     def add_adjacent(graph, pq: PriorityQueue, visited: set, node: str):
         """Add all outgoing edges from the given node to the priority queue."""

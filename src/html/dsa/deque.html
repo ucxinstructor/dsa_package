@@ -38,7 +38,7 @@ hljs.highlightAll();
 <dl>
 <dt id="dsa.deque.Deque"><code class="flex name class">
 <span>class <span class="ident">Deque</span></span>
-<span>(</span><span>capacity=10)</span>
+<span>(</span><span>capacity: int = 10)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A static deque implementation that supports appending and popping elements
@@ -46,7 +46,7 @@ from both ends, with a fixed capacity.</p>
 <p>Initialize a deque with a fixed capacity.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>capacity</code></strong></dt>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
 <dd>The initial size of the deque (default is 10).</dd>
 </dl></div>
 <details class="source">
@@ -58,12 +58,12 @@ from both ends, with a fixed capacity.</p>
     A static deque implementation that supports appending and popping elements 
     from both ends, with a fixed capacity.
     &#34;&#34;&#34;
-    def __init__(self, capacity=10):
+    def __init__(self, capacity: int=10):
         &#34;&#34;&#34; 
         Initialize a deque with a fixed capacity.
 
         Args:
-            capacity: The initial size of the deque (default is 10).
+            capacity (int): The initial size of the deque (default is 10).
         &#34;&#34;&#34;
         self._array = [None] * capacity
         self._left = -1
@@ -176,7 +176,7 @@ from both ends, with a fixed capacity.</p>
             raise Exception(&#34;Empty deque&#34;)
         return self._array[self._right - 1]
     
-    def is_empty(self):
+    def is_empty(self) -&gt; bool:
         &#34;&#34;&#34;
         Return a Boolean on whether the deque is empty or not.
         &#34;&#34;&#34;
@@ -214,7 +214,7 @@ from both ends, with a fixed capacity.</p>
             arr.append(self._array[index])
         return arr
 
-    def capacity(self):
+    def capacity(self) -&gt; int:
         &#34;&#34;&#34;
         Get the maximum capacity of the deque.
 
@@ -223,7 +223,7 @@ from both ends, with a fixed capacity.</p>
         &#34;&#34;&#34;
         return len(self._array)
     
-    def __len__(self):
+    def __len__(self) -&gt; int:
         &#34;&#34;&#34;
         Get the number of elements in the deque.
 
@@ -306,7 +306,7 @@ from both ends, with a fixed capacity.</p>
 </dl></div>
 </dd>
 <dt id="dsa.deque.Deque.capacity"><code class="name flex">
-<span>def <span class="ident">capacity</span></span>(<span>self)</span>
+<span>def <span class="ident">capacity</span></span>(<span>self) ‑> int</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get the maximum capacity of the deque.</p>
@@ -314,7 +314,7 @@ from both ends, with a fixed capacity.</p>
 <p>The capacity of the deque.</p></div>
 </dd>
 <dt id="dsa.deque.Deque.is_empty"><code class="name flex">
-<span>def <span class="ident">is_empty</span></span>(<span>self)</span>
+<span>def <span class="ident">is_empty</span></span>(<span>self) ‑> bool</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Return a Boolean on whether the deque is empty or not.</p></div>
@@ -385,14 +385,14 @@ Raises an exception if the deque is empty.</p>
 </dd>
 <dt id="dsa.deque.DynamicDeque"><code class="flex name class">
 <span>class <span class="ident">DynamicDeque</span></span>
-<span>(</span><span>capacity=10)</span>
+<span>(</span><span>capacity: int = 10)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A dynamic deque implementation that adjusts its capacity as needed.</p>
 <p>Initialize a deque with a fixed capacity.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>capacity</code></strong></dt>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
 <dd>The initial size of the deque (default is 10).</dd>
 </dl></div>
 <details class="source">

@@ -10,7 +10,7 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
         graph (AdjacencyListWeighted Graph): The graph to search.
         start (str): The starting vertex label.
         end (str): The ending vertex label.
-        debug: If True, display weight table as it is being built.
+        debug (bool): If True, display weight table as it is being built.
     
     Returns:
         A tuple of a weight table dictionary and a previous path dictionary.
@@ -45,7 +45,7 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
 
     return weight_table, previous
 
-def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug=False):
+def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug=False) -> list:
     """ 
     Return the shortest path of two vertices using Dijkstra's Algorithm.
 
@@ -53,7 +53,7 @@ def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug=Fal
         graph (AdjacencyListWeighted Graph): The graph to search.
         start (str): The starting vertex label.
         end (str): The ending vertex label.
-        debug: If True, display the weight table.
+        debug (bool): If True, display the weight table.
 
     Returns:
         A list of vertices that form a shortest path.
