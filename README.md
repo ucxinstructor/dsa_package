@@ -2,8 +2,7 @@
 
 A collection of classes and functions for use in UC Berkeley Extension's Comp Sci X404.1: Data Structures and Algorithms Class.
 
-[API Documentation](src/html/dsa)	
-
+[API Documentation](https://ucxinstructor.github.io/dsa_package/src/html/dsa/)
 Command Line Installation
 ```
 pip install ucxdsa
