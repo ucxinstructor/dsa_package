@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ucxdsa"
-version = "2024.12.24"
+version = "2025.1.15"
 authors = [
   { name="Carl Limsico", email="limsico@berkeley.edu" },
 ]
@@ -19,7 +19,8 @@ classifiers = [
 
 [tool.hatch.build]
 exclude = [
-  "/__pycache__"
+  "/__pycache__",
+  "dsabuild_readme.md"
 ]
 
 [tool.hatch.build.targets.wheel]
