@@ -30,10 +30,13 @@ print(dsa.version)
 ``` 
 ***
 # Revision History
+## 2025.1.15
+* Cleaned up README.md
+
 ## 2024.12.24
-* Made default size for Trie Graph larger
+* Made default size for Trie graph larger
 * Cleaned up Heap module
-* Cleaned up Huffman module to use dsa data structures
+* Cleaned up Huffman module to use DSA data structures
 * Added more tests
 * Added more details to documentation
 
