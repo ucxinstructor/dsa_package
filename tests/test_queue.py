@@ -7,13 +7,11 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(q.count, 0)
         self.assertTrue(q.is_empty())
         self.assertEqual(q.capacity(), 10)
-#        self.assertEqual(q.front, 0)
 
         dq = DynamicQueue()
         self.assertEqual(dq.count, 0)
         self.assertTrue(dq.is_empty())
         self.assertEqual(dq.capacity(), 10)
- #       self.assertEqual(dq.front, 0)
 
     def test_insert(self):
         q = Queue()

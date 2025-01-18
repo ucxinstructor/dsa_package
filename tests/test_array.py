@@ -21,6 +21,7 @@ class TestArray(unittest.TestCase):
         c = Array.from_list([1, 2, 3, 4, 5])        
         self.assertEqual(c.count, 5)
 
+    def test_create_dynamic(self):
         da = DynamicArray()
         self.assertEqual(len(da), 0)
 
@@ -30,7 +31,7 @@ class TestArray(unittest.TestCase):
         dc = Array.from_list([1, 2, 3, 4, 5])        
         self.assertEqual(dc.count, 5)
 
-    def test_modify(self):
+    def test_modify_static(self):
         a = Array()
         self.assertTrue(a.is_empty())
         a.append(10)
@@ -78,54 +79,61 @@ class TestArray(unittest.TestCase):
         self.assertEqual(da.count, 16)
         self.assertFalse(da.is_empty())
 
-    def test_initialization_empty(self):
+    def test_initialization_empty_static(self):
         """Test initializing an empty array."""
         self.assertEqual(len(self.array), 0)
         self.assertEqual(self.array.capacity(), 5)
         self.assertTrue(self.array.is_empty())
 
+    def test_initialization_empty_dynamic(self):
         self.assertEqual(len(self.dynarray), 0)
         self.assertEqual(self.dynarray.capacity(), 5)
         self.assertTrue(self.dynarray.is_empty())
 
 
-    def test_initialization_with_contents(self):
+    def test_initialization_with_contents_static(self):
         """Test initializing an array with contents."""
         self.assertEqual(len(self.array_with_elements), 3)
         self.assertEqual(self.array_with_elements.to_list(), [1, 2, 3])
         self.assertFalse(self.array_with_elements.is_empty())
 
+    def test_initialization_with_contents_dynamic(self):
+        """Test initializing an array with contents."""
         self.assertEqual(len(self.dynarray_with_elements), 3)
         self.assertEqual(self.dynarray_with_elements.to_list(), [1, 2, 3])
         self.assertFalse(self.dynarray_with_elements.is_empty())
 
-    def test_append_within_capacity(self):
+    def test_append_within_capacity_static(self):
         """Test appending elements within capacity."""
         self.array.append(10)
         self.assertEqual(self.array.to_list(), [10])
         self.assertEqual(len(self.array), 1)
 
+    def test_append_within_capacity_dynamic(self):
+        """Test appending elements within capacity."""
         self.dynarray.append(10)
         self.assertEqual(self.dynarray.to_list(), [10])
         self.assertEqual(len(self.dynarray), 1)
 
-    def test_append_exceed_capacity(self):
+    def test_append_exceed_capacity_static(self):
         """Test appending elements exceeding capacity."""
         with self.assertRaises(Exception) as context:
             for i in range(6):
                 self.array.append(i)
         self.assertEqual(str(context.exception), "Capacity Error: Maximum capacity 5 reached.")
 
+    def test_append_exceed_capacity_dynamic(self):
         for i in range(1000):
             self.dynarray.append(i)
         self.assertEqual(self.dynarray.count, 1000)
 
-    def test_insert_valid_index(self):
+    def test_insert_valid_index_static(self):
         """Test inserting an element at a valid index."""
         self.array_with_elements.insert(1, 99)
         self.assertEqual(self.array_with_elements.to_list(), [1, 99, 2, 3])
         self.assertEqual(len(self.array_with_elements), 4)
 
+    def test_insert_valid_index_dynamic(self):
         self.dynarray_with_elements.insert(1, 99)
         self.assertEqual(self.dynarray_with_elements.to_list(), [1, 99, 2, 3])
         self.assertEqual(len(self.dynarray_with_elements), 4)
@@ -139,12 +147,14 @@ class TestArray(unittest.TestCase):
             self.array.insert(10, 10)
             self.dynarray.insert(10, 10)
 
-    def test_delete_valid_index(self):
+    def test_delete_valid_index_static(self):
         """Test deleting an element at a valid index."""
         self.array_with_elements.delete(1)
         self.assertEqual(self.array_with_elements.to_list(), [1, 3])
         self.assertEqual(len(self.array_with_elements), 2)
 
+    def test_delete_valid_index_dynamic(self):
+        """Test deleting an element at a valid index."""
         self.dynarray_with_elements.delete(1)
         self.assertEqual(self.dynarray_with_elements.to_list(), [1, 3])
         self.assertEqual(len(self.dynarray_with_elements), 2)
@@ -188,13 +198,15 @@ class TestArray(unittest.TestCase):
             self.array_with_elements[10] = 10
             self.dynarray_with_elements[10] = 10
 
-    def test_from_list(self):
+    def test_from_list_static(self):
         """Test creating an array from a standard Python list."""
         new_array = Array.from_list([5, 6, 7])
         self.assertEqual(new_array.to_list(), [5, 6, 7])
         self.assertEqual(len(new_array), 3)
         self.assertEqual(new_array.capacity(), 10)
 
+    def test_from_list_dynamic(self):
+        """Test creating an array from a standard Python list."""
         new_dynarray = DynamicArray.from_list([5, 6, 7])
         self.assertEqual(new_dynarray.to_list(), [5, 6, 7])
         self.assertEqual(len(new_dynarray), 3)
