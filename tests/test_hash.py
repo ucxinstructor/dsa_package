@@ -29,7 +29,7 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(ht.get("C"), 3)
         self.assertEqual(ht.count, 3)
 
-    def test_delete(self):
+    def test_set_delete(self):
         ''' test delete method'''
         ht = HashTable()
         ht.delete("A")
