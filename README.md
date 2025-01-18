@@ -30,6 +30,9 @@ print(dsa.version)
 ``` 
 ***
 # Revision History
+## 2025.1.17
+* Updated hash function code
+
 ## 2025.1.15
 * Cleaned up README.md
 

@@ -20,7 +20,7 @@ class HashTable:
         #: the number of items in the hashtable
         self.count = 0
         
-    def hash_function(self, key) -> int:
+    def hash_function(self, key: str) -> int:
         """ 
         Return a hash value based on a given key. 
 
@@ -29,10 +29,16 @@ class HashTable:
         Returns:
             Hash value modded to the hashtable capacity.
         """
-        charsum = sum(ord(c) * i for i, c in enumerate(key, 1))
-        return charsum % self.capacity      
+        mult = 31
+        hash_val = 0
+        for character in key:
+            hash_val *= mult
+            hash_val += ord(character)
+            hash_val % (2**32)
+
+        return hash_val % self.capacity
         
-    def key_exists(self, key) -> bool:
+    def key_exists(self, key: str) -> bool:
         """ 
         Returns a Boolean on whether a key exists in the hashtable or not .
 
@@ -48,7 +54,7 @@ class HashTable:
                 return True
         return False
 
-    def set(self, key, value):
+    def set(self, key: str, value):
         """ 
         Set a key-value pair in the hashtable.
 
@@ -70,7 +76,7 @@ class HashTable:
             self.array[bucket].append([ key, value ])
             self.count += 1
 
-    def get(self, key):
+    def get(self, key: str):
         """ 
         Get corresponding value of a given key in the hash table.
 
@@ -89,7 +95,7 @@ class HashTable:
 
         return None
 
-    def delete(self, key):
+    def delete(self, key: str):
         """ 
         Delete key-value pair if specified key is found. 
 
@@ -108,6 +114,19 @@ class HashTable:
     def __repr__(self):
         """
         Return a string representation of the hashtable.
+        """
+        s = "{"
+        pairs = []
+        for bucket in self.array:
+            if bucket:
+                for chain_link in bucket:
+                    pairs.append(f"{chain_link[0]}:{chain_link[1]}")
+        s += ", ".join(pairs)
+        return s + "}"
+
+    def show_buckets(self):
+        """
+        Return a string displaying the contents of all buckets in the hashtable.
         """
         s = ""
         for i, bucket in enumerate(self.array):
