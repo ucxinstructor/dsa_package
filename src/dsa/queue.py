@@ -113,7 +113,12 @@ class Queue:
         Returns:
             The contents of the queue as an array.
         """
-        return self._array[self._front: self._front + self.count]
+        if self._front + self.count <= len(self._array):
+            return self._array[self._front:self._front + self.count]
+        else:
+            end_part = self._array[self._front:]
+            start_part = self._array[:self._front + self.count - len(self._array)]
+            return end_part + start_part
 
     def __repr__(self):
         """
