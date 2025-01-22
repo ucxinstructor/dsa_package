@@ -2,7 +2,7 @@
 from dsa.heap import MinHeap
 from dsa.graph import AdjacencyListWeightedGraph
 
-def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug=False):
+def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> tuple:
     """ 
     Helper function that returns a weight table and a previous vertex table using Dijkstra's Algorithm.
 

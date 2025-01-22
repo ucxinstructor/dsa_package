@@ -20,7 +20,7 @@ class DoublyLinkedList:
     """ 
     A doubly linked list implementation.
     """
-    def __init__(self, head: Node=None, tail: Node=None, count: int=0):
+    def __init__(self, head: Node|None=None, tail: Node|None=None, count: int=0):
         """ 
         Initialize a singly linked list.
         
@@ -41,7 +41,7 @@ class DoublyLinkedList:
             self.count = count
 
     @classmethod
-    def from_list(cls, mylist=None):
+    def from_list(cls, mylist: list):
         """
         Create a doubly linked list from a list.
 
@@ -227,37 +227,43 @@ class DoublyLinkedList:
 
     def delete(self, index: int):
         """
-        Delete a node at a specified index. Raises exception if linked list is empty or if index is not found.
+        Delete a node at a specified index. Raises exception if linked list is empty or if index is invalid.
 
         Args:
             index (int): The index of element to be deleted.
 
         Raises:
-            IndexError: If linked list is empty or index is not found.
+            IndexError: If linked list is empty or index is invalid.
         """
         if self.head is None:
             raise IndexError("DoublyLinkedList is Empty")
 
-        i = 0
-        if index == 0:
+        if index == 0: # Special case: Delete the head node
             self.head = self.head.next
             if self.head:
                 self.head.prev = None
+            else:  # If the list becomes empty
+                self.tail = None
             self.count -= 1
             return
         
+        # Traverse the list to find the node at the specified index
         current = self.head
-        while current:
-            if index == i:
-                current.prev.next = current.next
-                if current.next:
-                    current.next.prev = current.prev
-                else:
-                    self.tail = current.prev
-
-                self.count -= 1
-                return
+        for i in range(index):
+            if current.next is None:
+                raise IndexError("Index out of range")
             current = current.next
-            i += 1
+
+        # Remove the node by adjusting pointers
+        if current.next:
+            current.next.prev = current.prev
+        else:  # If the node to be deleted is the tail
+            self.tail = current.prev
+
+        if current.prev:
+            current.prev.next = current.next
+
+        self.count -= 1
+        
         raise IndexError("Index not found")
 
