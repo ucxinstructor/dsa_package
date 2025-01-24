@@ -88,7 +88,7 @@ class TreeDraw(Draw):
         super().__init__()
         self.tree = tree
         
-    def add_edges(self, graph, node, pos=None, x=0, y=0, layer=1):
+    def add_edges(self, graph, node, pos=None, x: float=0, y: float=0, layer=1):
         """
         Recursively adds edges to the graph and positions the nodes in a tree layout.
     
@@ -287,7 +287,7 @@ class TrieDraw(Draw):
         if root is None:
             root = next(iter(nx.topological_sort(G)))
     
-        def _hierarchical_pos(G, node, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos=None, parent=None, parsed=[]):
+        def _hierarchical_pos(G, node, width: float=1., vert_gap: float=0.2, vert_loc:float=0, xcenter:float=0.5, pos=None, parent=None, parsed=[]):
             if pos is None:
                 pos = {node: (xcenter, vert_loc)}
             else:

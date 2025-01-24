@@ -34,7 +34,7 @@ class HashTable:
         for character in key:
             hash_val *= mult
             hash_val += ord(character)
-            hash_val % (2**32)
+            hash_val %= (2**32)
 
         return hash_val % self.capacity
         

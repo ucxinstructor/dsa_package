@@ -45,7 +45,7 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
 
     return weight_table, previous
 
-def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug=False) -> list:
+def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> list:
     """ 
     Return the shortest path of two vertices using Dijkstra's Algorithm.
 
