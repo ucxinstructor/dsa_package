@@ -1,5 +1,5 @@
 import unittest
-from dsa.sorttools import rand_int_array, filled_array, shuffle_array
+from dsa.sorttools import rand_int_array, filled_array, shuffle_array, is_sorted
 
 class TestSortTools(unittest.TestCase):
 
@@ -24,6 +24,13 @@ class TestSortTools(unittest.TestCase):
         self.assertEqual(len(result), n)
         self.assertEqual(set(result), set(range(n)))
         self.assertNotEqual(result, list(range(n)))  # Ensure the array is shuffled
+
+    def test_is_sorted(self):
+        self.assertTrue(is_sorted([1, 2]))
+        self.assertTrue(is_sorted([1, 2, 3, 4, 5]))
+        self.assertFalse(is_sorted([5, 3, 1, 4, 2]))
+        self.assertTrue(is_sorted([]))
+        self.assertTrue(is_sorted([1]))
 
 if __name__ == '__main__':
     unittest.main()

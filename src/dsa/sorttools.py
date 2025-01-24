@@ -46,3 +46,16 @@ def shuffle_array(n: int) -> list:
         array[i], array[r] = array[r], array[i]
     return array
 
+def is_sorted(array) -> bool:
+    """ 
+    Return a boolean on whether an array is sorted in ascending order or not.
+
+    Args:
+        array: the array to verify.
+    Returns:
+        True if the array is sorted, False otherwise.   
+    """
+    for i in range(len(array)-1):
+        if array[i + 1] < array[i]:
+            return False
+    return True

@@ -30,6 +30,9 @@ print(dsa.version)
 ``` 
 ***
 # Revision History
+## 2025.1.x
+* Added is_sorted() in sorttools
+
 ## 2025.1.19
 * Fixed bug in Queue to_list() method (thanks, Charles!)
 
