@@ -54,7 +54,7 @@ class TreeNode:
         if self.value is None:
             return "none"
         else:
-            return self.value
+            return str(self.value)
 
 class Tree:
     """ 

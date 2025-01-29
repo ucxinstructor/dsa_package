@@ -11,7 +11,8 @@ class TestTree(unittest.TestCase):
         t = Tree(n)
         self.assertEqual(t.root.left.left.value, 4)
         self.assertEqual(t.root.left.right, None)
-
+        self.assertEqual(repr(t.root), "1")
+        self.assertEqual(repr(t.root.right), "3")
 
     def test_insert(self):
         t = Tree()

@@ -30,8 +30,10 @@ print(dsa.version)
 ``` 
 ***
 # Revision History
-## 2025.1.x
+## 2025.1.29
 * Added is_sorted() in sorttools
+* Fixed a bug when displaying a TreeNode in repr() format
+* Update some modules to be more pyright compliant
 
 ## 2025.1.19
 * Fixed bug in Queue to_list() method (thanks, Charles!)
