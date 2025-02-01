@@ -265,5 +265,4 @@ class DoublyLinkedList:
 
         self.count -= 1
         
-        raise IndexError("Index not found")
 

@@ -88,6 +88,8 @@ class TestDoublyLinkedList(unittest.TestCase):
 
         for _ in range(15):
             ll.append(_)
+        self.assertRaises(IndexError, ll.delete, 15)
+
         self.assertEqual(ll.head.value, 0)
         self.assertEqual(ll.tail.value, 14)
         self.assertEqual(ll.count, 15)
@@ -95,7 +97,18 @@ class TestDoublyLinkedList(unittest.TestCase):
         for _ in range(15):
             ll.delete(0)
             self.assertEqual(ll.count, 14 - _)
-        self.assertRaises(Exception, ll.delete, 0)
+        self.assertRaises(IndexError, ll.delete, 0)
+
+        for _ in range(15):
+            ll.append(_)
+        self.assertEqual(ll.head.value, 0)
+        self.assertEqual(ll.tail.value, 14)
+        self.assertEqual(ll.count, 15)
+
+        for _ in range(15):
+            ll.delete(len(ll) - 1)
+            self.assertEqual(ll.count, 14 - _)
+        self.assertRaises(IndexError, ll.delete, 0)
 
     def test_traverse(self):
         ll = DoublyLinkedList()

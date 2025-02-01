@@ -278,7 +278,7 @@ if both head and tail nodes are specified, count should be specified as well</p>
 
     def delete(self, index: int):
         &#34;&#34;&#34;
-        Delete a node at a specified index. Raise Exception if linked list is empty or if index is not found.
+        Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.
 
         Args:
             index: Index of element to be deleted.
@@ -298,10 +298,13 @@ if both head and tail nodes are specified, count should be specified as well</p>
         
         i = 0
         current = self.head
-        prev = current
+        prev = None
         while current:
             if index == i:
-                prev.next = current.next
+                if prev is not None:
+                    prev.next = current.next
+                else:
+                    self.head = current.next
                 self.count -= 1
                 return
             i += 1
@@ -350,7 +353,7 @@ linked list containing the items from mylist.</p></div>
 <span>def <span class="ident">delete</span></span>(<span>self, index: int)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Delete a node at a specified index. Raise Exception if linked list is empty or if index is not found.</p>
+<div class="desc"><p>Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>index</code></strong></dt>

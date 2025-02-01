@@ -235,7 +235,7 @@ class LinkedList:
 
     def delete(self, index: int):
         """
-        Delete a node at a specified index. Raise Exception if linked list is empty or if index is not found.
+        Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.
 
         Args:
             index: Index of element to be deleted.
@@ -255,10 +255,13 @@ class LinkedList:
         
         i = 0
         current = self.head
-        prev = current
+        prev = None
         while current:
             if index == i:
-                prev.next = current.next
+                if prev is not None:
+                    prev.next = current.next
+                else:
+                    self.head = current.next
                 self.count -= 1
                 return
             i += 1

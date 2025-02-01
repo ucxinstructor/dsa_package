@@ -30,6 +30,9 @@ print(dsa.version)
 ``` 
 ***
 # Revision History
+## 2025.1.31
+* Fixed bug when DoublyLinkedList delete of the last index throws an Exception 
+
 ## 2025.1.29
 * Added is_sorted() in sorttools
 * Fixed a bug when displaying a TreeNode in repr() format
