@@ -112,6 +112,13 @@ class TestLinkedList(unittest.TestCase):
             self.assertEqual(ll.count, 14 - _)
         self.assertRaises(IndexError, ll.delete, 0)
 
+        # delete middle
+        for _ in range(15):
+            ll.append(_)
+
+        for _ in range(5):
+            ll.delete(len(ll) // 2)
+            self.assertEqual(ll.count, 14 - _)
 
     def test_traverse(self):
         ll = LinkedList()

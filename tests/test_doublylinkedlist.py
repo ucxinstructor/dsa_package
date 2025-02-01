@@ -56,6 +56,18 @@ class TestDoublyLinkedList(unittest.TestCase):
 
         self.assertEqual(ll.to_list(), list(range(15)))
 
+        ll = DoublyLinkedList.from_list([])
+        self.assertEqual(ll.to_list(), list())
+
+        ll = DoublyLinkedList.from_list([1])
+        self.assertEqual(ll.to_list(), [1])
+
+        ll = DoublyLinkedList.from_list([1, 2])
+        self.assertEqual(ll.to_list(), [1, 2])
+
+        ll = DoublyLinkedList.from_list([1, 2, 3])
+        self.assertEqual(ll.to_list(), [1, 2, 3])
+
     def test_search(self):
         ll = DoublyLinkedList.from_list(range(20))
         self.assertRaises(Exception, ll.search, -1)
@@ -109,6 +121,13 @@ class TestDoublyLinkedList(unittest.TestCase):
             ll.delete(len(ll) - 1)
             self.assertEqual(ll.count, 14 - _)
         self.assertRaises(IndexError, ll.delete, 0)
+
+        for _ in range(15):
+            ll.append(_)
+
+        for _ in range(5):
+            ll.delete(len(ll) // 2)
+            self.assertEqual(ll.count, 14 - _)
 
     def test_traverse(self):
         ll = DoublyLinkedList()
@@ -170,7 +189,5 @@ class TestDoublyLinkedList(unittest.TestCase):
         expected_repr = "[ 1 2 3 4 ] Count: 4"
         self.assertEqual(repr(dll), expected_repr)
 
-if __name__ == '__main__':
-    unittest.main()
 if __name__ == '__main__':
     unittest.main()
