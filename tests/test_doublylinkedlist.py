@@ -122,6 +122,7 @@ class TestDoublyLinkedList(unittest.TestCase):
             self.assertEqual(ll.count, 14 - _)
         self.assertRaises(IndexError, ll.delete, 0)
 
+        # delete middle
         for _ in range(15):
             ll.append(_)
 
