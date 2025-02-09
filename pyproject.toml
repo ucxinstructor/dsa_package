@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ucxdsa"
-version = "2025.1.31"
+version = "2025.2.09"
 authors = [
   { name="Carl Limsico", email="limsico@berkeley.edu" },
 ]
@@ -16,6 +16,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/ucxinstructor/dsa_package"
 
 [tool.hatch.build]
 exclude = [

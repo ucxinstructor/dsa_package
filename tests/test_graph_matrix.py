@@ -81,7 +81,33 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertEqual(g.vertices(), labels)
         self.assertEqual(g.edges(), [('A', 'B'), ('A', 'C'), ('B', 'C'), ('B', 'D'), ('C', 'D'), ('D', 'E'), ('E', 'F'), ('F', 'G')])
 
-    
+    def test_delete_directed(self):
+        labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        g = AdjacencyMatrixGraph(labels)
+        g.add_directed_edge('A', 'B')
+        g.add_directed_edge('B', 'A')
+        g.add_directed_edge('B', 'C')
+        g.add_directed_edge('C', 'D')
+        g.add_directed_edge('D', 'E')
+        g.add_directed_edge('E', 'A')
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+
+        print("Adjacents ", g.adjacents('A'))
+        self.assertEqual(g.adjacents('A'), ['B'])
+        self.assertEqual(g['B'], ['A', 'C'])
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        g.delete_edge('B', 'A')
+        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+
     def test_create_undirected_weighted(self):
         labels = ['A', 'B', 'C', 'D', 'E', 'F']
         g = AdjacencyMatrixWeightedGraph(labels)

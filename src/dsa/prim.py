@@ -5,38 +5,42 @@ from dsa.heap import PriorityQueue
 def prims_mst(graph, start: str, mst_graph=None) -> AdjacencyListWeightedGraph:
     """
     Returns an MST given a graph and starting vertex.
+    (Future: return a Tree type instead of a Graph type)
 
     Args:
         graph: The graph to search an MST from. (can be either an AdjacencyListWeightedGraph or AdjacencyMatrixWeightedGraph)
         start (string): The starting vertex label.
-        mst_graph: an empty graph object to output the MST in to 
+        mst_graph: An empty graph object to output the MST in to.
 
     Returns:
         AdjacencyListWeightedGraph: the MST of the graph.
     """
     def add_adjacent(graph, pq: PriorityQueue, visited: set, node: str):
-        """Add all outgoing edges from the given node to the priority queue."""
+        """Add all adjacent vertices from the given node to the priority queue."""
         visited.add(node)
-        for neighbor, weight in graph[node].items():
-            if neighbor not in visited:
-                pq.push(weight, (node, neighbor))  # Push edge with weight as priority
+        for adjacent, weight in graph[node].items():
+            if adjacent not in visited:
+                pq.push(weight, (node, adjacent))  # Push edge with weight as priority
 
-    # update this so that it will return the appropriate graph type
+    # todo: update this so that it will return the appropriate graph type
     if mst_graph is None:
         mst_graph = AdjacencyListWeightedGraph()
 
     visited = set()
     pq = PriorityQueue()
+    total_vertices = len(set(graph.vertices()))
 
     add_adjacent(graph, pq, visited, start)
-    vertices_set = set(graph.vertices())
 
-    while not pq.is_empty() and visited != vertices_set:
+    # While the priority queue is not empty and we haven't visited all vertices
+    while not pq.is_empty() and len(visited) < total_vertices:
         weight, edge = pq.pop_pair()
-        u, v = edge
-        if v not in visited:
-            mst_graph.add_edge(u, v, graph[u][v])
-            add_adjacent(graph, pq, visited, v)
+        start, end = edge
+        # If the end vertex has not been visited, add edge to the MST
+        if end not in visited:
+            mst_graph.add_edge(start, end, graph[start][end])
+            # add adjacent vertices to the priority queue and mark the end vertex as visited
+            add_adjacent(graph, pq, visited, end)
     return mst_graph
 
 def mst_weight(graph) -> int:

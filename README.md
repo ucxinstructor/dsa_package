@@ -28,8 +28,17 @@ To determine the version, enter the following in Python or Jupyter:
 import dsa
 print(dsa.version)
 ``` 
+or from the terminal
+```
+pip show ucdsa
+```
+
 ***
 # Revision History
+## 2025.2.9
+* Refactored Dijkstra's algorithm code
+* Minor comment fixes
+
 ## 2025.1.31
 * Fixed bug when DoublyLinkedList delete of the last index throws an Exception 
 

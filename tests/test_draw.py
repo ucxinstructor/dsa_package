@@ -19,7 +19,6 @@ def delete_files_in_folder(folder_path):
     # Iterate over all the files in the folder
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
-        print(file_path)
         try:
             if os.path.isfile(file_path) or os.path.islink(file_path):
                 os.unlink(file_path)  # Remove the file or link
@@ -30,6 +29,13 @@ def delete_files_in_folder(folder_path):
 
 
 class TestDraw(unittest.TestCase):
+    def setUp(self) -> None:
+        # create the images folder if it does not exist
+        if not os.path.exists('images'):
+            os.makedirs('images')
+        else:
+            TestDraw.cleanup()
+
     @classmethod
     def cleanup(cls):
         delete_files_in_folder('images')

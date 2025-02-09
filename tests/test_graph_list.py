@@ -71,6 +71,30 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g.bfs('A', 'E'), 'E')
         self.assertEqual(g.bfs('C', 'E'), 'E')
 
+    def test_delete_directed(self):
+        g = AdjacencyListGraph()
+        g.add_directed_edge('A', 'B')
+        g.add_directed_edge('B', 'A')
+        g.add_directed_edge('B', 'C')
+        g.add_directed_edge('C', 'D')
+        g.add_directed_edge('D', 'E')
+        g.add_directed_edge('E', 'A')
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+
+        self.assertEqual(g['A'], ['B'])
+        self.assertEqual(g['B'], ['A', 'C'])
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        g.delete_edge('B', 'A')
+        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
 
     def test_create_undirected_weighted(self):
         g = AdjacencyListWeightedGraph()
