@@ -96,13 +96,13 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertEqual(g['A'], ['B'])
         self.assertEqual(g['B'], ['A', 'C'])
 
-        g.delete_directed_edge('A', 'B')
+        g.delete_edge('A', 'B', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
         self.assertTrue(g.is_edge('B', 'C'))
 
         g.add_directed_edge('A', 'B')
-        g.delete_directed_edge('B', 'A')
+        g.delete_edge('B', 'A', directed=True)
         self.assertTrue(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'C'))
         self.assertFalse(g.is_edge('B', 'A'))
@@ -131,7 +131,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
-        g.delete_edge('B', 'A')
+        with self.assertRaises(KeyError):
+            g.delete_edge('B', 'A')
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
@@ -194,7 +195,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
-        g.delete_edge('B', 'A')
+        with self.assertRaises(KeyError):
+            g.delete_edge('B', 'A')
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
@@ -271,7 +273,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertEqual(g['A'], {'B': 1})
         self.assertEqual(g['B'], {'C': 2})
 
-        g.delete_directed_edge('A', 'B')
+        g.delete_edge('A', 'B', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
         self.assertTrue(g.is_edge('B', 'C'))
@@ -279,7 +281,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
-        g.delete_directed_edge('B', 'A')
+        with self.assertRaises(KeyError):
+            g.delete_edge('B', 'A', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
@@ -289,6 +292,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertTrue(g.is_edge('B', 'A'))
         self.assertTrue(g.is_edge('B', 'C'))
 
-        g.delete_directed_edge('A', 'B')
-        self.assertTrue(g.is_edge('B', 'A'))
+        with self.assertRaises(KeyError):
+            g.delete_edge('A', 'B', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))

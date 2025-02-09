@@ -1,5 +1,6 @@
 """ Module containing graph classes. """
 
+from turtle import st
 from dsa.queue import Queue
 
 class AdjacencyMatrixGraph:
@@ -74,30 +75,25 @@ class AdjacencyMatrixGraph:
         for row in self.array:
             row.pop(index)
 
-    def delete_edge(self, start_label: str, end_label: str):
+    def delete_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Delete an undirected edge between two vertices.
+        Delete an edge between two vertices.
         
         Args:
             start_label (str): Starting vertex label.
             end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
         """
         a = self.label_index[start_label]
         b = self.label_index[end_label]
-        self.array[a][b] = None
-        self.array[b][a] = None
+        if self.array[a][b] is None:
+            raise KeyError(f"Edge {start_label} to {end_label} does not exist")
 
-    def delete_directed_edge(self, start_label: str, end_label: str):
-        """ 
-        Delete a directed edge between two vertices.
-        
-        Args:
-            start_label (str): Starting vertex label.
-            end_label (str): Ending vertex label.
-        """
-        a = self.label_index[start_label]
-        b = self.label_index[end_label]
         self.array[a][b] = None
+        if not directed:
+            if self.array[b][a] is None:
+                raise KeyError(f"Edge {end_label} to {start_label} does not exist")
+            self.array[b][a] = None
 
     def df_traverse(self, start_label: str):
         """ 
@@ -397,26 +393,28 @@ class AdjacencyListGraph:
         if end_label not in self._adjacents:
             self._adjacents[end_label] = []
 
-    def delete_edge(self, start_label: str, end_label: str):
+    def delete_edge(self, start_label: str, end_label: str, directed=False):
         """ 
         Delete an undirected edge between two vertices.
         
         Args:
             start_label (str): Starting vertex label.
             end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+        Raises:
+            KeyError: If the edge does exist.
         """
+        if start_label not in self._adjacents:
+            raise KeyError(f"Vertex {start_label} does not exist")
+        if end_label not in self._adjacents[start_label]:
+            raise KeyError(f"Vertex {end_label} does not exist")
         self._adjacents[start_label].remove(end_label)
-
-    def delete_undirected_edge(self, start_label: str, end_label: str):
-        """ 
-        Delete an undirected edge between two vertices.
-        
-        Args:
-            start_label (str): Starting vertex label.
-            end_label (str): Ending vertex label.
-        """
-        self._adjacents[start_label].remove(end_label)
-        self._adjacents[end_label].remove(start_label)
+        if not directed:
+            if end_label not in self._adjacents:
+                raise KeyError(f"Vertex {end_label} does not exist")
+            if start_label not in self._adjacents[end_label]:
+                raise KeyError(f"Vertex {start_label} does not exist")
+            self._adjacents[end_label].remove(start_label)
 
     def vertices(self) -> list:
         """
@@ -646,6 +644,30 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         self._adjacents[start_label][end_label] = weight
         if end_label not in self._adjacents:
             self._adjacents[end_label] = {}
+
+    def delete_edge(self, start_label: str, end_label: str, directed=False):
+        """ 
+        Delete an undirected edge between two vertices.
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+
+        Raises:
+            KeyError: If the edge does exist.
+        """
+        if start_label not in self._adjacents:
+            raise KeyError(f"Vertex {start_label} does not exist")
+        if end_label not in self._adjacents[start_label]:
+            raise KeyError(f"Vertex {end_label} does not exist") 
+        del self._adjacents[start_label][end_label]
+        if not directed:
+            if end_label not in self._adjacents:
+                raise KeyError(f"Vertex {end_label} does not exist")
+            if start_label not in self._adjacents[end_label]:
+                raise KeyError(f"Vertex {start_label} does not exist") 
+            del self._adjacents[end_label][start_label]
 
     def adjacents(self, vertex: str) -> list:
         """

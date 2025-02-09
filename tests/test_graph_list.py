@@ -1,4 +1,5 @@
 import unittest
+from weakref import KeyedRef
 from dsa.graph import AdjacencyListGraph, AdjacencyListWeightedGraph
 
 class TestAdjacencyListGraph(unittest.TestCase):
@@ -86,12 +87,12 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g['A'], ['B'])
         self.assertEqual(g['B'], ['A', 'C'])
 
-        g.delete_edge('A', 'B')
+        g.delete_edge('A', 'B', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
         self.assertTrue(g.is_edge('B', 'C'))
 
-        g.delete_edge('B', 'A')
+        g.delete_edge('B', 'A', directed=True)
         self.assertTrue(g.is_edge('B', 'C'))
         self.assertFalse(g.is_edge('B', 'A'))
 
@@ -125,6 +126,41 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g.bfs('A', 'E'), 'E')
         self.assertEqual(g.bfs('C', 'E'), 'E')
 
+    def test_delete_undirected(self):
+        g = AdjacencyListGraph()
+        g.add_edge('A', 'B')
+        g.add_edge('B', 'C')
+        g.add_edge('C', 'D')
+        g.add_edge('D', 'E')
+        g.add_edge('E', 'A')
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+
+        self.assertEqual(g['A'], ['B', 'E'])
+        self.assertEqual(g['B'], ['A', 'C'])
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        with self.assertRaises(KeyError):
+            g.delete_edge('B', 'A')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.add_edge('B', 'A')
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.is_edge('A', 'B'))
 
     def test_create_directed_weighted(self):
         g = AdjacencyListWeightedGraph()
@@ -156,3 +192,40 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g.bfs('A', 'E'), 'E')
         self.assertEqual(g.bfs('C', 'E'), 'E')
 
+    def test_delete_directed_weighted(self):
+        g = AdjacencyListWeightedGraph()
+        g.add_directed_edge('A', 'B', 1)
+        g.add_directed_edge('B', 'C', 2)
+        g.add_directed_edge('C', 'D', 3)
+        g.add_directed_edge('D', 'E', 4)
+        g.add_directed_edge('E', 'A', 5)
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        self.assertEqual(g['A'], {'B': 1})
+        self.assertEqual(g['B'], {'C': 2})
+
+        g.delete_edge('A', 'B', directed=True)
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        with self.assertRaises(KeyError):
+            g.delete_edge('B', 'A', directed=True)
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.add_directed_edge('B', 'A', 3)
+        self.assertEqual(g['A'], {})
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        with self.assertRaises(KeyError):
+            g.delete_edge('A', 'B', directed=True)
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
