@@ -6,18 +6,17 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
     def test_create_undirected(self):
         labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         g = AdjacencyMatrixGraph(labels)
-        self.assertEqual(g["A"], [])
         g.add_edge("A", 'B')
         g.add_edge("A", 'C')
-        self.assertEqual(g["A"], ["A", "B", "C"])
+        self.assertEqual(g["A"], ["B", "C"])
 
         self.assertTrue(g.is_edge("A", "B"))
         self.assertFalse(g.is_edge("B", "C"))
 
-        g.add_adjacent_vertex("B", 'C')
+        g.add_edge("B", 'C')
         self.assertTrue(g.is_edge("B", "C"))
-        g.add_adjacent_vertex("B", 'D')
-        self.assertEqual(g["B"], ["A", "B", "C", "D"])
+        g.add_edge("B", 'D')
+        self.assertEqual(g["B"], ["A", "C", "D"])
 
         g.add_edge("C", 'D')
         g.add_edge("D", 'E')
@@ -57,14 +56,14 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertTrue(g.is_edge("A", "C"))
         self.assertFalse(g.is_edge("C", "A"))
 
-        self.assertEqual(g["A"], ["A", "B", "C"])
+        self.assertEqual(g["A"], ["B", "C"])
         self.assertTrue(g.is_edge("A", "B"))
         self.assertFalse(g.is_edge("B", "C"))
 
-        g.add_adjacent_directed_vertex("B", 'C')
+        g.add_directed_edge("B", 'C')
         self.assertTrue(g.is_edge("B", "C"))
-        g.add_adjacent_directed_vertex("B", 'D')
-        self.assertEqual(g["B"], ["B", "C", "D"])
+        g.add_directed_edge("B", 'D')
+        self.assertEqual(g["B"], ["C", "D"])
 
         g.add_directed_edge("C", 'D')
         g.add_directed_edge("D", 'E')
@@ -94,19 +93,56 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertTrue(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
 
-        print("Adjacents ", g.adjacents('A'))
-        self.assertEqual(g.adjacents('A'), ['B'])
+        self.assertEqual(g['A'], ['B'])
         self.assertEqual(g['B'], ['A', 'C'])
 
-        g.delete_edge('A', 'B')
+        g.delete_directed_edge('A', 'B')
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
         self.assertTrue(g.is_edge('B', 'C'))
 
-        g.delete_edge('B', 'A')
+        g.add_directed_edge('A', 'B')
+        g.delete_directed_edge('B', 'A')
+        self.assertTrue(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'C'))
         self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('A', 'B'))
 
+    def test_delete_undirected(self):
+        labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        g = AdjacencyMatrixGraph(labels)
+        g.add_edge('A', 'B')
+        g.add_edge('B', 'C')
+        g.add_edge('C', 'D')
+        g.add_edge('D', 'E')
+        g.add_edge('E', 'A')
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+
+        self.assertEqual(g['A'], ['B', 'E'])
+        self.assertEqual(g['B'], ['A', 'C'])
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.delete_edge('B', 'A')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.add_edge('B', 'A')
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.is_edge('A', 'B'))
 
     def test_create_undirected_weighted(self):
         labels = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -135,6 +171,42 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         with self.assertRaises(KeyError):
             g['E']['A']
 
+    def test_delete_undirected_weighted(self):
+        labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        g = AdjacencyMatrixWeightedGraph(labels)
+        g.add_edge('A', 'B', 1)
+        g.add_edge('B', 'C', 2)
+        g.add_edge('C', 'D', 3)
+        g.add_edge('D', 'E', 4)
+        g.add_edge('E', 'A', 5)
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+
+        self.assertEqual(g['A'], {'B': 1, 'E': 5})
+        self.assertEqual(g['B'], {'A': 1, 'C': 2})
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.delete_edge('B', 'A')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.add_edge('B', 'A', 3)
+        self.assertEqual(g['A'], {'B': 3, 'E': 5})
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        g.delete_edge('A', 'B')
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.is_edge('A', 'B'))
 
     def test_create_directed_weighted(self):
         labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
@@ -145,8 +217,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertFalse(g.is_edge("B", "E"))
         print(g["A"])
         self.assertEqual(g["A"]["B"], 1)
-        g.add_adjacent_directed_vertex("B", 'C', 3)
-        g.add_adjacent_directed_vertex("B", 'D', 4)
+        g.add_directed_edge("B", 'C', 3)
+        g.add_directed_edge("B", 'D', 4)
         self.assertEqual(g["B"]["D"], 4)
         self.assertFalse(g.is_edge("B", "E"))
 
@@ -183,3 +255,40 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertEqual(g['B']['D'], 3)
         with self.assertRaises(KeyError):
             g['E']['B']
+
+    def test_delete_directed_weighted(self):
+        labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        g = AdjacencyMatrixWeightedGraph(labels)
+        g.add_directed_edge('A', 'B', 1)
+        g.add_directed_edge('B', 'C', 2)
+        g.add_directed_edge('C', 'D', 3)
+        g.add_directed_edge('D', 'E', 4)
+        g.add_directed_edge('E', 'A', 5)
+
+        self.assertTrue(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        self.assertEqual(g['A'], {'B': 1})
+        self.assertEqual(g['B'], {'C': 2})
+
+        g.delete_directed_edge('A', 'B')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.delete_directed_edge('B', 'A')
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.is_edge('B', 'A'))
+
+        g.add_directed_edge('B', 'A', 3)
+        self.assertEqual(g['A'], {})
+        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.is_edge('B', 'C'))
+
+        g.delete_directed_edge('A', 'B')
+        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertFalse(g.is_edge('A', 'B'))
