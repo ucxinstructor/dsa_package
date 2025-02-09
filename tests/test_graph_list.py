@@ -1,5 +1,4 @@
 import unittest
-from weakref import KeyedRef
 from dsa.graph import AdjacencyListGraph, AdjacencyListWeightedGraph
 
 class TestAdjacencyListGraph(unittest.TestCase):
@@ -164,11 +163,11 @@ class TestAdjacencyListGraph(unittest.TestCase):
 
     def test_create_directed_weighted(self):
         g = AdjacencyListWeightedGraph()
-        g.add_directed_edge('A', 'B', 1)
-        g.add_directed_edge('B', 'C', 2)
-        g.add_directed_edge('C', 'D', 3)
-        g.add_directed_edge('D', 'E', 4)
-        g.add_directed_edge('E', 'A', 5)
+        g.add_edge('A', 'B', 1, directed=True)
+        g.add_edge('B', 'C', 2, directed=True)
+        g.add_edge('C', 'D', 3, directed=True)
+        g.add_edge('D', 'E', 4, directed=True)
+        g.add_edge('E', 'A', 5, directed=True)
 
         self.assertTrue(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
@@ -194,11 +193,11 @@ class TestAdjacencyListGraph(unittest.TestCase):
 
     def test_delete_directed_weighted(self):
         g = AdjacencyListWeightedGraph()
-        g.add_directed_edge('A', 'B', 1)
-        g.add_directed_edge('B', 'C', 2)
-        g.add_directed_edge('C', 'D', 3)
-        g.add_directed_edge('D', 'E', 4)
-        g.add_directed_edge('E', 'A', 5)
+        g.add_edge('A', 'B', 1, directed=True)
+        g.add_edge('B', 'C', 2, directed=True)
+        g.add_edge('C', 'D', 3, directed=True)
+        g.add_edge('D', 'E', 4, directed=True)
+        g.add_edge('E', 'A', 5, directed=True)
 
         self.assertTrue(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
@@ -219,7 +218,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
 
-        g.add_directed_edge('B', 'A', 3)
+        g.add_edge('B', 'A', 3, directed=True)
         self.assertEqual(g['A'], {})
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))

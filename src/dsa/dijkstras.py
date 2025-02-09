@@ -13,7 +13,7 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
         debug (bool): If True, display weight table as it is being built.
     
     Returns:
-        A tuple of a weight table hash table and a predecesor hash table.
+        A tuple of a weight table hashtable and a predecesor hashtable.
     """
     weight_table = {}
     predecessor = {}

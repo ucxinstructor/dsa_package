@@ -1,6 +1,5 @@
 """ Module containing graph classes. """
 
-from turtle import st
 from dsa.queue import Queue
 
 class AdjacencyMatrixGraph:
@@ -23,30 +22,20 @@ class AdjacencyMatrixGraph:
         node_count = len(self.labels)
         self.array = [[None for i in range(node_count)] for j in range(node_count)]
 
-    def add_edge(self, start_label: str, end_label: str):
+    def add_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Add an undirected edge between two vertices.
+        Add an edge between two vertices.
         
         Args:
             start_label (str): Starting vertex label.
             end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
         """
         a = self.label_index[start_label]
         b = self.label_index[end_label]
         self.array[a][b] = True
-        self.array[b][a] = True
-
-    def add_directed_edge(self, start_label: str, end_label: str):
-        """ 
-        Add a directed edge between one vertex to another (same as add_directed_adjacent_vertex() and add_directed_edge())
- 
-        Args:
-            start_label (str): Starting vertex label.
-            end_label (str): Ending vertex label.
-        """
-        a = self.label_index[start_label]
-        b = self.label_index[end_label]
-        self.array[a][b] = True
+        if not directed:
+            self.array[b][a] = True
 
     def add_vertex(self, label: str):
         """ 
@@ -236,7 +225,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         """
         super().__init__(labels)
 
-    def add_edge(self, start_label: str, end_label: str, weight):
+    def add_edge(self, start_label: str, end_label: str, weight, directed=False):
         """ 
         Add an undirected edge between one vertex to another
 
@@ -244,24 +233,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
             start_label (str): The starting vertex label.
             end_label (str): The ending vertex label.
             weight: The weight of the vertex.
-        """
-        a = self.label_index[start_label]
-        b = self.label_index[end_label]
-
-        self.array[a][b] = weight
-        self.array[a][a] = 0
-
-        self.array[b][a] = weight
-        self.array[b][b] = 0
-
-    def add_directed_edge(self, start_label: str, end_label: str, weight):
-        """ 
-        Add a weighted directed edge between one vertex to another
-
-        Args:
-            start_label (str): The starting vertex label.
-            end_label (str): The ending vertex label.
-            weight: The weight of the vertex.
+            directed: Whether the edge is directed.
         """
         a = self.label_index[start_label]
         b = self.label_index[end_label]
@@ -269,6 +241,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         self.array[a][b] = weight
         self.array[a][a] = 0
         self.array[b][b] = 0
+
+        if not directed:
+            self.array[b][a] = weight
         
     def print_graph(self):
         """ 
@@ -361,21 +336,17 @@ class AdjacencyListGraph:
         #: hash table of vertices in graph
         self._adjacents = {}
         
-    def add_edge(self, start_label: str, end_label: str):
+    def add_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Add an undirected vertex to the adjacency list.
+        Add a vertex to the adjacency list.
 
         Args:
             start_label (str): The label of the starting vertex.
             end_label (str): The label of the ending vertex.
+            directed (bool): Whether the edge is directed.
         """
         self.add_directed_edge(start_label, end_label)
         self.add_directed_edge(end_label, start_label)
-        # if end_label not in self._adjacents:
-        #     self._adjacents[end_label] = [start_label]
-        # else:
-        #     if start_label not in self._adjacents[end_label]:
-        #         self._adjacents[end_label].append(start_label)
                 
     def add_directed_edge(self, start_label: str, end_label: str):
         """ 
@@ -593,57 +564,25 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         #: hash table of vertices in graph
         self._adjacents = {}
         
-    def add_adjacent_vertex(self, start_label: str, end_label: str, weight):
+    def add_edge(self, start_label: str, end_label: str, weight, directed=False):
         """ 
-        Add an undirected vertex to the adjacency list (same as add_edge()).
+        Add an edge to the graph.
 
         Args:
             start_label: The starting vertex label. 
             end_label: The ending vertex label. 
             weight: The edge weight.
-        """
-        self.add_directed_adjacent_vertex(start_label, end_label, weight)
-        if end_label not in self._adjacents:
-            self._adjacents[end_label] = {}
-        self._adjacents[end_label][start_label] = weight
-        
-    def add_edge(self, start_label: str, end_label: str, weight):
-        """ 
-        Add an undirected vertex to the adjacency list (same as add_adjacent_vertex()).
-
-        Args:
-            start_label: The starting vertex label. 
-            end_label: The ending vertex label. 
-            weight: The edge weight.
-        """
-        self.add_adjacent_vertex(start_label, end_label, weight)
-
-    def add_directed_edge(self, start_label: str, end_label: str, weight):
-        """ 
-        Add a directed vertex to the adjacency list (same as add_directed_adjacent_vertex()).
-
-        Args:
-            start_label: The starting vertex label. 
-            end_label: The ending vertex label. 
-            weight: The edge weight.
-        """
-        self.add_directed_adjacent_vertex(start_label, end_label, weight)
-        
-    def add_directed_adjacent_vertex(self, start_label: str, end_label: str, weight):
-        """ 
-        Add a directed vertex to the adjacency list (same as add_directed_edge()).
-
-        Args:
-            start_label: The starting vertex label. 
-            end_label: The ending vertex label. 
-            weight: The edge weight.
+            directed: Whether the edge is directed.
         """
         if start_label not in self._adjacents:
             self._adjacents[start_label] = {}
             
         self._adjacents[start_label][end_label] = weight
-        if end_label not in self._adjacents:
-            self._adjacents[end_label] = {}
+
+        if not directed:
+            if end_label not in self._adjacents:
+                self._adjacents[end_label] = {}
+            self._adjacents[end_label][start_label] = weight
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         """ 
@@ -784,13 +723,15 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         
         return None
 
-    def __getitem__(self, vertex: str):
+    def __getitem__(self, vertex: str) -> dict:
         """
         Args:
             vertex: vertex label
         Returns:
-        Return a list of adjacent vertices
+        Return a hashtable of adjacent vertices
         """
+        if vertex not in self._adjacents:
+            return {}
         return self._adjacents[vertex]
 
     def __len__(self):
