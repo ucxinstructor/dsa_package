@@ -84,7 +84,7 @@ class AdjacencyMatrixGraph:
                 raise KeyError(f"Edge {end_label} to {start_label} does not exist")
             self.array[b][a] = None
 
-    def df_traverse(self, start_label: str):
+    def dfs_traverse(self, start_label: str):
         """ 
         Perform depth first traversal in an adjacency matrix
  
@@ -111,7 +111,7 @@ class AdjacencyMatrixGraph:
 
         return dfs
 
-    def bf_traverse(self, start_label: str):
+    def bfs_traverse(self, start_label: str):
         """ 
         Perform breadth first traversal in an adjacency matrix.
  
@@ -346,7 +346,8 @@ class AdjacencyListGraph:
             directed (bool): Whether the edge is directed.
         """
         self.add_directed_edge(start_label, end_label)
-        self.add_directed_edge(end_label, start_label)
+        if not directed:
+            self.add_directed_edge(end_label, start_label)
                 
     def add_directed_edge(self, start_label: str, end_label: str):
         """ 
@@ -402,7 +403,7 @@ class AdjacencyListGraph:
         """
         return self._adjacents[vertex]
 
-    def df_traverse(self, start_label: str):
+    def dfs_traverse(self, start_label: str):
         """
         Return a list of vertices through depth first traversal starting at a given vertex.
 
@@ -425,7 +426,7 @@ class AdjacencyListGraph:
                 self._df_rec_traverse(v, visited, dflist)
         return dflist
     
-    def bf_traverse(self, start_label: str):
+    def bfs_traverse(self, start_label: str):
         """
         Return a list of vertices through breadth first traversal starting at a given vertex
         Args:
@@ -616,7 +617,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         """
         return self._adjacents[vertex]
 
-    def df_traverse(self):
+    def dfs_traverse(self):
         """
         Perform depth first traversal.
         """
@@ -632,7 +633,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
             if v not in visited:
                 v._df_traverse_rec(v, visited)
             
-    def bf_traverse(self):
+    def bfs_traverse(self):
         """
         Perform breadth first traversal.
         """

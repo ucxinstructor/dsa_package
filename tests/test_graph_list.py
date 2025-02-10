@@ -19,12 +19,12 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g['A'], ['B', 'C'])
         self.assertEqual(g['E'], ['D', 'F'])
 
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("G"), ["G", "F", "E", "D", "B", "A", "C"])
-        self.assertEqual(g.bf_traverse("G"), ["G", "F", "E", "D", "B", "C", "A"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("G"), ["G", "F", "E", "D", "B", "A", "C"])
+        self.assertEqual(g.bfs_traverse("G"), ["G", "F", "E", "D", "B", "C", "A"])
 
         g = AdjacencyListGraph()
         g.add_edge("A", 'B')
@@ -34,8 +34,8 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge("B", 'E')
 
         g.add_edge("C", 'F')
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "D", "E", "C", "F"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "D", "E", "C", "F"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F"])
         self.assertEqual(g.edges(), [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'D'), ('B', 'E'), ('C', 'A'), ('C', 'F'), ('D', 'B'), ('E', 'B'), ('F', 'C')])
 
         self.assertEqual(g.dfs('A', 'B'), 'B')
@@ -48,11 +48,11 @@ class TestAdjacencyListGraph(unittest.TestCase):
 
     def test_create_directed(self):
         g = AdjacencyListGraph()
-        g.add_directed_edge('A', 'B')
-        g.add_directed_edge('B', 'C')
-        g.add_directed_edge('C', 'D')
-        g.add_directed_edge('D', 'E')
-        g.add_directed_edge('E', 'A')
+        g.add_edge('A', 'B', directed=True)
+        g.add_edge('B', 'C', directed=True)
+        g.add_edge('C', 'D', directed=True)
+        g.add_edge('D', 'E', directed=True)
+        g.add_edge('E', 'A', directed=True)
 
         self.assertTrue(g.is_edge('A', 'B'))
         self.assertFalse(g.is_edge('B', 'A'))
@@ -73,12 +73,12 @@ class TestAdjacencyListGraph(unittest.TestCase):
 
     def test_delete_directed(self):
         g = AdjacencyListGraph()
-        g.add_directed_edge('A', 'B')
-        g.add_directed_edge('B', 'A')
-        g.add_directed_edge('B', 'C')
-        g.add_directed_edge('C', 'D')
-        g.add_directed_edge('D', 'E')
-        g.add_directed_edge('E', 'A')
+        g.add_edge('A', 'B', directed=True)
+        g.add_edge('B', 'A', directed=True)
+        g.add_edge('B', 'C', directed=True)
+        g.add_edge('C', 'D', directed=True)
+        g.add_edge('D', 'E', directed=True)
+        g.add_edge('E', 'A', directed=True)
 
         self.assertTrue(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
@@ -94,6 +94,9 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.delete_edge('B', 'A', directed=True)
         self.assertTrue(g.is_edge('B', 'C'))
         self.assertFalse(g.is_edge('B', 'A'))
+
+        with self.assertRaises(KeyError):
+            g.delete_edge('B', 'A', directed=True)
 
 
     def test_create_undirected_weighted(self):

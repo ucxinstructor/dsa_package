@@ -35,6 +35,10 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.2.10
+* Cleaned up comments
+* Renamed df_traverse() to dfs_traverse() and bf_traverse() to bfs_traverse() 
+
 ## 2025.2.9
 * Refactored Dijkstra's algorithm code
 * Added delete_edge() method to graphs

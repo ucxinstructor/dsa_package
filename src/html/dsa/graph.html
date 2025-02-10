@@ -67,7 +67,8 @@ vertex labels are string types</p></div>
             directed (bool): Whether the edge is directed.
         &#34;&#34;&#34;
         self.add_directed_edge(start_label, end_label)
-        self.add_directed_edge(end_label, start_label)
+        if not directed:
+            self.add_directed_edge(end_label, start_label)
                 
     def add_directed_edge(self, start_label: str, end_label: str):
         &#34;&#34;&#34; 
@@ -123,7 +124,7 @@ vertex labels are string types</p></div>
         &#34;&#34;&#34;
         return self._adjacents[vertex]
 
-    def df_traverse(self, start_label: str):
+    def dfs_traverse(self, start_label: str):
         &#34;&#34;&#34;
         Return a list of vertices through depth first traversal starting at a given vertex.
 
@@ -146,7 +147,7 @@ vertex labels are string types</p></div>
                 self._df_rec_traverse(v, visited, dflist)
         return dflist
     
-    def bf_traverse(self, start_label: str):
+    def bfs_traverse(self, start_label: str):
         &#34;&#34;&#34;
         Return a list of vertices through breadth first traversal starting at a given vertex
         Args:
@@ -308,19 +309,6 @@ vertex labels are string types</p></div>
 <dd>The label of the vertex.</dd>
 </dl></div>
 </dd>
-<dt id="dsa.graph.AdjacencyListGraph.bf_traverse"><code class="name flex">
-<span>def <span class="ident">bf_traverse</span></span>(<span>self, start_label: str)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Return a list of vertices through breadth first traversal starting at a given vertex</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
-<dd>The starting vertex label.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>A list of vertex labels.</p></div>
-</dd>
 <dt id="dsa.graph.AdjacencyListGraph.bfs"><code class="name flex">
 <span>def <span class="ident">bfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
 </code></dt>
@@ -335,6 +323,19 @@ vertex labels are string types</p></div>
 </dl>
 <h2 id="returns">Returns</h2>
 <p>A vertex in the graph if found, None otherwise.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.bfs_traverse"><code class="name flex">
+<span>def <span class="ident">bfs_traverse</span></span>(<span>self, start_label: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of vertices through breadth first traversal starting at a given vertex</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A list of vertex labels.</p></div>
 </dd>
 <dt id="dsa.graph.AdjacencyListGraph.delete_edge"><code class="name flex">
 <span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
@@ -356,19 +357,6 @@ vertex labels are string types</p></div>
 <dd>If the edge does exist.</dd>
 </dl></div>
 </dd>
-<dt id="dsa.graph.AdjacencyListGraph.df_traverse"><code class="name flex">
-<span>def <span class="ident">df_traverse</span></span>(<span>self, start_label: str)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Return a list of vertices through depth first traversal starting at a given vertex.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
-<dd>The starting vertex label.</dd>
-</dl>
-<h2 id="returns">Returns</h2>
-<p>A list of vertex labels.</p></div>
-</dd>
 <dt id="dsa.graph.AdjacencyListGraph.dfs"><code class="name flex">
 <span>def <span class="ident">dfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
 </code></dt>
@@ -383,6 +371,19 @@ vertex labels are string types</p></div>
 </dl>
 <h2 id="returns">Returns</h2>
 <p>A vertex in the graph if found, None otherwise.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.dfs_traverse"><code class="name flex">
+<span>def <span class="ident">dfs_traverse</span></span>(<span>self, start_label: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of vertices through depth first traversal starting at a given vertex.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A list of vertex labels.</p></div>
 </dd>
 <dt id="dsa.graph.AdjacencyListGraph.edges"><code class="name flex">
 <span>def <span class="ident">edges</span></span>(<span>self) ‑> list</span>
@@ -490,7 +491,7 @@ vertex labels are string types</p></div>
         &#34;&#34;&#34;
         return self._adjacents[vertex]
 
-    def df_traverse(self):
+    def dfs_traverse(self):
         &#34;&#34;&#34;
         Perform depth first traversal.
         &#34;&#34;&#34;
@@ -506,7 +507,7 @@ vertex labels are string types</p></div>
             if v not in visited:
                 v._df_traverse_rec(v, visited)
             
-    def bf_traverse(self):
+    def bfs_traverse(self):
         &#34;&#34;&#34;
         Perform breadth first traversal.
         &#34;&#34;&#34;
@@ -681,12 +682,6 @@ vertex labels are string types</p></div>
 <dd>starting vertex label</dd>
 </dl></div>
 </dd>
-<dt id="dsa.graph.AdjacencyListWeightedGraph.bf_traverse"><code class="name flex">
-<span>def <span class="ident">bf_traverse</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Perform breadth first traversal.</p></div>
-</dd>
 <dt id="dsa.graph.AdjacencyListWeightedGraph.bfs"><code class="name flex">
 <span>def <span class="ident">bfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
 </code></dt>
@@ -700,6 +695,12 @@ vertex labels are string types</p></div>
 <h2 id="returns">Returns</h2>
 <p>vertex in the graph
 None if not found.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.bfs_traverse"><code class="name flex">
+<span>def <span class="ident">bfs_traverse</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform breadth first traversal.</p></div>
 </dd>
 <dt id="dsa.graph.AdjacencyListWeightedGraph.delete_edge"><code class="name flex">
 <span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
@@ -720,12 +721,6 @@ None if not found.</p></div>
 <dt><code>KeyError</code></dt>
 <dd>If the edge does exist.</dd>
 </dl></div>
-</dd>
-<dt id="dsa.graph.AdjacencyListWeightedGraph.df_traverse"><code class="name flex">
-<span>def <span class="ident">df_traverse</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Perform depth first traversal.</p></div>
 </dd>
 <dt id="dsa.graph.AdjacencyListWeightedGraph.dfs"><code class="name flex">
 <span>def <span class="ident">dfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
@@ -759,6 +754,12 @@ none if not found.</p></div>
 </dl>
 <h2 id="returns">Returns</h2>
 <p>vertex in the graph if found, None otherwise.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.dfs_traverse"><code class="name flex">
+<span>def <span class="ident">dfs_traverse</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform depth first traversal.</p></div>
 </dd>
 <dt id="dsa.graph.AdjacencyListWeightedGraph.edges"><code class="name flex">
 <span>def <span class="ident">edges</span></span>(<span>self) ‑> list</span>
@@ -897,7 +898,7 @@ Vertex labels are string types.</p>
                 raise KeyError(f&#34;Edge {end_label} to {start_label} does not exist&#34;)
             self.array[b][a] = None
 
-    def df_traverse(self, start_label: str):
+    def dfs_traverse(self, start_label: str):
         &#34;&#34;&#34; 
         Perform depth first traversal in an adjacency matrix
  
@@ -924,7 +925,7 @@ Vertex labels are string types.</p>
 
         return dfs
 
-    def bf_traverse(self, start_label: str):
+    def bfs_traverse(self, start_label: str):
         &#34;&#34;&#34; 
         Perform breadth first traversal in an adjacency matrix.
  
@@ -1046,8 +1047,8 @@ Vertex labels are string types.</p>
 <dd>Whether the edge is directed.</dd>
 </dl></div>
 </dd>
-<dt id="dsa.graph.AdjacencyMatrixGraph.bf_traverse"><code class="name flex">
-<span>def <span class="ident">bf_traverse</span></span>(<span>self, start_label: str)</span>
+<dt id="dsa.graph.AdjacencyMatrixGraph.bfs_traverse"><code class="name flex">
+<span>def <span class="ident">bfs_traverse</span></span>(<span>self, start_label: str)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Perform breadth first traversal in an adjacency matrix.</p>
@@ -1074,8 +1075,8 @@ Vertex labels are string types.</p>
 <dd>Whether the edge is directed.</dd>
 </dl></div>
 </dd>
-<dt id="dsa.graph.AdjacencyMatrixGraph.df_traverse"><code class="name flex">
-<span>def <span class="ident">df_traverse</span></span>(<span>self, start_label: str)</span>
+<dt id="dsa.graph.AdjacencyMatrixGraph.dfs_traverse"><code class="name flex">
+<span>def <span class="ident">dfs_traverse</span></span>(<span>self, start_label: str)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Perform depth first traversal in an adjacency matrix</p>
@@ -1329,9 +1330,9 @@ vertex labels are string types</p>
 <ul class="hlist">
 <li><code><b><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></b></code>:
 <ul class="hlist">
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.bf_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bf_traverse">bf_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.bfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bfs_traverse">bfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_edge" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge">delete_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.df_traverse" href="#dsa.graph.AdjacencyMatrixGraph.df_traverse">df_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.dfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.dfs_traverse">dfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.print_graph" href="#dsa.graph.AdjacencyMatrixGraph.print_graph">print_graph</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.vertices" href="#dsa.graph.AdjacencyMatrixGraph.vertices">vertices</a></code></li>
 </ul>
@@ -1358,11 +1359,11 @@ vertex labels are string types</p>
 <ul class="two-column">
 <li><code><a title="dsa.graph.AdjacencyListGraph.add_edge" href="#dsa.graph.AdjacencyListGraph.add_edge">add_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.adjacents" href="#dsa.graph.AdjacencyListGraph.adjacents">adjacents</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyListGraph.bf_traverse" href="#dsa.graph.AdjacencyListGraph.bf_traverse">bf_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.bfs" href="#dsa.graph.AdjacencyListGraph.bfs">bfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.bfs_traverse" href="#dsa.graph.AdjacencyListGraph.bfs_traverse">bfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.delete_edge" href="#dsa.graph.AdjacencyListGraph.delete_edge">delete_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyListGraph.df_traverse" href="#dsa.graph.AdjacencyListGraph.df_traverse">df_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.dfs" href="#dsa.graph.AdjacencyListGraph.dfs">dfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.dfs_traverse" href="#dsa.graph.AdjacencyListGraph.dfs_traverse">dfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.edges" href="#dsa.graph.AdjacencyListGraph.edges">edges</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.is_edge" href="#dsa.graph.AdjacencyListGraph.is_edge">is_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.undirected_edges" href="#dsa.graph.AdjacencyListGraph.undirected_edges">undirected_edges</a></code></li>
@@ -1374,12 +1375,12 @@ vertex labels are string types</p>
 <ul class="two-column">
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.add_edge" href="#dsa.graph.AdjacencyListWeightedGraph.add_edge">add_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.adjacents" href="#dsa.graph.AdjacencyListWeightedGraph.adjacents">adjacents</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.bf_traverse" href="#dsa.graph.AdjacencyListWeightedGraph.bf_traverse">bf_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.bfs" href="#dsa.graph.AdjacencyListWeightedGraph.bfs">bfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.bfs_traverse" href="#dsa.graph.AdjacencyListWeightedGraph.bfs_traverse">bfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.delete_edge" href="#dsa.graph.AdjacencyListWeightedGraph.delete_edge">delete_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.df_traverse" href="#dsa.graph.AdjacencyListWeightedGraph.df_traverse">df_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.dfs" href="#dsa.graph.AdjacencyListWeightedGraph.dfs">dfs</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.dfs_rec" href="#dsa.graph.AdjacencyListWeightedGraph.dfs_rec">dfs_rec</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.dfs_traverse" href="#dsa.graph.AdjacencyListWeightedGraph.dfs_traverse">dfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.edges" href="#dsa.graph.AdjacencyListWeightedGraph.edges">edges</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.is_edge" href="#dsa.graph.AdjacencyListWeightedGraph.is_edge">is_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListWeightedGraph.undirected_edges" href="#dsa.graph.AdjacencyListWeightedGraph.undirected_edges">undirected_edges</a></code></li>
@@ -1389,9 +1390,9 @@ vertex labels are string types</p>
 <h4><code><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></code></h4>
 <ul class="two-column">
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.add_edge" href="#dsa.graph.AdjacencyMatrixGraph.add_edge">add_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.bf_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bf_traverse">bf_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.bfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bfs_traverse">bfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_edge" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge">delete_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.df_traverse" href="#dsa.graph.AdjacencyMatrixGraph.df_traverse">df_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.dfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.dfs_traverse">dfs_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.edges" href="#dsa.graph.AdjacencyMatrixGraph.edges">edges</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.is_edge" href="#dsa.graph.AdjacencyMatrixGraph.is_edge">is_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.print_graph" href="#dsa.graph.AdjacencyMatrixGraph.print_graph">print_graph</a></code></li>

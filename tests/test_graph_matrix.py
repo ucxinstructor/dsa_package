@@ -25,12 +25,12 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertTrue(g.is_edge("C", "D"))
         self.assertTrue(g.is_edge("D", "C"))
 
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("G"), ["G", "F", "E", "D", "B", "A", "C"])
-        self.assertEqual(g.bf_traverse("G"), ["G", "F", "E", "D", "B", "C", "A"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("G"), ["G", "F", "E", "D", "B", "A", "C"])
+        self.assertEqual(g.bfs_traverse("G"), ["G", "F", "E", "D", "B", "C", "A"])
 
         labels = ['A', 'B', 'C', 'D', 'E', 'F']
         g = AdjacencyMatrixGraph(labels)
@@ -41,8 +41,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         g.add_edge("B", 'E')
 
         g.add_edge("C", 'F')
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "D", "E", "C", "F"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "D", "E", "C", "F"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F"])
 
         self.assertEqual(g.vertices(), labels)
         self.assertEqual(g.edges(), [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'D'), ('B', 'E'), ('C', 'A'), ('C', 'F'), ('D', 'B'), ('E', 'B'), ('F', 'C')])
@@ -70,12 +70,12 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         g.add_edge("E", 'F', directed=True)
         g.add_edge("F", 'G', directed=True)
 
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("B"), ["B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("B"), ["B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("G"), ["G"])
-        self.assertEqual(g.bf_traverse("G"), ["G"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("B"), ["B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("B"), ["B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("G"), ["G"])
+        self.assertEqual(g.bfs_traverse("G"), ["G"])
 
         self.assertEqual(g.vertices(), labels)
         self.assertEqual(g.edges(), [('A', 'B'), ('A', 'C'), ('B', 'C'), ('B', 'D'), ('C', 'D'), ('D', 'E'), ('E', 'F'), ('F', 'G')])
@@ -160,8 +160,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertEqual(g["B"]["D"], 3)
 
         g.add_edge("C", 'F', 5)
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "D", "E", "C", "F"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "D", "E", "C", "F"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F"])
         self.assertEqual(g.vertices(), labels)
         self.assertEqual(g.edges(), [('A', 'B', 1), ('A', 'C', 2), ('B', 'A', 1), ('B', 'D', 3), ('B', 'E', 4), ('C', 'A', 2), ('C', 'F', 5), ('D', 'B', 3), ('E', 'B', 4), ('F', 'C', 5)])
 
@@ -229,12 +229,12 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         g.add_edge("E", 'F', 7, directed=True)
         g.add_edge("F", 'G', 8, directed=True)
 
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.bf_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
-        self.assertEqual(g.df_traverse("G"), ["G"])
-        self.assertEqual(g.bf_traverse("G"), ["G"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.bfs_traverse("B"), ["B", "A", "C", "D", "E", "F", "G"])
+        self.assertEqual(g.dfs_traverse("G"), ["G"])
+        self.assertEqual(g.bfs_traverse("G"), ["G"])
 
         labels = ['A', 'B', 'C', 'D', 'E', 'F']
         g = AdjacencyMatrixWeightedGraph(labels)
@@ -245,8 +245,8 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         g.add_edge("B", 'E', 4, directed=True)
 
         g.add_edge("C", 'F', 5, directed=True)
-        self.assertEqual(g.df_traverse("A"), ["A", "B", "D", "E", "C", "F"])
-        self.assertEqual(g.bf_traverse("A"), ["A", "B", "C", "D", "E", "F"])
+        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "D", "E", "C", "F"])
+        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F"])
         self.assertEqual(g.vertices(), labels)
         self.assertEqual(g.edges(), [('A', 'B', 1), ('A', 'C', 2), ('B', 'D', 3), ('B', 'E', 4), ('C', 'F', 5)])
 
