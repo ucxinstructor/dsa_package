@@ -24,7 +24,7 @@ class AdjacencyMatrixGraph:
 
     def add_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Add an edge between two vertices.
+        Add an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -66,7 +66,7 @@ class AdjacencyMatrixGraph:
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Delete an edge between two vertices.
+        Delete an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -366,7 +366,7 @@ class AdjacencyListGraph:
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Delete an undirected edge between two vertices.
+        Delete an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -586,7 +586,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Delete an undirected edge between two vertices.
+        Delete an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -776,7 +776,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
 
 
 __pdoc__ = {
-    'add_vertex': False,
-    'delete_vertex': False,
-    'add_directed_edge': False,
+    'AdjacencyMatrixGraph.add_vertex': False,
+    'AdjacencyMatrixGraph.delete_vertex': False,
+    'AdjacencyListGraph.add_directed_edge': False,
 }

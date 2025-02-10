@@ -87,7 +87,7 @@ vertex labels are string types</p></div>
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         &#34;&#34;&#34; 
-        Delete an undirected edge between two vertices.
+        Delete an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -282,19 +282,6 @@ vertex labels are string types</p></div>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="dsa.graph.AdjacencyListGraph.add_directed_edge"><code class="name flex">
-<span>def <span class="ident">add_directed_edge</span></span>(<span>self, start_label: str, end_label: str)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Add a directed edge to the graph.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
-<dd>The label of the starting vertex.</dd>
-<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
-<dd>The label of the ending vertex.</dd>
-</dl></div>
-</dd>
 <dt id="dsa.graph.AdjacencyListGraph.add_edge"><code class="name flex">
 <span>def <span class="ident">add_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
 </code></dt>
@@ -353,7 +340,7 @@ vertex labels are string types</p></div>
 <span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Delete an undirected edge between two vertices.</p>
+<div class="desc"><p>Delete an edge in the graph.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
@@ -473,7 +460,7 @@ vertex labels are string types</p></div>
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         &#34;&#34;&#34; 
-        Delete an undirected edge between two vertices.
+        Delete an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -718,7 +705,7 @@ None if not found.</p></div>
 <span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Delete an undirected edge between two vertices.</p>
+<div class="desc"><p>Delete an edge in the graph.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
@@ -805,7 +792,6 @@ none if not found.</p></div>
 <ul class="hlist">
 <li><code><b><a title="dsa.graph.AdjacencyListGraph" href="#dsa.graph.AdjacencyListGraph">AdjacencyListGraph</a></b></code>:
 <ul class="hlist">
-<li><code><a title="dsa.graph.AdjacencyListGraph.add_directed_edge" href="#dsa.graph.AdjacencyListGraph.add_directed_edge">add_directed_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.vertices" href="#dsa.graph.AdjacencyListGraph.vertices">vertices</a></code></li>
 </ul>
 </li>
@@ -851,7 +837,7 @@ Vertex labels are string types.</p>
 
     def add_edge(self, start_label: str, end_label: str, directed=False):
         &#34;&#34;&#34; 
-        Add an edge between two vertices.
+        Add an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -893,7 +879,7 @@ Vertex labels are string types.</p>
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
         &#34;&#34;&#34; 
-        Delete an edge between two vertices.
+        Delete an edge in the graph.
         
         Args:
             start_label (str): Starting vertex label.
@@ -1049,7 +1035,7 @@ Vertex labels are string types.</p>
 <span>def <span class="ident">add_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add an edge between two vertices.</p>
+<div class="desc"><p>Add an edge in the graph.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
@@ -1058,17 +1044,6 @@ Vertex labels are string types.</p>
 <dd>Ending vertex label.</dd>
 <dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
 <dd>Whether the edge is directed.</dd>
-</dl></div>
-</dd>
-<dt id="dsa.graph.AdjacencyMatrixGraph.add_vertex"><code class="name flex">
-<span>def <span class="ident">add_vertex</span></span>(<span>self, label: str)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Add a vertex to the graph.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>label</code></strong> :&ensp;<code>str</code></dt>
-<dd>The vertex label to add.</dd>
 </dl></div>
 </dd>
 <dt id="dsa.graph.AdjacencyMatrixGraph.bf_traverse"><code class="name flex">
@@ -1088,7 +1063,7 @@ Vertex labels are string types.</p>
 <span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Delete an edge between two vertices.</p>
+<div class="desc"><p>Delete an edge in the graph.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
@@ -1097,17 +1072,6 @@ Vertex labels are string types.</p>
 <dd>Ending vertex label.</dd>
 <dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
 <dd>Whether the edge is directed.</dd>
-</dl></div>
-</dd>
-<dt id="dsa.graph.AdjacencyMatrixGraph.delete_vertex"><code class="name flex">
-<span>def <span class="ident">delete_vertex</span></span>(<span>self, label: str)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Delete a vertex from the graph.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>label</code></strong> :&ensp;<code>str</code></dt>
-<dd>The vertex label to delete.</dd>
 </dl></div>
 </dd>
 <dt id="dsa.graph.AdjacencyMatrixGraph.df_traverse"><code class="name flex">
@@ -1365,10 +1329,8 @@ vertex labels are string types</p>
 <ul class="hlist">
 <li><code><b><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></b></code>:
 <ul class="hlist">
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.add_vertex" href="#dsa.graph.AdjacencyMatrixGraph.add_vertex">add_vertex</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.bf_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bf_traverse">bf_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_edge" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge">delete_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_vertex" href="#dsa.graph.AdjacencyMatrixGraph.delete_vertex">delete_vertex</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.df_traverse" href="#dsa.graph.AdjacencyMatrixGraph.df_traverse">df_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.print_graph" href="#dsa.graph.AdjacencyMatrixGraph.print_graph">print_graph</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.vertices" href="#dsa.graph.AdjacencyMatrixGraph.vertices">vertices</a></code></li>
@@ -1394,7 +1356,6 @@ vertex labels are string types</p>
 <li>
 <h4><code><a title="dsa.graph.AdjacencyListGraph" href="#dsa.graph.AdjacencyListGraph">AdjacencyListGraph</a></code></h4>
 <ul class="two-column">
-<li><code><a title="dsa.graph.AdjacencyListGraph.add_directed_edge" href="#dsa.graph.AdjacencyListGraph.add_directed_edge">add_directed_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.add_edge" href="#dsa.graph.AdjacencyListGraph.add_edge">add_edge</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.adjacents" href="#dsa.graph.AdjacencyListGraph.adjacents">adjacents</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyListGraph.bf_traverse" href="#dsa.graph.AdjacencyListGraph.bf_traverse">bf_traverse</a></code></li>
@@ -1428,10 +1389,8 @@ vertex labels are string types</p>
 <h4><code><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></code></h4>
 <ul class="two-column">
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.add_edge" href="#dsa.graph.AdjacencyMatrixGraph.add_edge">add_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.add_vertex" href="#dsa.graph.AdjacencyMatrixGraph.add_vertex">add_vertex</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.bf_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bf_traverse">bf_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_edge" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge">delete_edge</a></code></li>
-<li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_vertex" href="#dsa.graph.AdjacencyMatrixGraph.delete_vertex">delete_vertex</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.df_traverse" href="#dsa.graph.AdjacencyMatrixGraph.df_traverse">df_traverse</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.edges" href="#dsa.graph.AdjacencyMatrixGraph.edges">edges</a></code></li>
 <li><code><a title="dsa.graph.AdjacencyMatrixGraph.is_edge" href="#dsa.graph.AdjacencyMatrixGraph.is_edge">is_edge</a></code></li>
