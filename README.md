@@ -30,7 +30,7 @@ print(dsa.version)
 ``` 
 or from the terminal
 ```
-pip show ucdsa
+pip show ucxdsa
 ```
 
 ***
