@@ -127,3 +127,4 @@ Misc. code improvements, documentation updates and API consistency
 
 # TODO
 * Make an abstract Graph class
+* Allow NetworkX access to draw class
