@@ -227,7 +227,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
 
     def add_edge(self, start_label: str, end_label: str, weight, directed=False):
         """ 
-        Add an undirected edge between one vertex to another
+        Add an edge to the graph.
 
         Args:
             start_label (str): The starting vertex label.
@@ -338,7 +338,7 @@ class AdjacencyListGraph:
         
     def add_edge(self, start_label: str, end_label: str, directed=False):
         """ 
-        Add a vertex to the adjacency list.
+        Add an edge to the graph.
 
         Args:
             start_label (str): The label of the starting vertex.
@@ -350,7 +350,7 @@ class AdjacencyListGraph:
                 
     def add_directed_edge(self, start_label: str, end_label: str):
         """ 
-        Add a directed vertex to the adjacency list.
+        Add a directed edge to the graph.
 
         Args:
             start_label (str): The label of the starting vertex.
@@ -778,4 +778,5 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
 __pdoc__ = {
     'add_vertex': False,
     'delete_vertex': False,
+    'add_directed_edge': False,
 }
