@@ -37,6 +37,9 @@ pip show ucdsa
 # Revision History
 ## 2025.2.9
 * Refactored Dijkstra's algorithm code
+* Added delete_edge() method to graphs
+* Removed all duplicate add_edge() methods such as add_adjacent_vertex()
+* Removed all add_directed_edge() methods and added directed argument to add_edge()
 * Minor comment fixes
 
 ## 2025.1.31
