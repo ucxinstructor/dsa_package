@@ -128,3 +128,4 @@ Misc. code improvements, documentation updates and API consistency
 # TODO
 * Make an abstract Graph class
 * Allow NetworkX access to draw class
+* Allow undirected option in edges() method of the graph class
