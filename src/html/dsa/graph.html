@@ -253,6 +253,11 @@ vertex labels are string types</p></div>
         return end_label in self[start_label]
 
     def __len__(self):
+        &#34;&#34;&#34;
+        Return the number of nodes in the graph.
+        Returns:
+            int: The number of nodes in the graph.
+        &#34;&#34;&#34;
         return len(self._adjacents)
 
     def edges(self) -&gt; list:
@@ -610,6 +615,12 @@ vertex labels are string types</p></div>
         return self._adjacents[vertex]
 
     def __len__(self):
+        &#34;&#34;&#34;
+        Return the number of nodes in the graph.
+
+        Returns:
+            int: The number of nodes in the graph.
+        &#34;&#34;&#34;
         return len(self._adjacents)
 
     def edges(self) -&gt; list:

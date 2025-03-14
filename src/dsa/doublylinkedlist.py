@@ -72,6 +72,16 @@ class DoublyLinkedList:
         return mylist
         
     def __repr__(self):
+        """
+        Return a string representation of the doubly linked list.
+
+        The string representation includes all the values in the list
+        separated by spaces and the total count of nodes in the list.
+
+        Returns:
+            str: A string representation of the list in the format
+                 "[ value1 value2 ... valueN] Count: count"
+        """
         s = ""
         current = self.head
         while current:

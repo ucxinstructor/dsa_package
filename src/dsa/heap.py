@@ -8,6 +8,14 @@ class Heap:
 
     @classmethod
     def from_list(cls, mylist: list):
+        """
+        Create a heap from a list of elements.
+        Args:
+            mylist (list): The list of elements to be inserted into the heap.
+        Returns:
+            Heap: An instance of the heap with all elements from the list inserted.
+        """
+
         hp = cls()
         for e in mylist:
             hp.insert(e)
@@ -15,6 +23,13 @@ class Heap:
         return hp
 
     def to_list(self) -> list:
+        """
+        Return the heap in its array representation.
+
+        Returns:
+            list: The list representation of the heap.
+        """
+
         return self._array
     
     def root(self):

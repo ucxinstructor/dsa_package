@@ -114,6 +114,16 @@ if both head and tail nodes are specified, count should be specified as well.</p
         return mylist
         
     def __repr__(self):
+        &#34;&#34;&#34;
+        Return a string representation of the doubly linked list.
+
+        The string representation includes all the values in the list
+        separated by spaces and the total count of nodes in the list.
+
+        Returns:
+            str: A string representation of the list in the format
+                 &#34;[ value1 value2 ... valueN] Count: count&#34;
+        &#34;&#34;&#34;
         s = &#34;&#34;
         current = self.head
         while current:

@@ -54,6 +54,14 @@ hljs.highlightAll();
 
     @classmethod
     def from_list(cls, mylist: list):
+        &#34;&#34;&#34;
+        Create a heap from a list of elements.
+        Args:
+            mylist (list): The list of elements to be inserted into the heap.
+        Returns:
+            Heap: An instance of the heap with all elements from the list inserted.
+        &#34;&#34;&#34;
+
         hp = cls()
         for e in mylist:
             hp.insert(e)
@@ -61,6 +69,13 @@ hljs.highlightAll();
         return hp
 
     def to_list(self) -&gt; list:
+        &#34;&#34;&#34;
+        Return the heap in its array representation.
+
+        Returns:
+            list: The list representation of the heap.
+        &#34;&#34;&#34;
+
         return self._array
     
     def root(self):
@@ -305,7 +320,17 @@ hljs.highlightAll();
 <span>def <span class="ident">from_list</span></span>(<span>mylist: list)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Create a heap from a list of elements.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mylist</code></strong> :&ensp;<code>list</code></dt>
+<dd>The list of elements to be inserted into the heap.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="dsa.heap.Heap" href="#dsa.heap.Heap">Heap</a></code></dt>
+<dd>An instance of the heap with all elements from the list inserted.</dd>
+</dl></div>
 </dd>
 </dl>
 <h3>Methods</h3>
@@ -491,7 +516,12 @@ None if count is 0.</p></div>
 <span>def <span class="ident">to_list</span></span>(<span>self) ‑> list</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Return the heap in its array representation.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>The list representation of the heap.</dd>
+</dl></div>
 </dd>
 </dl>
 </dd>
@@ -552,6 +582,7 @@ None if count is 0.</p></div>
 <ul class="hlist">
 <li><code><a title="dsa.heap.Heap.count" href="#dsa.heap.Heap.count">count</a></code></li>
 <li><code><a title="dsa.heap.Heap.enumerate" href="#dsa.heap.Heap.enumerate">enumerate</a></code></li>
+<li><code><a title="dsa.heap.Heap.from_list" href="#dsa.heap.Heap.from_list">from_list</a></code></li>
 <li><code><a title="dsa.heap.Heap.has_left" href="#dsa.heap.Heap.has_left">has_left</a></code></li>
 <li><code><a title="dsa.heap.Heap.has_parent" href="#dsa.heap.Heap.has_parent">has_parent</a></code></li>
 <li><code><a title="dsa.heap.Heap.has_right" href="#dsa.heap.Heap.has_right">has_right</a></code></li>
@@ -567,6 +598,7 @@ None if count is 0.</p></div>
 <li><code><a title="dsa.heap.Heap.print" href="#dsa.heap.Heap.print">print</a></code></li>
 <li><code><a title="dsa.heap.Heap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
 <li><code><a title="dsa.heap.Heap.root" href="#dsa.heap.Heap.root">root</a></code></li>
+<li><code><a title="dsa.heap.Heap.to_list" href="#dsa.heap.Heap.to_list">to_list</a></code></li>
 </ul>
 </li>
 </ul>
@@ -709,6 +741,7 @@ None if count is 0.</p></div>
 <ul class="hlist">
 <li><code><a title="dsa.heap.MinHeap.count" href="#dsa.heap.Heap.count">count</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.enumerate" href="#dsa.heap.Heap.enumerate">enumerate</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.from_list" href="#dsa.heap.Heap.from_list">from_list</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.has_left" href="#dsa.heap.Heap.has_left">has_left</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.has_parent" href="#dsa.heap.Heap.has_parent">has_parent</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.has_right" href="#dsa.heap.Heap.has_right">has_right</a></code></li>
@@ -722,6 +755,7 @@ None if count is 0.</p></div>
 <li><code><a title="dsa.heap.MinHeap.print" href="#dsa.heap.Heap.print">print</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.root" href="#dsa.heap.Heap.root">root</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.to_list" href="#dsa.heap.Heap.to_list">to_list</a></code></li>
 </ul>
 </li>
 </ul>

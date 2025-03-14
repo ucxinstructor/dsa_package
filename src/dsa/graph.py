@@ -532,6 +532,11 @@ class AdjacencyListGraph:
         return end_label in self[start_label]
 
     def __len__(self):
+        """
+        Return the number of nodes in the graph.
+        Returns:
+            int: The number of nodes in the graph.
+        """
         return len(self._adjacents)
 
     def edges(self) -> list:
@@ -736,6 +741,12 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         return self._adjacents[vertex]
 
     def __len__(self):
+        """
+        Return the number of nodes in the graph.
+
+        Returns:
+            int: The number of nodes in the graph.
+        """
         return len(self._adjacents)
 
     def edges(self) -> list:
