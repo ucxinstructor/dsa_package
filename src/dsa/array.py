@@ -329,9 +329,11 @@ class CircularArray(Array):
             contents: An optional iterable to fill array with default values.
             capacity (int): The initial size of the array (default is 10)
         """
-        super().__init__(contents, capacity)
+        super().__init__(None, capacity)
         #: index of the first element in the circular array
         self._start = 0
+        if contents:
+            self.extend(contents)
         
     def __getitem__(self, index: int):
         """
@@ -365,73 +367,28 @@ class CircularArray(Array):
             raise IndexError
         self._array[(self._start + index) % len(self._array)] = value
 
-    def shift_left(self, start: int, end: int):
-        """
-        Helper method to shift elements to the left between the specified range.
-
-        Args:
-            start (int): The starting index of the shift.
-            end (int): The ending index of the shift.
-        """
-        for i in range(start, end):
-            self._array[(self._start + i) % len(self._array)] = self._array[(self._start + i + 1) % len(self._array)]
-
-    def shift_right(self, start: int, end: int):
-        """
-        Helper method to shift elements to the right between the specified range.
-
-        Args:   
-            start (int): The starting index of the shift.
-            end (int): The ending index of the shift."
-            """
-        for i in range(start, end, -1):
-            self._array[(self._start + i) % len(self._array)] = self._array[(self._start + i - 1) % len(self._array)]
-
     def append(self, element):
         """
-        Append an element to the circular array. Raise an exception if capacity is exceeded.
+        Append an element to the circular array. If appending exceeds capacity, it will wrap around to the oldest element.
 
         Args:
             element: The element to append.
-        
-        Raises:
-            Exception: If the array is full.
         """
-        if self.count >= self.capacity():
-            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
-
         self._array[(self._start + self.count) % len(self._array)] = element
-        self.count += 1
-
+        if self.count < self.capacity():
+            self.count += 1
+        else:
+            self._start = (self._start + 1) % len(self._array)
 
     def insert(self, index: int, element):
         """ 
-        Insert an element at a specified index, shifting existing elements to the right.
-
-        Args:
-            index (int): The index at which to insert the element.
-            element: The element to insert. "
+        not yet implemented
         """
-        if index < 0 or index >= self.count:
-            raise IndexError
-
-        if self.count >= self.capacity():
-            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
-
-        self.shift_right(index, self.count)
-        self._array[(self._start + index) % len(self._array)] = element
-        self.count += 1
+        pass
 
     def delete(self, index: int):
-        """  
-        Delete an element at a specified index, shifting subsequent elements to the left.
-
-        Args:
-            index (int): The index of the element to delete.
+        """ 
+        not yet implemented
         """
-        if index < 0 or index >= self.count:
-            raise IndexError
-
-        self.shift_left(index, self.count)
-        self.count -= 1
+        pass
 

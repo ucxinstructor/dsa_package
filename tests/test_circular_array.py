@@ -10,32 +10,48 @@ class TestArray(unittest.TestCase):
 
     def test_initialization(self):
         """Test initialization of CircularArray."""
-        self.assertEqual(self.array.size, 0)
-        self.assertEqual(self.array.capacity, 5)
-        self.assertEqual(self.array_with_elements.size, 3)
-        self.assertEqual(self.array_with_elements.capacity, 5)
+        self.assertEqual(len(self.array), 0)
+        self.assertEqual(self.array.capacity(), 5)
 
-    def test_insert(self): 
-        """Test inserting elements into CircularArray."""
-        self.array.insert(1)
-        self.assertEqual(self.array.size, 1)
+        self.assertEqual(len(self.array_with_elements), 3)
+        self.assertEqual(self.array_with_elements.capacity(), 5)
+
+    def test_indexing(self):
+        self.assertRaises(IndexError, lambda: self.array[0])
+
+        self.assertEqual(self.array_with_elements[0], 1)
+        self.assertEqual(self.array_with_elements[2], 3)
+        self.assertRaises(IndexError, lambda: self.array_with_elements[3])
+
+        self.array_with_elements[0] = 10
+        self.assertEqual(self.array_with_elements[0], 10)
+
+    def test_append(self):
+        """Test appending elements to CircularArray."""
+        self.array.append(1)
+        self.assertEqual(len(self.array), 1)
         self.assertEqual(self.array[0], 1)
 
-        self.array.insert(2)
-        self.assertEqual(self.array.size, 2)
+        self.array.append(2)
+        self.assertEqual(len(self.array), 2)
         self.assertEqual(self.array[1], 2)
 
-
-    def test_insert_full(self): 
-        """Test inserting elements into a full CircularArray."""
+        # Test exceeding capacity (should wrap around)
         for i in range(5):
-            self.array.insert(i+1)
-        
-        self.assertRaises(Exception, self.array.insert, 6)
+            self.array.append(i + 3)
+        self.assertEqual(len(self.array), 5)
+        self.assertEqual(self.array[0], 3)
+        self.assertEqual(self.array[1], 4)
+        self.assertEqual(self.array[4], 7)
 
-
-
-
+        for i in range(12):
+            self.array.append(i + 3)
+        self.assertEqual(len(self.array), 5)
+        self.assertEqual(self.array.capacity(), 5)
+        self.assertEqual(self.array[0], 10)
+        self.assertEqual(self.array[4], 14)
+        self.array[0] = 100
+        self.assertEqual(self.array[0], 100)
 
 if __name__ == "__main__":
     unittest.main()
