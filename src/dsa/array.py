@@ -309,3 +309,129 @@ class DynamicArray(Array):
         self.count -= 1
 
         
+class CircularArray(Array):
+    """ 
+    A circular array implementation.
+
+    Special Methods:
+
+        Index Operator: 
+            array[index]
+    
+        Assignment: 
+            array[index] = value
+    """
+    def __init__(self, contents=None, capacity: int=10):
+        """ 
+        Initialize the circular array with optional contents and a fixed capacity.
+
+        Args:
+            contents: An optional iterable to fill array with default values.
+            capacity (int): The initial size of the array (default is 10)
+        """
+        super().__init__(contents, capacity)
+        #: index of the first element in the circular array
+        self._start = 0
+
+    def __getitem__(self, index: int):
+        """
+        Retrieve the element at the specified index.
+
+        Args:
+            index (int): The index of the element.
+
+        Returns:
+            The element at the specified index.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        """
+        if index < 0 or index >= self.count: 
+            raise IndexError
+        return self._array[(self._start + index) % len(self._array)]
+            
+    def __setitem__(self, index: int, value):
+        """
+        Set a new value at the specified index.
+
+        Args:
+            index (int): The index at which to set the value.
+            value: The new value to assign.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        """
+        if index < 0 or index >= self.count: 
+            raise IndexError
+        self._array[(self._start + index) % len(self._array)] = value
+
+    def shift_left(self, start: int, end: int):
+        """
+        Helper method to shift elements to the left between the specified range.
+
+        Args:
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
+        """
+        for i in range(start, end):
+            self._array[(self._start + i) % len(self._array)] = self._array[(self._start + i + 1) % len(self._array)]
+
+    def shift_right(self, start: int, end: int):
+        """
+        Helper method to shift elements to the right between the specified range.
+
+        Args:   
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift."
+            """
+        for i in range(start, end, -1):
+            self._array[(self._start + i) % len(self._array)] = self._array[(self._start + i - 1) % len(self._array)]
+
+    def append(self, element):
+        """
+        Append an element to the circular array. Raise an exception if capacity is exceeded.
+
+        Args:
+            element: The element to append.
+        
+        Raises:
+            Exception: If the array is full.
+        """
+        if self.count >= self.capacity():
+            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
+
+        self._array[(self._start + self.count) % len(self._array)] = element
+        self.count += 1
+
+
+    def insert(self, index: int, element):
+        """ 
+        Insert an element at a specified index, shifting existing elements to the right.
+
+        Args:
+            index (int): The index at which to insert the element.
+            element: The element to insert. "
+        """
+        if index < 0 or index >= self.count:
+            raise IndexError
+
+        if self.count >= self.capacity():
+            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
+
+        self.shift_right(index, self.count)
+        self._array[(self._start + index) % len(self._array)] = element
+        self.count += 1
+
+    def delete(self, index: int):
+        """  
+        Delete an element at a specified index, shifting subsequent elements to the left.
+
+        Args:
+            index (int): The index of the element to delete.
+        """
+        if index < 0 or index >= self.count:
+            raise IndexError
+
+        self.shift_left(index, self.count)
+        self.count -= 1
+
