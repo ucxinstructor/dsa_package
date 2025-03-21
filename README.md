@@ -35,6 +35,14 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.3.22
+* Added CircularArray and CircularQueue classes
+* Refactored to_list() to raw_view() in Queue and Heap classes
+* Added to_ordered_list() to Queue class
+* Added to_sorted_list() method to Heap class
+* Updated unit tests
+
+
 ## 2025.2.10
 * Cleaned up comments
 * Renamed df_traverse() to dfs_traverse() and bf_traverse() to bfs_traverse() 

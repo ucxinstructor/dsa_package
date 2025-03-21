@@ -12,23 +12,30 @@ class TestArray(unittest.TestCase):
         self.dynarray_with_elements = DynamicArray([1, 2, 3], capacity=5)
 
     def test_create(self):
-        a = Array()
-        self.assertEqual(len(a), 0)
+        self.assertEqual(len(self.array), 0)
+        self.assertEqual(self.array.count, 0)
+        self.assertEqual(self.array.capacity(), 5)
 
-        b = Array([1, 2, 3, 4])
-        self.assertEqual(b.count, 4)
+        self.array_with_elements = Array([1, 2, 3, 4])
+        self.assertEqual(len(self.array_with_elements), 4)
+        self.assertEqual(self.array_with_elements.count, 4)
+        self.assertGreaterEqual(self.array_with_elements.capacity(), 5)
 
         c = Array.from_list([1, 2, 3, 4, 5])        
+        self.assertEqual(len(c), 5)
         self.assertEqual(c.count, 5)
 
     def test_create_dynamic(self):
-        da = DynamicArray()
-        self.assertEqual(len(da), 0)
+        self.assertEqual(len(self.dynarray), 0)
+        self.assertEqual(self.dynarray.count, 0)
+        self.assertEqual(self.dynarray.capacity(), 5)
 
-        db = DynamicArray([1, 2, 3, 4])
-        self.assertEqual(db.count, 4)
+        self.assertEqual(len(self.dynarray_with_elements), 3)
+        self.assertEqual(self.dynarray_with_elements.count, 3)
+        self.assertEqual(self.dynarray_with_elements.capacity(), 4)
 
-        dc = Array.from_list([1, 2, 3, 4, 5])        
+        dc = DynamicArray.from_list([1, 2, 3, 4, 5])        
+        self.assertEqual(len(dc), 5)
         self.assertEqual(dc.count, 5)
 
     def test_modify_static(self):
@@ -62,10 +69,13 @@ class TestArray(unittest.TestCase):
         self.assertEqual(a[0], 1)
         self.assertEqual(a[3], 1000)
 
-        # catch exceptions
+        while not a.is_empty():
+            a.delete(0)
+        self.assertTrue(a.is_empty())
+
         self.assertRaises(IndexError, a.__getitem__, 6)
         self.assertRaises(IndexError, a.__setitem__, 10, 10)
-        self.assertRaises(Exception, a.extend, [1, 2, 3, 4, 5, 6, 7])
+        self.assertRaises(Exception, a.extend, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
 
     def test_dynamic_modify(self):
         da = DynamicArray()
@@ -78,6 +88,10 @@ class TestArray(unittest.TestCase):
         self.assertEqual(da.capacity() > 10, True)
         self.assertEqual(da.count, 16)
         self.assertFalse(da.is_empty())
+
+        while not da.is_empty():
+            da.delete(0)
+        self.assertTrue(da.is_empty())
 
     def test_initialization_empty_static(self):
         """Test initializing an empty array."""

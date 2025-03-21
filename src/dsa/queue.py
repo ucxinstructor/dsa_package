@@ -112,12 +112,12 @@ class Queue:
             q.enqueue(e)
         return q
 
-    def to_list(self):
+    def to_ordered_list(self) -> list:
         """
-        Return the contents of the queue as an array.
+        Return the contents of the queue as a Python list.
 
         Returns:
-            The contents of the queue as an array.
+            The contents of the queue as a Python list.
         """
         if self._front + self.count <= len(self._array):
             return self._array[self._front:self._front + self.count]
@@ -125,6 +125,15 @@ class Queue:
             end_part = self._array[self._front:]
             start_part = self._array[:self._front + self.count - len(self._array)]
             return end_part + start_part
+        
+    def raw_view(self):
+        """
+        Return the queue in its array representation.
+
+        Returns:
+            The array representation of the queue.
+        """
+        return self._array
 
     def __repr__(self):
         """
@@ -133,11 +142,12 @@ class Queue:
         Returns:
             A string with details of the queue.
         """
-        arr = []
-        for i in range(self.count):
-            index = (i + self._front) % len(self._array)
-            arr.append(str(self._array[index]))
-        arrstr = ", ".join(arr)
+        ordered_list = self.to_ordered_list()
+        # arr = []
+        # for i in range(self.count):
+        #     index = (i + self._front) % len(self._array)
+        #     arr.append(str(self._array[index]))
+        arrstr = ", ".join([str(e) for e in ordered_list])
         return f"[{arrstr}] count: {self.count} Capacity: {self.capacity()}"
     
     def __len__(self):

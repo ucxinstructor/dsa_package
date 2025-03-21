@@ -10,6 +10,14 @@ class TestStack(unittest.TestCase):
         self.assertEqual(st.top(), -1)
 
         st = Stack.from_list([1, 2, 3, 4, 5])
+        self.assertFalse(st.is_empty())
+        self.assertEqual(len(st), 5)
+        self.assertEqual(st.capacity(), 10)
+        self.assertEqual(st.top(), 4)
+        self.assertEqual(st.peek(), 5)
+
+        self.assertRaises(Exception, lambda: Stack.from_list([10] * 20))
+
 
         dst = DynamicStack()
         self.assertTrue(dst.is_empty())
@@ -18,6 +26,19 @@ class TestStack(unittest.TestCase):
         self.assertEqual(dst.top(), -1)
 
         dst = DynamicStack.from_list([1, 2, 3, 4, 5])
+        self.assertFalse(dst.is_empty())
+        self.assertEqual(len(dst), 5)
+        self.assertEqual(dst.peek(), 5)
+
+        dst = DynamicStack.from_list([10] * 20)
+        self.assertEqual(len(dst), 20)
+        self.assertEqual(dst.top(), 19)
+        self.assertEqual(dst.peek(), 10)
+        dst.push(11)
+        self.assertFalse(dst.is_empty())
+        self.assertEqual(len(dst), 21)
+        self.assertEqual(dst.top(), 20)
+        self.assertEqual(dst.peek(), 11)
 
     def test_insert(self):
         st = Stack()
@@ -30,7 +51,6 @@ class TestStack(unittest.TestCase):
         self.assertEqual(st.capacity(), 10)
         self.assertEqual(len(st), 10)
         self.assertRaises(Exception, st.push, 10)
-        print(st)
 
         dst = DynamicStack()
         for _ in range(20):
@@ -40,11 +60,8 @@ class TestStack(unittest.TestCase):
         self.assertEqual(dst.count, 20)
         self.assertEqual(len(dst), 20)
         self.assertGreater(dst.capacity(), 10)
-        try:
-            dst.push(20)
-        except Exception:
-            self.fail("push raised Exception unexpectedly")
-        print(dst)
+
+        self.assertRaises(Exception, lambda:st.push(10))
 
     def test_delete(self):
         st = Stack()
