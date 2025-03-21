@@ -332,7 +332,7 @@ class CircularArray(Array):
         super().__init__(contents, capacity)
         #: index of the first element in the circular array
         self._start = 0
-
+        
     def __getitem__(self, index: int):
         """
         Retrieve the element at the specified index.
