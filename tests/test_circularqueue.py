@@ -42,7 +42,7 @@ class TestQueue(unittest.TestCase):
 
     def test_peek(self):
        q = CircularQueue()
-       self.assertRaises(Exception, lambda x: q.peek)
+       self.assertRaises(Exception, q.peek)
        for _ in range(10):
            q.enqueue(_ * 2)
        self.assertEqual(q.peek(), 0)
@@ -86,5 +86,17 @@ class TestQueue(unittest.TestCase):
         q.enqueue(50)
         self.assertEqual(q.to_list(), [40, 50])
         
+
+
+        q = CircularQueue([0, 2, 4, 6, 8], capacity=5)
+        # problem in dequeue
+        self.assertEqual(q.dequeue(), 2)
+        self.assertEqual(q.dequeue(), 4)
+
+        q.enqueue(100)
+        q.enqueue(110)
+        self.assertEqual(q.to_list(), [100, 110, 4, 6, 8])
+
+
 if __name__ == '__main__':
     unittest.main()
