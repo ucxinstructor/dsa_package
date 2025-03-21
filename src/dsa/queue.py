@@ -1,20 +1,26 @@
 """ Module containing queue classes. """
+from dsa.array import CircularArray
 
 class Queue:
     """ 
     A static queue implementation. 
     """
-    def __init__(self, capacity=10):
+    def __init__(self, contents=None, capacity: int=10):
         """ 
         Initialize the queue with a given capacity.
 
         Args:
+            contents: The list with contents to enqueue.
             capacity: The initial size of the stack (defaults to 10).
         """
         self._array = [None] * capacity
         self._front = 0
         #: number of elements in queue
         self.count = 0
+
+        if contents:
+            for e in contents:
+                self.enqueue(e)
     
     def enqueue(self, element):
         """
@@ -148,14 +154,15 @@ class DynamicQueue(Queue):
     """ 
     A dynamic queue implementation. Note that shrink is not impelmented.
     """
-    def __init__(self, capacity=10):
+    def __init__(self, contents=None, capacity: int=10):
         """
         Initialize the queue with a given capacity.
         
         Args:
+            contents: The list with contents to enqueue.
             capacity: The initial size of the stack (defaults to 10).
         """
-        super().__init__(capacity)
+        super().__init__(contents, capacity)
     
     def grow(self):
         """ 
@@ -197,3 +204,69 @@ class DynamicQueue(Queue):
         self._array[index] = element
         self.count += 1
 
+class CircularQueue(CircularArray):
+    """ 
+    A circular queue implementation. 
+    """
+    def __init__(self, contents=None, capacity: int=10):
+        """
+        Initialize the queue with a given capacity.
+
+        Args:
+            contents: The list with contents to enqueue.
+            capacity: The initial size of the stack (defaults to 10).
+        """
+        super().__init__(None, capacity)
+        # self._start is equivalent to the queue's front index
+
+        if contents:
+            for e in contents:
+                self.enqueue(e)
+
+    def enqueue(self, element):
+        """
+        Enqueue an element into the queue. Wrap around when trying to enqueue more elements than the capacity.
+
+        Args:
+            element: The element to enqueue.
+
+        Returns:
+            None
+        """
+        return super().append(element)
+
+    def dequeue(self):
+        """
+        Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.
+
+        Raises:
+            Exception: When there are no elements to dequeue.
+
+        Returns:
+            The from element in the queue.
+        """
+        if self.is_empty():
+            raise Exception("Empty Queue")
+
+        element = self._array[self._start]
+        self._start = (self._start + 1) % len(self._array)
+        self.count -= 1
+        return element
+
+    def peek(self):
+        """
+        Return the element in front of the queue. Raise Exception if queue is empty.
+
+        Returns:
+            The element in front of the queue.
+
+        Raises:
+            Exception: When the queue is empty.
+        """
+        if self.is_empty():
+            raise Exception("Empty Queue")
+
+        return self._array[self._start]
+
+
+ 

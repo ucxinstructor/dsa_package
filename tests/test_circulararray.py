@@ -60,8 +60,14 @@ class TestArray(unittest.TestCase):
 
         q.append(100)
         q.append(110)
-        self.assertEqual(q.to_list(), [10, 100, 110, 6, 8])
+        self.assertEqual(q.to_list(), [6, 8, 10, 100, 110])
+        self.assertEqual(q.raw_view(), [10, 100, 110, 6, 8])
 
+        q = CircularArray([0, 2, 4, 6, 8], capacity=5)
+        q.append(100)
+        q.append(110)
+        self.assertEqual(q.to_list(), [4, 6, 8, 100, 110])
+        self.assertEqual(q.raw_view(), [100, 110, 4, 6, 8])
 
 
 if __name__ == "__main__":

@@ -374,11 +374,39 @@ class CircularArray(Array):
         Args:
             element: The element to append.
         """
-        self._array[(self._start + self.count) % len(self._array)] = element
+        # self._array[(self._start + self.count) % len(self._array)] = element
+        # if self.count < self.capacity():
+        #     self.count += 1
+        # else:
+        #     self._start = (self._start + 1) % len(self._array)
+        index = (self._start + self.count) % len(self._array)
+        self._array[index] = element
+
         if self.count < self.capacity():
             self.count += 1
         else:
-            self._start = (self._start + 1) % len(self._array)
+            self._start = (self._start + 1) % len(self._array)  # Overwrite oldest element
+
+    def raw_view(self):
+        """ 
+        Return a raw view of the array.
+
+        Returns:
+            A raw view of the array.
+        """
+        return self._array
+
+    def to_list(self):
+        """ 
+        Convert the array's elements to a standard Python list.
+
+        Returns:
+            A list containing the elements of the array.
+        """
+        output_list = []
+        for i in range(self.count):
+            output_list.append(self._array[(self._start + i) % len(self._array)])
+        return output_list
 
     def insert(self, index: int, element):
         """ 

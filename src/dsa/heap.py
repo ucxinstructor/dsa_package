@@ -22,7 +22,7 @@ class Heap:
 
         return hp
 
-    def to_list(self) -> list:
+    def raw_view(self) -> list:
         """
         Return the heap in its array representation.
 
@@ -243,17 +243,28 @@ class Heap:
                 node_count *= 2
             print(self._array[i], end=" ")
 
+    def to_sorted_list(self) -> list:
+        """
+        Return a sorted list from the heap.
+
+        Returns:
+            A sorted list.
+        """
+        temp_heap = Heap()
+        temp_heap._array = self._array[:]
+
+        result = []
+        while not temp_heap.is_empty():
+            result.append(temp_heap.pop())
+
+        return result
+
     def __repr__(self):
         """
         Return string representation of a heap in order of priority.
         """
-        temp_array = self._array[:]
-        result = []
-        while not self.is_empty():
-            result.append(str(self.pop()))
-        self._array = temp_array
-
-        return "[" + " ".join(result) + "]"
+        ordered_list = self.to_sorted_list()
+        return "[" + " ".join([str(e) for e in ordered_list]) + "]"
 
     def __len__(self):
         """

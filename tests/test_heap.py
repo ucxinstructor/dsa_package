@@ -15,12 +15,14 @@ class TestHeap(unittest.TestCase):
         h = Heap.from_list(arr)
         self.assertEqual(h.count(), len(arr))
         h = Heap.from_list([10, 20])
-        self.assertEqual(h.to_list(), [20, 10])
+        self.assertEqual(h.raw_view(), [20, 10])
+        self.assertEqual(h.to_sorted_list(), [20, 10])
 
         h = MinHeap.from_list(arr)
         self.assertEqual(h.count(), len(arr))
         h = MinHeap.from_list([10, 20])
-        self.assertEqual(h.to_list(), [10, 20])
+        self.assertEqual(h.raw_view(), [10, 20])
+        self.assertEqual(h.to_sorted_list(), [10, 20])
 
     def test_add(self):
         mxh = Heap()
