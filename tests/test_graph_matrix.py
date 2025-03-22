@@ -217,7 +217,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         g.add_edge("A", 'C', 2, directed=True)
         self.assertTrue(g.is_edge("A", "C"))
         self.assertFalse(g.is_edge("B", "E"))
-        print(g["A"])
+        self.assertDictEqual(g["A"], {"B": 1, "C": 2})
         self.assertEqual(g["A"]["B"], 1)
         g.add_edge("B", 'C', 3, directed=True)
         g.add_edge("B", 'D', 4, directed=True)

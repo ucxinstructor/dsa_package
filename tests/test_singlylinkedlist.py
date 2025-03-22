@@ -92,7 +92,6 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(ll.tail.value, 14)
         self.assertEqual(ll.count, 15)
 
-        print(ll.to_list())
         ll.insert(1, -1)
         self.assertEqual(ll[1], -1)
         self.assertEqual(ll.count, 16)
@@ -160,6 +159,33 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(ll[3], 5)
         self.assertEqual(ll.count, 17)  
 
+    def test_delete_head(self):
+        ll = LinkedList()
+        self.assertRaises(IndexError, ll.delete_head)
+
+        for _ in range(15):
+            ll.append(_)
+        self.assertEqual(ll.head.value, 0)
+        self.assertEqual(ll.tail.value, 14)
+        self.assertEqual(ll.count, 15)
+
+        ll.delete_head()
+        self.assertEqual(ll.head.value, 1)
+        self.assertEqual(ll.count, 14)
+
+    def test_delete_tail(self):
+        ll = LinkedList()
+        self.assertRaises(IndexError, ll.delete_tail)
+
+        for _ in range(15):
+            ll.append(_)
+        self.assertEqual(ll.head.value, 0)
+        self.assertEqual(ll.tail.value, 14)
+        self.assertEqual(ll.count, 15)
+
+        ll.delete_tail()
+        self.assertEqual(ll.tail.value, 13)
+        self.assertEqual(ll.count, 14)
 
     def test_traverse(self):
         ll = LinkedList()

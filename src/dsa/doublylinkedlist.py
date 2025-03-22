@@ -178,7 +178,12 @@ class DoublyLinkedList:
         if index == 0:
             self.prepend(value)
             return
-            
+        elif index == self.count:
+            self.append(value)
+            return
+        elif index > self.count:
+            raise IndexError("Index Out of Bounds")
+        
         # find node to insert after
         i = 0
         current = self.head
@@ -249,13 +254,13 @@ class DoublyLinkedList:
             raise IndexError("DoublyLinkedList is Empty")
 
         if index == 0: # Special case: Delete the head node
-            self.head = self.head.next
-            if self.head:
-                self.head.prev = None
-            else:  # If the list becomes empty
-                self.tail = None
-            self.count -= 1
+            self.delete_head()
             return
+        elif index == self.count - 1:
+            self.delete_tail()
+            return
+        elif index >= self.count:
+            raise IndexError("Index out of range")
         
         # Traverse the list to find the node at the specified index
         current = self.head
@@ -267,12 +272,42 @@ class DoublyLinkedList:
         # Remove the node by adjusting pointers
         if current.next:
             current.next.prev = current.prev
-        else:  # If the node to be deleted is the tail
+        else:  # If the node to be deleted is the tail (might be redundant)
             self.tail = current.prev
 
         if current.prev:
             current.prev.next = current.next
 
+        self.count -= 1
+
+    def delete_tail(self):
+        """
+        Delete the tail node of the doubly linked list. 
+
+        Raises:
+            IndexError: If linked list is empty.
+        """
+        if self.tail is None:
+            raise IndexError("DoublyLinkedList is Empty")
+        
+        self.tail = self.tail.prev
+        self.tail.next = None
+        self.count -= 1
+
+    def delete_head(self):
+        """
+        Delete the head node of the doubly linked list.
+
+        Raises:
+            IndexError: If linked list is empty.
+        """
+        if self.head is None:
+            raise IndexError("DoublyLinkedList is Empty")
+        self.head = self.head.next
+        if self.head:
+            self.head.prev = None
+        else:  # If the list becomes empty
+            self.tail = None
         self.count -= 1
         
 

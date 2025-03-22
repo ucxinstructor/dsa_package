@@ -14,16 +14,15 @@ class TestHuffman(unittest.TestCase):
         hd = build_huffman_dictionary(tree.root)
         encoded_message = huffman_encode(message, hd)
 
-        print(encoded_message)
+        self.assertEqual(len(encoded_message), 64)
+        self.assertEqual(encoded_message, "1101101011000110111001110001110110001100111001011011110011101011")
         encoded_message_length = len(encoded_message)
-        print(f"Encoded Message length in bits: {encoded_message_length}")
         
         bytes_message = bitstring_to_bytes(encoded_message)
-        print(bytes_message)
-
+        self.assertEqual(bytes_message, b'\xda\xc6\xe7\x1d\x8c\xe5\xbc\xeb')
         bitlength = 8 - (encoded_message_length % 8)
         bitlength = encoded_message_length % 8
-        print(f"Bitlength: {bitlength}")
+        self.assertEqual(bitlength, 0)
         bits_message = bytes_to_bitstring(bytes_message, bitlength=bitlength)
 
         decoded_message = huffman_decode(bits_message, tree)
@@ -39,14 +38,13 @@ class TestHuffman(unittest.TestCase):
         encoded_message = huffman_encode(message, hd)
 
         encoded_message_length = len(encoded_message)
-        print(f"Encoded Message length in bits: {encoded_message_length}")
-        
+        self.assertEqual(encoded_message_length, 87)
         bytes_message = bitstring_to_bytes(encoded_message)
-        print(bytes_message)
+        self.assertEqual(bytes_message, b'\xef\x059wx)\xcb\xbb\xc1N.')
 
         bitlength = 8 - (encoded_message_length % 8)
         bitlength = encoded_message_length % 8
-        print(f"Bitlength: {bitlength}")
+        self.assertEqual(bitlength, 7)
         bits_message = bytes_to_bitstring(bytes_message, bitlength=bitlength)
 
         decoded_message = huffman_decode(bits_message, tree)

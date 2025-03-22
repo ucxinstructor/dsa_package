@@ -173,6 +173,11 @@ class LinkedList:
         if index == 0:
             self.prepend(value)
             return
+        elif index == self.count: # insert at end
+            self.append(value)
+            return
+        elif index > self.count:
+            raise IndexError("Index Out of Bounds")
         
         # find node to insert after
         current = self.head
@@ -247,13 +252,10 @@ class LinkedList:
             IndexError: If linked list is empty or index is not found.
         """
         if index == 0:
-            if self.head is None:
-                raise IndexError("LinkedList is Empty")
-            self.head = self.head.next
-            self.count -= 1
+            self.delete_head()
             return
         elif index + 1 == self.count:
-            self.delete_last()
+            self.delete_tail()
             return
 
         i = 0
@@ -272,7 +274,22 @@ class LinkedList:
             current = current.next
         raise IndexError("Index not found")
 
-    def delete_last(self):
+    def delete_head(self):
+        """
+        Delete the head node in the linked list. Raise IndexError if linked list is empty.
+
+        Returns:
+            None
+
+        Raises:
+            IndexError: If linked list is empty.
+        """
+        if self.head is None:
+            raise IndexError("LinkedList is Empty")
+        self.head = self.head.next
+        self.count -= 1
+
+    def delete_tail(self):
         """
         Delete the last node in the linked list. Raise IndexError if linked list is empty.
 

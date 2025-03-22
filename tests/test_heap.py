@@ -72,7 +72,6 @@ class TestHeap(unittest.TestCase):
         self.assertEqual(len(pq), 5)
         self.assertEqual(pq.count(), 5)
 
-        print(pq)
         while not pq.is_empty():
             v1 = pq.peek()
             v2 = pq.pop()
@@ -89,7 +88,6 @@ class TestHeap(unittest.TestCase):
         while not pq.is_empty():
             v1 = pq.peek_pair()
             v2 = pq.pop_pair()
-            print(pq)
             self.assertEqual(v1, v2)
 
     def test_pq_misc_types(self):
