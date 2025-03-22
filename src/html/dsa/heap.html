@@ -68,7 +68,7 @@ hljs.highlightAll();
 
         return hp
 
-    def to_list(self) -&gt; list:
+    def raw_view(self) -&gt; list:
         &#34;&#34;&#34;
         Return the heap in its array representation.
 
@@ -289,17 +289,28 @@ hljs.highlightAll();
                 node_count *= 2
             print(self._array[i], end=&#34; &#34;)
 
+    def to_sorted_list(self) -&gt; list:
+        &#34;&#34;&#34;
+        Return a sorted list from the heap.
+
+        Returns:
+            A sorted list.
+        &#34;&#34;&#34;
+        temp_heap = Heap()
+        temp_heap._array = self._array[:]
+
+        result = []
+        while not temp_heap.is_empty():
+            result.append(temp_heap.pop())
+
+        return result
+
     def __repr__(self):
         &#34;&#34;&#34;
         Return string representation of a heap in order of priority.
         &#34;&#34;&#34;
-        temp_array = self._array[:]
-        result = []
-        while not self.is_empty():
-            result.append(str(self.pop()))
-        self._array = temp_array
-
-        return &#34;[&#34; + &#34; &#34;.join(result) + &#34;]&#34;
+        ordered_list = self.to_sorted_list()
+        return &#34;[&#34; + &#34; &#34;.join([str(e) for e in ordered_list]) + &#34;]&#34;
 
     def __len__(self):
         &#34;&#34;&#34;
@@ -491,6 +502,17 @@ None if count is 0.</p></div>
 <dd>
 <div class="desc"><p>Print the contents of a heap.</p></div>
 </dd>
+<dt id="dsa.heap.Heap.raw_view"><code class="name flex">
+<span>def <span class="ident">raw_view</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the heap in its array representation.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>The list representation of the heap.</dd>
+</dl></div>
+</dd>
 <dt id="dsa.heap.Heap.right_index"><code class="name flex">
 <span>def <span class="ident">right_index</span></span>(<span>self, index: int) ‑> int</span>
 </code></dt>
@@ -512,16 +534,13 @@ None if count is 0.</p></div>
 <h2 id="returns">Returns</h2>
 <p>The root node's value. None if count is 0.</p></div>
 </dd>
-<dt id="dsa.heap.Heap.to_list"><code class="name flex">
-<span>def <span class="ident">to_list</span></span>(<span>self) ‑> list</span>
+<dt id="dsa.heap.Heap.to_sorted_list"><code class="name flex">
+<span>def <span class="ident">to_sorted_list</span></span>(<span>self) ‑> list</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Return the heap in its array representation.</p>
+<div class="desc"><p>Return a sorted list from the heap.</p>
 <h2 id="returns">Returns</h2>
-<dl>
-<dt><code>list</code></dt>
-<dd>The list representation of the heap.</dd>
-</dl></div>
+<p>A sorted list.</p></div>
 </dd>
 </dl>
 </dd>
@@ -596,9 +615,10 @@ None if count is 0.</p></div>
 <li><code><a title="dsa.heap.Heap.peek" href="#dsa.heap.Heap.peek">peek</a></code></li>
 <li><code><a title="dsa.heap.Heap.pop" href="#dsa.heap.Heap.pop">pop</a></code></li>
 <li><code><a title="dsa.heap.Heap.print" href="#dsa.heap.Heap.print">print</a></code></li>
+<li><code><a title="dsa.heap.Heap.raw_view" href="#dsa.heap.Heap.raw_view">raw_view</a></code></li>
 <li><code><a title="dsa.heap.Heap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
 <li><code><a title="dsa.heap.Heap.root" href="#dsa.heap.Heap.root">root</a></code></li>
-<li><code><a title="dsa.heap.Heap.to_list" href="#dsa.heap.Heap.to_list">to_list</a></code></li>
+<li><code><a title="dsa.heap.Heap.to_sorted_list" href="#dsa.heap.Heap.to_sorted_list">to_sorted_list</a></code></li>
 </ul>
 </li>
 </ul>
@@ -753,9 +773,10 @@ None if count is 0.</p></div>
 <li><code><a title="dsa.heap.MinHeap.left_index" href="#dsa.heap.Heap.left_index">left_index</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.parent_index" href="#dsa.heap.Heap.parent_index">parent_index</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.print" href="#dsa.heap.Heap.print">print</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.raw_view" href="#dsa.heap.Heap.raw_view">raw_view</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
 <li><code><a title="dsa.heap.MinHeap.root" href="#dsa.heap.Heap.root">root</a></code></li>
-<li><code><a title="dsa.heap.MinHeap.to_list" href="#dsa.heap.Heap.to_list">to_list</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.to_sorted_list" href="#dsa.heap.Heap.to_sorted_list">to_sorted_list</a></code></li>
 </ul>
 </li>
 </ul>
@@ -794,9 +815,10 @@ None if count is 0.</p></div>
 <li><code><a title="dsa.heap.Heap.peek" href="#dsa.heap.Heap.peek">peek</a></code></li>
 <li><code><a title="dsa.heap.Heap.pop" href="#dsa.heap.Heap.pop">pop</a></code></li>
 <li><code><a title="dsa.heap.Heap.print" href="#dsa.heap.Heap.print">print</a></code></li>
+<li><code><a title="dsa.heap.Heap.raw_view" href="#dsa.heap.Heap.raw_view">raw_view</a></code></li>
 <li><code><a title="dsa.heap.Heap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
 <li><code><a title="dsa.heap.Heap.root" href="#dsa.heap.Heap.root">root</a></code></li>
-<li><code><a title="dsa.heap.Heap.to_list" href="#dsa.heap.Heap.to_list">to_list</a></code></li>
+<li><code><a title="dsa.heap.Heap.to_sorted_list" href="#dsa.heap.Heap.to_sorted_list">to_sorted_list</a></code></li>
 </ul>
 </li>
 <li>

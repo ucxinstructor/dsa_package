@@ -214,8 +214,13 @@ if both head and tail nodes are specified, count should be specified as well</p>
         
         # insert front
         if index == 0:
-            self.prepend(index)
+            self.prepend(value)
             return
+        elif index == self.count: # insert at end
+            self.append(value)
+            return
+        elif index &gt; self.count:
+            raise IndexError(&#34;Index Out of Bounds&#34;)
         
         # find node to insert after
         current = self.head
@@ -290,12 +295,12 @@ if both head and tail nodes are specified, count should be specified as well</p>
             IndexError: If linked list is empty or index is not found.
         &#34;&#34;&#34;
         if index == 0:
-            if self.head is None:
-                raise IndexError(&#34;LinkedList is Empty&#34;)
-            self.head = self.head.next
-            self.count -= 1
+            self.delete_head()
             return
-        
+        elif index + 1 == self.count:
+            self.delete_tail()
+            return
+
         i = 0
         current = self.head
         prev = None
@@ -310,7 +315,48 @@ if both head and tail nodes are specified, count should be specified as well</p>
             i += 1
             prev = current
             current = current.next
-        raise IndexError(&#34;Index not found&#34;)</code></pre>
+        raise IndexError(&#34;Index not found&#34;)
+
+    def delete_head(self):
+        &#34;&#34;&#34;
+        Delete the head node in the linked list. Raise IndexError if linked list is empty.
+
+        Returns:
+            None
+
+        Raises:
+            IndexError: If linked list is empty.
+        &#34;&#34;&#34;
+        if self.head is None:
+            raise IndexError(&#34;LinkedList is Empty&#34;)
+        self.head = self.head.next
+        self.count -= 1
+
+    def delete_tail(self):
+        &#34;&#34;&#34;
+        Delete the last node in the linked list. Raise IndexError if linked list is empty.
+
+        Returns:
+            None
+            
+        Raises:
+            IndexError: If linked list is empty.
+        &#34;&#34;&#34;
+        if self.head is None:
+            raise IndexError(&#34;LinkedList is Empty&#34;)
+        
+        if self.head.next is None:
+            self.head = None
+            self.count -= 1
+            return
+        
+        current = self.head
+        while current.next.next:
+            current = current.next
+        
+        current.next = None
+        self.tail = current
+        self.count -= 1</code></pre>
 </details>
 <h3>Static methods</h3>
 <dl>
@@ -365,6 +411,32 @@ linked list containing the items from mylist.</p></div>
 <dl>
 <dt><code>IndexError</code></dt>
 <dd>If linked list is empty or index is not found.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.delete_head"><code class="name flex">
+<span>def <span class="ident">delete_head</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete the head node in the linked list. Raise IndexError if linked list is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If linked list is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.delete_tail"><code class="name flex">
+<span>def <span class="ident">delete_tail</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete the last node in the linked list. Raise IndexError if linked list is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If linked list is empty.</dd>
 </dl></div>
 </dd>
 <dt id="dsa.singlylinkedlist.LinkedList.insert"><code class="name flex">
@@ -503,6 +575,8 @@ linked list containing the items from mylist.</p></div>
 <ul class="two-column">
 <li><code><a title="dsa.singlylinkedlist.LinkedList.append" href="#dsa.singlylinkedlist.LinkedList.append">append</a></code></li>
 <li><code><a title="dsa.singlylinkedlist.LinkedList.delete" href="#dsa.singlylinkedlist.LinkedList.delete">delete</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.delete_head" href="#dsa.singlylinkedlist.LinkedList.delete_head">delete_head</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.delete_tail" href="#dsa.singlylinkedlist.LinkedList.delete_tail">delete_tail</a></code></li>
 <li><code><a title="dsa.singlylinkedlist.LinkedList.from_list" href="#dsa.singlylinkedlist.LinkedList.from_list">from_list</a></code></li>
 <li><code><a title="dsa.singlylinkedlist.LinkedList.insert" href="#dsa.singlylinkedlist.LinkedList.insert">insert</a></code></li>
 <li><code><a title="dsa.singlylinkedlist.LinkedList.is_empty" href="#dsa.singlylinkedlist.LinkedList.is_empty">is_empty</a></code></li>

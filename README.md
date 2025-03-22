@@ -37,11 +37,15 @@ pip show ucxdsa
 # Revision History
 ## 2025.3.22
 * Added CircularArray and CircularQueue classes
-* Refactored to_list() to raw_view() in Queue and Heap classes
-* Added to_ordered_list() to Queue class
-* Added to_sorted_list() method to Heap class
+* SinglyLinkedList and DoublyLinkedList classes
+  * Added separate delete_head() and delete_tail() methods
+  * Changed behavior insert() so if index == count, performs an append()
+* Changed behavior insert() in Array class so if index == count, performs an append()
+* Queue and Heap classes
+  * Refactored to_list() to raw_view()
+  * Added to_ordered_list() to Queue class
+  * Added to_sorted_list() method to Heap class
 * Updated unit tests
-
 
 ## 2025.2.10
 * Cleaned up comments
@@ -134,6 +138,7 @@ renamed Node class to TreeNode
 Misc. code improvements, documentation updates and API consistency
 
 # TODO
-* Make an abstract Graph class
+* Make an abstract Graph class?
 * Allow NetworkX access to draw class
 * Allow undirected option in edges() method of the graph class
+* Capture and verify output of tree structures

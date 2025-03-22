@@ -147,6 +147,16 @@ class TestArray(unittest.TestCase):
         self.assertEqual(self.array_with_elements.to_list(), [1, 99, 2, 3])
         self.assertEqual(len(self.array_with_elements), 4)
 
+    def test_insert_last_index_static(self):
+        """Test inserting an element at a valid index."""
+        self.array_with_elements.insert(3, 99)
+        self.assertEqual(self.array_with_elements.to_list(), [1, 2, 3, 99])
+        self.assertEqual(len(self.array_with_elements), 4)
+
+        self.array.insert(0, 99)
+        self.assertEqual(self.array.to_list(), [99])
+        self.assertEqual(len(self.array), 1)
+
     def test_insert_valid_index_dynamic(self):
         self.dynarray_with_elements.insert(1, 99)
         self.assertEqual(self.dynarray_with_elements.to_list(), [1, 99, 2, 3])

@@ -67,7 +67,11 @@ class Array:
         Raises:
             IndexError: If the index is out of bounds.        
         """
-        if index < 0 or index >= self.count:
+        if index == self.count:
+            self.append(element)
+            return
+
+        if index < 0 or index > self.count:
             raise IndexError
 
         self.shift_right(self.count, index)

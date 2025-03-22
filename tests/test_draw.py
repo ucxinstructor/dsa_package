@@ -10,8 +10,6 @@ from dsa.pretty_print import heap_print, tree_print
 import os
 import shutil
 
-
-
 class TestDraw(unittest.TestCase):
     def setUp(self) -> None:
         # create the images folder if it does not exist

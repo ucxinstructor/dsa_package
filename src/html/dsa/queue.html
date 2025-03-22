@@ -36,15 +36,166 @@ hljs.highlightAll();
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="dsa.queue.CircularQueue"><code class="flex name class">
+<span>class <span class="ident">CircularQueue</span></span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A circular queue implementation. </p>
+<p>Initialize the queue with a given capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>contents</code></strong></dt>
+<dd>The list with contents to enqueue.</dd>
+<dt><strong><code>capacity</code></strong></dt>
+<dd>The initial size of the stack (defaults to 10).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CircularQueue(CircularArray):
+    &#34;&#34;&#34; 
+    A circular queue implementation. 
+    &#34;&#34;&#34;
+    def __init__(self, contents=None, capacity: int=10):
+        &#34;&#34;&#34;
+        Initialize the queue with a given capacity.
+
+        Args:
+            contents: The list with contents to enqueue.
+            capacity: The initial size of the stack (defaults to 10).
+        &#34;&#34;&#34;
+        super().__init__(None, capacity)
+        # self._start is equivalent to the queue&#39;s front index
+
+        if contents:
+            for e in contents:
+                self.enqueue(e)
+
+    def enqueue(self, element):
+        &#34;&#34;&#34;
+        Enqueue an element into the queue. Wrap around when trying to enqueue more elements than the capacity.
+
+        Args:
+            element: The element to enqueue.
+
+        Returns:
+            None
+        &#34;&#34;&#34;
+        return super().append(element)
+
+    def dequeue(self):
+        &#34;&#34;&#34;
+        Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.
+
+        Raises:
+            Exception: When there are no elements to dequeue.
+
+        Returns:
+            The from element in the queue.
+        &#34;&#34;&#34;
+        if self.is_empty():
+            raise Exception(&#34;Empty Queue&#34;)
+
+        element = self._array[self._start]
+        self._start = (self._start + 1) % len(self._array)
+        self.count -= 1
+        return element
+
+    def peek(self):
+        &#34;&#34;&#34;
+        Return the element in front of the queue. Raise Exception if queue is empty.
+
+        Returns:
+            The element in front of the queue.
+
+        Raises:
+            Exception: When the queue is empty.
+        &#34;&#34;&#34;
+        if self.is_empty():
+            raise Exception(&#34;Empty Queue&#34;)
+
+        return self._array[self._start]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.array.CircularArray" href="array.html#dsa.array.CircularArray">CircularArray</a></li>
+<li><a title="dsa.array.Array" href="array.html#dsa.array.Array">Array</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.queue.CircularQueue.dequeue"><code class="name flex">
+<span>def <span class="ident">dequeue</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>When there are no elements to dequeue.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The from element in the queue.</p></div>
+</dd>
+<dt id="dsa.queue.CircularQueue.enqueue"><code class="name flex">
+<span>def <span class="ident">enqueue</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enqueue an element into the queue. Wrap around when trying to enqueue more elements than the capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to enqueue.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+</dd>
+<dt id="dsa.queue.CircularQueue.peek"><code class="name flex">
+<span>def <span class="ident">peek</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the element in front of the queue. Raise Exception if queue is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The element in front of the queue.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>When the queue is empty.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.array.CircularArray" href="array.html#dsa.array.CircularArray">CircularArray</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.array.CircularArray.append" href="array.html#dsa.array.CircularArray.append">append</a></code></li>
+<li><code><a title="dsa.array.CircularArray.capacity" href="array.html#dsa.array.Array.capacity">capacity</a></code></li>
+<li><code><a title="dsa.array.CircularArray.count" href="array.html#dsa.array.Array.count">count</a></code></li>
+<li><code><a title="dsa.array.CircularArray.delete" href="array.html#dsa.array.CircularArray.delete">delete</a></code></li>
+<li><code><a title="dsa.array.CircularArray.extend" href="array.html#dsa.array.Array.extend">extend</a></code></li>
+<li><code><a title="dsa.array.CircularArray.from_list" href="array.html#dsa.array.Array.from_list">from_list</a></code></li>
+<li><code><a title="dsa.array.CircularArray.insert" href="array.html#dsa.array.CircularArray.insert">insert</a></code></li>
+<li><code><a title="dsa.array.CircularArray.is_empty" href="array.html#dsa.array.Array.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.array.CircularArray.raw_view" href="array.html#dsa.array.CircularArray.raw_view">raw_view</a></code></li>
+<li><code><a title="dsa.array.CircularArray.shift_left" href="array.html#dsa.array.Array.shift_left">shift_left</a></code></li>
+<li><code><a title="dsa.array.CircularArray.shift_right" href="array.html#dsa.array.Array.shift_right">shift_right</a></code></li>
+<li><code><a title="dsa.array.CircularArray.to_list" href="array.html#dsa.array.Array.to_list">to_list</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
 <dt id="dsa.queue.DynamicQueue"><code class="flex name class">
 <span>class <span class="ident">DynamicQueue</span></span>
-<span>(</span><span>capacity=10)</span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A dynamic queue implementation. Note that shrink is not impelmented.</p>
 <p>Initialize the queue with a given capacity.</p>
 <h2 id="args">Args</h2>
 <dl>
+<dt><strong><code>contents</code></strong></dt>
+<dd>The list with contents to enqueue.</dd>
 <dt><strong><code>capacity</code></strong></dt>
 <dd>The initial size of the stack (defaults to 10).</dd>
 </dl></div>
@@ -56,14 +207,15 @@ hljs.highlightAll();
     &#34;&#34;&#34; 
     A dynamic queue implementation. Note that shrink is not impelmented.
     &#34;&#34;&#34;
-    def __init__(self, capacity=10):
+    def __init__(self, contents=None, capacity: int=10):
         &#34;&#34;&#34;
         Initialize the queue with a given capacity.
         
         Args:
+            contents: The list with contents to enqueue.
             capacity: The initial size of the stack (defaults to 10).
         &#34;&#34;&#34;
-        super().__init__(capacity)
+        super().__init__(contents, capacity)
     
     def grow(self):
         &#34;&#34;&#34; 
@@ -151,20 +303,23 @@ hljs.highlightAll();
 <li><code><a title="dsa.queue.Queue.from_list" href="#dsa.queue.Queue.from_list">from_list</a></code></li>
 <li><code><a title="dsa.queue.Queue.is_empty" href="#dsa.queue.Queue.is_empty">is_empty</a></code></li>
 <li><code><a title="dsa.queue.Queue.peek" href="#dsa.queue.Queue.peek">peek</a></code></li>
-<li><code><a title="dsa.queue.Queue.to_list" href="#dsa.queue.Queue.to_list">to_list</a></code></li>
+<li><code><a title="dsa.queue.Queue.raw_view" href="#dsa.queue.Queue.raw_view">raw_view</a></code></li>
+<li><code><a title="dsa.queue.Queue.to_ordered_list" href="#dsa.queue.Queue.to_ordered_list">to_ordered_list</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
 <dt id="dsa.queue.Queue"><code class="flex name class">
 <span>class <span class="ident">Queue</span></span>
-<span>(</span><span>capacity=10)</span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A static queue implementation. </p>
 <p>Initialize the queue with a given capacity.</p>
 <h2 id="args">Args</h2>
 <dl>
+<dt><strong><code>contents</code></strong></dt>
+<dd>The list with contents to enqueue.</dd>
 <dt><strong><code>capacity</code></strong></dt>
 <dd>The initial size of the stack (defaults to 10).</dd>
 </dl></div>
@@ -176,17 +331,22 @@ hljs.highlightAll();
     &#34;&#34;&#34; 
     A static queue implementation. 
     &#34;&#34;&#34;
-    def __init__(self, capacity=10):
+    def __init__(self, contents=None, capacity: int=10):
         &#34;&#34;&#34; 
         Initialize the queue with a given capacity.
 
         Args:
+            contents: The list with contents to enqueue.
             capacity: The initial size of the stack (defaults to 10).
         &#34;&#34;&#34;
         self._array = [None] * capacity
         self._front = 0
         #: number of elements in queue
         self.count = 0
+
+        if contents:
+            for e in contents:
+                self.enqueue(e)
     
     def enqueue(self, element):
         &#34;&#34;&#34;
@@ -278,12 +438,12 @@ hljs.highlightAll();
             q.enqueue(e)
         return q
 
-    def to_list(self):
+    def to_ordered_list(self) -&gt; list:
         &#34;&#34;&#34;
-        Return the contents of the queue as an array.
+        Return the contents of the queue as a Python list.
 
         Returns:
-            The contents of the queue as an array.
+            The contents of the queue as a Python list.
         &#34;&#34;&#34;
         if self._front + self.count &lt;= len(self._array):
             return self._array[self._front:self._front + self.count]
@@ -291,6 +451,15 @@ hljs.highlightAll();
             end_part = self._array[self._front:]
             start_part = self._array[:self._front + self.count - len(self._array)]
             return end_part + start_part
+        
+    def raw_view(self):
+        &#34;&#34;&#34;
+        Return the queue in its array representation.
+
+        Returns:
+            The array representation of the queue.
+        &#34;&#34;&#34;
+        return self._array
 
     def __repr__(self):
         &#34;&#34;&#34;
@@ -299,11 +468,12 @@ hljs.highlightAll();
         Returns:
             A string with details of the queue.
         &#34;&#34;&#34;
-        arr = []
-        for i in range(self.count):
-            index = (i + self._front) % len(self._array)
-            arr.append(str(self._array[index]))
-        arrstr = &#34;, &#34;.join(arr)
+        ordered_list = self.to_ordered_list()
+        # arr = []
+        # for i in range(self.count):
+        #     index = (i + self._front) % len(self._array)
+        #     arr.append(str(self._array[index]))
+        arrstr = &#34;, &#34;.join([str(e) for e in ordered_list])
         return f&#34;[{arrstr}] count: {self.count} Capacity: {self.capacity()}&#34;
     
     def __len__(self):
@@ -404,13 +574,21 @@ hljs.highlightAll();
 <dd>When the queue is empty.</dd>
 </dl></div>
 </dd>
-<dt id="dsa.queue.Queue.to_list"><code class="name flex">
-<span>def <span class="ident">to_list</span></span>(<span>self)</span>
+<dt id="dsa.queue.Queue.raw_view"><code class="name flex">
+<span>def <span class="ident">raw_view</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Return the contents of the queue as an array.</p>
+<div class="desc"><p>Return the queue in its array representation.</p>
 <h2 id="returns">Returns</h2>
-<p>The contents of the queue as an array.</p></div>
+<p>The array representation of the queue.</p></div>
+</dd>
+<dt id="dsa.queue.Queue.to_ordered_list"><code class="name flex">
+<span>def <span class="ident">to_ordered_list</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the contents of the queue as a Python list.</p>
+<h2 id="returns">Returns</h2>
+<p>The contents of the queue as a Python list.</p></div>
 </dd>
 </dl>
 </dd>
@@ -430,6 +608,14 @@ hljs.highlightAll();
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="dsa.queue.CircularQueue" href="#dsa.queue.CircularQueue">CircularQueue</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.queue.CircularQueue.dequeue" href="#dsa.queue.CircularQueue.dequeue">dequeue</a></code></li>
+<li><code><a title="dsa.queue.CircularQueue.enqueue" href="#dsa.queue.CircularQueue.enqueue">enqueue</a></code></li>
+<li><code><a title="dsa.queue.CircularQueue.peek" href="#dsa.queue.CircularQueue.peek">peek</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="dsa.queue.DynamicQueue" href="#dsa.queue.DynamicQueue">DynamicQueue</a></code></h4>
 <ul class="">
 <li><code><a title="dsa.queue.DynamicQueue.check_capacity" href="#dsa.queue.DynamicQueue.check_capacity">check_capacity</a></code></li>
@@ -447,7 +633,8 @@ hljs.highlightAll();
 <li><code><a title="dsa.queue.Queue.from_list" href="#dsa.queue.Queue.from_list">from_list</a></code></li>
 <li><code><a title="dsa.queue.Queue.is_empty" href="#dsa.queue.Queue.is_empty">is_empty</a></code></li>
 <li><code><a title="dsa.queue.Queue.peek" href="#dsa.queue.Queue.peek">peek</a></code></li>
-<li><code><a title="dsa.queue.Queue.to_list" href="#dsa.queue.Queue.to_list">to_list</a></code></li>
+<li><code><a title="dsa.queue.Queue.raw_view" href="#dsa.queue.Queue.raw_view">raw_view</a></code></li>
+<li><code><a title="dsa.queue.Queue.to_ordered_list" href="#dsa.queue.Queue.to_ordered_list">to_ordered_list</a></code></li>
 </ul>
 </li>
 </ul>
