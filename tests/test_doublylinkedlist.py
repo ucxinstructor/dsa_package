@@ -6,6 +6,7 @@ class TestDoublyLinkedList(unittest.TestCase):
         ll = DoublyLinkedList()
         self.assertEqual(ll.count, 0)
         self.assertTrue(ll.is_empty())
+
         n1 = Node(10)
         ll = DoublyLinkedList(n1)
         self.assertEqual(ll.count, 1)

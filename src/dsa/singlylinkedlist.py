@@ -171,7 +171,7 @@ class LinkedList:
         
         # insert front
         if index == 0:
-            self.prepend(index)
+            self.prepend(value)
             return
         
         # find node to insert after
@@ -252,7 +252,10 @@ class LinkedList:
             self.head = self.head.next
             self.count -= 1
             return
-        
+        elif index + 1 == self.count:
+            self.delete_last()
+            return
+
         i = 0
         current = self.head
         prev = None
@@ -268,5 +271,49 @@ class LinkedList:
             prev = current
             current = current.next
         raise IndexError("Index not found")
+
+    def delete_last(self):
+        """
+        Delete the last node in the linked list. Raise IndexError if linked list is empty.
+
+        Returns:
+            None
+            
+        Raises:
+            IndexError: If linked list is empty.
+        """
+        if self.head is None:
+            raise IndexError("LinkedList is Empty")
         
+        if self.head.next is None:
+            self.head = None
+            self.count -= 1
+            return
+        
+        current = self.head
+        while current.next.next:
+            current = current.next
+        
+        current.next = None
+        self.tail = current
+        self.count -= 1
     
+if __name__ == "__main__":
+    ll = LinkedList.from_list(range(10))
+    ll = LinkedList()
+
+    for _ in range(15):
+        ll.append(_)
+    assert (ll.head.value == 0)
+    assert (ll.tail.value == 14)
+    assert (ll.count == 15)
+
+    print(ll.to_list())
+    ll.insert(1, -1)
+    print(ll.to_list())
+    assert (ll[1] == -1)
+#    self.assertEqual(ll.count, 16)
+    ll.insert(0, -2)
+#    ll.prepend(-2)
+    print(ll.to_list())
+    assert (ll[0] == -2)
