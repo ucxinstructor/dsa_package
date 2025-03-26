@@ -138,6 +138,7 @@ renamed Node class to TreeNode
 Misc. code improvements, documentation updates and API consistency
 
 # TODO
+* Overload comparison operator for all data structures
 * Make an abstract Graph class?
 * Allow NetworkX access to draw class
 * Allow undirected option in edges() method of the graph class

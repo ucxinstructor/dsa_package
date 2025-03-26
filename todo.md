@@ -1,3 +1,6 @@
+Put comparison overloading to all data structures
+
+
   def get_edges(self, undirected=False):
         edges = []
         seen = set()
