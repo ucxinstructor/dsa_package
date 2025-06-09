@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.draw API documentation</title>
+<meta name="description" content="Module to access graphic drawing functions for Trees, Heaps, Tries and Graphs.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.draw</code></h1>
+</header>
+<section id="section-intro">
+<p>Module to access graphic drawing functions for Trees, Heaps, Tries and Graphs.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.draw.Draw"><code class="flex name class">
+<span>class <span class="ident">Draw</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A base class for drawing various data structures.</p>
+<p>This class provides basic functionalities for rendering, saving, and displaying
+visual representations of data structures.</p>
+<p>Initialize the Draw class with default figure size.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Draw:
+    &#34;&#34;&#34;
+    A base class for drawing various data structures.
+    
+    This class provides basic functionalities for rendering, saving, and displaying
+    visual representations of data structures.
+    &#34;&#34;&#34;
+    def __init__(self):
+        &#34;&#34;&#34;
+        Initialize the Draw class with default figure size.
+        &#34;&#34;&#34;
+        self.figsize = (5, 3)
+        
+    def render(self, **kwargs):
+        &#34;&#34;&#34;
+        Render the visual representation of the data structure.
+        
+        This method should be overridden by subclasses to provide specific rendering logic.
+        Args:
+            **kwargs: Additional keyword arguments.
+        &#34;&#34;&#34;
+        pass
+
+    def set_figsize(self, figsize):
+        &#34;&#34;&#34;
+        Set the figure size for the plot.
+        
+        Args:
+            figsize (tuple): A tuple representing the figure size (width, height).
+        &#34;&#34;&#34;
+        self.figsize = figsize
+
+    def save(self, filename, **kwargs):
+        &#34;&#34;&#34;
+        Save the rendered plot to a file.
+        
+        Args:
+            filename (str): The name of the file to save the plot to.
+            **kwargs: Additional keyword arguments.
+        &#34;&#34;&#34;
+        plt = self.render(**kwargs)
+        plt.axis(&#39;off&#39;)
+        plt.savefig(filename)
+
+    def draw(self, **kwargs):
+        &#34;&#34;&#34;
+        Display the rendered plot.
+
+        Args:
+            **kwargs: Additional keyword arguments.
+        &#34;&#34;&#34;
+        plt = self.render(**kwargs)
+        plt.axis(&#39;off&#39;)
+        plt.show()</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.draw.GraphDraw" href="#dsa.draw.GraphDraw">GraphDraw</a></li>
+<li><a title="dsa.draw.HeapDraw" href="#dsa.draw.HeapDraw">HeapDraw</a></li>
+<li><a title="dsa.draw.TreeDraw" href="#dsa.draw.TreeDraw">TreeDraw</a></li>
+<li><a title="dsa.draw.TrieDraw" href="#dsa.draw.TrieDraw">TrieDraw</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.draw.Draw.draw"><code class="name flex">
+<span>def <span class="ident">draw</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Display the rendered plot.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.Draw.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Render the visual representation of the data structure.</p>
+<p>This method should be overridden by subclasses to provide specific rendering logic.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.Draw.save"><code class="name flex">
+<span>def <span class="ident">save</span></span>(<span>self, filename, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Save the rendered plot to a file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the file to save the plot to.</dd>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.Draw.set_figsize"><code class="name flex">
+<span>def <span class="ident">set_figsize</span></span>(<span>self, figsize)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the figure size for the plot.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>figsize</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>A tuple representing the figure size (width, height).</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.draw.GraphDraw"><code class="flex name class">
+<span>class <span class="ident">GraphDraw</span></span>
+<span>(</span><span>graph, directed=False, weighted=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class for drawing graphs using the NetworkX library.</p>
+<p>This class extends the <code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code> class to visualize graphs. It supports both directed
+and undirected graphs, as well as weighted and unweighted graphs. Additionally,
+it provides an option to display the Minimum Spanning Tree (MST) of the graph.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>graph</code></strong></dt>
+<dd>The graph to be drawn</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Specifies if the graph is directed. Defaults to False</dd>
+<dt><strong><code>weighted</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Specifies if the graph has weighted edges. Defaults to False</dd>
+</dl>
+<p>Usage Example:
+gd = GraphDraw(g) # g is a Graph type (AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph, AdjacencyListWeightedGraph, AdjacencyListGraph)
+gd.draw()</p>
+<p>Initializes the GraphDraw object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GraphDraw(Draw):
+    &#34;&#34;&#34;
+    A class for drawing graphs using the NetworkX library.
+
+    This class extends the `Draw` class to visualize graphs. It supports both directed 
+    and undirected graphs, as well as weighted and unweighted graphs. Additionally, 
+    it provides an option to display the Minimum Spanning Tree (MST) of the graph.
+
+    Attributes:
+        graph: The graph to be drawn
+        directed (bool): Specifies if the graph is directed. Defaults to False
+        weighted (bool): Specifies if the graph has weighted edges. Defaults to False
+
+    Usage Example:
+        gd = GraphDraw(g) # g is a Graph type (AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph, AdjacencyListWeightedGraph, AdjacencyListGraph)
+        gd.draw()
+    &#34;&#34;&#34;
+    def __init__(self, graph, directed=False, weighted=False):
+        &#34;&#34;&#34;
+        Initializes the GraphDraw object.
+        &#34;&#34;&#34;
+        super().__init__()
+        self.graph = graph
+        self.directed = directed
+        self.weighted = weighted
+            
+    def render(self, pos=None, show_mst=False, mst_only=False, **kwargs):
+        &#34;&#34;&#34;
+        Renders the graph using Matplotlib. Not to be called directly. Call draw() instead.
+        &#34;&#34;&#34;
+        super().render(**kwargs)
+        edges = self.graph.edges()
+
+        if self.directed:
+            g = nx.DiGraph()
+        else:
+            g = nx.Graph()
+
+        if self.weighted:
+            g.add_weighted_edges_from(edges)
+        else:
+            g.add_edges_from(edges)
+    
+        if pos is None:
+            pos = nx.shell_layout(g) 
+
+        plt.figure(figsize=self.figsize)
+
+        if mst_only:
+            show_mst = True
+            nx.draw_networkx_nodes(g, pos, node_color=&#34;tab:blue&#34;, node_size=800)
+            nx.draw_networkx_labels(g, pos, font_size=10, font_color=&#34;white&#34;)
+        else:
+            nx.draw(g, pos, with_labels=True, node_color=&#34;tab:blue&#34;, node_size=800, font_size=10, font_color=&#34;white&#34;)
+
+        if self.weighted:
+            edge_labels = {(u, v): d[&#34;weight&#34;] for u, v, d in g.edges(data=True)}
+            nx.draw_networkx_edge_labels(g, pos, edge_labels=edge_labels, font_size=14, label_pos=0.5)
+
+        if show_mst:
+            T = nx.minimum_spanning_tree(g)
+            nx.draw_networkx_edges(T, pos, edge_color=&#34;tab:red&#34;, width=2)
+        return plt</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.draw.GraphDraw.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self, pos=None, show_mst=False, mst_only=False, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Renders the graph using Matplotlib. Not to be called directly. Call draw() instead.</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.draw.Draw.draw" href="#dsa.draw.Draw.draw">draw</a></code></li>
+<li><code><a title="dsa.draw.Draw.save" href="#dsa.draw.Draw.save">save</a></code></li>
+<li><code><a title="dsa.draw.Draw.set_figsize" href="#dsa.draw.Draw.set_figsize">set_figsize</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="dsa.draw.HeapDraw"><code class="flex name class">
+<span>class <span class="ident">HeapDraw</span></span>
+<span>(</span><span>heap: <a title="dsa.heap.Heap" href="heap.html#dsa.heap.Heap">Heap</a>, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class for drawing a heap structure using the NetworkX library.</p>
+<p>This class extends the <code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code> class to visualize heap structures, such as binary heaps or min-heaps.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>heap</code></strong> :&ensp;<code>Heap</code></dt>
+<dd>The heap structure to be drawn.</dd>
+</dl>
+<p>Usage Example:
+h = MinHeap()
+# Define your heap, e.g., MinHeap or Heap
+hd = HeapDraw(h)
+hd.draw()</p>
+<p>Initializes the HeapDraw object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>heap</code></strong> :&ensp;<code>Heap</code></dt>
+<dd>The heap structure to be drawn.</dd>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments passed to the parent <code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code> class.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HeapDraw(Draw):
+    &#34;&#34;&#34;
+    A class for drawing a heap structure using the NetworkX library.
+
+    This class extends the `Draw` class to visualize heap structures, such as binary heaps or min-heaps.
+
+    Attributes:
+        heap (Heap): The heap structure to be drawn.
+
+    Usage Example:
+        h = MinHeap()  # Define your heap, e.g., MinHeap or Heap
+        hd = HeapDraw(h)
+        hd.draw()
+    &#34;&#34;&#34;
+
+    def __init__(self, heap: Heap, **kwargs):
+        &#34;&#34;&#34;
+        Initializes the HeapDraw object.
+
+        Args:
+            heap (Heap): The heap structure to be drawn.
+            **kwargs: Additional keyword arguments passed to the parent `Draw` class.
+        &#34;&#34;&#34;
+        super().__init__(**kwargs)
+        self.heap = heap
+
+    def array_to_node(self, index: int, array):
+        &#34;&#34;&#34;
+        Converts an array-based heap into a tree node structure.
+
+        This helper function recursively constructs a tree from the array representation
+        of the heap, reflecting the binary tree structure of the heap.
+
+        Args:
+            index (int): The current index in the array representing the node.
+            array (list): The array containing heap values, organized as a complete binary tree.
+
+        Returns:
+            TreeNode: The root node of the constructed subtree.
+        &#34;&#34;&#34;
+        if index &gt;= len(array):
+            return None
+        else:
+            value = array[index]
+            left_index = index * 2 + 1
+            right_index = index * 2 + 2
+            node = TreeNode(value)
+            node.left = self.array_to_node(left_index, array)
+            node.right = self.array_to_node(right_index, array)
+            return node
+
+    def render(self, **kwargs):
+        &#34;&#34;&#34;
+        Renders the heap as a tree using Matplotlib. Not to be called directly. Call draw() instead.
+
+        This method converts the heap into a tree structure and then uses the `TreeDraw` class
+        to render it visually. Customization options can be provided via keyword arguments.
+
+        Returns:
+            matplotlib.pyplot: The Matplotlib plot object for further customization or display.
+        &#34;&#34;&#34;
+        node = self.array_to_node(0, [node[1] for node in self.heap.enumerate()])
+        tree = Tree(node)
+
+        tree_draw = TreeDraw(tree)
+        tree_draw.set_figsize(self.figsize)
+        return tree_draw.render(**kwargs)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.draw.HeapDraw.array_to_node"><code class="name flex">
+<span>def <span class="ident">array_to_node</span></span>(<span>self, index: int, array)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts an array-based heap into a tree node structure.</p>
+<p>This helper function recursively constructs a tree from the array representation
+of the heap, reflecting the binary tree structure of the heap.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The current index in the array representing the node.</dd>
+<dt><strong><code>array</code></strong> :&ensp;<code>list</code></dt>
+<dd>The array containing heap values, organized as a complete binary tree.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>TreeNode</code></dt>
+<dd>The root node of the constructed subtree.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.HeapDraw.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Renders the heap as a tree using Matplotlib. Not to be called directly. Call draw() instead.</p>
+<p>This method converts the heap into a tree structure and then uses the <code><a title="dsa.draw.TreeDraw" href="#dsa.draw.TreeDraw">TreeDraw</a></code> class
+to render it visually. Customization options can be provided via keyword arguments.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>matplotlib.pyplot</code></dt>
+<dd>The Matplotlib plot object for further customization or display.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.draw.Draw.draw" href="#dsa.draw.Draw.draw">draw</a></code></li>
+<li><code><a title="dsa.draw.Draw.save" href="#dsa.draw.Draw.save">save</a></code></li>
+<li><code><a title="dsa.draw.Draw.set_figsize" href="#dsa.draw.Draw.set_figsize">set_figsize</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="dsa.draw.TreeDraw"><code class="flex name class">
+<span>class <span class="ident">TreeDraw</span></span>
+<span>(</span><span>tree: <a title="dsa.tree.Tree" href="tree.html#dsa.tree.Tree">Tree</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class for drawing a tree structure using the NetworkX library.</p>
+<p>This class extends the <code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code> class to visualize tree structures. It organizes the nodes
+in a hierarchical tree layout and provides options for customization through the <code>render</code> method.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>tree</code></strong> :&ensp;<code>Tree</code></dt>
+<dd>The tree structure to be drawn.</dd>
+</dl>
+<p>Usage Example:
+t = Tree(root_node)
+# Define your tree structure with a root node
+td = TreeDraw(t)
+td.draw()</p>
+<p>Initializes the TreeDraw object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>tree</code></strong> :&ensp;<code>Tree</code></dt>
+<dd>The tree structure to be drawn.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TreeDraw(Draw):
+    &#34;&#34;&#34;
+    A class for drawing a tree structure using the NetworkX library.
+
+    This class extends the `Draw` class to visualize tree structures. It organizes the nodes
+    in a hierarchical tree layout and provides options for customization through the `render` method.
+
+    Attributes:
+        tree (Tree): The tree structure to be drawn.
+
+    Usage Example:
+        t = Tree(root_node)  # Define your tree structure with a root node
+        td = TreeDraw(t)
+        td.draw()
+    &#34;&#34;&#34;
+
+    def __init__(self, tree: Tree):
+        &#34;&#34;&#34; 
+        Initializes the TreeDraw object.
+
+        Args:
+            tree (Tree): The tree structure to be drawn.
+        &#34;&#34;&#34;
+        super().__init__()
+        self.tree = tree
+        
+    def add_edges(self, graph, node, pos=None, x: float=0, y: float=0, layer=1):
+        &#34;&#34;&#34;
+        Recursively adds edges to the graph and positions the nodes in a tree layout.
+    
+        Args:
+            graph (networkx.DiGraph): The graph object where edges are added.
+            node (TreeNode): The current node in the tree.
+            pos (dict, optional): A dictionary to store the positions of the nodes. Defaults to None.
+            x (float): The x-coordinate for the current node. Defaults to 0.
+            y (float): The y-coordinate for the current node. Defaults to 0.
+            layer (int): The current layer/level of the node in the tree. Defaults to 1.
+
+        Returns:
+            dict: A dictionary containing the positions of all nodes in the tree.
+        &#34;&#34;&#34;
+        if pos is None:
+            pos = {}
+        if node is not None:
+            pos[node.value] = (x, y)
+            if node.left:
+                graph.add_edge(node.value, node.left.value)
+                pos = self.add_edges(graph, node.left, pos=pos, x=x-1/layer, y=y-1, layer=layer+1)
+            if node.right:
+                graph.add_edge(node.value, node.right.value)
+                pos = self.add_edges(graph, node.right, pos=pos, x=x+1/layer, y=y-1, layer=layer+1)
+        return pos
+    
+    def render(self, **kwargs):
+        &#34;&#34;&#34; 
+        Renders the tree using Matplotlib. Not to be called directly. Call draw() instead.
+
+        This method generates a graphical representation of the tree with nodes positioned
+        in a hierarchical layout. Customization options can be provided via keyword arguments.
+
+        Args:
+            **kwargs: Additional keyword arguments for customization.
+
+        Returns:
+            matplotlib.pyplot: The Matplotlib plot object for further customization or display.
+        &#34;&#34;&#34;
+        super().render(**kwargs)
+        graph = nx.DiGraph()
+        pos = self.add_edges(graph, self.tree.root)
+        plt.figure(figsize=self.figsize)
+        nx.draw(graph, pos, with_labels=True, arrows=False, node_color=&#34;tab:blue&#34;, node_size=800, font_size=12, font_color=&#34;white&#34;) 
+        return plt</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.draw.TreeDraw.add_edges"><code class="name flex">
+<span>def <span class="ident">add_edges</span></span>(<span>self, graph, node, pos=None, x: float = 0, y: float = 0, layer=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Recursively adds edges to the graph and positions the nodes in a tree layout.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>graph</code></strong> :&ensp;<code>networkx.DiGraph</code></dt>
+<dd>The graph object where edges are added.</dd>
+<dt><strong><code>node</code></strong> :&ensp;<code>TreeNode</code></dt>
+<dd>The current node in the tree.</dd>
+<dt><strong><code>pos</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>A dictionary to store the positions of the nodes. Defaults to None.</dd>
+<dt><strong><code>x</code></strong> :&ensp;<code>float</code></dt>
+<dd>The x-coordinate for the current node. Defaults to 0.</dd>
+<dt><strong><code>y</code></strong> :&ensp;<code>float</code></dt>
+<dd>The y-coordinate for the current node. Defaults to 0.</dd>
+<dt><strong><code>layer</code></strong> :&ensp;<code>int</code></dt>
+<dd>The current layer/level of the node in the tree. Defaults to 1.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>A dictionary containing the positions of all nodes in the tree.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.TreeDraw.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Renders the tree using Matplotlib. Not to be called directly. Call draw() instead.</p>
+<p>This method generates a graphical representation of the tree with nodes positioned
+in a hierarchical layout. Customization options can be provided via keyword arguments.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments for customization.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>matplotlib.pyplot</code></dt>
+<dd>The Matplotlib plot object for further customization or display.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.draw.Draw.draw" href="#dsa.draw.Draw.draw">draw</a></code></li>
+<li><code><a title="dsa.draw.Draw.save" href="#dsa.draw.Draw.save">save</a></code></li>
+<li><code><a title="dsa.draw.Draw.set_figsize" href="#dsa.draw.Draw.set_figsize">set_figsize</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="dsa.draw.TrieDraw"><code class="flex name class">
+<span>class <span class="ident">TrieDraw</span></span>
+<span>(</span><span>trie: <a title="dsa.trie.Trie" href="trie.html#dsa.trie.Trie">Trie</a>, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class for drawing a Trie structure using the NetworkX library.</p>
+<p>This class extends the <code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code> class to visualize Trie structures, commonly used for storing strings
+or prefix trees. It provides methods to convert the Trie into a networkx graph, arrange nodes
+hierarchically, and render the visualization using Matplotlib.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>trie</code></strong> :&ensp;<code>Trie</code></dt>
+<dd>The Trie structure to be drawn.</dd>
+</dl>
+<p>Usage Example:
+trie = Trie()
+# Initialize your Trie and populate it with words
+trd = TrieDraw(trie)
+trd.draw()</p>
+<p>Initializes the TrieDraw object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>trie</code></strong> :&ensp;<code>Trie</code></dt>
+<dd>The Trie structure to be drawn.</dd>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments passed to the parent <code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code> class.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TrieDraw(Draw):
+    &#34;&#34;&#34;
+    A class for drawing a Trie structure using the NetworkX library.
+
+    This class extends the `Draw` class to visualize Trie structures, commonly used for storing strings
+    or prefix trees. It provides methods to convert the Trie into a networkx graph, arrange nodes
+    hierarchically, and render the visualization using Matplotlib.
+
+    Attributes:
+        trie (Trie): The Trie structure to be drawn.
+
+    Usage Example:
+        trie = Trie()  # Initialize your Trie and populate it with words
+        trd = TrieDraw(trie)
+        trd.draw()
+    &#34;&#34;&#34;
+
+    def __init__(self, trie: Trie, **kwargs):
+        &#34;&#34;&#34;
+        Initializes the TrieDraw object.
+
+        Args:
+            trie (Trie): The Trie structure to be drawn.
+            **kwargs: Additional keyword arguments passed to the parent `Draw` class.
+        &#34;&#34;&#34;
+        super().__init__(**kwargs)
+        self.figsize = (10, 6)
+        self.trie = trie
+        
+    def _add_edges(self, graph, node, current_path):
+        &#34;&#34;&#34;
+        Recursively adds edges to the networkx graph based on the Trie structure.
+
+        This helper function traverses the Trie, adding edges between nodes in the
+        networkx graph and associating them with characters from the Trie.
+
+        Args:
+            graph (networkx.DiGraph): The directed graph to which edges are added.
+            node (TrieNode): The current node in the Trie.
+            current_path (str): The path representing the current prefix in the Trie.
+        &#34;&#34;&#34;
+        if node is None:
+            return
+        for char, child in node.children.items():
+            new_path = current_path + char
+            graph.add_edge(current_path, new_path, label=char)
+            self._add_edges(graph, child, new_path)
+    
+    def to_networkx(self) -&gt; nx.DiGraph:
+        &#34;&#34;&#34;
+        Converts the Trie into a NetworkX directed graph (DiGraph).
+
+        This method creates a networkx graph representation of the Trie, where each node
+        represents a prefix and each edge represents a character transition.
+
+        Returns:
+            networkx.DiGraph: The networkx graph representation of the Trie.
+        &#34;&#34;&#34;
+        graph = nx.DiGraph()
+        self._add_edges(graph, self.trie.root, &#34;&#34;)
+        return graph
+    
+    def hierarchical_pos(self, G, root=None, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5):
+        &#34;&#34;&#34;
+        Computes the hierarchical position of nodes in the graph for visualization.
+
+        This method arranges the nodes of the Trie in a hierarchical layout, which is
+        particularly useful for visualizing tree-like structures such as Tries.
+
+        Args:
+            G (networkx.Graph): The graph for which to compute positions.
+            root (str, optional): The root node of the graph. Defaults to None, which means
+                                  the root will be determined automatically.
+            width (float): The width of the entire drawing. Defaults to 1.
+            vert_gap (float): The gap between levels in the hierarchy. Defaults to 0.2.
+            vert_loc (float): The vertical location of the root node. Defaults to 0.
+            xcenter (float): The horizontal center of the root node. Defaults to 0.5.
+
+        Returns:
+            dict: A dictionary mapping each node to its (x, y) position in the layout.
+        &#34;&#34;&#34;
+        if root is None:
+            root = next(iter(nx.topological_sort(G)))
+    
+        def _hierarchical_pos(G, node, width: float=1., vert_gap: float=0.2, vert_loc:float=0, xcenter:float=0.5, pos=None, parent=None, parsed=[]):
+            if pos is None:
+                pos = {node: (xcenter, vert_loc)}
+            else:
+                pos[node] = (xcenter, vert_loc)
+    
+            children = list(G.neighbors(node))
+            if not isinstance(G, nx.DiGraph) and parent is not None:
+                children.remove(parent)
+    
+            if len(children) != 0:
+                dx = width / len(children)
+                nextx = xcenter - width / 2 - dx / 2
+                for child in children:
+                    nextx += dx
+                    pos = _hierarchical_pos(G, child, width=dx, vert_gap=vert_gap, vert_loc=vert_loc - vert_gap, xcenter=nextx, pos=pos, parent=node, parsed=parsed)
+            return pos
+    
+        return _hierarchical_pos(G, root, width, vert_gap, vert_loc, xcenter)
+    
+    def render(self, **kwargs):
+        &#34;&#34;&#34;
+        Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
+
+        This method uses the hierarchical positions of the nodes to render the Trie
+        as a directed graph. Nodes are drawn as rectangles, and edges represent the transitions
+        between prefixes.
+
+        Returns:
+            matplotlib.pyplot: The Matplotlib plot object for further customization or display.
+        &#34;&#34;&#34;
+        super().render(**kwargs)
+        trie_graph = self.to_networkx()
+        
+        pos = self.hierarchical_pos(trie_graph)
+        
+        plt.figure(figsize=self.figsize)
+        nx.draw_networkx_edges(trie_graph, pos, arrows=True)
+        
+        ax = plt.gca()
+        rect_width = 0.05
+        rect_height = 0.15
+        for node in pos:
+            x, y = pos[node]
+            rectangle = plt.Rectangle((x - (rect_width / 2), y - (rect_height / 2)), rect_width, rect_height, color=&#34;tab:blue&#34;)
+            ax.add_patch(rectangle)
+            plt.text(x, y, node[-1] if node else &#34;&#34;, verticalalignment=&#39;center&#39;, horizontalalignment=&#39;center&#39;, fontsize=12, color=&#34;white&#34;)
+        return plt</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.draw.TrieDraw.hierarchical_pos"><code class="name flex">
+<span>def <span class="ident">hierarchical_pos</span></span>(<span>self, G, root=None, width=1.0, vert_gap=0.2, vert_loc=0, xcenter=0.5)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the hierarchical position of nodes in the graph for visualization.</p>
+<p>This method arranges the nodes of the Trie in a hierarchical layout, which is
+particularly useful for visualizing tree-like structures such as Tries.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>G</code></strong> :&ensp;<code>networkx.Graph</code></dt>
+<dd>The graph for which to compute positions.</dd>
+<dt><strong><code>root</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The root node of the graph. Defaults to None, which means
+the root will be determined automatically.</dd>
+<dt><strong><code>width</code></strong> :&ensp;<code>float</code></dt>
+<dd>The width of the entire drawing. Defaults to 1.</dd>
+<dt><strong><code>vert_gap</code></strong> :&ensp;<code>float</code></dt>
+<dd>The gap between levels in the hierarchy. Defaults to 0.2.</dd>
+<dt><strong><code>vert_loc</code></strong> :&ensp;<code>float</code></dt>
+<dd>The vertical location of the root node. Defaults to 0.</dd>
+<dt><strong><code>xcenter</code></strong> :&ensp;<code>float</code></dt>
+<dd>The horizontal center of the root node. Defaults to 0.5.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>A dictionary mapping each node to its (x, y) position in the layout.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.TrieDraw.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.</p>
+<p>This method uses the hierarchical positions of the nodes to render the Trie
+as a directed graph. Nodes are drawn as rectangles, and edges represent the transitions
+between prefixes.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>matplotlib.pyplot</code></dt>
+<dd>The Matplotlib plot object for further customization or display.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.draw.TrieDraw.to_networkx"><code class="name flex">
+<span>def <span class="ident">to_networkx</span></span>(<span>self) ‑> networkx.classes.digraph.DiGraph</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts the Trie into a NetworkX directed graph (DiGraph).</p>
+<p>This method creates a networkx graph representation of the Trie, where each node
+represents a prefix and each edge represents a character transition.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>networkx.DiGraph</code></dt>
+<dd>The networkx graph representation of the Trie.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.draw.Draw.draw" href="#dsa.draw.Draw.draw">draw</a></code></li>
+<li><code><a title="dsa.draw.Draw.save" href="#dsa.draw.Draw.save">save</a></code></li>
+<li><code><a title="dsa.draw.Draw.set_figsize" href="#dsa.draw.Draw.set_figsize">set_figsize</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.draw.Draw" href="#dsa.draw.Draw">Draw</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.draw.Draw.draw" href="#dsa.draw.Draw.draw">draw</a></code></li>
+<li><code><a title="dsa.draw.Draw.render" href="#dsa.draw.Draw.render">render</a></code></li>
+<li><code><a title="dsa.draw.Draw.save" href="#dsa.draw.Draw.save">save</a></code></li>
+<li><code><a title="dsa.draw.Draw.set_figsize" href="#dsa.draw.Draw.set_figsize">set_figsize</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.draw.GraphDraw" href="#dsa.draw.GraphDraw">GraphDraw</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.draw.GraphDraw.render" href="#dsa.draw.GraphDraw.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.draw.HeapDraw" href="#dsa.draw.HeapDraw">HeapDraw</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.draw.HeapDraw.array_to_node" href="#dsa.draw.HeapDraw.array_to_node">array_to_node</a></code></li>
+<li><code><a title="dsa.draw.HeapDraw.render" href="#dsa.draw.HeapDraw.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.draw.TreeDraw" href="#dsa.draw.TreeDraw">TreeDraw</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.draw.TreeDraw.add_edges" href="#dsa.draw.TreeDraw.add_edges">add_edges</a></code></li>
+<li><code><a title="dsa.draw.TreeDraw.render" href="#dsa.draw.TreeDraw.render">render</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.draw.TrieDraw" href="#dsa.draw.TrieDraw">TrieDraw</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.draw.TrieDraw.hierarchical_pos" href="#dsa.draw.TrieDraw.hierarchical_pos">hierarchical_pos</a></code></li>
+<li><code><a title="dsa.draw.TrieDraw.render" href="#dsa.draw.TrieDraw.render">render</a></code></li>
+<li><code><a title="dsa.draw.TrieDraw.to_networkx" href="#dsa.draw.TrieDraw.to_networkx">to_networkx</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

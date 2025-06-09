@@ -17,6 +17,84 @@ class Deque:
         self._right = 0
         self.count = 0
         
+    def push_front(self, element):
+        """
+        Push an element at the front of the deque. (synonym for append_left)
+        Raises an exception when the deque is full.
+
+        Args:
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
+        """
+        self.append_left(element)
+
+    def push_back(self, element):
+        """
+        Push an element at the back of the deque. (synonym for append_right)
+        Raises an exception when the deque is full.
+
+        Args:
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
+        """
+        self.append_right(element)
+
+    def pop_front(self):
+        """
+        Pop an element from the front of the deque. (synonym for pop_left)
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
+        """
+        return self.pop_left()
+
+    def pop_back(self):
+        """
+        Pop an element from the back of the deque. (synonym for pop_right)
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The rightmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
+        """
+        return self.pop_right() 
+    
+    def front(self):
+        """
+        Get the element at the front of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element.
+
+        Raises:
+            Exception: If the deque is empty.
+        """
+        return self.peek_left()
+    
+    def back(self):
+        """
+        Get the element at the back of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The rightmost element.
+
+        Raises:
+            Exception: If the deque is empty.
+        """
+        return self.peek_right()
+
     def append_left(self, element):
         """
         Append an element to the left of the deque. Raises an exception when the deque is full.

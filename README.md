@@ -35,6 +35,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.06.09
+* Added queue-like synonyms for deque methods
+
 ## 2025.3.22
 * Added CircularArray and CircularQueue classes
 * SinglyLinkedList and DoublyLinkedList classes

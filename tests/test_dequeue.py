@@ -22,6 +22,8 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(len(dq), 10)
         self.assertEqual(dq.peek_left(), 18)
         self.assertEqual(dq.peek_right(), 0)
+        self.assertEqual(dq.front(), 18)
+        self.assertEqual(dq.back(), 0)
         self.assertRaises(Exception, dq.append_left, 10)
         self.assertEqual(dq.capacity(), 10)
 
@@ -32,6 +34,8 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(len(dq2), 10)
         self.assertEqual(dq2.peek_left(), 0)
         self.assertEqual(dq2.peek_right(), 18)
+        self.assertEqual(dq2.front(), 0)
+        self.assertEqual(dq2.back(), 18)
         self.assertRaises(Exception, dq2.append_right, 10)
         self.assertEqual(dq2.capacity(), 10)
 
@@ -43,6 +47,8 @@ class TestQueue(unittest.TestCase):
 
         self.assertEqual(ddq.peek_left(), 18)
         self.assertEqual(ddq.peek_right(), 0)
+        self.assertEqual(ddq.front(), 18)
+        self.assertEqual(ddq.back(), 0)
         self.assertEqual(ddq.capacity(), 10)
         for _ in range(20, 40, 2):
             ddq.append_left(_)
@@ -50,6 +56,8 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(len(ddq), 20)
         self.assertEqual(ddq.peek_left(), 38)
         self.assertEqual(ddq.peek_right(), 0)
+        self.assertEqual(ddq.front(), 38)
+        self.assertEqual(ddq.back(), 0)
         self.assertEqual(ddq.capacity(), 20)
 
     def test_delete(self):
@@ -102,6 +110,59 @@ class TestQueue(unittest.TestCase):
             dq.pop_left()
         with self.assertRaises(Exception):
             dq.pop_right()
+
+
+    def test_delete_queue_style(self):
+        dq = Deque()
+
+        for _ in range(10):
+            dq.push_front(_ * 2)
+
+        for _ in range(10):
+            p = dq.front()
+            v = dq.pop_front()
+            self.assertEqual(p, v)
+            if not dq.is_empty():
+                self.assertEqual(dq.back(), 0)
+
+        for _ in range(10):
+            dq.push_back(_ * 2)
+
+        for _ in range(10):
+            p = dq.back()
+            v = dq.pop_back()
+            self.assertEqual(p, v)
+            if not dq.is_empty():
+                self.assertEqual(dq.front(), 0)
+
+        for _ in range(10):
+            dq.push_front(_ * 2)
+
+        for _ in range(10):
+            p = dq.back()
+            v = dq.pop_back()
+            self.assertEqual(p, v)
+            if not dq.is_empty():
+                self.assertEqual(dq.front(), (10 - 1) * 2)
+
+        for _ in range(10):
+            dq.push_back(_ * 2)
+
+        for _ in range(10):
+            p = dq.front()
+            v = dq.pop_front()
+            self.assertEqual(p, v)
+            if not dq.is_empty():
+                self.assertEqual(dq.back(), (10 - 1) * 2)
+
+
+        self.assertEqual(dq.count, 0)
+        self.assertEqual(len(dq), 0)
+        with self.assertRaises(Exception):
+            dq.pop_front()
+        with self.assertRaises(Exception):
+            dq.pop_back()
+
 
     def test_dynamic_delete(self):
         ddq = DynamicDeque()
@@ -208,6 +269,27 @@ class TestQueue(unittest.TestCase):
         ddq.append_right(2)
         self.assertEqual(ddq.to_list(), [1, 2])
 
+
+    def test_add_front(self):
+        dq = Deque()
+        dq.push_front(1)
+        dq.push_front(2)
+        self.assertEqual(dq.to_list(), [2, 1])
+        ddq = DynamicDeque()
+        ddq.push_front(1)
+        ddq.push_front(2)
+        self.assertEqual(ddq.to_list(), [2, 1])
+
+    def test_add_back(self):
+        dq = Deque()
+        dq.push_back(1)
+        dq.push_back(2)
+        self.assertEqual(dq.to_list(), [1, 2])
+        ddq = DynamicDeque()
+        ddq.push_back(1)
+        ddq.push_back(2)
+        self.assertEqual(ddq.to_list(), [1, 2])
+
     def test_remove_left(self):
         dq = Deque()
         dq.append_left(1)
@@ -235,6 +317,36 @@ class TestQueue(unittest.TestCase):
         item = ddq.pop_right()
         self.assertEqual(item, 2)
         self.assertEqual(ddq.to_list(), [1])
+
+
+    def test_remove_front(self):
+        dq = Deque()
+        dq.push_front(1)
+        dq.push_front(2)
+        item = dq.pop_front()
+        self.assertEqual(item, 2)
+        self.assertEqual(dq.to_list(), [1])
+        ddq = DynamicDeque()
+        ddq.push_front(1)
+        ddq.push_front(2)
+        item = ddq.pop_front()
+        self.assertEqual(item, 2)
+        self.assertEqual(ddq.to_list(), [1])
+
+    def test_remove_back(self):
+        dq = Deque()
+        dq.push_back(1)
+        dq.push_back(2)
+        item = dq.pop_back()
+        self.assertEqual(item, 2)
+        self.assertEqual(dq.to_list(), [1])
+        ddq = DynamicDeque()
+        ddq.push_back(1)
+        ddq.push_back(2)
+        item = ddq.pop_back()
+        self.assertEqual(item, 2)
+        self.assertEqual(ddq.to_list(), [1])
+
 
     def test_size(self):
         dq = Deque()
@@ -322,12 +434,28 @@ class TestDynamicDeque(unittest.TestCase):
         self.assertEqual(dq.capacity(), 8)
         self.assertEqual(dq.to_list(), [4, 5])
 
+    def test_dynamic_deque_shrink_queue(self):
+        dq = DynamicDeque(8)
+        for i in range(6):
+            dq.push_back(i)
+        for _ in range(4):
+            dq.pop_front()  # Should trigger shrink
+        self.assertEqual(dq.capacity(), 8)
+        self.assertEqual(dq.to_list(), [4, 5])
+
     def test_dynamic_deque_append_pop(self):
         dq = DynamicDeque()
         dq.append_left(10)
         dq.append_right(20)
         self.assertEqual(dq.pop_left(), 10)
         self.assertEqual(dq.pop_right(), 20)
+
+    def test_dynamic_deque_append_pop_queue(self):
+        dq = DynamicDeque()
+        dq.push_front(10)
+        dq.push_back(20)
+        self.assertEqual(dq.pop_front(), 10)
+        self.assertEqual(dq.pop_back(), 20)
 
     def test_dynamic_deque_underflow(self):
         dq = DynamicDeque()
@@ -340,6 +468,20 @@ class TestDynamicDeque(unittest.TestCase):
         dq.append_right(1)
         dq.append_right(2)
         dq.append_right(3)  # Should grow capacity
+        self.assertEqual(dq.capacity(), 4)
+        self.assertEqual(dq.to_list(), [1, 2, 3])
+
+    def test_dynamic_deque_underflow_queue(self):
+        dq = DynamicDeque()
+        with self.assertRaises(Exception) as context:
+            dq.pop_front()
+        self.assertEqual(str(context.exception), "Empty Deque")
+
+    def test_dynamic_deque_overflow_and_resize_queue(self):
+        dq = DynamicDeque(2)
+        dq.push_back(1)
+        dq.push_back(2)
+        dq.push_back(3)  # Should grow capacity
         self.assertEqual(dq.capacity(), 4)
         self.assertEqual(dq.to_list(), [1, 2, 3])
 
