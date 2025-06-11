@@ -114,7 +114,7 @@ class TestDraw(unittest.TestCase):
         t = Trie()
         words = ["cat", "car", "cart", "dog", "dot", "doggie", "smart"]
         for word in words:
-            t.insert(word)
+            t.insert(word.upper())
 
         td = TrieDraw(t)
         td.set_figsize((12, 4))

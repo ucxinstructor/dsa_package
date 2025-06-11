@@ -35,6 +35,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.06.11
+* Revised Trie Draw to draw circles instead of squares
+
 ## 2025.06.09
 * Added queue-like synonyms for deque methods
 

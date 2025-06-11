@@ -307,7 +307,7 @@ class TrieDraw(Draw):
     
         return _hierarchical_pos(G, root, width, vert_gap, vert_loc, xcenter)
     
-    def render(self, **kwargs):
+    def render_rectangle(self, **kwargs):
         """
         Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
 
@@ -336,6 +336,34 @@ class TrieDraw(Draw):
             plt.text(x, y, node[-1] if node else "", verticalalignment='center', horizontalalignment='center', fontsize=12, color="white")
         return plt
 
+    def render(self, **kwargs):
+        """
+        Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
+
+        This version uses NetworkX's default drawing tools with circular nodes for simplicity and clarity.
+        """
+        super().render(**kwargs)
+        trie_graph = self.to_networkx()
+        pos = self.hierarchical_pos(trie_graph)
+
+        plt.figure(figsize=self.figsize)
+
+        # Draw the graph using built-in node and edge drawing
+        nx.draw(
+            trie_graph,
+            pos,
+            with_labels=True,
+            labels={node: node[-1] if node else "" for node in trie_graph.nodes},
+            node_shape='o',
+            node_color='tab:blue',
+            font_color='white',
+            font_size=10,
+            edgecolors='none',
+            arrows=False,
+            **kwargs
+        )
+
+        return plt
 
 class GraphDraw(Draw):
     """
