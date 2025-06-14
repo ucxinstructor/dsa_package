@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.deque API documentation</title>
+<meta name="description" content="Module containing deque classes.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.deque</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing deque classes.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.deque.Deque"><code class="flex name class">
+<span>class <span class="ident">Deque</span></span>
+<span>(</span><span>capacity: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A static deque implementation that supports appending and popping elements
+from both ends, with a fixed capacity.</p>
+<p>Initialize a deque with a fixed capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the deque (default is 10).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Deque:
+    &#34;&#34;&#34; 
+    A static deque implementation that supports appending and popping elements 
+    from both ends, with a fixed capacity.
+    &#34;&#34;&#34;
+    def __init__(self, capacity: int=10):
+        &#34;&#34;&#34; 
+        Initialize a deque with a fixed capacity.
+
+        Args:
+            capacity (int): The initial size of the deque (default is 10).
+        &#34;&#34;&#34;
+        self._array = [None] * capacity
+        self._left = -1
+        self._right = 0
+        self.count = 0
+        
+    def push_front(self, element):
+        &#34;&#34;&#34;
+        Push an element at the front of the deque. (synonym for append_left)
+        Raises an exception when the deque is full.
+
+        Args:
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
+        &#34;&#34;&#34;
+        self.append_left(element)
+
+    def push_back(self, element):
+        &#34;&#34;&#34;
+        Push an element at the back of the deque. (synonym for append_right)
+        Raises an exception when the deque is full.
+
+        Args:
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
+        &#34;&#34;&#34;
+        self.append_right(element)
+
+    def pop_front(self):
+        &#34;&#34;&#34;
+        Pop an element from the front of the deque. (synonym for pop_left)
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        return self.pop_left()
+
+    def pop_back(self):
+        &#34;&#34;&#34;
+        Pop an element from the back of the deque. (synonym for pop_right)
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The rightmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        return self.pop_right() 
+    
+    def front(self):
+        &#34;&#34;&#34;
+        Get the element at the front of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        return self.peek_left()
+    
+    def back(self):
+        &#34;&#34;&#34;
+        Get the element at the back of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The rightmost element.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        return self.peek_right()
+
+    def append_left(self, element):
+        &#34;&#34;&#34;
+        Append an element to the left of the deque. Raises an exception when the deque is full.
+
+        Args:
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
+        &#34;&#34;&#34;
+        if self.count &gt;= self.capacity():
+            raise Exception(&#34;Deque Full&#34;)
+        if self._left &lt; 0:
+            self._left = self.capacity() - 1
+        self._array[self._left] = element
+        self._left -= 1
+        self.count += 1
+        
+    def append_right(self, element):
+        &#34;&#34;&#34;
+        Append an element to the right of the deque. Raises an exception when the deque is full.
+
+        Args:
+            element: The element to append.
+
+        Raises:
+            Exception: If the deque is full.
+        &#34;&#34;&#34;
+        if self.count &gt;= self.capacity():
+            raise Exception(&#34;Deque Full&#34;)
+        if self._right &gt; self.capacity() - 1:
+            self._right = 0
+        self._array[self._right] = element
+        self._right += 1
+        self.count += 1
+
+    def pop_left(self):
+        &#34;&#34;&#34;
+        Remove and return the element from the left of the deque. Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        if self.is_empty():
+            raise Exception(&#34;Empty Deque&#34;)
+
+        element = self._array[self._left + 1]
+        self._left += 1
+        if self._left + 1 &gt;= len(self._array):
+            self._left = -1
+        self.count -= 1
+        return element
+    
+    def pop_right(self):
+        &#34;&#34;&#34;
+        Pop an element from right the deque. Raise an exception if the deque is empty.
+
+        Returns:
+            The rightmost element of the deque.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        if self.is_empty():
+            raise Exception(&#34;Empty Deque&#34;)
+        element = self._array[self._right - 1]
+        self.count -= 1
+
+        self._right -= 1
+        if self._right &lt; 0:
+            self._right = len(self._array) - 1
+        return element
+
+    def peek_left(self):
+        &#34;&#34;&#34;
+        Get the element at the left of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The leftmost element.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        if self.is_empty():
+            raise Exception(&#34;Empty deque&#34;)
+        return self._array[self._left + 1]
+
+    def peek_right(self):
+        &#34;&#34;&#34;
+        Get the element at the right of the deque without removing it.
+        Raises an exception if the deque is empty.
+
+        Returns:
+            The rightmost element.
+
+        Raises:
+            Exception: If the deque is empty.
+        &#34;&#34;&#34;
+        if self.is_empty():
+            raise Exception(&#34;Empty deque&#34;)
+        return self._array[self._right - 1]
+    
+    def is_empty(self) -&gt; bool:
+        &#34;&#34;&#34;
+        Return a Boolean on whether the deque is empty or not.
+        &#34;&#34;&#34;
+        return self.count == 0
+
+    @classmethod
+    def from_list(cls, alist: list):
+        &#34;&#34;&#34;
+        Create a deque from a given list. Raises an exception if list exceeds the deque&#39;s capacity.
+
+        Args:
+            alist: The list to initialize the deque with.
+
+        Returns:
+            a deque instance with elements from the list.
+
+        Raises:
+            Exception: If list exceeds the deque&#39;s capacity.
+        &#34;&#34;&#34;
+        dq = cls()
+        for e in alist:
+            dq.append_right(e)
+        return dq
+
+    def to_list(self):
+        &#34;&#34;&#34;
+        Convert the deque&#39;s contents into a list.
+
+        Returns:
+            A list containg the elements in the deque.
+        &#34;&#34;&#34;
+        arr = []
+        for i in range(self.count):
+            index = (i + self._left + 1) % len(self._array) 
+            arr.append(self._array[index])
+        return arr
+
+    def capacity(self) -&gt; int:
+        &#34;&#34;&#34;
+        Get the maximum capacity of the deque.
+
+        Returns:
+            The capacity of the deque.
+        &#34;&#34;&#34;
+        return len(self._array)
+    
+    def __len__(self) -&gt; int:
+        &#34;&#34;&#34;
+        Get the number of elements in the deque.
+
+        Returns:
+            The count of elements.
+        &#34;&#34;&#34;
+        return self.count
+    
+    def __repr__(self):
+        &#34;&#34;&#34;
+        String representation of the deque for debugging purposes.
+
+        Returns:
+            A string displaying the contents and size of the deque.
+        &#34;&#34;&#34;
+        arr = []
+        for i in range(self.count):
+            index = (i + self._left + 1) % len(self._array) 
+            arr.append(str(self._array[index]))
+        arrstr = &#34;, &#34;.join(arr)
+        return f&#34;[{arrstr}] Count: {self.count} Capacity: {len(self._array)}&#34; # {self.array}&#34;</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.deque.DynamicDeque" href="#dsa.deque.DynamicDeque">DynamicDeque</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="dsa.deque.Deque.from_list"><code class="name flex">
+<span>def <span class="ident">from_list</span></span>(<span>alist: list)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a deque from a given list. Raises an exception if list exceeds the deque's capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>alist</code></strong></dt>
+<dd>The list to initialize the deque with.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>a deque instance with elements from the list.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If list exceeds the deque's capacity.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.deque.Deque.append_left"><code class="name flex">
+<span>def <span class="ident">append_left</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the left of the deque. Raises an exception when the deque is full.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is full.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.append_right"><code class="name flex">
+<span>def <span class="ident">append_right</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the right of the deque. Raises an exception when the deque is full.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is full.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.back"><code class="name flex">
+<span>def <span class="ident">back</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the element at the back of the deque without removing it.
+Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The rightmost element.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.capacity"><code class="name flex">
+<span>def <span class="ident">capacity</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the maximum capacity of the deque.</p>
+<h2 id="returns">Returns</h2>
+<p>The capacity of the deque.</p></div>
+</dd>
+<dt id="dsa.deque.Deque.front"><code class="name flex">
+<span>def <span class="ident">front</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the element at the front of the deque without removing it.
+Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The leftmost element.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.is_empty"><code class="name flex">
+<span>def <span class="ident">is_empty</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a Boolean on whether the deque is empty or not.</p></div>
+</dd>
+<dt id="dsa.deque.Deque.peek_left"><code class="name flex">
+<span>def <span class="ident">peek_left</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the element at the left of the deque without removing it.
+Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The leftmost element.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.peek_right"><code class="name flex">
+<span>def <span class="ident">peek_right</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the element at the right of the deque without removing it.
+Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The rightmost element.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.pop_back"><code class="name flex">
+<span>def <span class="ident">pop_back</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pop an element from the back of the deque. (synonym for pop_right)
+Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The rightmost element of the deque.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.pop_front"><code class="name flex">
+<span>def <span class="ident">pop_front</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pop an element from the front of the deque. (synonym for pop_left)
+Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The leftmost element of the deque.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.pop_left"><code class="name flex">
+<span>def <span class="ident">pop_left</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remove and return the element from the left of the deque. Raises an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The leftmost element of the deque.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.pop_right"><code class="name flex">
+<span>def <span class="ident">pop_right</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pop an element from right the deque. Raise an exception if the deque is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>The rightmost element of the deque.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.push_back"><code class="name flex">
+<span>def <span class="ident">push_back</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Push an element at the back of the deque. (synonym for append_right)
+Raises an exception when the deque is full.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is full.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.push_front"><code class="name flex">
+<span>def <span class="ident">push_front</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Push an element at the front of the deque. (synonym for append_left)
+Raises an exception when the deque is full.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the deque is full.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.Deque.to_list"><code class="name flex">
+<span>def <span class="ident">to_list</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert the deque's contents into a list.</p>
+<h2 id="returns">Returns</h2>
+<p>A list containg the elements in the deque.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.deque.DynamicDeque"><code class="flex name class">
+<span>class <span class="ident">DynamicDeque</span></span>
+<span>(</span><span>capacity: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A dynamic deque implementation that adjusts its capacity as needed.</p>
+<p>Initialize a deque with a fixed capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the deque (default is 10).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DynamicDeque(Deque):
+    &#34;&#34;&#34; 
+    A dynamic deque implementation that adjusts its capacity as needed.
+    &#34;&#34;&#34;
+    def grow(self):
+        &#34;&#34;&#34; 
+        Helper method to double the capacity of the deque.
+        &#34;&#34;&#34;
+        new_array = [ None ] * self.capacity() * 2
+        
+        # copy elements
+        for i in range(self.count):
+            index = (i + self._left + 1) % len(self._array) 
+            new_array[i] = self._array[index]
+
+        self._array = new_array
+        self._left = -1
+        self._right = self.count
+
+    def shrink(self):
+        &#34;&#34;&#34; 
+        Helper method to halve the capacity of the deque. 
+        &#34;&#34;&#34;
+        if self.capacity() &lt; 10:
+            return
+
+        new_capacity = self.capacity() // 2
+        new_array = [ None ] * new_capacity
+        
+        # copy elements
+        for i in range(self.count):
+            index = (i + self._left + 1) % len(self._array) 
+            new_array[i] = self._array[index]
+
+        self._array = new_array
+        self._left = -1
+        self._right = self.count
+
+
+    def check_capacity(self):
+        &#34;&#34;&#34; 
+        Helper method to adjust the capacity of the deque based on its count:
+        if count &gt;= capacity, grow the deque
+        if count &lt;= 1/4 of capacity, shrink the deque
+        &#34;&#34;&#34;
+        if self.count &gt;= self.capacity():
+            self.grow()
+        elif self.count * 4 &lt;= self.capacity():
+            self.shrink()
+        
+    def append_left(self, element):
+        &#34;&#34;&#34;
+        Append an element to the left, adjusting capacity if needed.
+
+        Args:
+            element: The element to append.
+         &#34;&#34;&#34;
+        self.check_capacity()
+        super().append_left(element)
+        
+    def append_right(self, element):
+        &#34;&#34;&#34;
+        Append an element to the right, adjusting capacity if needed.
+
+        Args:
+            element: The element to append.
+        &#34;&#34;&#34;
+        self.check_capacity()
+        super().append_right(element)
+
+    def pop_left(self):
+        &#34;&#34;&#34;
+        Remove and return the element from the left, adjusting capacity if needed.
+
+        Returns:
+            The leftmost element.
+        &#34;&#34;&#34;
+        self.check_capacity()
+        return super().pop_left()
+
+
+    def pop_right(self):
+        &#34;&#34;&#34;
+        Remove and return the element from the right, adjusting capacity if needed.
+
+        Returns:
+            The rightmost element.
+        &#34;&#34;&#34;
+        self.check_capacity()
+        return super().pop_right()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.deque.Deque" href="#dsa.deque.Deque">Deque</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.deque.DynamicDeque.append_left"><code class="name flex">
+<span>def <span class="ident">append_left</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the left, adjusting capacity if needed.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.DynamicDeque.append_right"><code class="name flex">
+<span>def <span class="ident">append_right</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the right, adjusting capacity if needed.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.deque.DynamicDeque.check_capacity"><code class="name flex">
+<span>def <span class="ident">check_capacity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to adjust the capacity of the deque based on its count:
+if count &gt;= capacity, grow the deque
+if count &lt;= 1/4 of capacity, shrink the deque</p></div>
+</dd>
+<dt id="dsa.deque.DynamicDeque.grow"><code class="name flex">
+<span>def <span class="ident">grow</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to double the capacity of the deque.</p></div>
+</dd>
+<dt id="dsa.deque.DynamicDeque.pop_left"><code class="name flex">
+<span>def <span class="ident">pop_left</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remove and return the element from the left, adjusting capacity if needed.</p>
+<h2 id="returns">Returns</h2>
+<p>The leftmost element.</p></div>
+</dd>
+<dt id="dsa.deque.DynamicDeque.pop_right"><code class="name flex">
+<span>def <span class="ident">pop_right</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remove and return the element from the right, adjusting capacity if needed.</p>
+<h2 id="returns">Returns</h2>
+<p>The rightmost element.</p></div>
+</dd>
+<dt id="dsa.deque.DynamicDeque.shrink"><code class="name flex">
+<span>def <span class="ident">shrink</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to halve the capacity of the deque.</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.deque.Deque" href="#dsa.deque.Deque">Deque</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.deque.Deque.back" href="#dsa.deque.Deque.back">back</a></code></li>
+<li><code><a title="dsa.deque.Deque.capacity" href="#dsa.deque.Deque.capacity">capacity</a></code></li>
+<li><code><a title="dsa.deque.Deque.from_list" href="#dsa.deque.Deque.from_list">from_list</a></code></li>
+<li><code><a title="dsa.deque.Deque.front" href="#dsa.deque.Deque.front">front</a></code></li>
+<li><code><a title="dsa.deque.Deque.is_empty" href="#dsa.deque.Deque.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.deque.Deque.peek_left" href="#dsa.deque.Deque.peek_left">peek_left</a></code></li>
+<li><code><a title="dsa.deque.Deque.peek_right" href="#dsa.deque.Deque.peek_right">peek_right</a></code></li>
+<li><code><a title="dsa.deque.Deque.pop_back" href="#dsa.deque.Deque.pop_back">pop_back</a></code></li>
+<li><code><a title="dsa.deque.Deque.pop_front" href="#dsa.deque.Deque.pop_front">pop_front</a></code></li>
+<li><code><a title="dsa.deque.Deque.push_back" href="#dsa.deque.Deque.push_back">push_back</a></code></li>
+<li><code><a title="dsa.deque.Deque.push_front" href="#dsa.deque.Deque.push_front">push_front</a></code></li>
+<li><code><a title="dsa.deque.Deque.to_list" href="#dsa.deque.Deque.to_list">to_list</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.deque.Deque" href="#dsa.deque.Deque">Deque</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.deque.Deque.append_left" href="#dsa.deque.Deque.append_left">append_left</a></code></li>
+<li><code><a title="dsa.deque.Deque.append_right" href="#dsa.deque.Deque.append_right">append_right</a></code></li>
+<li><code><a title="dsa.deque.Deque.back" href="#dsa.deque.Deque.back">back</a></code></li>
+<li><code><a title="dsa.deque.Deque.capacity" href="#dsa.deque.Deque.capacity">capacity</a></code></li>
+<li><code><a title="dsa.deque.Deque.from_list" href="#dsa.deque.Deque.from_list">from_list</a></code></li>
+<li><code><a title="dsa.deque.Deque.front" href="#dsa.deque.Deque.front">front</a></code></li>
+<li><code><a title="dsa.deque.Deque.is_empty" href="#dsa.deque.Deque.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.deque.Deque.peek_left" href="#dsa.deque.Deque.peek_left">peek_left</a></code></li>
+<li><code><a title="dsa.deque.Deque.peek_right" href="#dsa.deque.Deque.peek_right">peek_right</a></code></li>
+<li><code><a title="dsa.deque.Deque.pop_back" href="#dsa.deque.Deque.pop_back">pop_back</a></code></li>
+<li><code><a title="dsa.deque.Deque.pop_front" href="#dsa.deque.Deque.pop_front">pop_front</a></code></li>
+<li><code><a title="dsa.deque.Deque.pop_left" href="#dsa.deque.Deque.pop_left">pop_left</a></code></li>
+<li><code><a title="dsa.deque.Deque.pop_right" href="#dsa.deque.Deque.pop_right">pop_right</a></code></li>
+<li><code><a title="dsa.deque.Deque.push_back" href="#dsa.deque.Deque.push_back">push_back</a></code></li>
+<li><code><a title="dsa.deque.Deque.push_front" href="#dsa.deque.Deque.push_front">push_front</a></code></li>
+<li><code><a title="dsa.deque.Deque.to_list" href="#dsa.deque.Deque.to_list">to_list</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.deque.DynamicDeque" href="#dsa.deque.DynamicDeque">DynamicDeque</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.deque.DynamicDeque.append_left" href="#dsa.deque.DynamicDeque.append_left">append_left</a></code></li>
+<li><code><a title="dsa.deque.DynamicDeque.append_right" href="#dsa.deque.DynamicDeque.append_right">append_right</a></code></li>
+<li><code><a title="dsa.deque.DynamicDeque.check_capacity" href="#dsa.deque.DynamicDeque.check_capacity">check_capacity</a></code></li>
+<li><code><a title="dsa.deque.DynamicDeque.grow" href="#dsa.deque.DynamicDeque.grow">grow</a></code></li>
+<li><code><a title="dsa.deque.DynamicDeque.pop_left" href="#dsa.deque.DynamicDeque.pop_left">pop_left</a></code></li>
+<li><code><a title="dsa.deque.DynamicDeque.pop_right" href="#dsa.deque.DynamicDeque.pop_right">pop_right</a></code></li>
+<li><code><a title="dsa.deque.DynamicDeque.shrink" href="#dsa.deque.DynamicDeque.shrink">shrink</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.array API documentation</title>
+<meta name="description" content="Module containing array classes.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.array</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing array classes.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.array.Array"><code class="flex name class">
+<span>class <span class="ident">Array</span></span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A static array implementation.</p>
+<p>Special Methods:</p>
+<pre><code>Index Operator: 
+    array[index]
+
+Assignment: 
+    array[index] = value
+</code></pre>
+<p>Initialize the array with optional contents and a fixed capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>contents</code></strong></dt>
+<dd>An optional iterable to fill array with default values.</dd>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the array (default is 10)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Array:
+    &#34;&#34;&#34; 
+    A static array implementation.
+
+    Special Methods:
+
+        Index Operator: 
+            array[index]
+    
+        Assignment: 
+            array[index] = value
+    &#34;&#34;&#34;
+    def __init__(self, contents=None, capacity: int=10):
+        &#34;&#34;&#34; 
+        Initialize the array with optional contents and a fixed capacity.
+
+        Args:
+            contents: An optional iterable to fill array with default values.
+            capacity (int): The initial size of the array (default is 10)
+        &#34;&#34;&#34;
+        self._array = [ None ] * capacity
+        #: number of elements currently in array
+        self.count = 0
+
+        if contents:
+            self.extend(contents)
+        
+    def append(self, element):
+        &#34;&#34;&#34;
+        Append an element to the array. Raise an exception if capacity is exceeded.
+
+        Args:
+            element: The element to append.
+        
+        Raises:
+            Exception: If the array is full.
+        &#34;&#34;&#34;
+        if self.count &gt;= self.capacity():
+            raise Exception(f&#34;Capacity Error: Maximum capacity {len(self)} reached.&#34;)
+
+        self._array[self.count] = element
+        self.count += 1
+
+    def extend(self, array):
+        &#34;&#34;&#34; 
+        Append multiple elements from a given array.  
+        
+        Args:
+            array: An iterable containing elements to append.
+
+        Raises:
+            Exception: If appending the elements exceeds the array&#39;s capacity.
+        &#34;&#34;&#34;
+        for e in array:
+            self.append(e)
+
+    def insert(self, index: int, element):
+        &#34;&#34;&#34; 
+        Insert an element at a specified index, shifting existing elements to the right.
+
+        Args:
+            index (int): The index at which to insert the element.
+            element: The element to insert.
+
+        Raises:
+            IndexError: If the index is out of bounds.        
+        &#34;&#34;&#34;
+        if index == self.count:
+            self.append(element)
+            return
+
+        if index &lt; 0 or index &gt; self.count:
+            raise IndexError
+
+        self.shift_right(self.count, index)
+        self._array[index] = element
+        self.count += 1
+        
+    def shift_right(self, start: int, end: int):
+        &#34;&#34;&#34;
+        Helper method to shift elements to the right between the specified range.
+
+        Args:
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
+        &#34;&#34;&#34;
+        for i in range(start, end, -1):
+            self._array[i] = self._array[i - 1]
+
+    def delete(self, index: int):
+        &#34;&#34;&#34;  
+        Delete an element at a specified index, shifting subsequent elements to the left.
+
+        Args:
+            index (int): The index of the element to delete.
+
+        Raises:     
+            IndexError: If index is out of bounds.        
+        &#34;&#34;&#34;
+        if index &lt; 0 or index &gt;= self.count:
+            raise IndexError
+
+        self.shift_left(index, self.count)
+        self.count -= 1
+
+    def shift_left(self, start: int, end: int):
+        &#34;&#34;&#34;
+        Helper method to shift elements to the left between the specified range.
+
+        Args:
+            start (int): The starting index of the shift.
+            end (int): The ending index of the shift.
+        &#34;&#34;&#34;
+        for i in range(start, end):
+            self._array[i] = self._array[i + 1]
+
+    def __getitem__(self, index: int):
+        &#34;&#34;&#34;
+        Retrieve the element at the specified index.
+
+        Args:
+            index (int): The index of the element.
+
+        Returns:
+            The element at the specified index.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        &#34;&#34;&#34;
+        if index &lt; 0 or index &gt;= self.count: 
+            raise IndexError
+        return self._array[index]
+            
+    def __setitem__(self, index: int, value):
+        &#34;&#34;&#34;
+        Set a new value at the specified index.
+
+        Args:
+            index (int): The index at which to set the value.
+            value: The new value to assign.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        &#34;&#34;&#34;
+        if index &lt; 0 or index &gt;= self.count: 
+            raise IndexError
+        self._array[index] = value
+        
+    def __len__(self) -&gt; int:
+        &#34;&#34;&#34; 
+        Return the number of elements in the array.
+
+        Returns:
+            The number of elements in the array.
+        &#34;&#34;&#34;
+        return self.count
+    
+    def is_empty(self) -&gt; bool:
+        &#34;&#34;&#34; 
+        Check if the array is empty.
+
+        Returns:
+            True if the array is empty, False otherwise.
+        &#34;&#34;&#34;
+        return self.count == 0
+
+    def capacity(self) -&gt; int:
+        &#34;&#34;&#34; 
+        Get the total capacity of the array.
+
+        Returns:
+            The capacity of the array.
+        &#34;&#34;&#34;
+        return len(self._array)
+    
+    def to_list(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Convert the array&#39;s elements to a standard Python list.
+
+        Returns:
+            A list containing the elements of the array.
+        &#34;&#34;&#34;
+        return self._array[:self.count]
+
+    @classmethod
+    def from_list(cls, mylist: list):
+        &#34;&#34;&#34;
+        Create an array from a standard Python list.
+
+        Args:
+            mylist: A Python list to initialize the array.
+
+        Returns:
+            An instance of the Array class.
+        &#34;&#34;&#34;        
+        list_instance = cls()
+        list_instance.extend(mylist)
+ 
+        return list_instance
+
+    def __repr__(self):
+        &#34;&#34;&#34;
+        Represent the array&#39;s contents, count, and capacity.
+
+        Returns:
+            A string representation of the array.
+        &#34;&#34;&#34;
+        return f&#39;{self.to_list()} Count: {self.count} Capacity: {self.capacity()}&#39;</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.array.CircularArray" href="#dsa.array.CircularArray">CircularArray</a></li>
+<li><a title="dsa.array.DynamicArray" href="#dsa.array.DynamicArray">DynamicArray</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="dsa.array.Array.from_list"><code class="name flex">
+<span>def <span class="ident">from_list</span></span>(<span>mylist: list)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an array from a standard Python list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mylist</code></strong></dt>
+<dd>A Python list to initialize the array.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>An instance of the Array class.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="dsa.array.Array.count"><code class="name">var <span class="ident">count</span></code></dt>
+<dd>
+<div class="desc"><p>number of elements currently in array</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.array.Array.append"><code class="name flex">
+<span>def <span class="ident">append</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the array. Raise an exception if capacity is exceeded.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the array is full.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.Array.capacity"><code class="name flex">
+<span>def <span class="ident">capacity</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the total capacity of the array.</p>
+<h2 id="returns">Returns</h2>
+<p>The capacity of the array.</p></div>
+</dd>
+<dt id="dsa.array.Array.delete"><code class="name flex">
+<span>def <span class="ident">delete</span></span>(<span>self, index: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete an element at a specified index, shifting subsequent elements to the left.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the element to delete.</dd>
+</dl>
+<p>Raises:
+<br>
+IndexError: If index is out of bounds.</p></div>
+</dd>
+<dt id="dsa.array.Array.extend"><code class="name flex">
+<span>def <span class="ident">extend</span></span>(<span>self, array)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append multiple elements from a given array.
+</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>array</code></strong></dt>
+<dd>An iterable containing elements to append.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If appending the elements exceeds the array's capacity.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.Array.insert"><code class="name flex">
+<span>def <span class="ident">insert</span></span>(<span>self, index: int, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert an element at a specified index, shifting existing elements to the right.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index at which to insert the element.</dd>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to insert.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If the index is out of bounds.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.Array.is_empty"><code class="name flex">
+<span>def <span class="ident">is_empty</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if the array is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>True if the array is empty, False otherwise.</p></div>
+</dd>
+<dt id="dsa.array.Array.shift_left"><code class="name flex">
+<span>def <span class="ident">shift_left</span></span>(<span>self, start: int, end: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to shift elements to the left between the specified range.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>The starting index of the shift.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>The ending index of the shift.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.Array.shift_right"><code class="name flex">
+<span>def <span class="ident">shift_right</span></span>(<span>self, start: int, end: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to shift elements to the right between the specified range.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>The starting index of the shift.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>The ending index of the shift.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.Array.to_list"><code class="name flex">
+<span>def <span class="ident">to_list</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert the array's elements to a standard Python list.</p>
+<h2 id="returns">Returns</h2>
+<p>A list containing the elements of the array.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.array.CircularArray"><code class="flex name class">
+<span>class <span class="ident">CircularArray</span></span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A circular array implementation.</p>
+<p>Special Methods:</p>
+<pre><code>Index Operator: 
+    array[index]
+
+Assignment: 
+    array[index] = value
+</code></pre>
+<p>Initialize the circular array with optional contents and a fixed capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>contents</code></strong></dt>
+<dd>An optional iterable to fill array with default values.</dd>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the array (default is 10)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CircularArray(Array):
+    &#34;&#34;&#34; 
+    A circular array implementation.
+
+    Special Methods:
+
+        Index Operator: 
+            array[index]
+    
+        Assignment: 
+            array[index] = value
+    &#34;&#34;&#34;
+    def __init__(self, contents=None, capacity: int=10):
+        &#34;&#34;&#34; 
+        Initialize the circular array with optional contents and a fixed capacity.
+
+        Args:
+            contents: An optional iterable to fill array with default values.
+            capacity (int): The initial size of the array (default is 10)
+        &#34;&#34;&#34;
+        super().__init__(None, capacity)
+        #: index of the first element in the circular array
+        self._start = 0
+        if contents:
+            self.extend(contents)
+        
+    def __getitem__(self, index: int):
+        &#34;&#34;&#34;
+        Retrieve the element at the specified index.
+
+        Args:
+            index (int): The index of the element.
+
+        Returns:
+            The element at the specified index.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        &#34;&#34;&#34;
+        if index &lt; 0 or index &gt;= self.count: 
+            raise IndexError
+        return self._array[(self._start + index) % len(self._array)]
+            
+    def __setitem__(self, index: int, value):
+        &#34;&#34;&#34;
+        Set a new value at the specified index.
+
+        Args:
+            index (int): The index at which to set the value.
+            value: The new value to assign.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        &#34;&#34;&#34;
+        if index &lt; 0 or index &gt;= self.count: 
+            raise IndexError
+        self._array[(self._start + index) % len(self._array)] = value
+
+    def append(self, element):
+        &#34;&#34;&#34;
+        Append an element to the circular array. If appending exceeds capacity, it will wrap around to the oldest element.
+
+        Args:
+            element: The element to append.
+        &#34;&#34;&#34;
+        # self._array[(self._start + self.count) % len(self._array)] = element
+        # if self.count &lt; self.capacity():
+        #     self.count += 1
+        # else:
+        #     self._start = (self._start + 1) % len(self._array)
+        index = (self._start + self.count) % len(self._array)
+        self._array[index] = element
+
+        if self.count &lt; self.capacity():
+            self.count += 1
+        else:
+            self._start = (self._start + 1) % len(self._array)  # Overwrite oldest element
+
+    def raw_view(self):
+        &#34;&#34;&#34; 
+        Return a raw view of the array.
+
+        Returns:
+            A raw view of the array.
+        &#34;&#34;&#34;
+        return self._array
+
+    def to_list(self):
+        &#34;&#34;&#34; 
+        Convert the array&#39;s elements to a standard Python list.
+
+        Returns:
+            A list containing the elements of the array.
+        &#34;&#34;&#34;
+        output_list = []
+        for i in range(self.count):
+            output_list.append(self._array[(self._start + i) % len(self._array)])
+        return output_list
+
+    def insert(self, index: int, element):
+        &#34;&#34;&#34; 
+        not yet implemented
+        &#34;&#34;&#34;
+        pass
+
+    def delete(self, index: int):
+        &#34;&#34;&#34; 
+        not yet implemented
+        &#34;&#34;&#34;
+        pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.array.Array" href="#dsa.array.Array">Array</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.queue.CircularQueue" href="queue.html#dsa.queue.CircularQueue">CircularQueue</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.array.CircularArray.append"><code class="name flex">
+<span>def <span class="ident">append</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the circular array. If appending exceeds capacity, it will wrap around to the oldest element.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.CircularArray.delete"><code class="name flex">
+<span>def <span class="ident">delete</span></span>(<span>self, index: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>not yet implemented</p></div>
+</dd>
+<dt id="dsa.array.CircularArray.insert"><code class="name flex">
+<span>def <span class="ident">insert</span></span>(<span>self, index: int, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>not yet implemented</p></div>
+</dd>
+<dt id="dsa.array.CircularArray.raw_view"><code class="name flex">
+<span>def <span class="ident">raw_view</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a raw view of the array.</p>
+<h2 id="returns">Returns</h2>
+<p>A raw view of the array.</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.array.Array" href="#dsa.array.Array">Array</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.array.Array.capacity" href="#dsa.array.Array.capacity">capacity</a></code></li>
+<li><code><a title="dsa.array.Array.count" href="#dsa.array.Array.count">count</a></code></li>
+<li><code><a title="dsa.array.Array.extend" href="#dsa.array.Array.extend">extend</a></code></li>
+<li><code><a title="dsa.array.Array.from_list" href="#dsa.array.Array.from_list">from_list</a></code></li>
+<li><code><a title="dsa.array.Array.is_empty" href="#dsa.array.Array.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.array.Array.shift_left" href="#dsa.array.Array.shift_left">shift_left</a></code></li>
+<li><code><a title="dsa.array.Array.shift_right" href="#dsa.array.Array.shift_right">shift_right</a></code></li>
+<li><code><a title="dsa.array.Array.to_list" href="#dsa.array.Array.to_list">to_list</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="dsa.array.DynamicArray"><code class="flex name class">
+<span>class <span class="ident">DynamicArray</span></span>
+<span>(</span><span>contents=None, capacity: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A dynamic array implementation. Capacity will adjust as needed.</p>
+<p>Special Methods:</p>
+<pre><code>Index Operator: 
+    array[index]
+
+Assignment: 
+    array[index] = value
+</code></pre>
+<p>Initialize the array with optional contents and a fixed capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>contents</code></strong></dt>
+<dd>An optional iterable to fill array with default values.</dd>
+<dt><strong><code>capacity</code></strong> :&ensp;<code>int</code></dt>
+<dd>The initial size of the array (default is 10)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DynamicArray(Array):
+    &#34;&#34;&#34; 
+    A dynamic array implementation. Capacity will adjust as needed.
+
+    Special Methods:
+
+        Index Operator: 
+            array[index]
+    
+        Assignment: 
+            array[index] = value
+    &#34;&#34;&#34;
+
+    def grow(self):
+        &#34;&#34;&#34; 
+        Helper method to double the capacity of the current array.
+        &#34;&#34;&#34;
+        new_size = len(self._array) * 2
+        new_array = [ None ] * new_size
+
+        # copy elements
+        for i in range(len(self._array)):
+            new_array[i] = self._array[i]
+
+        self._array = new_array
+
+    def shrink(self):
+        &#34;&#34;&#34; 
+        Helper method to halve the capacity of the current array.
+        &#34;&#34;&#34;
+        new_size = len(self._array) // 2
+        new_array = [ None ] * new_size
+        
+        # copy elements
+        for i in range(new_size):
+            new_array[i] = self._array[i]
+
+        self._array = new_array
+
+    def check_capacity(self):
+        &#34;&#34;&#34; 
+        if count &gt;= capacity, grow the array.
+        if count &lt;= 1/4 of capacity, shrink the array.
+        &#34;&#34;&#34;
+        if self.count &gt;= len(self._array):
+            self.grow()
+        elif self.count * 4 &lt;= len(self._array):
+            self.shrink()
+
+    def append(self, element):
+        &#34;&#34;&#34;
+        Append an element to the array. Adjust the capacity as needed.
+
+        Args:
+            element: The element to append.
+        &#34;&#34;&#34;
+        self.check_capacity()
+
+        self._array[self.count] = element
+        self.count += 1
+
+    def extend(self, array):
+        &#34;&#34;&#34; 
+        Append multiple elements from a given array.  Adjust the capacity as needed.
+        
+        Args:
+            array: An iterable containing elements to append.
+        &#34;&#34;&#34;
+        for e in array:
+            self.append(e)
+
+    def insert(self, index: int, element):
+        &#34;&#34;&#34;  
+        Insert an element at a specified index, shifting existing elements to the right. Adjust the capacity as needed.
+
+        Args:
+            index (int): The index at which to insert the element.
+            element: The element to insert.
+        &#34;&#34;&#34;
+        if index &gt;= self.count or index &lt; 0:
+            raise IndexError
+
+        self.check_capacity()
+
+        self.shift_right(self.count, index)
+        self._array[index] = element
+        self.count += 1
+        
+    def delete(self, index: int):
+        &#34;&#34;&#34;  
+        Delete an element at a specified index, shifting subsequent elements to the left. Adjust the capacity as needed.
+
+        Args:
+            index (int): The index of the element to delete.
+        &#34;&#34;&#34;
+        if index &gt;= self.count or index &lt; 0:
+            raise IndexError
+
+        self.check_capacity()
+
+        self.shift_left(index, self.count)
+        self.count -= 1</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.array.Array" href="#dsa.array.Array">Array</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.array.DynamicArray.append"><code class="name flex">
+<span>def <span class="ident">append</span></span>(<span>self, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append an element to the array. Adjust the capacity as needed.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to append.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.DynamicArray.check_capacity"><code class="name flex">
+<span>def <span class="ident">check_capacity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>if count &gt;= capacity, grow the array.
+if count &lt;= 1/4 of capacity, shrink the array.</p></div>
+</dd>
+<dt id="dsa.array.DynamicArray.delete"><code class="name flex">
+<span>def <span class="ident">delete</span></span>(<span>self, index: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete an element at a specified index, shifting subsequent elements to the left. Adjust the capacity as needed.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the element to delete.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.DynamicArray.extend"><code class="name flex">
+<span>def <span class="ident">extend</span></span>(<span>self, array)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Append multiple elements from a given array.
+Adjust the capacity as needed.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>array</code></strong></dt>
+<dd>An iterable containing elements to append.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.DynamicArray.grow"><code class="name flex">
+<span>def <span class="ident">grow</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to double the capacity of the current array.</p></div>
+</dd>
+<dt id="dsa.array.DynamicArray.insert"><code class="name flex">
+<span>def <span class="ident">insert</span></span>(<span>self, index: int, element)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert an element at a specified index, shifting existing elements to the right. Adjust the capacity as needed.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index at which to insert the element.</dd>
+<dt><strong><code>element</code></strong></dt>
+<dd>The element to insert.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.array.DynamicArray.shrink"><code class="name flex">
+<span>def <span class="ident">shrink</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper method to halve the capacity of the current array.</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.array.Array" href="#dsa.array.Array">Array</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.array.Array.capacity" href="#dsa.array.Array.capacity">capacity</a></code></li>
+<li><code><a title="dsa.array.Array.count" href="#dsa.array.Array.count">count</a></code></li>
+<li><code><a title="dsa.array.Array.from_list" href="#dsa.array.Array.from_list">from_list</a></code></li>
+<li><code><a title="dsa.array.Array.is_empty" href="#dsa.array.Array.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.array.Array.shift_left" href="#dsa.array.Array.shift_left">shift_left</a></code></li>
+<li><code><a title="dsa.array.Array.shift_right" href="#dsa.array.Array.shift_right">shift_right</a></code></li>
+<li><code><a title="dsa.array.Array.to_list" href="#dsa.array.Array.to_list">to_list</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.array.Array" href="#dsa.array.Array">Array</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.array.Array.append" href="#dsa.array.Array.append">append</a></code></li>
+<li><code><a title="dsa.array.Array.capacity" href="#dsa.array.Array.capacity">capacity</a></code></li>
+<li><code><a title="dsa.array.Array.count" href="#dsa.array.Array.count">count</a></code></li>
+<li><code><a title="dsa.array.Array.delete" href="#dsa.array.Array.delete">delete</a></code></li>
+<li><code><a title="dsa.array.Array.extend" href="#dsa.array.Array.extend">extend</a></code></li>
+<li><code><a title="dsa.array.Array.from_list" href="#dsa.array.Array.from_list">from_list</a></code></li>
+<li><code><a title="dsa.array.Array.insert" href="#dsa.array.Array.insert">insert</a></code></li>
+<li><code><a title="dsa.array.Array.is_empty" href="#dsa.array.Array.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.array.Array.shift_left" href="#dsa.array.Array.shift_left">shift_left</a></code></li>
+<li><code><a title="dsa.array.Array.shift_right" href="#dsa.array.Array.shift_right">shift_right</a></code></li>
+<li><code><a title="dsa.array.Array.to_list" href="#dsa.array.Array.to_list">to_list</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.array.CircularArray" href="#dsa.array.CircularArray">CircularArray</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.array.CircularArray.append" href="#dsa.array.CircularArray.append">append</a></code></li>
+<li><code><a title="dsa.array.CircularArray.delete" href="#dsa.array.CircularArray.delete">delete</a></code></li>
+<li><code><a title="dsa.array.CircularArray.insert" href="#dsa.array.CircularArray.insert">insert</a></code></li>
+<li><code><a title="dsa.array.CircularArray.raw_view" href="#dsa.array.CircularArray.raw_view">raw_view</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.array.DynamicArray" href="#dsa.array.DynamicArray">DynamicArray</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.array.DynamicArray.append" href="#dsa.array.DynamicArray.append">append</a></code></li>
+<li><code><a title="dsa.array.DynamicArray.check_capacity" href="#dsa.array.DynamicArray.check_capacity">check_capacity</a></code></li>
+<li><code><a title="dsa.array.DynamicArray.delete" href="#dsa.array.DynamicArray.delete">delete</a></code></li>
+<li><code><a title="dsa.array.DynamicArray.extend" href="#dsa.array.DynamicArray.extend">extend</a></code></li>
+<li><code><a title="dsa.array.DynamicArray.grow" href="#dsa.array.DynamicArray.grow">grow</a></code></li>
+<li><code><a title="dsa.array.DynamicArray.insert" href="#dsa.array.DynamicArray.insert">insert</a></code></li>
+<li><code><a title="dsa.array.DynamicArray.shrink" href="#dsa.array.DynamicArray.shrink">shrink</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

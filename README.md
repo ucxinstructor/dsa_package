@@ -35,6 +35,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2035.06.14
+* Added iterative versions of insert and delete BST methods 
+
 ## 2025.06.11
 * Revised Trie Draw to draw circles instead of squares
 

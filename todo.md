@@ -1,5 +1,5 @@
 Put comparison overloading to all data structures
-Add enumeration and other features in HtashTable
+Add enumeration and other features in HashTable
 
   def get_edges(self, undirected=False):
         edges = []

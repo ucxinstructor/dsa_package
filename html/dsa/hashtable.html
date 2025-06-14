@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.hashtable API documentation</title>
+<meta name="description" content="Module containing hash table class.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.hashtable</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing hash table class.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.hashtable.HashTable"><code class="flex name class">
+<span>class <span class="ident">HashTable</span></span>
+<span>(</span><span>capacity=20)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A hashtable implementation. </p>
+<p>Initialize a hashtable with a given capacity.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>capacity</code></strong></dt>
+<dd>The capacity of the hashtable.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HashTable:
+    &#34;&#34;&#34; 
+    A hashtable implementation. 
+    &#34;&#34;&#34;
+    def __init__(self, capacity=20):
+        &#34;&#34;&#34;
+        Initialize a hashtable with a given capacity.
+
+        Args:
+            capacity: The capacity of the hashtable.
+        &#34;&#34;&#34;
+        self.capacity = capacity
+
+        self.array = []
+        for _ in range(self.capacity):
+            self.array.append([])
+
+        #: the number of items in the hashtable
+        self.count = 0
+        
+    def hash_function(self, key: str) -&gt; int:
+        &#34;&#34;&#34; 
+        Return a hash value based on a given key. 
+
+        Args:
+            key: The key to convert to a hashvalue.
+        Returns:
+            Hash value modded to the hashtable capacity.
+        &#34;&#34;&#34;
+        mult = 31
+        hash_val = 0
+        for character in key:
+            hash_val *= mult
+            hash_val += ord(character)
+            hash_val %= (2**32)
+
+        return hash_val % self.capacity
+        
+    def key_exists(self, key: str) -&gt; bool:
+        &#34;&#34;&#34; 
+        Returns a Boolean on whether a key exists in the hashtable or not .
+
+        Args:
+            key: The key to check for in the hashtable.
+        Returns:
+            Boolean of key existence.
+        &#34;&#34;&#34;
+        bucket = self.hash_function(key)
+        
+        for e in self.array[bucket]:
+            if e[0] == key:
+                return True
+        return False
+
+    def set(self, key: str, value):
+        &#34;&#34;&#34; 
+        Set a key-value pair in the hashtable.
+
+        If key exists, replace the value otherwise, create a new key-pair.
+
+        Args:
+            key: The key to check for.
+            value: The value to set or create.
+        &#34;&#34;&#34;
+
+        bucket = self.hash_function(key)
+
+        # linear searh for key 
+        for e in self.array[bucket]:
+            if e[0] == key:
+                e[1] = value
+                break
+        else:
+            self.array[bucket].append([ key, value ])
+            self.count += 1
+
+    def get(self, key: str):
+        &#34;&#34;&#34; 
+        Get corresponding value of a given key in the hash table.
+
+        Args:
+            key: The key to check for.
+            value: The value to set or create.
+        Returns:
+            corresponding value of key.
+            None if key is not found.
+        &#34;&#34;&#34;
+        bucket = self.hash_function(key)
+
+        for e in self.array[bucket]:
+            if e[0] == key:
+                return e[1]
+
+        return None
+
+    def delete(self, key: str):
+        &#34;&#34;&#34; 
+        Delete key-value pair if specified key is found. 
+
+        Args:
+            key: The key to check for.
+        &#34;&#34;&#34;
+        bucket = self.hash_function(key)
+
+        for i in range(len(self.array[bucket])):
+            kvpair = self.array[bucket][i]
+            if kvpair and kvpair[0] == key:
+                del self.array[bucket][i]
+                self.count -= 1
+                break
+    
+    def __repr__(self):
+        &#34;&#34;&#34;
+        Return a string representation of the hashtable.
+        &#34;&#34;&#34;
+        s = &#34;{&#34;
+        pairs = []
+        for bucket in self.array:
+            if bucket:
+                for chain_link in bucket:
+                    pairs.append(f&#34;{chain_link[0]}:{chain_link[1]}&#34;)
+        s += &#34;, &#34;.join(pairs)
+        return s + &#34;}&#34;
+
+    def show_buckets(self):
+        &#34;&#34;&#34;
+        Return a string displaying the contents of all buckets in the hashtable.
+        &#34;&#34;&#34;
+        s = &#34;&#34;
+        for i, bucket in enumerate(self.array):
+            s += f&#34;Bucket {i}: {bucket}\n&#34;
+        return s</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="dsa.hashtable.HashTable.count"><code class="name">var <span class="ident">count</span></code></dt>
+<dd>
+<div class="desc"><p>the number of items in the hashtable</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.hashtable.HashTable.delete"><code class="name flex">
+<span>def <span class="ident">delete</span></span>(<span>self, key: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete key-value pair if specified key is found. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>key</code></strong></dt>
+<dd>The key to check for.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.hashtable.HashTable.get"><code class="name flex">
+<span>def <span class="ident">get</span></span>(<span>self, key: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get corresponding value of a given key in the hash table.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>key</code></strong></dt>
+<dd>The key to check for.</dd>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to set or create.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>corresponding value of key.
+None if key is not found.</p></div>
+</dd>
+<dt id="dsa.hashtable.HashTable.hash_function"><code class="name flex">
+<span>def <span class="ident">hash_function</span></span>(<span>self, key: str) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a hash value based on a given key. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>key</code></strong></dt>
+<dd>The key to convert to a hashvalue.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Hash value modded to the hashtable capacity.</p></div>
+</dd>
+<dt id="dsa.hashtable.HashTable.key_exists"><code class="name flex">
+<span>def <span class="ident">key_exists</span></span>(<span>self, key: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a Boolean on whether a key exists in the hashtable or not .</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>key</code></strong></dt>
+<dd>The key to check for in the hashtable.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Boolean of key existence.</p></div>
+</dd>
+<dt id="dsa.hashtable.HashTable.set"><code class="name flex">
+<span>def <span class="ident">set</span></span>(<span>self, key: str, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set a key-value pair in the hashtable.</p>
+<p>If key exists, replace the value otherwise, create a new key-pair.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>key</code></strong></dt>
+<dd>The key to check for.</dd>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to set or create.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.hashtable.HashTable.show_buckets"><code class="name flex">
+<span>def <span class="ident">show_buckets</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a string displaying the contents of all buckets in the hashtable.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.hashtable.HashTable" href="#dsa.hashtable.HashTable">HashTable</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.hashtable.HashTable.count" href="#dsa.hashtable.HashTable.count">count</a></code></li>
+<li><code><a title="dsa.hashtable.HashTable.delete" href="#dsa.hashtable.HashTable.delete">delete</a></code></li>
+<li><code><a title="dsa.hashtable.HashTable.get" href="#dsa.hashtable.HashTable.get">get</a></code></li>
+<li><code><a title="dsa.hashtable.HashTable.hash_function" href="#dsa.hashtable.HashTable.hash_function">hash_function</a></code></li>
+<li><code><a title="dsa.hashtable.HashTable.key_exists" href="#dsa.hashtable.HashTable.key_exists">key_exists</a></code></li>
+<li><code><a title="dsa.hashtable.HashTable.set" href="#dsa.hashtable.HashTable.set">set</a></code></li>
+<li><code><a title="dsa.hashtable.HashTable.show_buckets" href="#dsa.hashtable.HashTable.show_buckets">show_buckets</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

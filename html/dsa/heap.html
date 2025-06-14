@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.heap API documentation</title>
+<meta name="description" content="Module containing heap (max heap), min heap and priority queue classes.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.heap</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing heap (max heap), min heap and priority queue classes.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.heap.Heap"><code class="flex name class">
+<span>class <span class="ident">Heap</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A max heap implementation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Heap:
+    &#34;&#34;&#34; 
+    A max heap implementation.
+    &#34;&#34;&#34;
+    def __init__(self):
+        self._array = []
+
+    @classmethod
+    def from_list(cls, mylist: list):
+        &#34;&#34;&#34;
+        Create a heap from a list of elements.
+        Args:
+            mylist (list): The list of elements to be inserted into the heap.
+        Returns:
+            Heap: An instance of the heap with all elements from the list inserted.
+        &#34;&#34;&#34;
+
+        hp = cls()
+        for e in mylist:
+            hp.insert(e)
+
+        return hp
+
+    def raw_view(self) -&gt; list:
+        &#34;&#34;&#34;
+        Return the heap in its array representation.
+
+        Returns:
+            list: The list representation of the heap.
+        &#34;&#34;&#34;
+
+        return self._array
+    
+    def root(self):
+        &#34;&#34;&#34;
+        Get the root value.
+
+        Returns:
+            The root node&#39;s value. None if count is 0.
+        &#34;&#34;&#34;
+        if self.count() == 0:
+            return None
+
+        return self._array[0]
+    
+    def peek(self):
+        &#34;&#34;&#34;
+        Get the max value of the max heap.
+
+        Returns:
+            The maximum value of the max heap.
+        &#34;&#34;&#34;
+        return self.root()
+
+    def last(self):
+        &#34;&#34;&#34;
+        Get the last node of the max heap.
+
+        Returns:
+            The last node&#39;s value. 
+            None if count is 0.
+        &#34;&#34;&#34;
+        if self.count() == 0:
+            return None
+
+        return self._array[-1] 
+    
+    def left_index(self, index: int) -&gt; int:
+        &#34;&#34;&#34;
+        Get the index of the left child.
+
+        Args:
+            index (int): The index of the node.
+
+        Returns:
+            Return the index of the left child.
+        &#34;&#34;&#34;
+        return (index * 2) + 1
+
+    def right_index(self, index: int) -&gt; int:
+        &#34;&#34;&#34;
+        Get the index of the right child.
+
+        Args:
+            index (int): The index of the node.
+
+        Returns:
+            Return the index of the right child.
+        &#34;&#34;&#34;
+        return (index * 2) + 2
+
+    def parent_index(self, index: int) -&gt; int:
+        &#34;&#34;&#34;
+        Get the index of the parent node.
+
+        Args:
+            index (int): The index of the node.  
+
+        Returns:
+            Return the index of the parent child.
+        &#34;&#34;&#34;
+        return (index - 1) // 2
+    
+    def has_left(self, index: int) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if current node has an left child.
+
+        Args:
+            index (int): The index of the node.
+
+        Returns:
+            Boolean on whether a node has a left child node.
+        &#34;&#34;&#34;
+        return self.left_index(index) &lt; self.count()
+    
+    def has_right(self, index: int) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if current node has an right child.
+
+        Args:
+            index (int): The index of the node.  
+
+        Returns:
+            Boolean on whether a node has a right child node.
+        &#34;&#34;&#34;
+        return self.right_index(index) &lt; self.count()
+
+    def has_parent(self, index: int) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if a node has a parent node.
+
+        Args:
+            index (int): The index of the node. 
+
+        Returns:
+            Boolean on whether a node has a parent node.
+        &#34;&#34;&#34;
+        return self.parent_index(index) &gt;= 0
+    
+    def insert(self, value):
+        &#34;&#34;&#34;
+        Insert a value into the heap.
+
+        Args:
+            value: The value to insert. 
+        &#34;&#34;&#34;
+        self._array.append(value)
+        
+        start_index = self.count() - 1
+        self.heapify_up(start_index)
+    
+    def heapify_up(self, index: int):
+        &#34;&#34;&#34;
+        Perform heapify up starting at a given index.
+
+        Args:
+            index (int): The starting index.
+        &#34;&#34;&#34;
+        parent_index = self.parent_index(index)
+        while self.has_parent(index) and self._array[index] &gt; self._array[parent_index]:
+            self._array[index], self._array[parent_index] = self._array[parent_index], self._array[index]
+            index = parent_index
+            parent_index = self.parent_index(index)
+
+    def pop(self):
+        &#34;&#34;&#34;
+        Return the value of the root node (max value) and remove it from the heap.
+
+        Returns:
+            Return the value from the root node.
+        &#34;&#34;&#34;
+        root_value = self.root()
+        
+        # start at root node
+        start_index = 0
+        if self.count() == 0:
+            raise Exception(&#34;Heap is empty&#34;)
+        if self.count() == 1:
+            self._array.pop()
+        else:
+            self._array[start_index] = self._array.pop()
+        
+        self.heapify_down(start_index)
+        return root_value
+        
+    def heapify_down(self, index: int):
+        &#34;&#34;&#34;
+        Perform heapify down starting at a given index.
+
+        Args:
+            index (int): The starting index.
+        &#34;&#34;&#34;
+        while self.has_left(index):
+            higher_index = self.left_index(index)
+            right_index = self.right_index(index)
+            if self.has_right(index) and self._array[right_index] &gt; self._array[higher_index]:
+                higher_index = right_index
+            
+            if self._array[index] &gt; self._array[higher_index]:
+                break
+            else:
+                self._array[index], self._array[higher_index] = self._array[higher_index], self._array[index]
+                
+            index = higher_index
+    
+    def enumerate(self):
+        &#34;&#34;&#34;
+        Return the enumeration of a heap.
+
+        Returns:
+            Enumeration of a heap.
+        &#34;&#34;&#34;
+        return enumerate(self._array)
+
+    def count(self) -&gt; int:
+        &#34;&#34;&#34;
+        Return the number of items in the heap.
+
+        Returns:
+            The number of items in the heap.
+        &#34;&#34;&#34;
+        return len(self._array)
+    
+    def is_empty(self) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if a heap has any items.
+
+        Returns:
+            True if heap has no items.
+            False if heap has more than 0 items.
+        &#34;&#34;&#34;
+        return self.count() == 0
+
+    def print(self):
+        &#34;&#34;&#34;
+        Print the contents of a heap.
+        &#34;&#34;&#34;
+        node_count = 1
+        for i in range(self.count()):
+            if i + 1 &gt;= node_count:
+                print()
+                node_count *= 2
+            print(self._array[i], end=&#34; &#34;)
+
+    def to_sorted_list(self) -&gt; list:
+        &#34;&#34;&#34;
+        Return a sorted list from the heap.
+
+        Returns:
+            A sorted list.
+        &#34;&#34;&#34;
+        temp_heap = Heap()
+        temp_heap._array = self._array[:]
+
+        result = []
+        while not temp_heap.is_empty():
+            result.append(temp_heap.pop())
+
+        return result
+
+    def __repr__(self):
+        &#34;&#34;&#34;
+        Return string representation of a heap in order of priority.
+        &#34;&#34;&#34;
+        ordered_list = self.to_sorted_list()
+        return &#34;[&#34; + &#34; &#34;.join([str(e) for e in ordered_list]) + &#34;]&#34;
+
+    def __len__(self):
+        &#34;&#34;&#34;
+        Get the number of items in the priority queue.
+
+        Returns:
+            Number of items in the priority queue
+        &#34;&#34;&#34;
+        return self.count()</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.heap.MinHeap" href="#dsa.heap.MinHeap">MinHeap</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="dsa.heap.Heap.from_list"><code class="name flex">
+<span>def <span class="ident">from_list</span></span>(<span>mylist: list)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a heap from a list of elements.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mylist</code></strong> :&ensp;<code>list</code></dt>
+<dd>The list of elements to be inserted into the heap.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="dsa.heap.Heap" href="#dsa.heap.Heap">Heap</a></code></dt>
+<dd>An instance of the heap with all elements from the list inserted.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.heap.Heap.count"><code class="name flex">
+<span>def <span class="ident">count</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the number of items in the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>The number of items in the heap.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.enumerate"><code class="name flex">
+<span>def <span class="ident">enumerate</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the enumeration of a heap.</p>
+<h2 id="returns">Returns</h2>
+<p>Enumeration of a heap.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.has_left"><code class="name flex">
+<span>def <span class="ident">has_left</span></span>(<span>self, index: int) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if current node has an left child.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Boolean on whether a node has a left child node.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.has_parent"><code class="name flex">
+<span>def <span class="ident">has_parent</span></span>(<span>self, index: int) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if a node has a parent node.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the node. </dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Boolean on whether a node has a parent node.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.has_right"><code class="name flex">
+<span>def <span class="ident">has_right</span></span>(<span>self, index: int) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if current node has an right child.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the node.
+</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Boolean on whether a node has a right child node.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.heapify_down"><code class="name flex">
+<span>def <span class="ident">heapify_down</span></span>(<span>self, index: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform heapify down starting at a given index.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The starting index.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.heap.Heap.heapify_up"><code class="name flex">
+<span>def <span class="ident">heapify_up</span></span>(<span>self, index: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform heapify up starting at a given index.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The starting index.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.heap.Heap.insert"><code class="name flex">
+<span>def <span class="ident">insert</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert a value into the heap.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to insert.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.heap.Heap.is_empty"><code class="name flex">
+<span>def <span class="ident">is_empty</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if a heap has any items.</p>
+<h2 id="returns">Returns</h2>
+<p>True if heap has no items.
+False if heap has more than 0 items.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.last"><code class="name flex">
+<span>def <span class="ident">last</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the last node of the max heap.</p>
+<h2 id="returns">Returns</h2>
+<p>The last node's value.
+None if count is 0.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.left_index"><code class="name flex">
+<span>def <span class="ident">left_index</span></span>(<span>self, index: int) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the index of the left child.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Return the index of the left child.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.parent_index"><code class="name flex">
+<span>def <span class="ident">parent_index</span></span>(<span>self, index: int) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the index of the parent node.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the node.
+</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Return the index of the parent child.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.peek"><code class="name flex">
+<span>def <span class="ident">peek</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the max value of the max heap.</p>
+<h2 id="returns">Returns</h2>
+<p>The maximum value of the max heap.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.pop"><code class="name flex">
+<span>def <span class="ident">pop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the value of the root node (max value) and remove it from the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>Return the value from the root node.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.print"><code class="name flex">
+<span>def <span class="ident">print</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print the contents of a heap.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.raw_view"><code class="name flex">
+<span>def <span class="ident">raw_view</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the heap in its array representation.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>The list representation of the heap.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.heap.Heap.right_index"><code class="name flex">
+<span>def <span class="ident">right_index</span></span>(<span>self, index: int) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the index of the right child.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Return the index of the right child.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.root"><code class="name flex">
+<span>def <span class="ident">root</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the root value.</p>
+<h2 id="returns">Returns</h2>
+<p>The root node's value. None if count is 0.</p></div>
+</dd>
+<dt id="dsa.heap.Heap.to_sorted_list"><code class="name flex">
+<span>def <span class="ident">to_sorted_list</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a sorted list from the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>A sorted list.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.heap.MinHeap"><code class="flex name class">
+<span>class <span class="ident">MinHeap</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A max heap implementation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MinHeap(Heap):
+    def heapify_up(self, index: int):
+        &#34;&#34;&#34;
+        Perform heapify up starting at a given index.
+
+        Args:
+            index (int): The starting index.
+        &#34;&#34;&#34;
+        parent_index = self.parent_index(index)
+        while self.has_parent(index) and self._array[index] &lt; self._array[parent_index]:
+            self._array[index], self._array[parent_index] = self._array[parent_index], self._array[index]
+            index = parent_index
+            parent_index = self.parent_index(index)
+
+    def heapify_down(self, index: int):
+        &#34;&#34;&#34;
+        Perform heapify down starting at a given index.
+
+        Args:
+            index (int): The starting index.
+        &#34;&#34;&#34;
+        while self.has_left(index):
+            higher_index = self.left_index(index)
+            right_index = self.right_index(index)
+            if self.has_right(index) and self._array[right_index] &lt; self._array[higher_index]:
+                higher_index = right_index
+            
+            if self._array[index] &lt; self._array[higher_index]:
+                break
+            else:
+                self._array[index], self._array[higher_index] = self._array[higher_index], self._array[index]
+                
+            index = higher_index</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.heap.Heap" href="#dsa.heap.Heap">Heap</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.heap.PriorityQueue" href="#dsa.heap.PriorityQueue">PriorityQueue</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.heap.Heap" href="#dsa.heap.Heap">Heap</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.heap.Heap.count" href="#dsa.heap.Heap.count">count</a></code></li>
+<li><code><a title="dsa.heap.Heap.enumerate" href="#dsa.heap.Heap.enumerate">enumerate</a></code></li>
+<li><code><a title="dsa.heap.Heap.from_list" href="#dsa.heap.Heap.from_list">from_list</a></code></li>
+<li><code><a title="dsa.heap.Heap.has_left" href="#dsa.heap.Heap.has_left">has_left</a></code></li>
+<li><code><a title="dsa.heap.Heap.has_parent" href="#dsa.heap.Heap.has_parent">has_parent</a></code></li>
+<li><code><a title="dsa.heap.Heap.has_right" href="#dsa.heap.Heap.has_right">has_right</a></code></li>
+<li><code><a title="dsa.heap.Heap.heapify_down" href="#dsa.heap.Heap.heapify_down">heapify_down</a></code></li>
+<li><code><a title="dsa.heap.Heap.heapify_up" href="#dsa.heap.Heap.heapify_up">heapify_up</a></code></li>
+<li><code><a title="dsa.heap.Heap.insert" href="#dsa.heap.Heap.insert">insert</a></code></li>
+<li><code><a title="dsa.heap.Heap.is_empty" href="#dsa.heap.Heap.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.heap.Heap.last" href="#dsa.heap.Heap.last">last</a></code></li>
+<li><code><a title="dsa.heap.Heap.left_index" href="#dsa.heap.Heap.left_index">left_index</a></code></li>
+<li><code><a title="dsa.heap.Heap.parent_index" href="#dsa.heap.Heap.parent_index">parent_index</a></code></li>
+<li><code><a title="dsa.heap.Heap.peek" href="#dsa.heap.Heap.peek">peek</a></code></li>
+<li><code><a title="dsa.heap.Heap.pop" href="#dsa.heap.Heap.pop">pop</a></code></li>
+<li><code><a title="dsa.heap.Heap.print" href="#dsa.heap.Heap.print">print</a></code></li>
+<li><code><a title="dsa.heap.Heap.raw_view" href="#dsa.heap.Heap.raw_view">raw_view</a></code></li>
+<li><code><a title="dsa.heap.Heap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
+<li><code><a title="dsa.heap.Heap.root" href="#dsa.heap.Heap.root">root</a></code></li>
+<li><code><a title="dsa.heap.Heap.to_sorted_list" href="#dsa.heap.Heap.to_sorted_list">to_sorted_list</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="dsa.heap.PriorityQueue"><code class="flex name class">
+<span>class <span class="ident">PriorityQueue</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A priority queue implementation in Python.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PriorityQueue(MinHeap):
+    &#34;&#34;&#34; 
+    A priority queue implementation in Python.
+    &#34;&#34;&#34;
+    def push(self, priority: int, item):
+        &#34;&#34;&#34;
+        Insert an item with a priority into the priority queue.
+
+        Args:
+            priority (int): Priority of item.
+            item: The item to insert.
+        &#34;&#34;&#34;
+        super().insert((priority, item))
+
+    def pop(self):
+        &#34;&#34;&#34;
+        Return and remove the highest priority value in the heap.
+
+        Returns:
+            Return The highest priority value in the heap.
+        &#34;&#34;&#34;
+        priority, item = super().pop()
+        return item
+
+    def pop_pair(self) -&gt; tuple:
+        &#34;&#34;&#34;
+        Return and remove the highest priority value pair in the heap.
+
+        Returns:
+            Return the highest priority, value pair (tuple) in the heap.
+        &#34;&#34;&#34;
+        return super().pop()
+
+    def peek(self):
+        &#34;&#34;&#34;
+        Return the highest priority value in the heap.
+
+        Returns:
+            Return The highest priority value in the heap.
+        &#34;&#34;&#34;
+        priority, item = super().peek()
+        return item
+
+    def peek_pair(self) -&gt; tuple:
+        &#34;&#34;&#34;
+        Return the highest priority value pair in the heap.
+
+        Returns:
+            Return the highest priority, value pair (tuple) in the heap.
+        &#34;&#34;&#34;
+        return super().peek()
+
+    def to_string_with_priority(self):
+        &#34;&#34;&#34;
+        Return string representation of a heap in order of priority.
+        &#34;&#34;&#34;
+        temp_array = self._array[:]
+        result = []
+        while not self.is_empty():
+            result.append(str(self.pop_pair()))
+        self._array = temp_array
+
+        return &#34;[&#34; + &#34; &#34;.join(result) + &#34;]&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.heap.MinHeap" href="#dsa.heap.MinHeap">MinHeap</a></li>
+<li><a title="dsa.heap.Heap" href="#dsa.heap.Heap">Heap</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.heap.PriorityQueue.peek"><code class="name flex">
+<span>def <span class="ident">peek</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the highest priority value in the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>Return The highest priority value in the heap.</p></div>
+</dd>
+<dt id="dsa.heap.PriorityQueue.peek_pair"><code class="name flex">
+<span>def <span class="ident">peek_pair</span></span>(<span>self) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the highest priority value pair in the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>Return the highest priority, value pair (tuple) in the heap.</p></div>
+</dd>
+<dt id="dsa.heap.PriorityQueue.pop"><code class="name flex">
+<span>def <span class="ident">pop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return and remove the highest priority value in the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>Return The highest priority value in the heap.</p></div>
+</dd>
+<dt id="dsa.heap.PriorityQueue.pop_pair"><code class="name flex">
+<span>def <span class="ident">pop_pair</span></span>(<span>self) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return and remove the highest priority value pair in the heap.</p>
+<h2 id="returns">Returns</h2>
+<p>Return the highest priority, value pair (tuple) in the heap.</p></div>
+</dd>
+<dt id="dsa.heap.PriorityQueue.push"><code class="name flex">
+<span>def <span class="ident">push</span></span>(<span>self, priority: int, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert an item with a priority into the priority queue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>priority</code></strong> :&ensp;<code>int</code></dt>
+<dd>Priority of item.</dd>
+<dt><strong><code>item</code></strong></dt>
+<dd>The item to insert.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.heap.PriorityQueue.to_string_with_priority"><code class="name flex">
+<span>def <span class="ident">to_string_with_priority</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return string representation of a heap in order of priority.</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.heap.MinHeap" href="#dsa.heap.MinHeap">MinHeap</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.heap.MinHeap.count" href="#dsa.heap.Heap.count">count</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.enumerate" href="#dsa.heap.Heap.enumerate">enumerate</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.from_list" href="#dsa.heap.Heap.from_list">from_list</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.has_left" href="#dsa.heap.Heap.has_left">has_left</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.has_parent" href="#dsa.heap.Heap.has_parent">has_parent</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.has_right" href="#dsa.heap.Heap.has_right">has_right</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.heapify_down" href="#dsa.heap.Heap.heapify_down">heapify_down</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.heapify_up" href="#dsa.heap.Heap.heapify_up">heapify_up</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.insert" href="#dsa.heap.Heap.insert">insert</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.is_empty" href="#dsa.heap.Heap.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.last" href="#dsa.heap.Heap.last">last</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.left_index" href="#dsa.heap.Heap.left_index">left_index</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.parent_index" href="#dsa.heap.Heap.parent_index">parent_index</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.print" href="#dsa.heap.Heap.print">print</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.raw_view" href="#dsa.heap.Heap.raw_view">raw_view</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.root" href="#dsa.heap.Heap.root">root</a></code></li>
+<li><code><a title="dsa.heap.MinHeap.to_sorted_list" href="#dsa.heap.Heap.to_sorted_list">to_sorted_list</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.heap.Heap" href="#dsa.heap.Heap">Heap</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.heap.Heap.count" href="#dsa.heap.Heap.count">count</a></code></li>
+<li><code><a title="dsa.heap.Heap.enumerate" href="#dsa.heap.Heap.enumerate">enumerate</a></code></li>
+<li><code><a title="dsa.heap.Heap.from_list" href="#dsa.heap.Heap.from_list">from_list</a></code></li>
+<li><code><a title="dsa.heap.Heap.has_left" href="#dsa.heap.Heap.has_left">has_left</a></code></li>
+<li><code><a title="dsa.heap.Heap.has_parent" href="#dsa.heap.Heap.has_parent">has_parent</a></code></li>
+<li><code><a title="dsa.heap.Heap.has_right" href="#dsa.heap.Heap.has_right">has_right</a></code></li>
+<li><code><a title="dsa.heap.Heap.heapify_down" href="#dsa.heap.Heap.heapify_down">heapify_down</a></code></li>
+<li><code><a title="dsa.heap.Heap.heapify_up" href="#dsa.heap.Heap.heapify_up">heapify_up</a></code></li>
+<li><code><a title="dsa.heap.Heap.insert" href="#dsa.heap.Heap.insert">insert</a></code></li>
+<li><code><a title="dsa.heap.Heap.is_empty" href="#dsa.heap.Heap.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.heap.Heap.last" href="#dsa.heap.Heap.last">last</a></code></li>
+<li><code><a title="dsa.heap.Heap.left_index" href="#dsa.heap.Heap.left_index">left_index</a></code></li>
+<li><code><a title="dsa.heap.Heap.parent_index" href="#dsa.heap.Heap.parent_index">parent_index</a></code></li>
+<li><code><a title="dsa.heap.Heap.peek" href="#dsa.heap.Heap.peek">peek</a></code></li>
+<li><code><a title="dsa.heap.Heap.pop" href="#dsa.heap.Heap.pop">pop</a></code></li>
+<li><code><a title="dsa.heap.Heap.print" href="#dsa.heap.Heap.print">print</a></code></li>
+<li><code><a title="dsa.heap.Heap.raw_view" href="#dsa.heap.Heap.raw_view">raw_view</a></code></li>
+<li><code><a title="dsa.heap.Heap.right_index" href="#dsa.heap.Heap.right_index">right_index</a></code></li>
+<li><code><a title="dsa.heap.Heap.root" href="#dsa.heap.Heap.root">root</a></code></li>
+<li><code><a title="dsa.heap.Heap.to_sorted_list" href="#dsa.heap.Heap.to_sorted_list">to_sorted_list</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.heap.MinHeap" href="#dsa.heap.MinHeap">MinHeap</a></code></h4>
+</li>
+<li>
+<h4><code><a title="dsa.heap.PriorityQueue" href="#dsa.heap.PriorityQueue">PriorityQueue</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.heap.PriorityQueue.peek" href="#dsa.heap.PriorityQueue.peek">peek</a></code></li>
+<li><code><a title="dsa.heap.PriorityQueue.peek_pair" href="#dsa.heap.PriorityQueue.peek_pair">peek_pair</a></code></li>
+<li><code><a title="dsa.heap.PriorityQueue.pop" href="#dsa.heap.PriorityQueue.pop">pop</a></code></li>
+<li><code><a title="dsa.heap.PriorityQueue.pop_pair" href="#dsa.heap.PriorityQueue.pop_pair">pop_pair</a></code></li>
+<li><code><a title="dsa.heap.PriorityQueue.push" href="#dsa.heap.PriorityQueue.push">push</a></code></li>
+<li><code><a title="dsa.heap.PriorityQueue.to_string_with_priority" href="#dsa.heap.PriorityQueue.to_string_with_priority">to_string_with_priority</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

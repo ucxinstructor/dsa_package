@@ -76,7 +76,6 @@ class Tree:
         
         Returns:
             node with matching value
-            None if not found
 
         Raises:
             ValueError: if value is not found
@@ -90,14 +89,39 @@ class Tree:
                 current = current.left
             elif value > current.value:
                 current = current.right
-            else:
-                return None
-        
-        return None
-    
+
+        raise ValueError(f"Value {value} not found in the tree")
+
     def insert(self, value):
         """ 
         Insert a value in the binary search tree.
+
+        Args:
+            value: The value to insert.
+        
+        Returns:
+            The root of the tree after deletion.
+
+        Raises:
+            ValueError: if value is already in the tree
+        """
+        self.root = self.insert_rec(self.root, value)
+        return self.root
+    
+    def insert_rec(self, root, value):
+        if root is None:
+            return TreeNode(value)
+        if value < root.value:
+            root.left = self.insert_rec(root.left, value)
+        elif value > root.value:
+            root.right = self.insert_rec(root.right, value)
+        else:
+            raise ValueError("Value already exists in the tree")
+        return root
+
+    def insert_iterative(self, value):
+        """ 
+        Insert a value in the binary search tree (iterative implementation).
 
         Args:
             value: The value to insert.
@@ -137,14 +161,16 @@ class Tree:
             value: The value to delete.
         
         Returns:
-            None
+            The root of the tree after insertion.
+
         
         Raises:
             ValueError: if value is not found.
         """
-        return self.delete_node(value, self.root)
+        self.root = self.delete_node(self.root, value)
+        return self.root
         
-    def delete_node(self, value, node):
+    def delete_node(self, node, value):
         """ 
         Helper function to delete a value from the binary search tree. (Use delete() instead)
 
@@ -153,31 +179,32 @@ class Tree:
             node: The current node.
 
         Returns:
-            None
+            The new subtree root after deletion.
         
         Raises:
             ValueError: if value is not found.
-        """
+        """ 
         if node is None:
+            raise ValueError("Value not found in the tree")
             return None
         
         if value < node.value:
-            node.left = self.delete_node(value, node.left)
+            node.left = self.delete_node(node.left, value)
         elif value > node.value:
-            node.right = self.delete_node(value, node.right)
+            node.right = self.delete_node(node.right, value)
         else:
             if node.left is None:
-                branch = node.right
+                subtree = node.right
                 node = None
-                return branch
+                return subtree
             elif node.right is None:
-                branch = node.left
+                subtree = node.left
                 node = None
-                return branch
+                return subtree
             
-            branch = self.successor_node(node.right)
-            node.value = branch.value
-            node.right = self.delete_node(branch.value, node.right)
+            successor = self.successor_node(node.right)
+            node.value = successor.value
+            node.right = self.delete_node(node.right, successor.value)
             
         return node
     
@@ -225,6 +252,68 @@ class Tree:
         else:
             return self.predecessor_node(node.right)
     
+    def delete_iterative(self, root, value):
+        """ 
+        Delete a value from the binary search tree (iterative version).
+
+        Args:
+            value: The value to delete.
+        
+        Returns:
+            The root of the tree after insertion.
+
+        
+        Raises:
+            ValueError: if value is not found.
+        """
+        parent = None
+        current = root
+
+        # Find the node to delete and its parent
+        while current and current.key != value:
+            parent = current
+            if value < current.key:
+                current = current.left
+            else:
+                current = current.right
+
+        if current is None:
+            return root  # Key not found
+
+        # Case 1 & 2: Node has at most one child
+        def replace_node_in_parent(new_child):
+            if parent is None:
+                return new_child  # Deleting the root node
+            if parent.left == current:
+                parent.left = new_child
+            else:
+                parent.right = new_child
+            return root
+
+        if current.left is None:
+            return replace_node_in_parent(current.right)
+        elif current.right is None:
+            return replace_node_in_parent(current.left)
+
+        # Case 3: Node has two children
+        # Find in-order successor and its parent
+        successor_parent = current
+        successor = current.right
+        while successor.left:
+            successor_parent = successor
+            successor = successor.left
+
+        # Replace current's key with successor's key
+        current.key = successor.key
+
+        # Delete successor node (which has at most one child)
+        if successor_parent.left == successor:
+            successor_parent.left = successor.right
+        else:
+            successor_parent.right = successor.right
+
+        return root
+
     def print(self):
         """ 
         Print the values in the BST.

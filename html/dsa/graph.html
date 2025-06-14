@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.graph API documentation</title>
+<meta name="description" content="Module containing graph classes.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.graph</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing graph classes.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.graph.AdjacencyListGraph"><code class="flex name class">
+<span>class <span class="ident">AdjacencyListGraph</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A unweighted adjacency list vertex implementation
+(allows either directed or undirected representation)
+vertex labels are string types</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AdjacencyListGraph:
+    &#34;&#34;&#34; 
+    A unweighted adjacency list vertex implementation
+    (allows either directed or undirected representation)
+    vertex labels are string types
+    &#34;&#34;&#34;
+    def __init__(self):
+        #: hash table of vertices in graph
+        self._adjacents = {}
+        
+    def add_edge(self, start_label: str, end_label: str, directed=False):
+        &#34;&#34;&#34; 
+        Add an edge to the graph.
+
+        Args:
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
+            directed (bool): Whether the edge is directed.
+        &#34;&#34;&#34;
+        self.add_directed_edge(start_label, end_label)
+        if not directed:
+            self.add_directed_edge(end_label, start_label)
+                
+    def add_directed_edge(self, start_label: str, end_label: str):
+        &#34;&#34;&#34; 
+        Add a directed edge to the graph.
+
+        Args:
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
+        &#34;&#34;&#34;
+        if start_label not in self._adjacents:
+            self._adjacents[start_label] = [end_label]
+        else:
+            if end_label not in self._adjacents[start_label]:
+                self._adjacents[start_label].append(end_label)
+        if end_label not in self._adjacents:
+            self._adjacents[end_label] = []
+
+    def delete_edge(self, start_label: str, end_label: str, directed=False):
+        &#34;&#34;&#34; 
+        Delete an edge in the graph.
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+        Raises:
+            KeyError: If the edge does exist.
+        &#34;&#34;&#34;
+        if start_label not in self._adjacents:
+            raise KeyError(f&#34;Vertex {start_label} does not exist&#34;)
+        if end_label not in self._adjacents[start_label]:
+            raise KeyError(f&#34;Vertex {end_label} does not exist&#34;)
+        self._adjacents[start_label].remove(end_label)
+        if not directed:
+            if end_label not in self._adjacents:
+                raise KeyError(f&#34;Vertex {end_label} does not exist&#34;)
+            if start_label not in self._adjacents[end_label]:
+                raise KeyError(f&#34;Vertex {start_label} does not exist&#34;)
+            self._adjacents[end_label].remove(start_label)
+
+    def vertices(self) -&gt; list:
+        &#34;&#34;&#34;
+        Return a list of vertex labels of the graph
+        &#34;&#34;&#34;
+        return list(self._adjacents.keys())
+  
+    def adjacents(self, vertex: str) -&gt; list:
+        &#34;&#34;&#34;
+        Return a list of adjacents of a given vertex
+
+        Args:
+            vertex (str): The label of the vertex.
+        &#34;&#34;&#34;
+        return self._adjacents[vertex]
+
+    def dfs_traverse(self, start_label: str):
+        &#34;&#34;&#34;
+        Return a list of vertices through depth first traversal starting at a given vertex.
+
+        Args:
+            start_label (str): The starting vertex label.
+        Returns:
+            A list of vertex labels.
+        &#34;&#34;&#34;
+        return self._df_rec_traverse(start_label, set(), [])
+
+    def _df_rec_traverse(self, start_label: str, visited, dflist):
+        &#34;&#34;&#34;
+        Helper depth first traversal recursive function.
+        &#34;&#34;&#34;
+        visited.add(start_label)
+        dflist.append(start_label)
+        
+        for v in self[start_label]:
+            if v not in visited:
+                self._df_rec_traverse(v, visited, dflist)
+        return dflist
+    
+    def bfs_traverse(self, start_label: str):
+        &#34;&#34;&#34;
+        Return a list of vertices through breadth first traversal starting at a given vertex
+        Args:
+            start_label (str): The starting vertex label.
+        Returns:
+            A list of vertex labels.
+        &#34;&#34;&#34;
+        visited = set()
+        q = Queue()
+        bflist = []
+
+        q.enqueue(start_label)
+        visited.add(start_label)
+        bflist.append(start_label)
+
+        while len(q) &gt; 0:
+            current = q.dequeue()
+
+            for v in self[current]:
+                if v not in visited:               
+                    visited.add(v)
+                    q.enqueue(v)
+                    bflist.append(v)
+        return bflist
+        
+    def dfs(self, start_label:str, end_label:str) -&gt; str:
+        &#34;&#34;&#34; 
+        Recursive depth first search.
+
+        Args:
+            start_label (str): The starting vertex label.
+            end_label (str): The vertex label to search for.
+
+        Returns:
+            A vertex in the graph if found, None otherwise.
+        &#34;&#34;&#34;
+        def dfs_rec(current: str, end: str, visited):
+            if current == end:
+                return current
+
+            visited.add(current)
+
+            for v in self.adjacents(current):
+                if v not in visited:
+                    result = dfs_rec(v, end, visited)
+                    if result is not None:
+                        return result
+            
+            return None
+        
+        return dfs_rec(start_label, end_label, set())
+    
+    def bfs(self, start_label: str, end_label: str) -&gt; str:
+        &#34;&#34;&#34; 
+        Breadth first search.
+
+        Args:
+            start_label (str): The starting vertex label.
+            end_label (str): The vertex label to search for.
+
+        Returns:
+            A vertex in the graph if found, None otherwise.
+        &#34;&#34;&#34;
+        visited = set()
+        queue = Queue()
+        
+        visited.add(start_label)
+        queue.enqueue(start_label)
+
+        while len(queue) &gt; 0:
+            current = queue.dequeue()
+            
+            if current == end_label:
+                return current
+            
+            for v in self[current]:
+                if v not in visited:               
+                    visited.add(v)
+                    queue.enqueue(v)
+        
+        return None
+    
+    def __getitem__(self, label: str):
+        &#34;&#34;&#34; 
+        Args:
+            vertex: vertex label
+        Returns:
+            a list of adjacent vertex labels
+        &#34;&#34;&#34;
+
+        return self._adjacents[label]
+
+    def is_edge(self, start_label: str, end_label: str) -&gt; bool:
+        &#34;&#34;&#34; 
+        Return boolean if an edge exists
+        Args:
+            start_label (str): The starting vertex label.
+            end_label (str): The ending vertex label.
+        
+        Returns:
+            A boolean of whether there is an edge from start to end
+        &#34;&#34;&#34;
+        return end_label in self[start_label]
+
+    def __len__(self):
+        &#34;&#34;&#34;
+        Return the number of nodes in the graph.
+        Returns:
+            int: The number of nodes in the graph.
+        &#34;&#34;&#34;
+        return len(self._adjacents)
+
+    def edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of edges in the graph. Each edge is represented by a tuple (start, end)
+        &#34;&#34;&#34;
+        edges = []
+        for start in self._adjacents.keys():
+            for end in self.adjacents(start):
+                if start != end:  
+                    edges.append((start, end))
+        return edges
+
+    def undirected_edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)
+        &#34;&#34;&#34;
+        edges = []
+        for start in self._adjacents.keys():
+            for end in self.adjacents(start):
+                if start != end and (end, start) not in edges:  
+                    edges.append((start, end))
+        return edges</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.graph.AdjacencyListWeightedGraph" href="#dsa.graph.AdjacencyListWeightedGraph">AdjacencyListWeightedGraph</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.graph.AdjacencyListGraph.add_edge"><code class="name flex">
+<span>def <span class="ident">add_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add an edge to the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The label of the starting vertex.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The label of the ending vertex.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the edge is directed.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.adjacents"><code class="name flex">
+<span>def <span class="ident">adjacents</span></span>(<span>self, vertex: str) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of adjacents of a given vertex</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>vertex</code></strong> :&ensp;<code>str</code></dt>
+<dd>The label of the vertex.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.bfs"><code class="name flex">
+<span>def <span class="ident">bfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Breadth first search.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The vertex label to search for.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A vertex in the graph if found, None otherwise.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.bfs_traverse"><code class="name flex">
+<span>def <span class="ident">bfs_traverse</span></span>(<span>self, start_label: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of vertices through breadth first traversal starting at a given vertex</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A list of vertex labels.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.delete_edge"><code class="name flex">
+<span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete an edge in the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Ending vertex label.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the edge is directed.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>KeyError</code></dt>
+<dd>If the edge does exist.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.dfs"><code class="name flex">
+<span>def <span class="ident">dfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Recursive depth first search.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The vertex label to search for.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A vertex in the graph if found, None otherwise.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.dfs_traverse"><code class="name flex">
+<span>def <span class="ident">dfs_traverse</span></span>(<span>self, start_label: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of vertices through depth first traversal starting at a given vertex.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A list of vertex labels.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.edges"><code class="name flex">
+<span>def <span class="ident">edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of edges in the graph. Each edge is represented by a tuple (start, end)</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.is_edge"><code class="name flex">
+<span>def <span class="ident">is_edge</span></span>(<span>self, start_label: str, end_label: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return boolean if an edge exists</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ending vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A boolean of whether there is an edge from start to end</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.undirected_edges"><code class="name flex">
+<span>def <span class="ident">undirected_edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListGraph.vertices"><code class="name flex">
+<span>def <span class="ident">vertices</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of vertex labels of the graph</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph"><code class="flex name class">
+<span>class <span class="ident">AdjacencyListWeightedGraph</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A weighted adjacency list vertex implementation in Python
+(allows either directed or undirected representation)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AdjacencyListWeightedGraph(AdjacencyListGraph):
+    &#34;&#34;&#34; 
+    A weighted adjacency list vertex implementation in Python
+    (allows either directed or undirected representation)
+    &#34;&#34;&#34;
+    def __init__(self):
+        #: hash table of vertices in graph
+        self._adjacents = {}
+        
+    def add_edge(self, start_label: str, end_label: str, weight, directed=False):
+        &#34;&#34;&#34; 
+        Add an edge to the graph.
+
+        Args:
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+            weight: The edge weight.
+            directed: Whether the edge is directed.
+        &#34;&#34;&#34;
+        if start_label not in self._adjacents:
+            self._adjacents[start_label] = {}
+            
+        self._adjacents[start_label][end_label] = weight
+
+        if not directed:
+            if end_label not in self._adjacents:
+                self._adjacents[end_label] = {}
+            self._adjacents[end_label][start_label] = weight
+
+    def delete_edge(self, start_label: str, end_label: str, directed=False):
+        &#34;&#34;&#34; 
+        Delete an edge in the graph.
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+
+        Raises:
+            KeyError: If the edge does exist.
+        &#34;&#34;&#34;
+        if start_label not in self._adjacents:
+            raise KeyError(f&#34;Vertex {start_label} does not exist&#34;)
+        if end_label not in self._adjacents[start_label]:
+            raise KeyError(f&#34;Vertex {end_label} does not exist&#34;) 
+        del self._adjacents[start_label][end_label]
+        if not directed:
+            if end_label not in self._adjacents:
+                raise KeyError(f&#34;Vertex {end_label} does not exist&#34;)
+            if start_label not in self._adjacents[end_label]:
+                raise KeyError(f&#34;Vertex {start_label} does not exist&#34;) 
+            del self._adjacents[end_label][start_label]
+
+    def adjacents(self, vertex: str) -&gt; list:
+        &#34;&#34;&#34;
+        Return a list of adjacents of a given vertex
+        Args:
+            vertex: starting vertex label 
+        &#34;&#34;&#34;
+        return self._adjacents[vertex]
+
+    def dfs_traverse(self):
+        &#34;&#34;&#34;
+        Perform depth first traversal.
+        &#34;&#34;&#34;
+        return self._df_traverse_rec(self, set())
+
+    def _df_traverse_rec(self, vertex, visited=None):
+        &#34;&#34;&#34;
+        helper depth first traversal recursive function
+        &#34;&#34;&#34;
+        visited.add(vertex)
+        
+        for v in vertex.adjacents:
+            if v not in visited:
+                v._df_traverse_rec(v, visited)
+            
+    def bfs_traverse(self):
+        &#34;&#34;&#34;
+        Perform breadth first traversal.
+        &#34;&#34;&#34;
+        start = self
+        visited = set()
+        queue = Queue()
+        
+        queue.enqueue(start)
+
+        while len(queue) &gt; 0:
+            current = queue.dequeue()
+            
+            if current not in visited:               
+                visited.add(current)
+        
+                for v in current.adjacents:
+                    queue.enqueue(v)
+        
+    def dfs(self, start_label: str, end_label: str) -&gt; str:
+        &#34;&#34;&#34; 
+        Recursive depth first search.
+
+        Args:
+            start_label: The starting vertex label. 
+            end_label: The vertex label to search for. 
+        Returns:
+            vertex in the graph
+            none if not found.
+        &#34;&#34;&#34;
+        return self.dfs_rec(start_label, end_label, set())
+        
+    def dfs_rec(self, current, end_label, visited=None):
+        &#34;&#34;&#34;
+        Helper depth-first search recursive function.
+
+        Args:
+            current: Current vertex
+            end_label: Target vertex label
+            visited: Set of visited vertices 
+
+        Returns:
+            vertex in the graph if found, None otherwise.
+        &#34;&#34;&#34;
+        if visited is None:
+            visited = set()
+        
+        if current == end_label:
+            return current
+
+        visited.add(current)
+        
+        for v in self.adjacents(current):
+            if v not in visited:
+                result = self.dfs_rec(v, end_label, visited)
+                if result is not None:
+                    return result
+        
+        return None
+
+
+    def bfs(self, start_label: str, end_label: str) -&gt; str:
+        &#34;&#34;&#34; 
+        Recursive breadth first search.
+
+        Args:
+            end: vertex to search for
+
+        Returns:
+            vertex in the graph
+            None if not found.
+        &#34;&#34;&#34;
+        visited = set()
+        queue = Queue()
+        
+        visited.add(start_label)
+        queue.enqueue(start_label)
+
+        while not queue.is_empty():
+            current = queue.dequeue()
+            
+            if current == end_label:
+                return current
+            
+            for v in self[current]:
+                if v not in visited:
+                    visited.add(v)
+                    queue.enqueue(v)
+        
+        return None
+
+    def __getitem__(self, vertex: str) -&gt; dict:
+        &#34;&#34;&#34;
+        Args:
+            vertex: vertex label
+        Returns:
+        Return a hashtable of adjacent vertices
+        &#34;&#34;&#34;
+        if vertex not in self._adjacents:
+            return {}
+        return self._adjacents[vertex]
+
+    def __len__(self):
+        &#34;&#34;&#34;
+        Return the number of nodes in the graph.
+
+        Returns:
+            int: The number of nodes in the graph.
+        &#34;&#34;&#34;
+        return len(self._adjacents)
+
+    def edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight)
+        &#34;&#34;&#34;
+        edges = []
+        for start in self._adjacents.keys():
+            for end in self.adjacents(start):
+                weight = self[start][end]
+                if start != end:  
+                    edges.append((start, end, weight))
+        return edges
+
+    def undirected_edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight)
+        &#34;&#34;&#34;
+        edges = []
+        for start in self._adjacents.keys():
+            for end in self.adjacents(start):
+                weight = self[start][end]
+                if start != end and (end, start, weight) not in edges:  
+                    edges.append((start, end, weight))
+        return edges
+
+    def is_edge(self, start_label: str, end_label: str) -&gt; bool:
+        &#34;&#34;&#34; 
+        Return boolean if an edge exists
+        Args:
+            start_label (str): starting vertex label
+            end_label (str): starting vertex label
+        
+        Returns:
+            A boolean of whether there is an edge from start to end.
+        &#34;&#34;&#34;
+        return end_label in self[start_label]</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.graph.AdjacencyListGraph" href="#dsa.graph.AdjacencyListGraph">AdjacencyListGraph</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.add_edge"><code class="name flex">
+<span>def <span class="ident">add_edge</span></span>(<span>self, start_label: str, end_label: str, weight, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add an edge to the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong></dt>
+<dd>The starting vertex label. </dd>
+<dt><strong><code>end_label</code></strong></dt>
+<dd>The ending vertex label. </dd>
+<dt><strong><code>weight</code></strong></dt>
+<dd>The edge weight.</dd>
+<dt><strong><code>directed</code></strong></dt>
+<dd>Whether the edge is directed.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.adjacents"><code class="name flex">
+<span>def <span class="ident">adjacents</span></span>(<span>self, vertex: str) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of adjacents of a given vertex</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>vertex</code></strong></dt>
+<dd>starting vertex label</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.bfs"><code class="name flex">
+<span>def <span class="ident">bfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Recursive breadth first search.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>end</code></strong></dt>
+<dd>vertex to search for</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>vertex in the graph
+None if not found.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.bfs_traverse"><code class="name flex">
+<span>def <span class="ident">bfs_traverse</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform breadth first traversal.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.delete_edge"><code class="name flex">
+<span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete an edge in the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Ending vertex label.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the edge is directed.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>KeyError</code></dt>
+<dd>If the edge does exist.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.dfs"><code class="name flex">
+<span>def <span class="ident">dfs</span></span>(<span>self, start_label: str, end_label: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Recursive depth first search.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong></dt>
+<dd>The starting vertex label. </dd>
+<dt><strong><code>end_label</code></strong></dt>
+<dd>The vertex label to search for. </dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>vertex in the graph
+none if not found.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.dfs_rec"><code class="name flex">
+<span>def <span class="ident">dfs_rec</span></span>(<span>self, current, end_label, visited=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper depth-first search recursive function.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>current</code></strong></dt>
+<dd>Current vertex</dd>
+<dt><strong><code>end_label</code></strong></dt>
+<dd>Target vertex label</dd>
+<dt><strong><code>visited</code></strong></dt>
+<dd>Set of visited vertices </dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>vertex in the graph if found, None otherwise.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.dfs_traverse"><code class="name flex">
+<span>def <span class="ident">dfs_traverse</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform depth first traversal.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.edges"><code class="name flex">
+<span>def <span class="ident">edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight)</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.is_edge"><code class="name flex">
+<span>def <span class="ident">is_edge</span></span>(<span>self, start_label: str, end_label: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return boolean if an edge exists</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>starting vertex label</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>starting vertex label</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A boolean of whether there is an edge from start to end.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyListWeightedGraph.undirected_edges"><code class="name flex">
+<span>def <span class="ident">undirected_edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight)</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.graph.AdjacencyListGraph" href="#dsa.graph.AdjacencyListGraph">AdjacencyListGraph</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.graph.AdjacencyListGraph.vertices" href="#dsa.graph.AdjacencyListGraph.vertices">vertices</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph"><code class="flex name class">
+<span>class <span class="ident">AdjacencyMatrixGraph</span></span>
+<span>(</span><span>labels: list[str])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An unweighted adjacency matrix graph implementation.</p>
+<p>This class allows either directed or undirected representation of a graph.
+Vertex labels are string types.</p>
+<p>Initialize the graph with a list of vertex labels.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>labels</code></strong> :&ensp;<code>list[str]</code></dt>
+<dd>List of labels for each vertex.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AdjacencyMatrixGraph:
+    &#34;&#34;&#34; 
+    An unweighted adjacency matrix graph implementation.
+    
+    This class allows either directed or undirected representation of a graph.
+    Vertex labels are string types.
+    &#34;&#34;&#34;
+    def __init__(self, labels: list[str]):
+        &#34;&#34;&#34; 
+        Initialize the graph with a list of vertex labels.
+
+        Args:
+            labels (list[str]): List of labels for each vertex.
+        &#34;&#34;&#34;
+        self.labels = labels
+        self.label_index = { label: index for index, label  in enumerate(labels) }
+
+        node_count = len(self.labels)
+        self.array = [[None for i in range(node_count)] for j in range(node_count)]
+
+    def add_edge(self, start_label: str, end_label: str, directed=False):
+        &#34;&#34;&#34; 
+        Add an edge in the graph.
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+        &#34;&#34;&#34;
+        a = self.label_index[start_label]
+        b = self.label_index[end_label]
+        self.array[a][b] = True
+        if not directed:
+            self.array[b][a] = True
+
+    def add_vertex(self, label: str):
+        &#34;&#34;&#34; 
+        Add a vertex to the graph.
+        
+        Args:
+            label (str): The vertex label to add.
+        &#34;&#34;&#34;
+        self.labels.append(label)
+        self.label_index[label] = len(self.labels) - 1
+        for row in self.array:
+            row.append(None)
+        self.array.append([None for i in range(len(self.labels))])
+
+    def delete_vertex(self, label: str):
+        &#34;&#34;&#34; 
+        Delete a vertex from the graph.
+        
+        Args:
+            label (str): The vertex label to delete.
+        &#34;&#34;&#34;
+        index = self.label_index[label]
+        self.labels.pop(index)
+        self.label_index = { label: index for index, label in enumerate(self.labels) }
+        self.array.pop(index)
+        for row in self.array:
+            row.pop(index)
+
+    def delete_edge(self, start_label: str, end_label: str, directed=False):
+        &#34;&#34;&#34; 
+        Delete an edge in the graph.
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+        &#34;&#34;&#34;
+        a = self.label_index[start_label]
+        b = self.label_index[end_label]
+        if self.array[a][b] is None:
+            raise KeyError(f&#34;Edge {start_label} to {end_label} does not exist&#34;)
+
+        self.array[a][b] = None
+        if not directed:
+            if self.array[b][a] is None:
+                raise KeyError(f&#34;Edge {end_label} to {start_label} does not exist&#34;)
+            self.array[b][a] = None
+
+    def dfs_traverse(self, start_label: str):
+        &#34;&#34;&#34; 
+        Perform depth first traversal in an adjacency matrix
+ 
+        Args:
+            start_label (str): Starting vertex label.
+        
+        Returns:
+            Array with depth first order traversal.
+        &#34;&#34;&#34;
+        return self._df_rec_traverse(start_label, set(), [])
+        
+    def _df_rec_traverse(self, start_label: str, visited, dfs):
+        &#34;&#34;&#34; 
+        Helper method for depth first recursive traversal
+        &#34;&#34;&#34;
+        start_index = self.label_index[start_label]
+        visited.add(start_label)
+        dfs.append(self.labels[start_index])
+
+        for adj_index, is_connected in enumerate(self.array[start_index]):
+            adj_label = self.labels[adj_index]
+            if is_connected and adj_label not in visited:
+                self._df_rec_traverse(adj_label, visited, dfs)
+
+        return dfs
+
+    def bfs_traverse(self, start_label: str):
+        &#34;&#34;&#34; 
+        Perform breadth first traversal in an adjacency matrix.
+ 
+        Args:
+            start_label (str): Starting vertex label.
+        
+        Returns:
+            Array with breadth first order traversal.
+        &#34;&#34;&#34;
+        bfs = []
+        q = Queue()
+        visited = set()
+
+        start_index = self.label_index[start_label]
+        q.enqueue(start_index)
+        bfs.append(self.labels[start_index])
+        while not q.is_empty():
+            current = q.dequeue()
+            for i in range(len(self.array)):
+                if start_index != i and self.array[current][i] and (i not in visited):
+                    visited.add(i)
+                    q.enqueue(i)
+                    bfs.append(self.labels[i])
+        return bfs
+    
+    def vertices(self) -&gt; list:
+        &#34;&#34;&#34;
+        Return a list of vertex labels of the graph
+        &#34;&#34;&#34;
+        return self.labels
+    
+    def edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of edges in the graph. Each edge is represented by a tuple (start, end)
+        &#34;&#34;&#34;
+        edges = []
+        vertex_count = len(self.labels)
+        for i in range(vertex_count):
+            for j in range(vertex_count):
+                if self.array[i][j] and i != j:  
+                    edges.append((self.labels[i], self.labels[j]))
+    
+        return edges
+
+    def undirected_edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)
+        &#34;&#34;&#34;
+        edges = []
+        vertex_count = len(self.labels)
+        for i in range(vertex_count):
+            for j in range(vertex_count):
+                if self.array[i][j] and i != j and (self.labels[j], self.labels[i]) not in edges:  
+                    edges.append((self.labels[i], self.labels[j]))
+    
+        return edges
+
+    def is_edge(self, start_label: str, end_label: str) -&gt; bool:
+        &#34;&#34;&#34; 
+        Return boolean if an edge exists.
+
+        Args:
+            start_label (str): starting vertex label
+            end_label (str): starting vertex label
+        
+        Returns:0
+            A boolean of whether there is an edge from start to end.
+        &#34;&#34;&#34;
+        start_index = self.label_index[start_label]
+        end_index = self.label_index[end_label]
+
+        return self.array[start_index][end_index] is not None
+
+    def __getitem__(self, vertex: str) -&gt; list:
+        &#34;&#34;&#34; 
+        Args:
+            vertex (str): The vertex label.
+        Returns:
+            A list of adjacent vertex labels.
+        &#34;&#34;&#34;
+        index = self.label_index[vertex]
+        return [self.labels[i] for i in range(len(self.array[index])) if self.array[index][i]]
+    
+    def print_graph(self):
+        &#34;&#34;&#34; 
+        Print the contents of the graph.
+        &#34;&#34;&#34;
+        print(&#34;   |&#34;, end=&#34;&#34;)
+        for label in self.labels:
+            print(f&#34;{label:^3}&#34;, end=&#34; &#34;)
+        print()
+        print(&#34;----&#34; * (len(self.array) + 1))
+        for r, row in enumerate(self.array):
+            label = self.labels[r]
+            print(f&#34;{label:^3}|&#34;, end=&#34;&#34;)
+            for col in row:
+                b = &#34; T &#34; if col else &#34;   &#34;
+                print(b, end=&#34; &#34;)
+            print()</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="dsa.graph.AdjacencyMatrixWeightedGraph" href="#dsa.graph.AdjacencyMatrixWeightedGraph">AdjacencyMatrixWeightedGraph</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.graph.AdjacencyMatrixGraph.add_edge"><code class="name flex">
+<span>def <span class="ident">add_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add an edge in the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Ending vertex label.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the edge is directed.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.bfs_traverse"><code class="name flex">
+<span>def <span class="ident">bfs_traverse</span></span>(<span>self, start_label: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform breadth first traversal in an adjacency matrix.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Array with breadth first order traversal.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.delete_edge"><code class="name flex">
+<span>def <span class="ident">delete_edge</span></span>(<span>self, start_label: str, end_label: str, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete an edge in the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Ending vertex label.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the edge is directed.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.dfs_traverse"><code class="name flex">
+<span>def <span class="ident">dfs_traverse</span></span>(<span>self, start_label: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform depth first traversal in an adjacency matrix</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Array with depth first order traversal.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.edges"><code class="name flex">
+<span>def <span class="ident">edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of edges in the graph. Each edge is represented by a tuple (start, end)</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.is_edge"><code class="name flex">
+<span>def <span class="ident">is_edge</span></span>(<span>self, start_label: str, end_label: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return boolean if an edge exists.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>starting vertex label</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>starting vertex label</dd>
+</dl>
+<p>Returns:0
+A boolean of whether there is an edge from start to end.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.print_graph"><code class="name flex">
+<span>def <span class="ident">print_graph</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print the contents of the graph.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.undirected_edges"><code class="name flex">
+<span>def <span class="ident">undirected_edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixGraph.vertices"><code class="name flex">
+<span>def <span class="ident">vertices</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of vertex labels of the graph</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixWeightedGraph"><code class="flex name class">
+<span>class <span class="ident">AdjacencyMatrixWeightedGraph</span></span>
+<span>(</span><span>labels)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A weighted adjacency matrix graph implementation
+(allows either directed or undirected representation)
+vertex labels are string types</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>labels</code></strong></dt>
+<dd>list of labels for each vertex (string types)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
+    &#34;&#34;&#34; 
+    A weighted adjacency matrix graph implementation
+    (allows either directed or undirected representation)
+    vertex labels are string types
+    &#34;&#34;&#34;
+    def __init__(self, labels):
+        &#34;&#34;&#34; 
+        Args:
+            labels: list of labels for each vertex (string types)
+        &#34;&#34;&#34;
+        super().__init__(labels)
+
+    def add_edge(self, start_label: str, end_label: str, weight, directed=False):
+        &#34;&#34;&#34; 
+        Add an edge to the graph.
+
+        Args:
+            start_label (str): The starting vertex label.
+            end_label (str): The ending vertex label.
+            weight: The weight of the vertex.
+            directed: Whether the edge is directed.
+        &#34;&#34;&#34;
+        a = self.label_index[start_label]
+        b = self.label_index[end_label]
+
+        self.array[a][b] = weight
+        self.array[a][a] = 0
+        self.array[b][b] = 0
+
+        if not directed:
+            self.array[b][a] = weight
+        
+    def print_graph(self):
+        &#34;&#34;&#34; 
+        Print the contents of the graph.
+        &#34;&#34;&#34;
+        print(&#34;   |&#34;, end=&#34;&#34;)
+        for label in self.labels:
+            print(f&#34;{label:&gt;3}&#34;, end=&#34; &#34;)
+        print()
+        print(&#34;----&#34; * (len(self.array) + 1))
+        for r, row in enumerate(self.array):
+            label = self.labels[r]
+            print(f&#34;{label:^3}|&#34;, end=&#34;&#34;)
+            for col in row:
+                w = f&#34;{col:3}&#34; if col is not None else &#34;   &#34;
+                print(w, end=&#34; &#34;)
+            print()
+
+    def edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight).
+        &#34;&#34;&#34;
+        edges = []
+        vertex_count = len(self.labels)
+        for i in range(vertex_count):
+            for j in range(vertex_count):
+                weight = self.array[i][j]
+                if weight and i != j:  
+                    edges.append((self.labels[i], self.labels[j], weight))
+    
+        return edges
+    
+    def undirected_edges(self) -&gt; list:
+        &#34;&#34;&#34; 
+        Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight).
+        &#34;&#34;&#34;
+        edges = []
+        vertex_count = len(self.labels)
+        for i in range(vertex_count):
+            for j in range(vertex_count):
+                weight = self.array[i][j]
+                if weight and i != j and (self.labels[j], self.labels[i], weight) not in edges:  
+                    edges.append((self.labels[i], self.labels[j], weight))
+    
+        return edges
+
+    def is_edge(self, start_label: str, end_label: str) -&gt; bool:
+        &#34;&#34;&#34; 
+        Return boolean if an edge exists.
+
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+        
+        Returns:
+            A boolean of whether there is an edge from start to end.
+        &#34;&#34;&#34;
+        return super().is_edge(start_label, end_label)
+    
+    def weightx(self, start: str, end: str) -&gt; bool:
+        &#34;&#34;&#34; 
+        Return weight of an edge (is this used???)
+        Args:
+            start_label: starting vertex label
+            end_label: starting vertex label
+        
+        Returns:
+            weight value of an edge from start to end
+        &#34;&#34;&#34;
+        return super().is_edge(start, end)
+
+    def __getitem__(self, vertex: str) -&gt; dict:
+        &#34;&#34;&#34; 
+        Args:
+            vertex: vertex label
+        Returns:
+            a dictionary of adjacent vertex labels and weights
+        &#34;&#34;&#34;
+        index = self.label_index[vertex]
+        return {self.labels[i] : self.array[index][i] for i in range(len(self.array[index])) if self.array[index][i]}</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.graph.AdjacencyMatrixWeightedGraph.add_edge"><code class="name flex">
+<span>def <span class="ident">add_edge</span></span>(<span>self, start_label: str, end_label: str, weight, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add an edge to the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ending vertex label.</dd>
+<dt><strong><code>weight</code></strong></dt>
+<dd>The weight of the vertex.</dd>
+<dt><strong><code>directed</code></strong></dt>
+<dd>Whether the edge is directed.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixWeightedGraph.edges"><code class="name flex">
+<span>def <span class="ident">edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight).</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixWeightedGraph.is_edge"><code class="name flex">
+<span>def <span class="ident">is_edge</span></span>(<span>self, start_label: str, end_label: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return boolean if an edge exists.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Starting vertex label.</dd>
+<dt><strong><code>end_label</code></strong> :&ensp;<code>str</code></dt>
+<dd>Ending vertex label.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A boolean of whether there is an edge from start to end.</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixWeightedGraph.undirected_edges"><code class="name flex">
+<span>def <span class="ident">undirected_edges</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight).</p></div>
+</dd>
+<dt id="dsa.graph.AdjacencyMatrixWeightedGraph.weightx"><code class="name flex">
+<span>def <span class="ident">weightx</span></span>(<span>self, start: str, end: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return weight of an edge (is this used???)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_label</code></strong></dt>
+<dd>starting vertex label</dd>
+<dt><strong><code>end_label</code></strong></dt>
+<dd>starting vertex label</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>weight value of an edge from start to end</p></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></b></code>:
+<ul class="hlist">
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.bfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bfs_traverse">bfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_edge" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge">delete_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.dfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.dfs_traverse">dfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.print_graph" href="#dsa.graph.AdjacencyMatrixGraph.print_graph">print_graph</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.vertices" href="#dsa.graph.AdjacencyMatrixGraph.vertices">vertices</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.graph.AdjacencyListGraph" href="#dsa.graph.AdjacencyListGraph">AdjacencyListGraph</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.graph.AdjacencyListGraph.add_edge" href="#dsa.graph.AdjacencyListGraph.add_edge">add_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.adjacents" href="#dsa.graph.AdjacencyListGraph.adjacents">adjacents</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.bfs" href="#dsa.graph.AdjacencyListGraph.bfs">bfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.bfs_traverse" href="#dsa.graph.AdjacencyListGraph.bfs_traverse">bfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.delete_edge" href="#dsa.graph.AdjacencyListGraph.delete_edge">delete_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.dfs" href="#dsa.graph.AdjacencyListGraph.dfs">dfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.dfs_traverse" href="#dsa.graph.AdjacencyListGraph.dfs_traverse">dfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.edges" href="#dsa.graph.AdjacencyListGraph.edges">edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.is_edge" href="#dsa.graph.AdjacencyListGraph.is_edge">is_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.undirected_edges" href="#dsa.graph.AdjacencyListGraph.undirected_edges">undirected_edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListGraph.vertices" href="#dsa.graph.AdjacencyListGraph.vertices">vertices</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.graph.AdjacencyListWeightedGraph" href="#dsa.graph.AdjacencyListWeightedGraph">AdjacencyListWeightedGraph</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.add_edge" href="#dsa.graph.AdjacencyListWeightedGraph.add_edge">add_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.adjacents" href="#dsa.graph.AdjacencyListWeightedGraph.adjacents">adjacents</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.bfs" href="#dsa.graph.AdjacencyListWeightedGraph.bfs">bfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.bfs_traverse" href="#dsa.graph.AdjacencyListWeightedGraph.bfs_traverse">bfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.delete_edge" href="#dsa.graph.AdjacencyListWeightedGraph.delete_edge">delete_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.dfs" href="#dsa.graph.AdjacencyListWeightedGraph.dfs">dfs</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.dfs_rec" href="#dsa.graph.AdjacencyListWeightedGraph.dfs_rec">dfs_rec</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.dfs_traverse" href="#dsa.graph.AdjacencyListWeightedGraph.dfs_traverse">dfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.edges" href="#dsa.graph.AdjacencyListWeightedGraph.edges">edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.is_edge" href="#dsa.graph.AdjacencyListWeightedGraph.is_edge">is_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyListWeightedGraph.undirected_edges" href="#dsa.graph.AdjacencyListWeightedGraph.undirected_edges">undirected_edges</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.graph.AdjacencyMatrixGraph" href="#dsa.graph.AdjacencyMatrixGraph">AdjacencyMatrixGraph</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.add_edge" href="#dsa.graph.AdjacencyMatrixGraph.add_edge">add_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.bfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.bfs_traverse">bfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.delete_edge" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge">delete_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.dfs_traverse" href="#dsa.graph.AdjacencyMatrixGraph.dfs_traverse">dfs_traverse</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.edges" href="#dsa.graph.AdjacencyMatrixGraph.edges">edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.is_edge" href="#dsa.graph.AdjacencyMatrixGraph.is_edge">is_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.print_graph" href="#dsa.graph.AdjacencyMatrixGraph.print_graph">print_graph</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.undirected_edges" href="#dsa.graph.AdjacencyMatrixGraph.undirected_edges">undirected_edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixGraph.vertices" href="#dsa.graph.AdjacencyMatrixGraph.vertices">vertices</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.graph.AdjacencyMatrixWeightedGraph" href="#dsa.graph.AdjacencyMatrixWeightedGraph">AdjacencyMatrixWeightedGraph</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.graph.AdjacencyMatrixWeightedGraph.add_edge" href="#dsa.graph.AdjacencyMatrixWeightedGraph.add_edge">add_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixWeightedGraph.edges" href="#dsa.graph.AdjacencyMatrixWeightedGraph.edges">edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixWeightedGraph.is_edge" href="#dsa.graph.AdjacencyMatrixWeightedGraph.is_edge">is_edge</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixWeightedGraph.undirected_edges" href="#dsa.graph.AdjacencyMatrixWeightedGraph.undirected_edges">undirected_edges</a></code></li>
+<li><code><a title="dsa.graph.AdjacencyMatrixWeightedGraph.weightx" href="#dsa.graph.AdjacencyMatrixWeightedGraph.weightx">weightx</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

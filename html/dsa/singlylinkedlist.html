@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>dsa.singlylinkedlist API documentation</title>
+<meta name="description" content="Module containing singly linked list class.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dsa.singlylinkedlist</code></h1>
+</header>
+<section id="section-intro">
+<p>Module containing singly linked list class.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dsa.singlylinkedlist.LinkedList"><code class="flex name class">
+<span>class <span class="ident">LinkedList</span></span>
+<span>(</span><span>head: <a title="dsa.singlylinkedlist.Node" href="#dsa.singlylinkedlist.Node">Node</a> = None, tail: <a title="dsa.singlylinkedlist.Node" href="#dsa.singlylinkedlist.Node">Node</a> = None, count: int = 0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A singly linked list implementation.</p>
+<p>Initialize a singly linked list.</p>
+<p>if only the head node is specified, tail is set to the head node and count is automatically set to 0
+if both head and tail nodes are specified, count should be specified as well</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>head</code></strong></dt>
+<dd>The reference to the head node.</dd>
+<dt><strong><code>tail</code></strong></dt>
+<dd>The reference to the tail node.</dd>
+<dt><strong><code>count</code></strong></dt>
+<dd>The number of nodes in the linked list.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LinkedList:
+    &#34;&#34;&#34; 
+    A singly linked list implementation.
+    &#34;&#34;&#34;
+    def __init__(self, head: Node=None, tail: Node=None, count: int=0):
+        &#34;&#34;&#34; 
+        Initialize a singly linked list.
+        
+        if only the head node is specified, tail is set to the head node and count is automatically set to 0
+        if both head and tail nodes are specified, count should be specified as well
+        
+        Args:
+            head: The reference to the head node.
+            tail: The reference to the tail node.
+            count: The number of nodes in the linked list.
+
+        &#34;&#34;&#34;        
+        self.head = head
+        if head and tail is None:
+            self.tail = head
+            self.count = 1
+        else:
+            self.tail = tail
+            self.count = count
+
+    @classmethod
+    def from_list(cls, mylist=None):
+        &#34;&#34;&#34;
+        Create a linked list from a list.
+
+        Args:
+            mylist: A list or container to convert from.
+        
+        Returns:
+            A  linked list containing the items from mylist.
+        &#34;&#34;&#34;
+        ll = cls()
+        for value in mylist:
+            ll.append(value)
+
+        return ll
+    
+    def to_list(self) -&gt; list:
+        &#34;&#34;&#34;
+        Create a list with contents of the linked list.
+
+        Returns:
+            List with contents of linked list.
+        &#34;&#34;&#34;
+        mylist = []
+        current = self.head
+        while current:
+            mylist.append(current.value)
+            current = current.next
+        return mylist
+
+    def print(self):
+        &#34;&#34;&#34;
+        Print the contents of the linked list.
+        &#34;&#34;&#34;
+        current = self.head
+        while current:
+            print(current.value, end=&#34; &#34;)
+            current = current.next
+        print()
+
+            
+    def __repr__(self):
+        &#34;&#34;&#34;
+        Return a string representation of the linked list.
+
+        Returns:
+            A string representation of the linked list.
+        &#34;&#34;&#34;
+        s = &#34;&#34;
+        current = self.head
+        while current:
+            s += str(current.value) + &#34; &#34;
+            current = current.next
+
+        return f&#34;[ {s}] Count: {self.count}&#34;
+    
+    def __getitem__(self, index: int) -&gt; Node:
+        &#34;&#34;&#34; 
+        Return value at a specified index. Raise IndexError if index is out of bounds.
+        
+        Args:
+            index: Index of value.
+
+        Raises:
+            IndexError: If index is out of bounds.
+
+        Returns:
+            The value at the specified index.
+        &#34;&#34;&#34;        
+        i = 0
+        current = self.head
+        while current:
+            if i == index:
+                return current.value
+            current = current.next
+            i += 1
+        raise IndexError(&#34;Index Out of Bounds&#34;)
+
+    def __len__(self) -&gt; int:
+        &#34;&#34;&#34;
+        Return the number of elements in the linked list.
+        &#34;&#34;&#34;
+        return self.count
+    
+    def is_empty(self) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if the linked list is empty.
+        &#34;&#34;&#34;
+        return self.count == 0
+        
+    def search(self, value) -&gt; int:
+        &#34;&#34;&#34;
+        Search for a value in the linked list.
+
+        Args:
+            value: The value to search for.
+
+        Returns:
+            Return index of found value.
+        
+        Raises:
+            Exception: If value is not found.
+        &#34;&#34;&#34;
+        i = 0
+        current = self.head
+        while current:
+            if current.value == value:
+                return i
+            i += 1
+            current = current.next
+        raise Exception(&#34;Value not found&#34;)
+    
+    def insert(self, index: int, value):
+        &#34;&#34;&#34;
+        Insert a value at a specified index. Raise exception if index is out of bounds.
+
+        Args:
+            index (int): The index to insert a value.
+            value: The value to append.
+
+        Returns:
+            None
+
+        Raises:
+            IndexError: If index is out of bounds.
+        &#34;&#34;&#34;
+        i = 0
+        
+        # insert front
+        if index == 0:
+            self.prepend(value)
+            return
+        elif index == self.count: # insert at end
+            self.append(value)
+            return
+        elif index &gt; self.count:
+            raise IndexError(&#34;Index Out of Bounds&#34;)
+        
+        # find node to insert after
+        current = self.head
+        while index &lt; i or current:
+            i += 1
+            if i == index:
+                break
+            current = current.next
+        
+        if index &gt; i:
+            raise IndexError(&#34;Index Out of Bounds&#34;)
+
+        new_node = Node(value)
+        tmp = current.next
+        current.next = new_node
+        new_node.next = tmp
+        self.count += 1
+
+    def prepend(self, value):
+        &#34;&#34;&#34;
+        Place a value at the beginning of the linked list.
+
+        Args:
+            value: A value to append.
+
+        Returns:
+            None
+        &#34;&#34;&#34;
+        new_node = Node(value)
+        new_node.next = self.head
+        self.head = new_node
+        self.count += 1
+        
+    def append(self, value):
+        &#34;&#34;&#34;
+        Place a value at the end of the linked list.
+
+        Args:
+            value: A value to append.
+
+        Returns:
+            None
+        
+        Raises:
+            IndexError: If linked list is empty or index is not found.
+        &#34;&#34;&#34;
+        if self.head is None:
+            self.head = Node(value)
+            if self.count == 0:
+                self.tail = self.head
+            self.count += 1
+            return
+
+        # go to the end of the list
+        new_node = Node(value)
+        self.tail.next = new_node
+        self.tail = new_node
+        
+        self.count += 1
+
+    def delete(self, index: int):
+        &#34;&#34;&#34;
+        Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.
+
+        Args:
+            index: Index of element to be deleted.
+        
+        Returns:
+            None
+            
+        Raises:
+            IndexError: If linked list is empty or index is not found.
+        &#34;&#34;&#34;
+        if index == 0:
+            self.delete_head()
+            return
+        elif index + 1 == self.count:
+            self.delete_tail()
+            return
+
+        i = 0
+        current = self.head
+        prev = None
+        while current:
+            if index == i:
+                if prev is not None:
+                    prev.next = current.next
+                else:
+                    self.head = current.next
+                self.count -= 1
+                return
+            i += 1
+            prev = current
+            current = current.next
+        raise IndexError(&#34;Index not found&#34;)
+
+    def delete_head(self):
+        &#34;&#34;&#34;
+        Delete the head node in the linked list. Raise IndexError if linked list is empty.
+
+        Returns:
+            None
+
+        Raises:
+            IndexError: If linked list is empty.
+        &#34;&#34;&#34;
+        if self.head is None:
+            raise IndexError(&#34;LinkedList is Empty&#34;)
+        self.head = self.head.next
+        self.count -= 1
+
+    def delete_tail(self):
+        &#34;&#34;&#34;
+        Delete the last node in the linked list. Raise IndexError if linked list is empty.
+
+        Returns:
+            None
+            
+        Raises:
+            IndexError: If linked list is empty.
+        &#34;&#34;&#34;
+        if self.head is None:
+            raise IndexError(&#34;LinkedList is Empty&#34;)
+        
+        if self.head.next is None:
+            self.head = None
+            self.count -= 1
+            return
+        
+        current = self.head
+        while current.next.next:
+            current = current.next
+        
+        current.next = None
+        self.tail = current
+        self.count -= 1</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="dsa.singlylinkedlist.LinkedList.from_list"><code class="name flex">
+<span>def <span class="ident">from_list</span></span>(<span>mylist=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a linked list from a list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mylist</code></strong></dt>
+<dd>A list or container to convert from.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A
+linked list containing the items from mylist.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="dsa.singlylinkedlist.LinkedList.append"><code class="name flex">
+<span>def <span class="ident">append</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Place a value at the end of the linked list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>A value to append.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If linked list is empty or index is not found.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.delete"><code class="name flex">
+<span>def <span class="ident">delete</span></span>(<span>self, index: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong></dt>
+<dd>Index of element to be deleted.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If linked list is empty or index is not found.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.delete_head"><code class="name flex">
+<span>def <span class="ident">delete_head</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete the head node in the linked list. Raise IndexError if linked list is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If linked list is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.delete_tail"><code class="name flex">
+<span>def <span class="ident">delete_tail</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete the last node in the linked list. Raise IndexError if linked list is empty.</p>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If linked list is empty.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.insert"><code class="name flex">
+<span>def <span class="ident">insert</span></span>(<span>self, index: int, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert a value at a specified index. Raise exception if index is out of bounds.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index to insert a value.</dd>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to append.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>IndexError</code></dt>
+<dd>If index is out of bounds.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.is_empty"><code class="name flex">
+<span>def <span class="ident">is_empty</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if the linked list is empty.</p></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.prepend"><code class="name flex">
+<span>def <span class="ident">prepend</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Place a value at the beginning of the linked list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>A value to append.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.print"><code class="name flex">
+<span>def <span class="ident">print</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print the contents of the linked list.</p></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>self, value) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search for a value in the linked list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to search for.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Return index of found value.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If value is not found.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.singlylinkedlist.LinkedList.to_list"><code class="name flex">
+<span>def <span class="ident">to_list</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a list with contents of the linked list.</p>
+<h2 id="returns">Returns</h2>
+<p>List with contents of linked list.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="dsa.singlylinkedlist.Node"><code class="flex name class">
+<span>class <span class="ident">Node</span></span>
+<span>(</span><span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A singly linked list node implementation.</p>
+<p>A singly linked list node.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value of the node.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Node:
+    &#34;&#34;&#34; 
+    A singly linked list node implementation.
+    &#34;&#34;&#34;
+    def __init__(self, value):
+        &#34;&#34;&#34; 
+        A singly linked list node.
+        Args:
+            value: The value of the node.
+        &#34;&#34;&#34;
+        #: value of the node
+        self.value = value
+        #: reference to the next node
+        self.next = None</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="dsa.singlylinkedlist.Node.next"><code class="name">var <span class="ident">next</span></code></dt>
+<dd>
+<div class="desc"><p>reference to the next node</p></div>
+</dd>
+<dt id="dsa.singlylinkedlist.Node.value"><code class="name">var <span class="ident">value</span></code></dt>
+<dd>
+<div class="desc"><p>value of the node</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dsa" href="index.html">dsa</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dsa.singlylinkedlist.LinkedList" href="#dsa.singlylinkedlist.LinkedList">LinkedList</a></code></h4>
+<ul class="two-column">
+<li><code><a title="dsa.singlylinkedlist.LinkedList.append" href="#dsa.singlylinkedlist.LinkedList.append">append</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.delete" href="#dsa.singlylinkedlist.LinkedList.delete">delete</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.delete_head" href="#dsa.singlylinkedlist.LinkedList.delete_head">delete_head</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.delete_tail" href="#dsa.singlylinkedlist.LinkedList.delete_tail">delete_tail</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.from_list" href="#dsa.singlylinkedlist.LinkedList.from_list">from_list</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.insert" href="#dsa.singlylinkedlist.LinkedList.insert">insert</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.is_empty" href="#dsa.singlylinkedlist.LinkedList.is_empty">is_empty</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.prepend" href="#dsa.singlylinkedlist.LinkedList.prepend">prepend</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.print" href="#dsa.singlylinkedlist.LinkedList.print">print</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.search" href="#dsa.singlylinkedlist.LinkedList.search">search</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.LinkedList.to_list" href="#dsa.singlylinkedlist.LinkedList.to_list">to_list</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dsa.singlylinkedlist.Node" href="#dsa.singlylinkedlist.Node">Node</a></code></h4>
+<ul class="">
+<li><code><a title="dsa.singlylinkedlist.Node.next" href="#dsa.singlylinkedlist.Node.next">next</a></code></li>
+<li><code><a title="dsa.singlylinkedlist.Node.value" href="#dsa.singlylinkedlist.Node.value">value</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>
