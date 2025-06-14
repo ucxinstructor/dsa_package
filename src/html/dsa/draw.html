@@ -721,7 +721,7 @@ trd.draw()</p>
     
         return _hierarchical_pos(G, root, width, vert_gap, vert_loc, xcenter)
     
-    def render(self, **kwargs):
+    def render_rectangle(self, **kwargs):
         &#34;&#34;&#34;
         Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
 
@@ -748,6 +748,35 @@ trd.draw()</p>
             rectangle = plt.Rectangle((x - (rect_width / 2), y - (rect_height / 2)), rect_width, rect_height, color=&#34;tab:blue&#34;)
             ax.add_patch(rectangle)
             plt.text(x, y, node[-1] if node else &#34;&#34;, verticalalignment=&#39;center&#39;, horizontalalignment=&#39;center&#39;, fontsize=12, color=&#34;white&#34;)
+        return plt
+
+    def render(self, **kwargs):
+        &#34;&#34;&#34;
+        Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
+
+        This version uses NetworkX&#39;s default drawing tools with circular nodes for simplicity and clarity.
+        &#34;&#34;&#34;
+        super().render(**kwargs)
+        trie_graph = self.to_networkx()
+        pos = self.hierarchical_pos(trie_graph)
+
+        plt.figure(figsize=self.figsize)
+
+        # Draw the graph using built-in node and edge drawing
+        nx.draw(
+            trie_graph,
+            pos,
+            with_labels=True,
+            labels={node: node[-1] if node else &#34;&#34; for node in trie_graph.nodes},
+            node_shape=&#39;o&#39;,
+            node_color=&#39;tab:blue&#39;,
+            font_color=&#39;white&#39;,
+            font_size=10,
+            edgecolors=&#39;none&#39;,
+            arrows=False,
+            **kwargs
+        )
+
         return plt</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -787,6 +816,13 @@ the root will be determined automatically.</dd>
 </dd>
 <dt id="dsa.draw.TrieDraw.render"><code class="name flex">
 <span>def <span class="ident">render</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.</p>
+<p>This version uses NetworkX's default drawing tools with circular nodes for simplicity and clarity.</p></div>
+</dd>
+<dt id="dsa.draw.TrieDraw.render_rectangle"><code class="name flex">
+<span>def <span class="ident">render_rectangle</span></span>(<span>self, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.</p>
@@ -873,6 +909,7 @@ represents a prefix and each edge represents a character transition.</p>
 <ul class="">
 <li><code><a title="dsa.draw.TrieDraw.hierarchical_pos" href="#dsa.draw.TrieDraw.hierarchical_pos">hierarchical_pos</a></code></li>
 <li><code><a title="dsa.draw.TrieDraw.render" href="#dsa.draw.TrieDraw.render">render</a></code></li>
+<li><code><a title="dsa.draw.TrieDraw.render_rectangle" href="#dsa.draw.TrieDraw.render_rectangle">render_rectangle</a></code></li>
 <li><code><a title="dsa.draw.TrieDraw.to_networkx" href="#dsa.draw.TrieDraw.to_networkx">to_networkx</a></code></li>
 </ul>
 </li>

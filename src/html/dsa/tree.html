@@ -71,7 +71,6 @@ hljs.highlightAll();
         
         Returns:
             node with matching value
-            None if not found
 
         Raises:
             ValueError: if value is not found
@@ -85,14 +84,39 @@ hljs.highlightAll();
                 current = current.left
             elif value &gt; current.value:
                 current = current.right
-            else:
-                return None
-        
-        return None
-    
+
+        raise ValueError(f&#34;Value {value} not found in the tree&#34;)
+
     def insert(self, value):
         &#34;&#34;&#34; 
         Insert a value in the binary search tree.
+
+        Args:
+            value: The value to insert.
+        
+        Returns:
+            The root of the tree after deletion.
+
+        Raises:
+            ValueError: if value is already in the tree
+        &#34;&#34;&#34;
+        self.root = self.insert_rec(self.root, value)
+        return self.root
+    
+    def insert_rec(self, root, value):
+        if root is None:
+            return TreeNode(value)
+        if value &lt; root.value:
+            root.left = self.insert_rec(root.left, value)
+        elif value &gt; root.value:
+            root.right = self.insert_rec(root.right, value)
+        else:
+            raise ValueError(&#34;Value already exists in the tree&#34;)
+        return root
+
+    def insert_iterative(self, value):
+        &#34;&#34;&#34; 
+        Insert a value in the binary search tree (iterative implementation).
 
         Args:
             value: The value to insert.
@@ -132,14 +156,16 @@ hljs.highlightAll();
             value: The value to delete.
         
         Returns:
-            None
+            The root of the tree after insertion.
+
         
         Raises:
             ValueError: if value is not found.
         &#34;&#34;&#34;
-        return self.delete_node(value, self.root)
+        self.root = self.delete_node(self.root, value)
+        return self.root
         
-    def delete_node(self, value, node):
+    def delete_node(self, node, value):
         &#34;&#34;&#34; 
         Helper function to delete a value from the binary search tree. (Use delete() instead)
 
@@ -148,31 +174,32 @@ hljs.highlightAll();
             node: The current node.
 
         Returns:
-            None
+            The new subtree root after deletion.
         
         Raises:
             ValueError: if value is not found.
-        &#34;&#34;&#34;
+        &#34;&#34;&#34; 
         if node is None:
+            raise ValueError(&#34;Value not found in the tree&#34;)
             return None
         
         if value &lt; node.value:
-            node.left = self.delete_node(value, node.left)
+            node.left = self.delete_node(node.left, value)
         elif value &gt; node.value:
-            node.right = self.delete_node(value, node.right)
+            node.right = self.delete_node(node.right, value)
         else:
             if node.left is None:
-                branch = node.right
+                subtree = node.right
                 node = None
-                return branch
+                return subtree
             elif node.right is None:
-                branch = node.left
+                subtree = node.left
                 node = None
-                return branch
+                return subtree
             
-            branch = self.successor_node(node.right)
-            node.value = branch.value
-            node.right = self.delete_node(branch.value, node.right)
+            successor = self.successor_node(node.right)
+            node.value = successor.value
+            node.right = self.delete_node(node.right, successor.value)
             
         return node
     
@@ -220,6 +247,68 @@ hljs.highlightAll();
         else:
             return self.predecessor_node(node.right)
     
+    def delete_iterative(self, root, value):
+        &#34;&#34;&#34; 
+        Delete a value from the binary search tree (iterative version).
+
+        Args:
+            value: The value to delete.
+        
+        Returns:
+            The root of the tree after insertion.
+
+        
+        Raises:
+            ValueError: if value is not found.
+        &#34;&#34;&#34;
+        parent = None
+        current = root
+
+        # Find the node to delete and its parent
+        while current and current.key != value:
+            parent = current
+            if value &lt; current.key:
+                current = current.left
+            else:
+                current = current.right
+
+        if current is None:
+            return root  # Key not found
+
+        # Case 1 &amp; 2: Node has at most one child
+        def replace_node_in_parent(new_child):
+            if parent is None:
+                return new_child  # Deleting the root node
+            if parent.left == current:
+                parent.left = new_child
+            else:
+                parent.right = new_child
+            return root
+
+        if current.left is None:
+            return replace_node_in_parent(current.right)
+        elif current.right is None:
+            return replace_node_in_parent(current.left)
+
+        # Case 3: Node has two children
+        # Find in-order successor and its parent
+        successor_parent = current
+        successor = current.right
+        while successor.left:
+            successor_parent = successor
+            successor = successor.left
+
+        # Replace current&#39;s key with successor&#39;s key
+        current.key = successor.key
+
+        # Delete successor node (which has at most one child)
+        if successor_parent.left == successor:
+            successor_parent.left = successor.right
+        else:
+            successor_parent.right = successor.right
+
+        return root
+
     def print(self):
         &#34;&#34;&#34; 
         Print the values in the BST.
@@ -239,7 +328,25 @@ hljs.highlightAll();
 <dd>The value to delete.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>None</p>
+<p>The root of the tree after insertion.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>if value is not found.</dd>
+</dl></div>
+</dd>
+<dt id="dsa.tree.Tree.delete_iterative"><code class="name flex">
+<span>def <span class="ident">delete_iterative</span></span>(<span>self, root, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete a value from the binary search tree (iterative version).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to delete.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The root of the tree after insertion.</p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>ValueError</code></dt>
@@ -247,7 +354,7 @@ hljs.highlightAll();
 </dl></div>
 </dd>
 <dt id="dsa.tree.Tree.delete_node"><code class="name flex">
-<span>def <span class="ident">delete_node</span></span>(<span>self, value, node)</span>
+<span>def <span class="ident">delete_node</span></span>(<span>self, node, value)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Helper function to delete a value from the binary search tree. (Use delete() instead)</p>
@@ -259,7 +366,7 @@ hljs.highlightAll();
 <dd>The current node.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>None</p>
+<p>The new subtree root after deletion.</p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>ValueError</code></dt>
@@ -277,12 +384,36 @@ hljs.highlightAll();
 <dd>The value to insert.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
+<p>The root of the tree after deletion.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>if value is already in the tree</dd>
+</dl></div>
+</dd>
+<dt id="dsa.tree.Tree.insert_iterative"><code class="name flex">
+<span>def <span class="ident">insert_iterative</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert a value in the binary search tree (iterative implementation).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>The value to insert.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
 <p>None</p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>ValueError</code></dt>
 <dd>if value is already in the tree</dd>
 </dl></div>
+</dd>
+<dt id="dsa.tree.Tree.insert_rec"><code class="name flex">
+<span>def <span class="ident">insert_rec</span></span>(<span>self, root, value)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="dsa.tree.Tree.predecessor_node"><code class="name flex">
 <span>def <span class="ident">predecessor_node</span></span>(<span>self, node=None)</span>
@@ -320,8 +451,7 @@ None if not found</p>
 <dd>Value to search for.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>node with matching value
-None if not found</p>
+<p>node with matching value</p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>ValueError</code></dt>
@@ -465,8 +595,11 @@ None if not found</p>
 <h4><code><a title="dsa.tree.Tree" href="#dsa.tree.Tree">Tree</a></code></h4>
 <ul class="two-column">
 <li><code><a title="dsa.tree.Tree.delete" href="#dsa.tree.Tree.delete">delete</a></code></li>
+<li><code><a title="dsa.tree.Tree.delete_iterative" href="#dsa.tree.Tree.delete_iterative">delete_iterative</a></code></li>
 <li><code><a title="dsa.tree.Tree.delete_node" href="#dsa.tree.Tree.delete_node">delete_node</a></code></li>
 <li><code><a title="dsa.tree.Tree.insert" href="#dsa.tree.Tree.insert">insert</a></code></li>
+<li><code><a title="dsa.tree.Tree.insert_iterative" href="#dsa.tree.Tree.insert_iterative">insert_iterative</a></code></li>
+<li><code><a title="dsa.tree.Tree.insert_rec" href="#dsa.tree.Tree.insert_rec">insert_rec</a></code></li>
 <li><code><a title="dsa.tree.Tree.predecessor_node" href="#dsa.tree.Tree.predecessor_node">predecessor_node</a></code></li>
 <li><code><a title="dsa.tree.Tree.print" href="#dsa.tree.Tree.print">print</a></code></li>
 <li><code><a title="dsa.tree.Tree.search" href="#dsa.tree.Tree.search">search</a></code></li>
