@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ucxdsa"
-version = "2025.6.14"
+version = "2025.6.25"
 authors = [
   { name="Carl Limsico", email="limsico@berkeley.edu" },
 ]

@@ -141,6 +141,66 @@ class TestArray(unittest.TestCase):
             self.dynarray.append(i)
         self.assertEqual(self.dynarray.count, 1000)
 
+    def test_shift_left_static(self):
+        """Test left shifting elements in a static array."""
+        arr = Array([1, 2, 3, 4, 5], capacity=5)
+        arr.shift_left(0)
+        self.assertEqual(arr._array[0:arr.count], [2, 3, 4, 5, 5]) 
+
+        arr = Array([10, 20, 30, 40], capacity=5)
+        arr.shift_left(1)
+        self.assertEqual( arr._array[0:arr.count], [10, 30, 40, 40])
+
+        arr = Array([7, 8, 9], capacity=3)
+        arr.shift_left(2)
+        self.assertEqual( arr._array[0:arr.count], [7, 8, 9])
+
+        arr = Array([5, 6, 7, 8], capacity=4)
+        arr.shift_left(0)
+        self.assertEqual( arr._array[0:arr.count], [6, 7, 8, 8])
+
+        arr = Array([1, 2, 3, 4, 5], capacity=5)
+        arr.shift_left(arr.count-2)
+        self.assertEqual( arr._array[0:arr.count], [1, 2, 3, 5, 5])  
+
+        arr = Array([1, 2, 3, 4, 5], capacity=5)
+        arr.shift_left(arr.count-1)
+        self.assertEqual( arr._array[0:arr.count], [1, 2, 3, 4, 5])
+
+        arr = Array([1, 2, 3, 4, 5], capacity=5)
+        arr.shift_left(arr.count)
+        self.assertEqual( arr._array[0:arr.count], [1, 2, 3, 4, 5])
+
+    def test_shift_right_static(self):
+        """Test right shifting elements in a static array."""
+        arr = Array([10, 20, 30, 40], capacity=4)
+        with self.assertRaises(Exception):
+            arr.shift_right(0)
+
+        arr = Array([7, 8, 9], capacity=3)
+        with self.assertRaises(Exception):
+            arr.shift_right(2)
+
+        arr = Array([5, 6, 7, 8], capacity=5)
+        arr.shift_right(0)
+        self.assertEqual(arr._array[0:arr.count], [5, 5, 6, 7])
+
+        arr = Array([1, 2, 3, 4, 5])
+        arr.shift_right(arr.count)
+        self.assertEqual(arr._array[0:arr.count], [1, 2, 3, 4, 5])
+
+        arr = Array([1, 2, 3, 4, 5])
+        arr.shift_right(arr.count - 1)
+        self.assertEqual(arr._array[0:arr.count], [1, 2, 3, 4, 5])
+
+        arr = Array([1, 2, 3, 4, 5])
+        arr.shift_right(arr.count - 2)
+        self.assertEqual(arr._array[0:arr.count], [1, 2, 3, 4, 4])
+
+        arr = Array([1, 2, 3, 4, 5], capacity=5)
+        with self.assertRaises(Exception):
+            arr.shift_right(arr.count - 3)
+
     def test_insert_valid_index_static(self):
         """Test inserting an element at a valid index."""
         self.array_with_elements.insert(1, 99)
@@ -170,6 +230,18 @@ class TestArray(unittest.TestCase):
         with self.assertRaises(IndexError):
             self.array.insert(10, 10)
             self.dynarray.insert(10, 10)
+
+    def test_insert_edge_elements_static(self):
+        """Test deleting the first element."""
+        array = Array(range(10), capacity=10)
+        with self.assertRaises(Exception):
+            array.insert(0, 99)  # Capacity error
+
+    def test_delete_edge_elements_static(self):
+        """Test deleting the first element."""
+        array = Array(range(10), capacity=10)
+        array.delete(array.count - 1)
+        array.delete(0)
 
     def test_delete_valid_index_static(self):
         """Test deleting an element at a valid index."""
@@ -244,6 +316,8 @@ class TestArray(unittest.TestCase):
         self.assertEqual(
             repr(self.dynarray_with_elements), "[1, 2, 3] Count: 3 Capacity: 4"
         )
+
+
 
 if __name__ == "__main__":
     unittest.main()

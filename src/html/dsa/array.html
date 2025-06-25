@@ -135,19 +135,24 @@ Assignment:
         if index &lt; 0 or index &gt; self.count:
             raise IndexError
 
-        self.shift_right(self.count, index)
+        self.shift_right(index)
         self._array[index] = element
         self.count += 1
         
-    def shift_right(self, start: int, end: int):
+    def shift_right(self, start: int):
         &#34;&#34;&#34;
-        Helper method to shift elements to the right between the specified range.
-
+        Helper method to shift elements to the right from a specified start index until the last element.
+        (May delete an element but does not affect the count.)
         Args:
-            start (int): The starting index of the shift.
-            end (int): The ending index of the shift.
+            start (int): The index at which to start shifting (inclusive).
+
+        Raises:
+            Exception: If the array is full and cannot accommodate the shift.
         &#34;&#34;&#34;
-        for i in range(start, end, -1):
+        if self.count &gt;= len(self._array):
+            raise Exception(f&#34;Capacity Error: Maximum capacity {len(self)} reached.&#34;)
+        end = self.count
+        for i in range(end, start, -1):
             self._array[i] = self._array[i - 1]
 
     def delete(self, index: int):
@@ -163,18 +168,18 @@ Assignment:
         if index &lt; 0 or index &gt;= self.count:
             raise IndexError
 
-        self.shift_left(index, self.count)
+        self.shift_left(index)
         self.count -= 1
 
-    def shift_left(self, start: int, end: int):
+    def shift_left(self, start: int):
         &#34;&#34;&#34;
-        Helper method to shift elements to the left between the specified range.
+        Helper method to shift elements to the left starting at a start index.
+        (May delete an element but does not affect the count.)
 
         Args:
             start (int): The starting index of the shift.
-            end (int): The ending index of the shift.
         &#34;&#34;&#34;
-        for i in range(start, end):
+        for i in range(start, self.count - 1):
             self._array[i] = self._array[i + 1]
 
     def __getitem__(self, index: int):
@@ -382,29 +387,32 @@ IndexError: If index is out of bounds.</p></div>
 <p>True if the array is empty, False otherwise.</p></div>
 </dd>
 <dt id="dsa.array.Array.shift_left"><code class="name flex">
-<span>def <span class="ident">shift_left</span></span>(<span>self, start: int, end: int)</span>
+<span>def <span class="ident">shift_left</span></span>(<span>self, start: int)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Helper method to shift elements to the left between the specified range.</p>
+<div class="desc"><p>Helper method to shift elements to the left starting at a start index.
+(May delete an element but does not affect the count.)</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
 <dd>The starting index of the shift.</dd>
-<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
-<dd>The ending index of the shift.</dd>
 </dl></div>
 </dd>
 <dt id="dsa.array.Array.shift_right"><code class="name flex">
-<span>def <span class="ident">shift_right</span></span>(<span>self, start: int, end: int)</span>
+<span>def <span class="ident">shift_right</span></span>(<span>self, start: int)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Helper method to shift elements to the right between the specified range.</p>
+<div class="desc"><p>Helper method to shift elements to the right from a specified start index until the last element.
+(May delete an element but does not affect the count.)</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
-<dd>The starting index of the shift.</dd>
-<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
-<dd>The ending index of the shift.</dd>
+<dd>The index at which to start shifting (inclusive).</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>Exception</code></dt>
+<dd>If the array is full and cannot accommodate the shift.</dd>
 </dl></div>
 </dd>
 <dt id="dsa.array.Array.to_list"><code class="name flex">
@@ -720,7 +728,7 @@ Assignment:
 
         self.check_capacity()
 
-        self.shift_right(self.count, index)
+        self.shift_right(index)
         self._array[index] = element
         self.count += 1
         
@@ -736,7 +744,7 @@ Assignment:
 
         self.check_capacity()
 
-        self.shift_left(index, self.count)
+        self.shift_left(index)
         self.count -= 1</code></pre>
 </details>
 <h3>Ancestors</h3>

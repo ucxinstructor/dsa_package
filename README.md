@@ -35,7 +35,10 @@ pip show ucxdsa
 
 ***
 # Revision History
-## 2035.06.14
+## 2025.06.25
+* Added boundary checking for shift_left() and shift_right() Array methods. Also, changed to accept only one argument starting argument. (Thanks for reporting this, Alejandro!)
+  
+## 2025.06.14
 * Added iterative versions of insert and delete BST methods 
 
 ## 2025.06.11

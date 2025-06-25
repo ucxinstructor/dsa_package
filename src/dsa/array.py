@@ -74,19 +74,24 @@ class Array:
         if index < 0 or index > self.count:
             raise IndexError
 
-        self.shift_right(self.count, index)
+        self.shift_right(index)
         self._array[index] = element
         self.count += 1
         
-    def shift_right(self, start: int, end: int):
+    def shift_right(self, start: int):
         """
-        Helper method to shift elements to the right between the specified range.
-
+        Helper method to shift elements to the right from a specified start index until the last element.
+        (May delete an element but does not affect the count.)
         Args:
-            start (int): The starting index of the shift.
-            end (int): The ending index of the shift.
+            start (int): The index at which to start shifting (inclusive).
+
+        Raises:
+            Exception: If the array is full and cannot accommodate the shift.
         """
-        for i in range(start, end, -1):
+        if self.count >= len(self._array):
+            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
+        end = self.count
+        for i in range(end, start, -1):
             self._array[i] = self._array[i - 1]
 
     def delete(self, index: int):
@@ -102,18 +107,18 @@ class Array:
         if index < 0 or index >= self.count:
             raise IndexError
 
-        self.shift_left(index, self.count)
+        self.shift_left(index)
         self.count -= 1
 
-    def shift_left(self, start: int, end: int):
+    def shift_left(self, start: int):
         """
-        Helper method to shift elements to the left between the specified range.
+        Helper method to shift elements to the left starting at a start index.
+        (May delete an element but does not affect the count.)
 
         Args:
             start (int): The starting index of the shift.
-            end (int): The ending index of the shift.
         """
-        for i in range(start, end):
+        for i in range(start, self.count - 1):
             self._array[i] = self._array[i + 1]
 
     def __getitem__(self, index: int):
@@ -293,7 +298,7 @@ class DynamicArray(Array):
 
         self.check_capacity()
 
-        self.shift_right(self.count, index)
+        self.shift_right(index)
         self._array[index] = element
         self.count += 1
         
@@ -309,7 +314,7 @@ class DynamicArray(Array):
 
         self.check_capacity()
 
-        self.shift_left(index, self.count)
+        self.shift_left(index)
         self.count -= 1
 
         
