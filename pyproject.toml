@@ -37,7 +37,11 @@ packages = ["src/dsa"]
 
 [tool.hatch.publish]
 [tool.hatch.publish.twine]
+[tool.hatch.publish.index.repos.test]
+url = "https://test.pypi.org/legacy/"
 
 [tool.hatch.envs.default]
 dependencies = ["pdoc", "networkx", "matplotlib"]
+
+
 
