@@ -46,7 +46,7 @@ def shuffle_array(n: int) -> list:
         array[i], array[r] = array[r], array[i]
     return array
 
-def is_sorted(array) -> bool:
+def is_sorted(array: list) -> bool:
     """ 
     Return a boolean on whether an array is sorted in ascending order or not.
 
@@ -60,7 +60,7 @@ def is_sorted(array) -> bool:
             return False
     return True
 
-def array_details(array):
+def array_details(array: list) -> str:
     """
     Return a string with details about the array.
     Args:
@@ -70,9 +70,16 @@ def array_details(array):
     """
     return f"Count: {len(array)} first 10: {array[:10]} last 10: {array[-10:]}"
 
-import random
+def generate_almost_sorted_array(size: int, swaps: int) -> list:
+    """
+    Generate an almost sorted array of a given size with a specified number of swaps.   
+    Args:
+        size (int): The size of the array to generate.
+        swaps (int): The number of adjacent elements to swap to create disorder.
+    Returns:
+        list: An array of integers that is mostly sorted with a few local swaps.
+    """
 
-def generate_almost_sorted_array(size, swaps=10):
     arr = list(range(size))
     for _ in range(swaps):
         i = random.randint(0, size - 2)

@@ -35,6 +35,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.07.05
+* Added two new functions to sorttools: array_details() - returns the length, and the contents of an array/list  and generate_almost_sorted_array() 
+
 ## 2025.06.25
 * Added boundary checking for shift_left() and shift_right() Array methods. Also, changed to accept only one argument starting argument. (Thanks for reporting this, Alejandro!)
   
