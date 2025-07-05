@@ -27,8 +27,14 @@ exclude = [
   "dsabuild_readme.md"
 ]
 
+[tool.hatch.envs.default.scripts]
+lint = "ruff check src/dsa"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/dsa"]
+
+[tool.hatch.publish]
+[tool.hatch.publish.twine]
 
 [tool.hatch.envs.default]
 dependencies = ["networkx", "matplotlib"]
