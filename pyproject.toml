@@ -29,6 +29,8 @@ exclude = [
 
 [tool.hatch.envs.default.scripts]
 lint = "ruff check src/dsa"
+docs = "pdoc dsa -o src/html"
+tests = "python -m unittest discover -s tests"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/dsa"]
@@ -37,18 +39,5 @@ packages = ["src/dsa"]
 [tool.hatch.publish.twine]
 
 [tool.hatch.envs.default]
-dependencies = ["networkx", "matplotlib"]
-
-[tool.hatch.envs.test]
-dependencies = ["networkx", "matplotlib"]
-
-[tool.hatch.envs.test.scripts]
-run = "python -m unittest discover -s tests"
-
-[tool.hatch.envs.docs]
 dependencies = ["pdoc", "networkx", "matplotlib"]
-require-runtime-dependencies = true
-
-[tool.hatch.envs.docs.scripts]
-build = "pdoc dsa -o src/html"
 
