@@ -59,3 +59,23 @@ def is_sorted(array) -> bool:
         if array[i + 1] < array[i]:
             return False
     return True
+
+def array_details(array):
+    """
+    Return a string with details about the array.
+    Args:
+        array: the array to analyze.
+    Returns:
+        A string with the count of elements, first 10 elements, and last 10 elements.
+    """
+    return f"Count: {len(array)} first 10: {array[:10]} last 10: {array[-10:]}"
+
+import random
+
+def generate_almost_sorted_array(size, swaps=10):
+    arr = list(range(size))
+    for _ in range(swaps):
+        i = random.randint(0, size - 2)
+        arr[i], arr[i + 1] = arr[i + 1], arr[i]  # introduce a small local disorder
+    return arr
+
