@@ -5,26 +5,30 @@ build-backend = "hatchling.build"
 [project]
 name = "ucxdsa"
 version = "2025.7.5"
-authors = [
-  { name="Carl Limsico", email="limsico@berkeley.edu" },
-]
 description = "Data Structures and Algorithms Source Code"
 readme = "README.md"
 requires-python = ">=3.7"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
 license = "MIT"
+
+authors = [
+  { name = "Carl Limsico", email = "limsico@berkeley.edu" }
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
 
 [project.urls]
 Homepage = "https://github.com/ucxinstructor/dsa_package"
 
-[tool.hatch.build]
-exclude = [
-  "/__pycache__",
-  "dsabuild_readme.md"
+# 🎯 Environment setup
+[tool.hatch.envs.default]
+dependencies = [
+  "pdoc",
+  "networkx",
+  "matplotlib"
 ]
 
 [tool.hatch.envs.default.scripts]
@@ -32,16 +36,27 @@ lint = "ruff check src/dsa"
 docs = "pdoc dsa -o src/html"
 tests = "python -m unittest discover -s tests"
 
+# 📦 Build configuration
+[tool.hatch.build]
+exclude = [
+  "/__pycache__",
+  "dsabuild_readme.md"
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/dsa"]
 
-[tool.hatch.publish]
-[tool.hatch.publish.twine]
+# 🚀 Publishing configuration
+[tool.hatch.publish]  # Main publish config (defaults to PyPI)
+[tool.hatch.publish.twine]  # Placeholder for future Twine options
+
 [tool.hatch.publish.index.repos.test]
 url = "https://test.pypi.org/legacy/"
 
-[tool.hatch.envs.default]
-dependencies = ["pdoc", "networkx", "matplotlib"]
-
-
+build-all = [
+  "hatch build",
+  "hatch run lint",
+  "hatch run tests",
+  "hatch run docs"
+]
 
