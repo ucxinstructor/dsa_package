@@ -320,4 +320,17 @@ class Tree:
         """
         self.root.print()
         
+    def __len__(self):
+        """ 
+        Return the number of nodes in the BST.
+        
+        Returns:
+            The number of nodes in the BST.
+        """
+        def count_nodes(node):
+            if node is None:
+                return 0
+            return 1 + count_nodes(node.left) + count_nodes(node.right)
+        
+        return count_nodes(self.root)
         
