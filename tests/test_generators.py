@@ -190,5 +190,83 @@ class TestRandomArray(unittest.TestCase):
         self.assertIsInstance(trie, dsa.trie.Trie)
  #       self.assertEqual(len(trie), n)
 
+    def test_linear_stack(self):
+        size = 5
+        stack = dsa.generators.linear_stack(size)
+        self.assertEqual(len(stack), size)
+        for i in range(size):
+            self.assertEqual(stack.pop(), size - i - 1)
+
+        size = 5_000
+        stack = dsa.generators.linear_stack(size)
+        self.assertEqual(len(stack), size)
+        for i in range(size):
+            self.assertEqual(stack.pop(), size - i - 1)
+    
+    def test_linear_dynamic_stack(self):
+        size = 5
+        stack = dsa.generators.linear_dynamic_stack(size)
+        self.assertEqual(len(stack), size)
+        for i in range(size):
+            self.assertEqual(stack.pop(), size - i - 1)
+
+        size = 5_000
+        stack = dsa.generators.linear_dynamic_stack(size)
+        self.assertEqual(len(stack), size)
+        for i in range(size):
+            self.assertEqual(stack.pop(), size - i - 1)
+    
+    def test_linear_queue(self):
+        size = 5
+        queue = dsa.generators.linear_queue(size)
+        self.assertEqual(len(queue), size)
+        for i in range(size):
+            self.assertEqual(queue.dequeue(), i)
+
+        size = 5_000
+        queue = dsa.generators.linear_queue(size)
+        self.assertEqual(len(queue), size)
+        for i in range(size):
+            self.assertEqual(queue.dequeue(), i)
+    
+    def test_linear_dynamic_queue(self):
+        size = 5
+        queue = dsa.generators.linear_dynamic_queue(size)
+        self.assertEqual(len(queue), size)
+        for i in range(size):
+            self.assertEqual(queue.dequeue(), i)
+
+        size = 5_000
+        queue = dsa.generators.linear_dynamic_queue(size)
+        self.assertEqual(len(queue), size)
+        for i in range(size):
+            self.assertEqual(queue.dequeue(), i)
+
+    def test_linear_linked_list(self):
+        size = 5
+        linked_list = dsa.generators.linear_linked_list(size)
+        self.assertEqual(len(linked_list), size)
+        for i in range(size):
+            self.assertEqual(linked_list[i], i)
+
+        size = 5_000
+        linked_list = dsa.generators.linear_linked_list(size)
+        self.assertEqual(len(linked_list), size)
+        for i in range(size):
+            self.assertEqual(linked_list[i], i)
+
+    def test_linear_doubly_linked_list(self):
+        size = 5
+        linked_list = dsa.generators.linear_doubly_linked_list(size)
+        self.assertEqual(len(linked_list), size)
+        for i in range(size):
+            self.assertEqual(linked_list[i], i)
+
+        size = 5_000
+        linked_list = dsa.generators.linear_doubly_linked_list(size)
+        self.assertEqual(len(linked_list), size)
+        for i in range(size):
+            self.assertEqual(linked_list[i], i)
+
 if __name__ == '__main__':
     unittest.main()
