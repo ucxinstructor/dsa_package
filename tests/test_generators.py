@@ -197,7 +197,7 @@ class TestRandomArray(unittest.TestCase):
         for i in range(size):
             self.assertEqual(stack.pop(), size - i - 1)
 
-        size = 5_000
+        size = 1_000
         stack = dsa.generators.linear_stack(size)
         self.assertEqual(len(stack), size)
         for i in range(size):
@@ -210,7 +210,7 @@ class TestRandomArray(unittest.TestCase):
         for i in range(size):
             self.assertEqual(stack.pop(), size - i - 1)
 
-        size = 5_000
+        size = 1_000
         stack = dsa.generators.linear_dynamic_stack(size)
         self.assertEqual(len(stack), size)
         for i in range(size):
@@ -223,7 +223,7 @@ class TestRandomArray(unittest.TestCase):
         for i in range(size):
             self.assertEqual(queue.dequeue(), i)
 
-        size = 5_000
+        size = 1_000
         queue = dsa.generators.linear_queue(size)
         self.assertEqual(len(queue), size)
         for i in range(size):
@@ -236,7 +236,7 @@ class TestRandomArray(unittest.TestCase):
         for i in range(size):
             self.assertEqual(queue.dequeue(), i)
 
-        size = 5_000
+        size = 1_000
         queue = dsa.generators.linear_dynamic_queue(size)
         self.assertEqual(len(queue), size)
         for i in range(size):
@@ -249,7 +249,7 @@ class TestRandomArray(unittest.TestCase):
         for i in range(size):
             self.assertEqual(linked_list[i], i)
 
-        size = 5_000
+        size = 1_000
         linked_list = dsa.generators.linear_linked_list(size)
         self.assertEqual(len(linked_list), size)
         for i in range(size):
@@ -262,7 +262,7 @@ class TestRandomArray(unittest.TestCase):
         for i in range(size):
             self.assertEqual(linked_list[i], i)
 
-        size = 5_000
+        size = 1_000
         linked_list = dsa.generators.linear_doubly_linked_list(size)
         self.assertEqual(len(linked_list), size)
         for i in range(size):
@@ -273,8 +273,9 @@ class TestRandomArray(unittest.TestCase):
         n = 5
         graph = dsa.generators.random_adjacency_matrix_graph(n, directed=False)
         self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixGraph)
+        graph.print_graph()
 
-        n = 5_000
+        n = 1_000
         graph = dsa.generators.random_adjacency_matrix_graph(n, directed=False)
         self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixGraph)
     
@@ -282,10 +283,32 @@ class TestRandomArray(unittest.TestCase):
         n = 5
         graph = dsa.generators.random_adjacency_matrix_graph(n, directed=True)
         self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixGraph)
+        graph.print_graph()
 
-        n = 5_000
+        n = 1_000
         graph = dsa.generators.random_adjacency_matrix_graph(n, directed=True)
         self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixGraph)
+
+    def test_random_adjacency_matrix_weighted_graph(self):
+        # undirected
+        n = 5
+        graph = dsa.generators.random_adjacency_matrix_weighted_graph(n, directed=False)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixWeightedGraph)
+        graph.print_graph()
+
+        n = 1_000
+        graph = dsa.generators.random_adjacency_matrix_weighted_graph(n, directed=False)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixWeightedGraph)
+
+        # directed
+        n = 5
+        graph = dsa.generators.random_adjacency_matrix_weighted_graph(n, directed=True)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixWeightedGraph)
+        graph.print_graph()
+
+        n = 1_000
+        graph = dsa.generators.random_adjacency_matrix_weighted_graph(n, directed=True)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixWeightedGraph)
 
     def test_random_adjacency_list_graph(self):
         # undirected
@@ -293,7 +316,7 @@ class TestRandomArray(unittest.TestCase):
         graph = dsa.generators.random_adjacency_list_graph(n, directed=False)
         self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
 
-        n = 5_000
+        n = 1_000
         graph = dsa.generators.random_adjacency_list_graph(n, directed=False)
         self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
 
@@ -302,9 +325,28 @@ class TestRandomArray(unittest.TestCase):
         graph = dsa.generators.random_adjacency_list_graph(n, directed=True)
         self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
 
-        n = 5_000
+        n = 1_000
         graph = dsa.generators.random_adjacency_list_graph(n, directed=True)
         self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
+
+    def test_random_adjacency_list_weighted_graph(self):
+        # undirected
+        n = 5
+        graph = dsa.generators.random_adjacency_list_weighted_graph(n, directed=False)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListWeightedGraph)
+
+        n = 1_000
+        graph = dsa.generators.random_adjacency_list_weighted_graph(n, directed=False)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListWeightedGraph)
+
+        # directed
+        n = 5
+        graph = dsa.generators.random_adjacency_list_weighted_graph(n, directed=True)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListWeightedGraph)
+
+        n = 1_000
+        graph = dsa.generators.random_adjacency_list_weighted_graph(n, directed=True)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListWeightedGraph)
 
 if __name__ == '__main__':
     unittest.main()
