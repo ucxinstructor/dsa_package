@@ -1,4 +1,4 @@
-from calendar import c
+from re import A
 from dsa.array import Array, DynamicArray
 from dsa.stack import Stack, DynamicStack
 from dsa.queue import Queue, DynamicQueue
@@ -10,6 +10,9 @@ from dsa.doublylinkedlist import DoublyLinkedList
 from dsa.tree import Tree, TreeNode
 from dsa.heap import Heap
 from dsa.trie import Trie
+
+from dsa.graph import AdjacencyListGraph, AdjacencyListWeightedGraph
+from dsa.graph import AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph
 
 import random
 
@@ -306,5 +309,26 @@ def random_trie(n: int) -> Trie:
 
 # Generates a random graph.
 # option: directed, undirected, weighted, unweighted
-def random_graph(n, density=0.1):
+def random_graph(n, density=0.1, directed=False, weighted=False):
     pass
+
+def random_adjacency_matrix_graph(n, density=0.1, directed=False) -> AdjacencyMatrixGraph:
+    # create a list of strings starting from "A" to "Z", then "AA", "AB", etc.
+    labels = [chr(i) for i in range(65, 65 + n)]
+    graph = AdjacencyMatrixGraph(labels=labels)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if random.random() < density:
+                graph.add_edge(labels[i], labels[j], directed=directed)
+    return graph
+
+def random_adjacency_matrix_weighted_graph(n, density=0.1, directed=False) -> AdjacencyMatrixWeightedGraph:
+    # create a list of strings starting from "A" to "Z", then "AA", "AB", etc.
+    labels = [chr(i) for i in range(65, 65 + n)]
+    graph = AdjacencyMatrixWeightedGraph(labels=labels)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if random.random() < density:
+                weight = random.randint(1, 10)
+                graph.add_edge(labels[i], labels[j], weight, directed=directed)
+    return graph
