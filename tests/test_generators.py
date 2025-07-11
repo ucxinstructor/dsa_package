@@ -287,5 +287,24 @@ class TestRandomArray(unittest.TestCase):
         graph = dsa.generators.random_adjacency_matrix_graph(n, directed=True)
         self.assertIsInstance(graph, dsa.graph.AdjacencyMatrixGraph)
 
+    def test_random_adjacency_list_graph(self):
+        # undirected
+        n = 5
+        graph = dsa.generators.random_adjacency_list_graph(n, directed=False)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
+
+        n = 5_000
+        graph = dsa.generators.random_adjacency_list_graph(n, directed=False)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
+
+        # directed
+        n = 5
+        graph = dsa.generators.random_adjacency_list_graph(n, directed=True)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
+
+        n = 5_000
+        graph = dsa.generators.random_adjacency_list_graph(n, directed=True)
+        self.assertIsInstance(graph, dsa.graph.AdjacencyListGraph)
+
 if __name__ == '__main__':
     unittest.main()

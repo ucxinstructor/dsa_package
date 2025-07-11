@@ -307,10 +307,8 @@ def random_trie(n: int) -> Trie:
         trie.insert(word)
     return trie
 
-# Generates a random graph.
-# option: directed, undirected, weighted, unweighted
-def random_graph(n, density=0.1, directed=False, weighted=False):
-    pass
+# Generates a random graphs 
+# options: directed, undirected, weighted, unweighted
 
 def random_adjacency_matrix_graph(n, density=0.1, directed=False) -> AdjacencyMatrixGraph:
     # create a list of strings starting from "A" to "Z", then "AA", "AB", etc.
@@ -326,6 +324,27 @@ def random_adjacency_matrix_weighted_graph(n, density=0.1, directed=False) -> Ad
     # create a list of strings starting from "A" to "Z", then "AA", "AB", etc.
     labels = [chr(i) for i in range(65, 65 + n)]
     graph = AdjacencyMatrixWeightedGraph(labels=labels)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if random.random() < density:
+                weight = random.randint(1, 10)
+                graph.add_edge(labels[i], labels[j], weight, directed=directed)
+    return graph
+
+def random_adjacency_list_graph(n, density=0.1, directed=False) -> AdjacencyListGraph:
+    # create a list of strings starting from "A" to "Z", then "AA", "AB", etc.
+    labels = [chr(i) for i in range(65, 65 + n)]
+    graph = AdjacencyListGraph()
+    for i in range(n):
+        for j in range(i + 1, n):
+            if random.random() < density:
+                graph.add_edge(labels[i], labels[j], directed=directed)
+    return graph
+
+def random_adjacency_list_weighted_graph(n, density=0.1, directed=False) -> AdjacencyListWeightedGraph:
+    # create a list of strings starting from "A" to "Z", then "AA", "AB", etc.
+    labels = [chr(i) for i in range(65, 65 + n)]
+    graph = AdjacencyListWeightedGraph()
     for i in range(n):
         for j in range(i + 1, n):
             if random.random() < density:
