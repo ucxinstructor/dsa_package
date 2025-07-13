@@ -132,4 +132,23 @@ class HashTable:
         for i, bucket in enumerate(self.array):
             s += f"Bucket {i}: {bucket}\n"
         return s
-
+    
+    def __len__(self):
+        """
+        Return the number of items in the hashtable.
+        """
+        return self.count
+    
+    def pop(self, key, default=None):
+        """
+        Remove specified key and return the value.
+        If key is not found, return default.
+        """
+        bucket = self.hash_function(key)
+        for i, kvpair in enumerate(self.array[bucket]):
+            if kvpair and kvpair[0] == key:
+                value = kvpair[1]
+                del self.array[bucket][i]
+                self.count -= 1
+                return value
+        return default

@@ -91,3 +91,21 @@ class TestHashTable(unittest.TestCase):
         buckets = self.ht.show_buckets()
         self.assertIn("Bucket", buckets)
         self.assertIn("key7", buckets)
+
+    def test_len(self):
+        ht = HashTable()
+        self.assertEqual(len(ht), 0)
+        ht.set("A", 1)
+        ht.set("B", 2)
+        self.assertEqual(len(ht), 2)
+        ht.delete("A")
+        self.assertEqual(len(ht), 1)
+    
+    def test_pop(self):
+        ht = HashTable()
+        ht.set("A", 1)
+        ht.set("B", 2)
+        self.assertEqual(ht.pop("A"), 1)
+        self.assertEqual(ht.pop("C", "not found"), "not found")
+        self.assertEqual(len(ht), 1)
+        self.assertFalse(ht.key_exists("A"))
