@@ -68,7 +68,23 @@ class TestArray(unittest.TestCase):
         q.append(110)
         self.assertEqual(q.to_list(), [4, 6, 8, 100, 110])
         self.assertEqual(q.raw_view(), [100, 110, 4, 6, 8])
-
+    
+    def test_delete_circulararray(self):
+        """Test deleting elements in CircularArray."""
+        
+        ca = CircularArray([10, 20, 30, 40, 50], capacity=5)
+        self.assertEqual(ca.to_list(), [10, 20, 30, 40, 50])
+        ca.delete(0)
+        self.assertEqual(ca.to_list(), [20, 30, 40, 50])
+        ca.delete(2)
+        self.assertEqual(ca.to_list(), [20, 30, 50])
+        ca.delete(ca.count - 1)
+        self.assertEqual(ca.to_list(), [20, 30])
+        # Invalid index: should not change contents
+        ca.delete(-1)
+        self.assertEqual(ca.to_list(), [20, 30])
+        ca.delete(10)
+        self.assertEqual(ca.to_list(), [20, 30])
 
 if __name__ == "__main__":
     unittest.main()

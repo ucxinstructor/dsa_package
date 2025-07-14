@@ -333,4 +333,16 @@ class Tree:
             return 1 + count_nodes(node.left) + count_nodes(node.right)
         
         return count_nodes(self.root)
+
+    def height(self):
+        """
+        Return the height of the tree (max depth).
         
+        Returns:
+            The height of the tree. If the tree is empty, returns 0.
+        """
+        def node_height(node):
+            if node is None:
+                return 0
+            return 1 + max(node_height(node.left), node_height(node.right))
+        return node_height(self.root)

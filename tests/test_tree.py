@@ -1,6 +1,6 @@
 import unittest
 
-from dsa.tree import Tree, TreeNode
+from src.dsa.tree import Tree, TreeNode
 
 class TestTree(unittest.TestCase):
     def test_create(self):
@@ -81,3 +81,18 @@ class TestTree(unittest.TestCase):
         with self.assertRaises(ValueError):
             t.search(10)
         t.delete(30)
+    
+    def test_height(self):
+        t = Tree()
+        self.assertEqual(t.height(), 0)
+
+        t.insert(10)
+        self.assertEqual(t.height(), 1)
+
+        t.insert(5)
+        t.insert(15)
+        t.insert(2)
+        t.insert(7)
+        t.insert(12)
+        t.insert(20)
+        self.assertEqual(t.height(), 3)

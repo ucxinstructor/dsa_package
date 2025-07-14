@@ -424,8 +424,18 @@ class CircularArray(Array):
         pass
 
     def delete(self, index: int):
-        """ 
-        not yet implemented
         """
-        pass
+        Delete an element at a specified index, shifting subsequent elements to the left.
 
+        Args:
+            index (int): The index of the element to delete.
+
+        Returns:
+            None if index is out of bounds.
+        """
+        if index < 0 or index >= self.count:
+            return
+        for i in range(index, self.count - 1):
+            self._array[(self._start + i) % len(self._array)] = self._array[(self._start + i + 1) % len(self._array)]
+        self._array[(self._start + self.count - 1) % len(self._array)] = None
+        self.count -= 1
