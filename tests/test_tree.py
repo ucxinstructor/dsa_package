@@ -1,6 +1,6 @@
 import unittest
 
-from src.dsa.tree import Tree, TreeNode
+from dsa.tree import Tree, TreeNode
 
 class TestTree(unittest.TestCase):
     def test_create(self):
