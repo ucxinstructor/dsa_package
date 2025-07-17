@@ -1,4 +1,3 @@
-from re import A
 from dsa.array import Array, DynamicArray
 from dsa.stack import Stack, DynamicStack
 from dsa.queue import Queue, DynamicQueue

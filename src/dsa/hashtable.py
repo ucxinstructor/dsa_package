@@ -20,7 +20,7 @@ class HashTable:
         #: the number of items in the hashtable
         self.count = 0
         
-    def hash_function(self, key: str) -> int:
+    def hash_function(self, key) -> int:
         """ 
         Return a hash value based on a given key. 
 
@@ -31,14 +31,14 @@ class HashTable:
         """
         mult = 31
         hash_val = 0
-        for character in key:
+        for character in str(key):
             hash_val *= mult
             hash_val += ord(character)
             hash_val %= (2**32)
 
         return hash_val % self.capacity
         
-    def key_exists(self, key: str) -> bool:
+    def key_exists(self, key) -> bool:
         """ 
         Returns a Boolean on whether a key exists in the hashtable or not .
 
@@ -54,7 +54,7 @@ class HashTable:
                 return True
         return False
 
-    def set(self, key: str, value):
+    def set(self, key, value):
         """ 
         Set a key-value pair in the hashtable.
 
@@ -76,7 +76,7 @@ class HashTable:
             self.array[bucket].append([ key, value ])
             self.count += 1
 
-    def get(self, key: str):
+    def get(self, key):
         """ 
         Get corresponding value of a given key in the hash table.
 
@@ -95,7 +95,7 @@ class HashTable:
 
         return None
 
-    def delete(self, key: str):
+    def delete(self, key):
         """ 
         Delete key-value pair if specified key is found. 
 
@@ -138,6 +138,47 @@ class HashTable:
         Return the number of items in the hashtable.
         """
         return self.count
+    
+    def __getitem__(self, key):
+        """
+        Get the value associated with the key using indexing.
+
+        Args:
+            key: The key to look up.
+        Returns:
+            The value associated with the key.
+        """
+        return self.get(key)
+    
+    def __setitem__(self, key, value):
+        """
+        Set the value associated with the key using indexing.
+
+        Args:
+            key: The key to set.
+            value: The value to associate with the key.
+        """
+        self.set(key, value)
+
+    def __delitem__(self, key):
+        """
+        Delete the key-value pair associated with the key using indexing.
+
+        Args:
+            key: The key to delete.
+        """
+        self.delete(key)
+
+    def __contains__(self, key):
+        """
+        Check if the key exists in the hashtable using 'in' operator.
+
+        Args:
+            key: The key to check for existence.
+        Returns:
+            True if key exists, False otherwise.
+        """
+        return self.key_exists(key)
     
     def pop(self, key, default=None):
         """

@@ -2,6 +2,11 @@
 
 A collection of classes and functions for use in UC Berkeley Extension's Comp Sci X404.1: Data Structures and Algorithms Class.
 
+This package is designed as an educational tool for students to learn and experiment with data structures and algorithms.
+It is written in Python with an emphasis on readability and clarity, rather than performance or optimization.
+Not intended for production use.
+
+
 [API Documentation](https://ucxinstructor.github.io/dsa_package/src/html/dsa/)
 
 
@@ -35,6 +40,14 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.07.17
+* Added generators module -- functions to generate linear and random arrays, queues, stacks, tries, heaps, trees and graphs (warning: a work in progress)
+* Hashtable updates
+  * Allow non-strings for keys
+  * Works with index operator [] and in operator
+  * Added pop() method (thank you, Rishab!)
+* Cleaned up some test cases (singly linked list, doubly linked list, stack, queue, hash table)
+
 ## 2025.07.05
 * Added two new functions to sorttools: array_details() - returns the length, and the contents of an array/list  and generate_almost_sorted_array() 
 
