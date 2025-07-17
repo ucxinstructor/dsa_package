@@ -124,3 +124,15 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(len(new_ht), 2)
         new_ht.delete("A")
         self.assertEqual(len(new_ht), 1)
+
+    def test_enumerate_method(self):
+        ht = HashTable()
+        ht.set("A", 1)
+        ht.set("B", 2)
+        ht.set("C", 3)
+
+        items = list(ht.enumerate())
+        self.assertEqual(len(items), 3)
+        self.assertIn((0, ["A", 1]), items)
+        self.assertIn((1, ["B", 2]), items)
+        self.assertIn((2, ["C", 3]), items)

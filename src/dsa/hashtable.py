@@ -193,3 +193,16 @@ class HashTable:
                 self.count -= 1
                 return value
         return default
+        
+    def enumerate(self):
+        """
+        Return the enumeration of key-value pairs in the hashtable.
+
+        Returns:
+            Enumeration of key-value pairs.
+        """
+        pairs = []
+        for bucket in self.array:
+            for chain_link in bucket:
+                pairs.append(chain_link)
+        return enumerate(pairs)
