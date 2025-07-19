@@ -69,6 +69,18 @@ class TestArray(unittest.TestCase):
         self.assertEqual(q.to_list(), [4, 6, 8, 100, 110])
         self.assertEqual(q.raw_view(), [100, 110, 4, 6, 8])
 
+    def test_eq_method(self):
+        c1 = CircularArray([1, 2, 3, 4, 5], capacity=5)
+        c2 = CircularArray([1, 2, 3, 4, 5], capacity=5)
+        c3 = CircularArray([1, 2, 3, 4, 6], capacity=5)
+        c4 = CircularArray([1, 2, 3, 4, 5], capacity=6)
+        self.assertTrue(c1 == c2)
+        self.assertFalse(c1 == c3)
+        self.assertTrue(c1 != c3)
+        self.assertTrue(c1 == c4)
+        self.assertFalse(c1 == [1, 2, 3, 4, 5])
+
+
 
 if __name__ == "__main__":
     unittest.main()

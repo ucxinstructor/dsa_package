@@ -1,6 +1,6 @@
 import unittest
 
-from dsa.array import Array, DynamicArray
+from src.dsa.array import Array, DynamicArray
 
 class TestArray(unittest.TestCase):
     def setUp(self):
@@ -317,6 +317,27 @@ class TestArray(unittest.TestCase):
             repr(self.dynarray_with_elements), "[1, 2, 3] Count: 3 Capacity: 4"
         )
 
+    def test_eq_method(self):
+        a1 = Array([1, 2, 3], capacity=5)
+        a2 = Array([1, 2, 3], capacity=5)
+        a3 = Array([1, 2, 4], capacity=5)
+        d1 = DynamicArray([1, 2, 3], capacity=5)
+        self.assertTrue(a1 == a2)
+        self.assertFalse(a1 == a3)
+        self.assertTrue(a1 != a3)
+        self.assertFalse(a1 == d1)
+        self.assertTrue(a1 != d1)
+
+    def test_dynamicarray_eq(self):
+        d1 = DynamicArray([10, 20, 30], capacity=5)
+        d2 = DynamicArray([10, 20, 30], capacity=5)
+        d3 = DynamicArray([10, 20, 31], capacity=5)
+        a1 = Array([10, 20, 30], capacity=5)
+        self.assertTrue(d1 == d2)
+        self.assertFalse(d1 == d3)
+        self.assertTrue(d1 != d3)
+        self.assertFalse(d1 == a1)
+        self.assertTrue(d1 != a1)
 
 
 if __name__ == "__main__":

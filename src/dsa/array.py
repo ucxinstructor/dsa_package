@@ -214,6 +214,20 @@ class Array:
         """
         return f'{self.to_list()} Count: {self.count} Capacity: {self.capacity()}'
 
+    def __eq__(self, other):
+        """
+        Compare this array to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both are Array instances and their contents are equal, False otherwise.
+        """
+        if not isinstance(other, Array):
+            return False
+        return self.to_list() == other.to_list()
+    
 class DynamicArray(Array):
     """ 
     A dynamic array implementation. Capacity will adjust as needed.
@@ -317,6 +331,19 @@ class DynamicArray(Array):
         self.shift_left(index)
         self.count -= 1
 
+    def __eq__(self, other):
+        """
+        Compare this dynamic array to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both are DynamicArray instances and their contents are equal, False otherwise.
+        """
+        if not isinstance(other, DynamicArray):
+            return False
+        return self.to_list() == other.to_list()
         
 class CircularArray(Array):
     """ 
@@ -429,3 +456,16 @@ class CircularArray(Array):
         """
         pass
 
+    def __eq__(self, other):
+        """
+        Compare this circular array to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both are CircularArray instances and their contents are equal, False otherwise.
+        """
+        if not isinstance(other, CircularArray):
+            return False
+        return self.to_list() == other.to_list()
