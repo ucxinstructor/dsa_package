@@ -1,6 +1,6 @@
 import unittest
 
-from dsa.array import CircularArray
+from src.dsa.array import CircularArray
 
 class TestArray(unittest.TestCase):
     def setUp(self):
@@ -79,6 +79,32 @@ class TestArray(unittest.TestCase):
         self.assertTrue(c1 != c3)
         self.assertTrue(c1 == c4)
         self.assertFalse(c1 == [1, 2, 3, 4, 5])
+
+    def test_circulararray_insert(self):
+        ca = CircularArray([1, 2, 3], capacity=5)
+        ca.insert(0, 10)
+        self.assertEqual(ca.to_list(), [10, 1, 2, 3])
+        ca.insert(2, 20)
+        self.assertEqual(ca.to_list(), [10, 1, 20, 2, 3])
+        with self.assertRaises(Exception):
+            ca.insert(0, 99)  # Should raise capacity error
+        with self.assertRaises(IndexError):
+            ca.insert(-1, 5)
+        with self.assertRaises(IndexError):
+            ca.insert(6, 5)
+
+    def test_circulararray_delete(self):
+        ca = CircularArray([1, 2, 3, 4, 5], capacity=5)
+        ca.delete(0)
+        self.assertEqual(ca.to_list(), [2, 3, 4, 5])
+        ca.delete(2)
+        self.assertEqual(ca.to_list(), [2, 3, 5])
+        ca.delete(2)
+        self.assertEqual(ca.to_list(), [2, 3])
+        with self.assertRaises(IndexError):
+            ca.delete(-1)
+        with self.assertRaises(IndexError):
+            ca.delete(2)
 
 
 

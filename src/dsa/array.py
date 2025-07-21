@@ -1,16 +1,15 @@
 """ Module containing array classes. """
 
 class Array:
-    """ 
+    """
     A static array implementation.
 
     Special Methods:
+        Index Operator: array[index]
+        Assignment: array[index] = value
 
-        Index Operator: 
-            array[index]
-    
-        Assignment: 
-            array[index] = value
+    Equality:
+        Array instances can be compared for equality with other Array or DynamicArray instances (but not CircularArray), based on their contents.
     """
     def __init__(self, contents=None, capacity: int=10):
         """ 
@@ -222,23 +221,24 @@ class Array:
             other: The object to compare with.
 
         Returns:
-            True if both are Array instances and their contents are equal, False otherwise.
+            True if both objects are Array or DynamicArray instances and their contents are equal. Otherwise, returns False.
         """
-        if not isinstance(other, Array):
+        if isinstance(other, CircularArray) or isinstance(self, CircularArray):
             return False
-        return self.to_list() == other.to_list()
+        if isinstance(other, (Array, DynamicArray)):
+            return self.to_list() == other.to_list()
+        return False
     
 class DynamicArray(Array):
-    """ 
+    """
     A dynamic array implementation. Capacity will adjust as needed.
 
     Special Methods:
+        Index Operator: array[index]
+        Assignment: array[index] = value
 
-        Index Operator: 
-            array[index]
-    
-        Assignment: 
-            array[index] = value
+    Equality:
+        DynamicArray instances can be compared for equality with other DynamicArray or Array instances (but not CircularArray), based on their contents.
     """
 
     def grow(self):
@@ -339,11 +339,13 @@ class DynamicArray(Array):
             other: The object to compare with.
 
         Returns:
-            True if both are DynamicArray instances and their contents are equal, False otherwise.
+            True if both objects are Array or DynamicArray instances and their contents are equal. Otherwise, returns False.
         """
-        if not isinstance(other, DynamicArray):
+        if isinstance(other, CircularArray) or isinstance(self, CircularArray):
             return False
-        return self.to_list() == other.to_list()
+        if isinstance(other, (Array, DynamicArray)):
+            return self.to_list() == other.to_list()
+        return False
         
 class CircularArray(Array):
     """ 
@@ -445,16 +447,44 @@ class CircularArray(Array):
         return output_list
 
     def insert(self, index: int, element):
-        """ 
-        not yet implemented
         """
-        pass
+        Insert an element at a specified index, shifting existing elements to the right.
+
+        Args:
+            index (int): The index at which to insert the element.
+            element: The element to insert.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+            Exception: If the array is full.
+        """
+        if index < 0 or index > self.count:
+            raise IndexError
+        if self.count >= self.capacity():
+            raise Exception(f"Capacity Error: Maximum capacity {self.capacity()} reached.")
+        # Shift elements to the right
+        for i in range(self.count, index, -1):
+            self._array[(self._start + i) % self.capacity()] = self._array[(self._start + i - 1) % self.capacity()]
+        self._array[(self._start + index) % self.capacity()] = element
+        self.count += 1
+
 
     def delete(self, index: int):
-        """ 
-        not yet implemented
         """
-        pass
+        Delete an element at a specified index, shifting subsequent elements to the left.
+
+        Args:
+            index (int): The index of the element to delete.
+
+        Raises:
+            IndexError: If the index is out of bounds.
+        """
+        if index < 0 or index >= self.count:
+            raise IndexError
+        # Shift elements to the left
+        for i in range(index, self.count - 1):
+            self._array[(self._start + i) % self.capacity()] = self._array[(self._start + i + 1) % self.capacity()]
+        self.count -= 1
 
     def __eq__(self, other):
         """
