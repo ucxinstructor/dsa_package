@@ -206,3 +206,23 @@ class HashTable:
             for chain_link in bucket:
                 pairs.append(chain_link)
         return enumerate(pairs)
+    
+    def __eq__(self, other):
+        """
+        Compare this hashtable to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both are HashTable instances and their key-value pairs are equal, False otherwise.
+        """
+        if not isinstance(other, HashTable):
+            return False
+        def to_dict(ht):
+            d = {}
+            for bucket in ht.array:
+                for chain_link in bucket:
+                    d[chain_link[0]] = chain_link[1]
+            return d
+        return to_dict(self) == to_dict(other)

@@ -1,6 +1,6 @@
 import unittest
 
-from src.dsa.array import CircularArray
+from dsa.array import CircularArray
 
 class TestArray(unittest.TestCase):
     def setUp(self):

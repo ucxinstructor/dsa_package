@@ -114,6 +114,23 @@ class TestQueue(unittest.TestCase):
         dq.enqueue(13)
         self.assertEqual(dq.to_ordered_list(), elements[1:] + [13])
 
+    def test_eq(self):
+        q1 = Queue.from_list([1, 2, 3, 4])
+        q2 = Queue.from_list([1, 2, 3, 4])
+        q3 = Queue.from_list([1, 2, 3])
+        self.assertEqual(q1, q2)
+        self.assertNotEqual(q1, q3)
+
+        dq1 = DynamicQueue.from_list([5, 6, 7])
+        dq2 = DynamicQueue.from_list([5, 6, 7])
+        dq3 = DynamicQueue.from_list([5, 6])
+        self.assertEqual(dq1, dq2)
+        self.assertNotEqual(dq1, dq3)
+
+        self.assertNotEqual(q1, dq1)
+        self.assertNotEqual(dq1, q1)
+
+        self.assertNotEqual(q1, [1, 2, 3, 4])
 
 if __name__ == '__main__':
     unittest.main()

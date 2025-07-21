@@ -153,6 +153,18 @@ class TestDoublyLinkedList(unittest.TestCase):
             self.assertEqual(node.next.prev, node)
             node = node.next
             self.assertIsNotNone(node.prev, "Malformed list: missing prev link")
+    
+    def test_eq(self):
+        dll1 = DoublyLinkedList.from_list([1, 2, 3, 4])
+        dll2 = DoublyLinkedList.from_list([1, 2, 3, 4])
+        dll3 = DoublyLinkedList.from_list([1, 2, 3, 5])
+        dll_empty1 = DoublyLinkedList()
+        dll_empty2 = DoublyLinkedList()
+        self.assertEqual(dll1, dll2)
+        self.assertNotEqual(dll1, dll3)
+        self.assertEqual(dll_empty1, dll_empty2)
+        self.assertNotEqual(dll1, DoublyLinkedList.from_list([1, 2, 3]))
+        self.assertNotEqual(dll1, [1, 2, 3, 4])
 
 if __name__ == '__main__':
     unittest.main()

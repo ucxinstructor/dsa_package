@@ -334,3 +334,25 @@ class Tree:
         
         return count_nodes(self.root)
         
+
+    def __eq__(self, other):
+        """
+        Compare two Tree objects for value-based equality (structure and values).
+
+        Returns:
+            True if both are Tree instances and their structures and values are equal, False otherwise.
+        """
+        if not isinstance(other, Tree):
+            return False
+        def nodes_equal(n1, n2):
+            if n1 is None and n2 is None:
+                return True
+            if n1 is None or n2 is None:
+                return False
+            return (
+                n1.value == n2.value and
+                nodes_equal(n1.left, n2.left) and
+                nodes_equal(n1.right, n2.right)
+            )
+        return nodes_equal(self.root, other.root)
+

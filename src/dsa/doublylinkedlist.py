@@ -309,5 +309,18 @@ class DoublyLinkedList:
         else:  # If the list becomes empty
             self.tail = None
         self.count -= 1
-        
+
+    def __eq__(self, other):
+        """
+        Compare this doubly linked list to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both are DoublyLinkedList instances and their contents are equal, False otherwise.
+        """
+        if not isinstance(other, DoublyLinkedList):
+            return False
+        return self.to_list() == other.to_list()    
 

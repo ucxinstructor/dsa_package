@@ -107,6 +107,17 @@ class Stack:
         Return a string representation of the stack.
         """
         return f"{self._array[0:self.count]} Top: {self.top()} Capacity: {self.capacity()}"
+
+    def __eq__(self, other):
+        """
+        Compare two Stack objects for value-based equality.
+
+        Returns:
+            True if both are Stack (or subclass) instances and their contents are equal.
+        """
+        if not isinstance(other, self.__class__):
+            return False
+        return self.to_list() == other.to_list()
     
     
 class DynamicStack(Stack):
@@ -178,4 +189,15 @@ class DynamicStack(Stack):
         """
         self.check_capacity()
         return super().pop()
+
+    def __eq__(self, other):
+        """
+        Compare two DynamicStack objects for value-based equality.
+
+        Returns:
+            True if both are DynamicStack instances and their contents are equal.
+        """
+        if not isinstance(other, self.__class__):
+            return False
+        return self.to_list() == other.to_list()
 

@@ -96,5 +96,21 @@ class TestStack(unittest.TestCase):
 
         self.assertEqual(st1.to_list(), st2.to_list())
 
+    def test_eq(self):
+        s1 = Stack.from_list([1, 2, 3, 4])
+        s2 = Stack.from_list([1, 2, 3, 4])
+        s3 = Stack.from_list([1, 2, 3])
+        self.assertEqual(s1, s2)
+        self.assertNotEqual(s1, s3)
+
+        d1 = DynamicStack.from_list([5, 6, 7])
+        d2 = DynamicStack.from_list([5, 6, 7])
+        d3 = DynamicStack.from_list([5, 6])
+        self.assertEqual(d1, d2)
+        self.assertNotEqual(d1, d3)
+
+        self.assertNotEqual(s1, d1)
+        self.assertNotEqual(s1, [1, 2, 3, 4])
+
 if __name__ == '__main__':
     unittest.main()

@@ -275,6 +275,17 @@ class Heap:
         """
         return self.count()
 
+    def __eq__(self, other):
+        """
+        Compare two Heap objects for value-based equality.
+
+        Returns: 
+            True if both are Heap (or subclass) instances and their arrays are equal.
+        """
+        if not isinstance(other, self.__class__):
+            return False
+        return self._array == other._array
+
 class MinHeap(Heap):
     def heapify_up(self, index: int):
         """

@@ -270,6 +270,20 @@ class Deque:
             arr.append(str(self._array[index]))
         arrstr = ", ".join(arr)
         return f"[{arrstr}] Count: {self.count} Capacity: {len(self._array)}" # {self.array}"
+
+    def __eq__(self, other):
+        """
+        Compare this deque to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both objects are Deque or DynamicDeque instances and their contents are equal. Otherwise, returns False.
+        """
+        if isinstance(other, (Deque, DynamicDeque)) and isinstance(self, (Deque, DynamicDeque)):
+            return self.to_list() == other.to_list()
+        return False
     
 class DynamicDeque(Deque):
     """ 
@@ -361,3 +375,17 @@ class DynamicDeque(Deque):
         """
         self.check_capacity()
         return super().pop_right()
+    
+    def __eq__(self, other):
+        """
+        Compare this dynamic deque to another for equality.
+
+        Args:
+            other: The object to compare with.
+
+        Returns:
+            True if both objects are Deque or DynamicDeque instances and their contents are equal. Otherwise, returns False.
+        """
+        if isinstance(other, (Deque, DynamicDeque)) and isinstance(self, (Deque, DynamicDeque)):
+            return self.to_list() == other.to_list()
+        return False

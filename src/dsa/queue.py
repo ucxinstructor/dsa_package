@@ -158,6 +158,19 @@ class Queue:
             The count of items in the queue.
         """
         return self.count
+
+    def __eq__(self, other):
+        """
+        Compare two Queue objects for value-based equality.
+
+        Returns:
+            True if both are Queue or DynamicQueue instances (but not CircularQueue) and their contents are equal.
+        """
+        if isinstance(other, CircularQueue) or isinstance(self, CircularQueue):
+            return False
+        if isinstance(other, (Queue, DynamicQueue)):
+            return self.to_ordered_list() == other.to_ordered_list()
+        return False
     
 
 class DynamicQueue(Queue):
@@ -213,6 +226,19 @@ class DynamicQueue(Queue):
         index = self._front + self.count
         self._array[index] = element
         self.count += 1
+
+    def __eq__(self, other):
+        """
+        Compare two DynamicQueue objects for value-based equality.
+
+        Returns:
+            True if both are DynamicQueue or Queue instances (but not CircularQueue) and their contents are equal.
+        """
+        if isinstance(other, CircularQueue) or isinstance(self, CircularQueue):
+            return False
+        if isinstance(other, (Queue, DynamicQueue)):
+            return self.to_ordered_list() == other.to_ordered_list()
+        return False
 
 class CircularQueue(CircularArray):
     """ 
@@ -277,6 +303,17 @@ class CircularQueue(CircularArray):
             raise Exception("Empty Queue")
 
         return self._array[self._start]
+
+    def __eq__(self, other):
+        """
+        Compare two CircularQueue objects for value-based equality.
+
+        Returns:
+            True if both are CircularQueue instances and their contents are equal, False otherwise.
+        """
+        if not isinstance(other, CircularQueue):
+            return False
+        return self.to_list() == other.to_list()
 
 
  

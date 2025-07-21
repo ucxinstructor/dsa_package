@@ -97,3 +97,27 @@ class TestHeap(unittest.TestCase):
         pq.push(1, TreeNode("m"))
         pq.push(0, TreeNode("n"))
         pq.push(4, TreeNode("p"))
+
+    def test_eq(self):
+        h1 = Heap.from_list([5, 3, 8, 1])
+        h2 = Heap.from_list([5, 3, 8, 1])
+        h3 = Heap.from_list([1, 2, 3])
+        self.assertEqual(h1, h2)
+        self.assertNotEqual(h1, h3)
+
+        m1 = MinHeap.from_list([5, 3, 8, 1])
+        m2 = MinHeap.from_list([5, 3, 8, 1])
+        m3 = MinHeap.from_list([1, 2, 3])
+        self.assertEqual(m1, m2)
+        self.assertNotEqual(m1, m3)
+
+        pq1 = PriorityQueue()
+        pq2 = PriorityQueue()
+        pq3 = PriorityQueue()
+        for p, v in [(2, "a"), (1, "b"), (3, "c")]:
+            pq1.push(p, v)
+            pq2.push(p, v)
+        for p, v in [(1, "x"), (2, "y")]:
+            pq3.push(p, v)
+        self.assertEqual(pq1, pq2)
+        self.assertNotEqual(pq1, pq3)

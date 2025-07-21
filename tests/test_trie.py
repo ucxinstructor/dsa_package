@@ -210,6 +210,20 @@ class TestTrie(unittest.TestCase):
         self.assertFalse(copied_trie.search("testing"))
         self.assertTrue(self.trie.search("testing"))
 
+    def test_eq(self):
+        t1 = Trie()
+        t2 = Trie()
+        t3 = Trie()
+        for word in ["apple", "banana", "cat"]:
+            t1.insert(word)
+            t2.insert(word)
+        for word in ["apple", "banana"]:
+            t3.insert(word)
+        self.assertEqual(t1, t2)
+        self.assertNotEqual(t1, t3)
+
+        self.assertNotEqual(t1, ["apple", "banana", "cat"])
+
 
 if __name__ == '__main__':
     unittest.main()
