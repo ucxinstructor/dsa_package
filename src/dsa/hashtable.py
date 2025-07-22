@@ -96,20 +96,22 @@ class HashTable:
         return None
 
     def delete(self, key):
-        """ 
-        Delete key-value pair if specified key is found. 
+        """
+        Delete key-value pair if specified key is found. Raise KeyError if not found.
 
         Args:
             key: The key to check for.
+        Raises:
+            KeyError: If the key is not found in the hashtable.
         """
         bucket = self.hash_function(key)
-
         for i in range(len(self.array[bucket])):
             kvpair = self.array[bucket][i]
             if kvpair and kvpair[0] == key:
                 del self.array[bucket][i]
                 self.count -= 1
-                break
+                return
+        raise KeyError(key)
     
     def __repr__(self):
         """
@@ -226,3 +228,11 @@ class HashTable:
                     d[chain_link[0]] = chain_link[1]
             return d
         return to_dict(self) == to_dict(other)
+    
+    def __iter__(self):
+        """
+        Iterate over all keys in the hashtable.
+        """
+        for bucket in self.array:
+            for chain_link in bucket:
+                yield chain_link[0]
