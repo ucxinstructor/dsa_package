@@ -110,14 +110,15 @@ class Stack:
 
     def __eq__(self, other):
         """
-        Compare two Stack objects for value-based equality.
+        Compare two stacks (static/dynamic) for value-based equality.
 
         Returns:
-            True if both are Stack (or subclass) instances and their contents are equal.
+            True if both are Stack or DynamicStack instances and their contents are equal.
+            For non-stack types, returns NotImplemented.
         """
-        if not isinstance(other, self.__class__):
-            return False
-        return self.to_list() == other.to_list()
+        if isinstance(other, (Stack, DynamicStack)):
+            return self.to_list() == other.to_list()
+        return NotImplemented
     
     
 class DynamicStack(Stack):
@@ -189,15 +190,3 @@ class DynamicStack(Stack):
         """
         self.check_capacity()
         return super().pop()
-
-    def __eq__(self, other):
-        """
-        Compare two DynamicStack objects for value-based equality.
-
-        Returns:
-            True if both are DynamicStack instances and their contents are equal.
-        """
-        if not isinstance(other, self.__class__):
-            return False
-        return self.to_list() == other.to_list()
-

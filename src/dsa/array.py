@@ -221,13 +221,12 @@ class Array:
             other: The object to compare with.
 
         Returns:
-            True if both objects are Array or DynamicArray instances and their contents are equal. Otherwise, returns False.
+            True if both objects are Array, DynamicArray, or CircularArray instances and their contents are equal.
+            For non-array types, returns NotImplemented to allow reverse comparison.
         """
-        if isinstance(other, CircularArray) or isinstance(self, CircularArray):
-            return False
-        if isinstance(other, (Array, DynamicArray)):
+        if isinstance(other, (Array, DynamicArray, CircularArray)):
             return self.to_list() == other.to_list()
-        return False
+        return NotImplemented
     
 class DynamicArray(Array):
     """
@@ -331,21 +330,6 @@ class DynamicArray(Array):
         self.shift_left(index)
         self.count -= 1
 
-    def __eq__(self, other):
-        """
-        Compare this dynamic array to another for equality.
-
-        Args:
-            other: The object to compare with.
-
-        Returns:
-            True if both objects are Array or DynamicArray instances and their contents are equal. Otherwise, returns False.
-        """
-        if isinstance(other, CircularArray) or isinstance(self, CircularArray):
-            return False
-        if isinstance(other, (Array, DynamicArray)):
-            return self.to_list() == other.to_list()
-        return False
         
 class CircularArray(Array):
     """ 
@@ -485,17 +469,3 @@ class CircularArray(Array):
         for i in range(index, self.count - 1):
             self._array[(self._start + i) % self.capacity()] = self._array[(self._start + i + 1) % self.capacity()]
         self.count -= 1
-
-    def __eq__(self, other):
-        """
-        Compare this circular array to another for equality.
-
-        Args:
-            other: The object to compare with.
-
-        Returns:
-            True if both are CircularArray instances and their contents are equal, False otherwise.
-        """
-        if not isinstance(other, CircularArray):
-            return False
-        return self.to_list() == other.to_list()

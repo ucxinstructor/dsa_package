@@ -1,6 +1,6 @@
 import unittest
 
-from dsa.array import Array, DynamicArray
+from dsa.array import Array, DynamicArray, CircularArray
 
 class TestArray(unittest.TestCase):
     def setUp(self):
@@ -316,47 +316,37 @@ class TestArray(unittest.TestCase):
         self.assertEqual(
             repr(self.dynarray_with_elements), "[1, 2, 3] Count: 3 Capacity: 4"
         )
+    
+    def test_eq(self):
+        """
+        Test equality and inequality between Array, DynamicArray, and CircularArray for same and different contents.
+        """
+        static = Array([1, 2, 3], capacity=5)
+        dynamic = DynamicArray([1, 2, 3], capacity=5)
+        circular = CircularArray([1, 2, 3], capacity=5)
 
-    def test_eq_method(self):
-        """Test equality between Array and DynamicArray objects."""
-        a1 = Array([1, 2, 3], capacity=5)
-        a2 = Array([1, 2, 3], capacity=5)
-        a3 = Array([1, 2, 4], capacity=5)
-        d1 = DynamicArray([1, 2, 3], capacity=5)
-        self.assertTrue(a1 == a2)
-        self.assertFalse(a1 == a3)
-        self.assertTrue(a1 != a3)
-        self.assertTrue(a1 == d1)
-        self.assertTrue(d1 == a1)
-        self.assertFalse(a1 != d1)
-        self.assertFalse(d1 != a1)
+        self.assertTrue(static == dynamic)
+        self.assertTrue(static == circular)
+        self.assertTrue(dynamic == static)
+        self.assertTrue(dynamic == circular)
+        self.assertTrue(circular == static)
+        self.assertTrue(circular == dynamic)
 
-    def test_dynamicarray_eq(self):
-        """Test equality for DynamicArray and with Array."""
-        d1 = DynamicArray([10, 20, 30], capacity=5)
-        d2 = DynamicArray([10, 20, 30], capacity=5)
-        d3 = DynamicArray([10, 20, 31], capacity=5)
-        a1 = Array([10, 20, 30], capacity=5)
-        self.assertTrue(d1 == d2)
-        self.assertFalse(d1 == d3)
-        self.assertTrue(d1 != d3)
-        self.assertTrue(d1 == a1)
-        self.assertTrue(a1 == d1)
-        self.assertFalse(d1 != a1)
-        self.assertFalse(a1 != d1)
+        static_diff = Array([1, 2, 4], capacity=5)
+        dynamic_diff = DynamicArray([1, 2, 4], capacity=5)
+        circular_diff = CircularArray([1, 2, 4], capacity=5)
 
-    def test_array_dynamicarray_vs_circulararray(self):
-        """Test that Array and DynamicArray are not equal to CircularArray."""
-        from dsa.array import CircularArray
-        arr = Array([1, 2, 3], capacity=5)
-        darr = DynamicArray([1, 2, 3], capacity=5)
-        carr = CircularArray([1, 2, 3], capacity=5)
-        self.assertFalse(arr == carr)
-        self.assertFalse(darr == carr)
-        self.assertFalse(carr == arr)
-        self.assertFalse(carr == darr)
+        for arr1 in (static, dynamic, circular):
+            for arr2 in (static_diff, dynamic_diff, circular_diff):
+                self.assertFalse(arr1 == arr2)
+                self.assertTrue(arr1 != arr2)
 
-
+        self.assertFalse(static == dynamic_diff)
+        self.assertFalse(static == circular_diff)
+        self.assertFalse(dynamic == static_diff)
+        self.assertFalse(dynamic == circular_diff)
+        self.assertFalse(circular == static_diff)
+        self.assertFalse(circular == dynamic_diff)
 
 if __name__ == "__main__":
     unittest.main()

@@ -109,7 +109,9 @@ class TestStack(unittest.TestCase):
         self.assertEqual(d1, d2)
         self.assertNotEqual(d1, d3)
 
-        self.assertNotEqual(s1, d1)
+        self.assertEqual(s1, DynamicStack.from_list([1, 2, 3, 4]))
+        self.assertEqual(DynamicStack.from_list([1, 2, 3, 4]), s1)
+
         self.assertNotEqual(s1, [1, 2, 3, 4])
 
 if __name__ == '__main__':

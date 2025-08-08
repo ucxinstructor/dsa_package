@@ -161,16 +161,22 @@ class Queue:
 
     def __eq__(self, other):
         """
-        Compare two Queue objects for value-based equality.
+        Compare two queues (static/dynamic/circular) for value-based equality.
 
         Returns:
-            True if both are Queue or DynamicQueue instances (but not CircularQueue) and their contents are equal.
+            True if both are Queue, DynamicQueue, or CircularQueue instances and their contents are equal.
+            For non-queue types, returns NotImplemented.
         """
-        if isinstance(other, CircularQueue) or isinstance(self, CircularQueue):
-            return False
-        if isinstance(other, (Queue, DynamicQueue)):
-            return self.to_ordered_list() == other.to_ordered_list()
-        return False
+        if isinstance(other, (Queue, DynamicQueue, CircularQueue)):
+            def _as_list(obj):
+                # Queue/DynamicQueue expose to_ordered_list; CircularQueue exposes to_list
+                if hasattr(obj, 'to_ordered_list'):
+                    return obj.to_ordered_list()
+                if hasattr(obj, 'to_list'):
+                    return obj.to_list()
+                return None
+            return _as_list(self) == _as_list(other)
+        return NotImplemented
     
 
 class DynamicQueue(Queue):
@@ -226,19 +232,6 @@ class DynamicQueue(Queue):
         index = self._front + self.count
         self._array[index] = element
         self.count += 1
-
-    def __eq__(self, other):
-        """
-        Compare two DynamicQueue objects for value-based equality.
-
-        Returns:
-            True if both are DynamicQueue or Queue instances (but not CircularQueue) and their contents are equal.
-        """
-        if isinstance(other, CircularQueue) or isinstance(self, CircularQueue):
-            return False
-        if isinstance(other, (Queue, DynamicQueue)):
-            return self.to_ordered_list() == other.to_ordered_list()
-        return False
 
 class CircularQueue(CircularArray):
     """ 
@@ -303,17 +296,3 @@ class CircularQueue(CircularArray):
             raise Exception("Empty Queue")
 
         return self._array[self._start]
-
-    def __eq__(self, other):
-        """
-        Compare two CircularQueue objects for value-based equality.
-
-        Returns:
-            True if both are CircularQueue instances and their contents are equal, False otherwise.
-        """
-        if not isinstance(other, CircularQueue):
-            return False
-        return self.to_list() == other.to_list()
-
-
- 

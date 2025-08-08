@@ -1,5 +1,5 @@
 import unittest
-from dsa.queue import Queue, DynamicQueue
+from dsa.queue import Queue, DynamicQueue, CircularQueue
 
 class TestQueue(unittest.TestCase):
     def test_create(self):
@@ -127,8 +127,14 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(dq1, dq2)
         self.assertNotEqual(dq1, dq3)
 
-        self.assertNotEqual(q1, dq1)
-        self.assertNotEqual(dq1, q1)
+        self.assertEqual(q1, DynamicQueue.from_list([1, 2, 3, 4]))
+        self.assertEqual(dq1, Queue.from_list([5, 6, 7]))
+
+        cq1 = CircularQueue([1, 2, 3, 4])
+        self.assertEqual(q1, cq1)
+        self.assertEqual(cq1, q1)
+        self.assertEqual(DynamicQueue.from_list([1, 2, 3, 4]), cq1)
+        self.assertEqual(cq1, DynamicQueue.from_list([1, 2, 3, 4]))
 
         self.assertNotEqual(q1, [1, 2, 3, 4])
 

@@ -416,7 +416,7 @@ class TestQueue(unittest.TestCase):
         dq = Deque.from_list([1, 2, 3])
         self.assertEqual(dq.to_list(), [1, 2, 3])
 
-    def test_deque_eq(self):
+    def test_eq(self):
         dq1 = Deque()
         dq2 = Deque()
         for n in [1, 2, 3]:
@@ -424,21 +424,25 @@ class TestQueue(unittest.TestCase):
             dq2.append_right(n)
         self.assertEqual(dq1, dq2)
 
-        ddq = DynamicDeque()
+        ddq1 = DynamicDeque()
+        ddq2 = DynamicDeque()
         for n in [1, 2, 3]:
-            ddq.append_right(n)
-        self.assertEqual(dq1, ddq)
-        self.assertEqual(ddq, dq1)
+            ddq1.append_right(n)
+            ddq2.append_right(n)
+        self.assertEqual(ddq1, ddq2)
+
+        # Cross-type equality
+        self.assertEqual(dq1, ddq1)
+        self.assertEqual(ddq1, dq1)
 
         dq3 = Deque()
         for n in [1, 2, 4]:
             dq3.append_right(n)
         self.assertNotEqual(dq1, dq3)
+        self.assertNotEqual(ddq1, DynamicDeque.from_list([1, 2, 4]))
 
         self.assertNotEqual(dq1, [1, 2, 3])
-
-class TestDynamicDeque(unittest.TestCase):
-    def test_dynamic_deque_grow(self):
+        self.assertNotEqual(ddq1, [1, 2, 3])
         dq = DynamicDeque(2)
         dq.append_right(1)
         dq.append_right(2)
@@ -505,27 +509,6 @@ class TestDynamicDeque(unittest.TestCase):
         dq.push_back(3)  # Should grow capacity
         self.assertEqual(dq.capacity(), 4)
         self.assertEqual(dq.to_list(), [1, 2, 3])
-
-    def test_dynamicdeque_eq(self):
-        ddq1 = DynamicDeque()
-        ddq2 = DynamicDeque()
-        for n in [1, 2, 3]:
-            ddq1.append_right(n)
-            ddq2.append_right(n)
-        self.assertEqual(ddq1, ddq2)
-
-        dq = Deque()
-        for n in [1, 2, 3]:
-            dq.append_right(n)
-        self.assertEqual(ddq1, dq)
-        self.assertEqual(dq, ddq1)
-
-        ddq3 = DynamicDeque()
-        for n in [1, 2, 4]:
-            ddq3.append_right(n)
-        self.assertNotEqual(ddq1, ddq3)
-
-        self.assertNotEqual(ddq1, [1, 2, 3])
 
 if __name__ == "__main__":
     unittest.main()

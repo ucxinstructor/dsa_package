@@ -60,7 +60,8 @@ class TestHashTable(unittest.TestCase):
         self.ht.set("B", 2)
         self.ht.set("C", 3)
         self.ht.delete("A")
-        self.ht.delete("D")  # nonexistent
+        with self.assertRaises(KeyError):
+            self.ht.delete("D")  # nonexistent
 
         self.assertEqual(self.ht.count, 2)
         self.ht.delete("B")

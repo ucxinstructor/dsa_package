@@ -273,17 +273,15 @@ class Deque:
 
     def __eq__(self, other):
         """
-        Compare this deque to another for equality.
-
-        Args:
-            other: The object to compare with.
+        Compare two deques (static/dynamic) for value-based equality.
 
         Returns:
-            True if both objects are Deque or DynamicDeque instances and their contents are equal. Otherwise, returns False.
+            True if both are Deque or DynamicDeque instances and their contents are equal.
+            For non-deque types, returns NotImplemented.
         """
-        if isinstance(other, (Deque, DynamicDeque)) and isinstance(self, (Deque, DynamicDeque)):
+        if isinstance(other, (Deque, DynamicDeque)):
             return self.to_list() == other.to_list()
-        return False
+        return NotImplemented
     
 class DynamicDeque(Deque):
     """ 
@@ -376,16 +374,3 @@ class DynamicDeque(Deque):
         self.check_capacity()
         return super().pop_right()
     
-    def __eq__(self, other):
-        """
-        Compare this dynamic deque to another for equality.
-
-        Args:
-            other: The object to compare with.
-
-        Returns:
-            True if both objects are Deque or DynamicDeque instances and their contents are equal. Otherwise, returns False.
-        """
-        if isinstance(other, (Deque, DynamicDeque)) and isinstance(self, (Deque, DynamicDeque)):
-            return self.to_list() == other.to_list()
-        return False
