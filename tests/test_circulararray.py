@@ -1,6 +1,6 @@
 import unittest
 
-from dsa.array import CircularArray
+from dsa.array import Array, CircularArray
 
 class TestArray(unittest.TestCase):
     def setUp(self):
@@ -92,6 +92,17 @@ class TestArray(unittest.TestCase):
             ca.insert(-1, 5)
         with self.assertRaises(IndexError):
             ca.insert(6, 5)
+
+        while not ca.is_empty():
+            ca.delete(0)
+        ca.append(1)
+        ca.append(2)
+        ca.append(3)
+        sa = Array(capacity=5)
+        sa.append(1)
+        sa.append(2)
+        sa.append(3)
+        self.assertTrue(ca == sa)
 
     def test_circulararray_delete(self):
         ca = CircularArray([1, 2, 3, 4, 5], capacity=5)

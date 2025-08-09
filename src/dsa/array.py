@@ -9,7 +9,7 @@ class Array:
         Assignment: array[index] = value
 
     Equality:
-        Array instances can be compared for equality with other Array or DynamicArray instances (but not CircularArray), based on their contents.
+        Array instances can be compared for equality with other Array, DynamicArray or CircularArray instances based on their contents.
     """
     def __init__(self, contents=None, capacity: int=10):
         """ 

@@ -118,21 +118,36 @@ class TestQueue(unittest.TestCase):
         q1 = Queue.from_list([1, 2, 3, 4])
         q2 = Queue.from_list([1, 2, 3, 4])
         q3 = Queue.from_list([1, 2, 3])
+        q4 = Queue()
         self.assertEqual(q1, q2)
         self.assertNotEqual(q1, q3)
+        self.assertTrue(q1 != q4)
 
         dq1 = DynamicQueue.from_list([5, 6, 7])
         dq2 = DynamicQueue.from_list([5, 6, 7])
         dq3 = DynamicQueue.from_list([5, 6])
+        dq4 = DynamicQueue()
         self.assertEqual(dq1, dq2)
         self.assertNotEqual(dq1, dq3)
+        self.assertTrue(dq1 != dq4)
+
+        self.assertTrue(q4 == dq4)
+        self.assertTrue(dq4 == q4)
 
         self.assertEqual(q1, DynamicQueue.from_list([1, 2, 3, 4]))
         self.assertEqual(dq1, Queue.from_list([5, 6, 7]))
 
         cq1 = CircularQueue([1, 2, 3, 4])
+        cq4 = CircularQueue()
         self.assertEqual(q1, cq1)
         self.assertEqual(cq1, q1)
+        self.assertTrue(cq1 != cq4)
+
+        self.assertTrue(q4 == cq4)
+        self.assertTrue(cq4 == q4)
+        self.assertTrue(dq4 == cq4)
+        self.assertTrue(cq4 == dq4)
+
         self.assertEqual(DynamicQueue.from_list([1, 2, 3, 4]), cq1)
         self.assertEqual(cq1, DynamicQueue.from_list([1, 2, 3, 4]))
 

@@ -93,6 +93,28 @@ class TestArray(unittest.TestCase):
             da.delete(0)
         self.assertTrue(da.is_empty())
 
+        # test against static array
+        da = DynamicArray(list(range(10)))
+        sa = Array(list(range(10)))
+        self.assertTrue(sa == da)
+
+        da.delete(0)
+        sa.delete(0)
+        self.assertTrue(sa == da)
+
+        self.assertEqual(da.count, 9)
+        self.assertEqual(sa.count, 9)
+
+        da.delete(8)
+        sa.delete(8)
+        self.assertTrue(sa == da)
+
+        for _ in range(20):
+            da.append(1)
+        for _ in range(20):
+            da.delete(da.count - 1)
+        self.assertTrue(sa == da)
+
     def test_initialization_empty_static(self):
         """Test initializing an empty array."""
         self.assertEqual(len(self.array), 0)
@@ -321,32 +343,53 @@ class TestArray(unittest.TestCase):
         """
         Test equality and inequality between Array, DynamicArray, and CircularArray for same and different contents.
         """
-        static = Array([1, 2, 3], capacity=5)
-        dynamic = DynamicArray([1, 2, 3], capacity=5)
-        circular = CircularArray([1, 2, 3], capacity=5)
+        arrays_same = [
+            Array([1, 2, 3], capacity=15),
+            DynamicArray([1, 2, 3], capacity=10),
+            CircularArray([1, 2, 3], capacity=5)
+        ]
 
-        self.assertTrue(static == dynamic)
-        self.assertTrue(static == circular)
-        self.assertTrue(dynamic == static)
-        self.assertTrue(dynamic == circular)
-        self.assertTrue(circular == static)
-        self.assertTrue(circular == dynamic)
+        arrays_diff = [
+            Array([1, 2, 4], capacity=5),
+            DynamicArray([1, 2, 4], capacity=10),
+            CircularArray([1, 2, 4], capacity=15)
+        ]
 
-        static_diff = Array([1, 2, 4], capacity=5)
-        dynamic_diff = DynamicArray([1, 2, 4], capacity=5)
-        circular_diff = CircularArray([1, 2, 4], capacity=5)
+        arrays_empty = [
+            Array([], capacity=5),
+            DynamicArray([], capacity=10),
+            CircularArray([], capacity=15)
+        ]
 
-        for arr1 in (static, dynamic, circular):
-            for arr2 in (static_diff, dynamic_diff, circular_diff):
-                self.assertFalse(arr1 == arr2)
-                self.assertTrue(arr1 != arr2)
+        # All empty arrays should be equal to each other
+        for a1 in arrays_empty:
+            for a2 in arrays_empty:
+                self.assertTrue(a1 == a2)
+                self.assertFalse(a1 != a2)
 
-        self.assertFalse(static == dynamic_diff)
-        self.assertFalse(static == circular_diff)
-        self.assertFalse(dynamic == static_diff)
-        self.assertFalse(dynamic == circular_diff)
-        self.assertFalse(circular == static_diff)
-        self.assertFalse(circular == dynamic_diff)
+        # All same-data arrays should be equal to each other
+        for a1 in arrays_same:
+            for a2 in arrays_same:
+                self.assertTrue(a1 == a2)
+                self.assertFalse(a1 != a2)
+
+        # Any same-data array should not equal any diff-data array
+        for a1 in arrays_same:
+            for a2 in arrays_diff:
+                self.assertFalse(a1 == a2)
+                self.assertTrue(a1 != a2)
+
+        # Any same-data array should not equal any empty data array
+        for a1 in arrays_same:
+            for a2 in arrays_empty:
+                self.assertFalse(a1 == a2)
+                self.assertTrue(a1 != a2)
+
+        # Any diff-data array should not equal any empty data array
+        for a1 in arrays_diff:
+            for a2 in arrays_empty:
+                self.assertFalse(a1 == a2)
+                self.assertTrue(a1 != a2)
 
 if __name__ == "__main__":
     unittest.main()
