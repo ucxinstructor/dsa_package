@@ -1,6 +1,6 @@
 import unittest
 
-from dsa.array import Array, DynamicArray
+from dsa.array import Array, DynamicArray, CircularArray
 
 class TestArray(unittest.TestCase):
     def setUp(self):
@@ -316,8 +316,37 @@ class TestArray(unittest.TestCase):
         self.assertEqual(
             repr(self.dynarray_with_elements), "[1, 2, 3] Count: 3 Capacity: 4"
         )
+    
+    def test_eq(self):
+        """
+        Test equality and inequality between Array, DynamicArray, and CircularArray for same and different contents.
+        """
+        static = Array([1, 2, 3], capacity=5)
+        dynamic = DynamicArray([1, 2, 3], capacity=5)
+        circular = CircularArray([1, 2, 3], capacity=5)
 
+        self.assertTrue(static == dynamic)
+        self.assertTrue(static == circular)
+        self.assertTrue(dynamic == static)
+        self.assertTrue(dynamic == circular)
+        self.assertTrue(circular == static)
+        self.assertTrue(circular == dynamic)
 
+        static_diff = Array([1, 2, 4], capacity=5)
+        dynamic_diff = DynamicArray([1, 2, 4], capacity=5)
+        circular_diff = CircularArray([1, 2, 4], capacity=5)
+
+        for arr1 in (static, dynamic, circular):
+            for arr2 in (static_diff, dynamic_diff, circular_diff):
+                self.assertFalse(arr1 == arr2)
+                self.assertTrue(arr1 != arr2)
+
+        self.assertFalse(static == dynamic_diff)
+        self.assertFalse(static == circular_diff)
+        self.assertFalse(dynamic == static_diff)
+        self.assertFalse(dynamic == circular_diff)
+        self.assertFalse(circular == static_diff)
+        self.assertFalse(circular == dynamic_diff)
 
 if __name__ == "__main__":
     unittest.main()

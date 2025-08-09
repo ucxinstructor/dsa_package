@@ -314,23 +314,15 @@ class LinkedList:
         current.next = None
         self.tail = current
         self.count -= 1
+
+    def __eq__(self, other):
+        """
+        Compare two LinkedList objects for value-based equality.
+        
+        Returns:
+            True if both are LinkedList instances and their contents are equal.
+        """
+        if not isinstance(other, self.__class__):
+            return False
+        return self.to_list() == other.to_list()
     
-if __name__ == "__main__":
-    ll = LinkedList.from_list(range(10))
-    ll = LinkedList()
-
-    for _ in range(15):
-        ll.append(_)
-    assert (ll.head.value == 0)
-    assert (ll.tail.value == 14)
-    assert (ll.count == 15)
-
-    print(ll.to_list())
-    ll.insert(1, -1)
-    print(ll.to_list())
-    assert (ll[1] == -1)
-#    self.assertEqual(ll.count, 16)
-    ll.insert(0, -2)
-#    ll.prepend(-2)
-    print(ll.to_list())
-    assert (ll[0] == -2)

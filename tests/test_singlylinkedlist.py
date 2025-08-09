@@ -163,5 +163,19 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(ll[0], 0)
         self.assertEqual(ll[19], 19)
 
+    def test_eq(self):
+        ll1 = LinkedList.from_list([1, 2, 3, 4])
+        ll2 = LinkedList.from_list([1, 2, 3, 4])
+        self.assertEqual(ll1, ll2)
+
+        ll3 = LinkedList.from_list([1, 2, 3])
+        self.assertNotEqual(ll1, ll3)
+
+        ll4 = LinkedList()
+        ll5 = LinkedList()
+        self.assertEqual(ll4, ll5)
+
+        self.assertNotEqual(ll1, [1, 2, 3, 4])
+
 if __name__ == '__main__':
     unittest.main()

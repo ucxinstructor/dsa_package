@@ -229,7 +229,7 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(dq.to_list(), dq2.to_list())
 
         test_list = range(50)
-        ddq = DynamicDeque.from_list(test_list)
+        ddq = DynamicDeque.from_list(list(test_list))
         self.assertTrue(ddq)
         self.assertEqual(ddq.count, len(test_list))
 
@@ -416,8 +416,33 @@ class TestQueue(unittest.TestCase):
         dq = Deque.from_list([1, 2, 3])
         self.assertEqual(dq.to_list(), [1, 2, 3])
 
-class TestDynamicDeque(unittest.TestCase):
-    def test_dynamic_deque_grow(self):
+    def test_eq(self):
+        dq1 = Deque()
+        dq2 = Deque()
+        for n in [1, 2, 3]:
+            dq1.append_right(n)
+            dq2.append_right(n)
+        self.assertEqual(dq1, dq2)
+
+        ddq1 = DynamicDeque()
+        ddq2 = DynamicDeque()
+        for n in [1, 2, 3]:
+            ddq1.append_right(n)
+            ddq2.append_right(n)
+        self.assertEqual(ddq1, ddq2)
+
+        # Cross-type equality
+        self.assertEqual(dq1, ddq1)
+        self.assertEqual(ddq1, dq1)
+
+        dq3 = Deque()
+        for n in [1, 2, 4]:
+            dq3.append_right(n)
+        self.assertNotEqual(dq1, dq3)
+        self.assertNotEqual(ddq1, DynamicDeque.from_list([1, 2, 4]))
+
+        self.assertNotEqual(dq1, [1, 2, 3])
+        self.assertNotEqual(ddq1, [1, 2, 3])
         dq = DynamicDeque(2)
         dq.append_right(1)
         dq.append_right(2)

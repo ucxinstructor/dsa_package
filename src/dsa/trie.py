@@ -259,3 +259,17 @@ class Trie:
         new_trie = Trie()
         new_trie.root = self.copy_node(self.root)
         return new_trie
+
+    def __eq__(self, other):
+        """
+        Compare two Trie objects for value-based equality (all words in the trie).
+
+        Returns:
+            True if both are Trie instances and contain the same set of words, False otherwise.
+        """
+        if not isinstance(other, Trie):
+            return False
+        def get_words(trie):
+            words = trie.list_words()
+            return set(words) if words is not None else set()
+        return get_words(self) == get_words(other)

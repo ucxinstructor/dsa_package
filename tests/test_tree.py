@@ -81,3 +81,23 @@ class TestTree(unittest.TestCase):
         with self.assertRaises(ValueError):
             t.search(10)
         t.delete(30)
+
+    def test_eq(self):
+        n1 = TreeNode(1)
+        n1.left = TreeNode(2)
+        n1.right = TreeNode(3)
+        t1 = Tree(n1)
+
+        n2 = TreeNode(1)
+        n2.left = TreeNode(2)
+        n2.right = TreeNode(3)
+        t2 = Tree(n2)
+
+        n3 = TreeNode(1)
+        n3.left = TreeNode(2)
+        t3 = Tree(n3)
+
+        self.assertEqual(t1, t2)
+        self.assertNotEqual(t1, t3)
+
+        self.assertNotEqual(t1, [1, 2, 3])

@@ -1,5 +1,5 @@
 import unittest
-from dsa.queue import Queue, DynamicQueue
+from dsa.queue import Queue, DynamicQueue, CircularQueue
 
 class TestQueue(unittest.TestCase):
     def test_create(self):
@@ -114,6 +114,29 @@ class TestQueue(unittest.TestCase):
         dq.enqueue(13)
         self.assertEqual(dq.to_ordered_list(), elements[1:] + [13])
 
+    def test_eq(self):
+        q1 = Queue.from_list([1, 2, 3, 4])
+        q2 = Queue.from_list([1, 2, 3, 4])
+        q3 = Queue.from_list([1, 2, 3])
+        self.assertEqual(q1, q2)
+        self.assertNotEqual(q1, q3)
+
+        dq1 = DynamicQueue.from_list([5, 6, 7])
+        dq2 = DynamicQueue.from_list([5, 6, 7])
+        dq3 = DynamicQueue.from_list([5, 6])
+        self.assertEqual(dq1, dq2)
+        self.assertNotEqual(dq1, dq3)
+
+        self.assertEqual(q1, DynamicQueue.from_list([1, 2, 3, 4]))
+        self.assertEqual(dq1, Queue.from_list([5, 6, 7]))
+
+        cq1 = CircularQueue([1, 2, 3, 4])
+        self.assertEqual(q1, cq1)
+        self.assertEqual(cq1, q1)
+        self.assertEqual(DynamicQueue.from_list([1, 2, 3, 4]), cq1)
+        self.assertEqual(cq1, DynamicQueue.from_list([1, 2, 3, 4]))
+
+        self.assertNotEqual(q1, [1, 2, 3, 4])
 
 if __name__ == '__main__':
     unittest.main()

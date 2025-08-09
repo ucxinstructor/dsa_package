@@ -270,6 +270,18 @@ class Deque:
             arr.append(str(self._array[index]))
         arrstr = ", ".join(arr)
         return f"[{arrstr}] Count: {self.count} Capacity: {len(self._array)}" # {self.array}"
+
+    def __eq__(self, other):
+        """
+        Compare two deques (static/dynamic) for value-based equality.
+
+        Returns:
+            True if both are Deque or DynamicDeque instances and their contents are equal.
+            For non-deque types, returns NotImplemented.
+        """
+        if isinstance(other, (Deque, DynamicDeque)):
+            return self.to_list() == other.to_list()
+        return NotImplemented
     
 class DynamicDeque(Deque):
     """ 
@@ -361,3 +373,4 @@ class DynamicDeque(Deque):
         """
         self.check_capacity()
         return super().pop_right()
+    

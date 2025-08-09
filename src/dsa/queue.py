@@ -158,6 +158,25 @@ class Queue:
             The count of items in the queue.
         """
         return self.count
+
+    def __eq__(self, other):
+        """
+        Compare two queues (static/dynamic/circular) for value-based equality.
+
+        Returns:
+            True if both are Queue, DynamicQueue, or CircularQueue instances and their contents are equal.
+            For non-queue types, returns NotImplemented.
+        """
+        if isinstance(other, (Queue, DynamicQueue, CircularQueue)):
+            def _as_list(obj):
+                # Queue/DynamicQueue expose to_ordered_list; CircularQueue exposes to_list
+                if hasattr(obj, 'to_ordered_list'):
+                    return obj.to_ordered_list()
+                if hasattr(obj, 'to_list'):
+                    return obj.to_list()
+                return None
+            return _as_list(self) == _as_list(other)
+        return NotImplemented
     
 
 class DynamicQueue(Queue):
@@ -277,6 +296,3 @@ class CircularQueue(CircularArray):
             raise Exception("Empty Queue")
 
         return self._array[self._start]
-
-
- 

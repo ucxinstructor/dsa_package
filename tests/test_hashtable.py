@@ -60,7 +60,8 @@ class TestHashTable(unittest.TestCase):
         self.ht.set("B", 2)
         self.ht.set("C", 3)
         self.ht.delete("A")
-        self.ht.delete("D")  # nonexistent
+        with self.assertRaises(KeyError):
+            self.ht.delete("D")  # nonexistent
 
         self.assertEqual(self.ht.count, 2)
         self.ht.delete("B")
@@ -124,3 +125,33 @@ class TestHashTable(unittest.TestCase):
         self.assertEqual(len(new_ht), 2)
         new_ht.delete("A")
         self.assertEqual(len(new_ht), 1)
+
+    def test_enumerate_method(self):
+        ht = HashTable()
+        ht.set("A", 1)
+        ht.set("B", 2)
+        ht.set("C", 3)
+
+        items = list(ht.enumerate())
+        self.assertEqual(len(items), 3)
+        self.assertIn((0, ["A", 1]), items)
+        self.assertIn((1, ["B", 2]), items)
+        self.assertIn((2, ["C", 3]), items)
+    
+    def test_eq(self):
+        ht1 = HashTable()
+        ht2 = HashTable()
+        ht3 = HashTable()
+        for k, v in [("A", 1), ("B", 2), ("C", 3)]:
+            ht1.set(k, v)
+            ht2.set(k, v)
+        ht3.set("A", 1)
+        ht3.set("B", 2)
+        ht3.set("C", 4)
+        ht_empty1 = HashTable()
+        ht_empty2 = HashTable()
+        self.assertEqual(ht1, ht2)
+        self.assertNotEqual(ht1, ht3)
+        self.assertEqual(ht_empty1, ht_empty2)
+        self.assertNotEqual(ht1, HashTable())
+        self.assertNotEqual(ht1, {"A": 1, "B": 2, "C": 3})
