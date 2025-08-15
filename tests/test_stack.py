@@ -114,5 +114,20 @@ class TestStack(unittest.TestCase):
 
         self.assertNotEqual(s1, [1, 2, 3, 4])
 
+        s4 = Stack()
+        d4 = DynamicStack()
+        self.assertEqual(s4, d4)
+        for st in [s1, s2, s3]:
+            self.assertNotEqual(st, s4)
+            self.assertNotEqual(st, d4)
+            self.assertNotEqual(s4, st)
+            self.assertNotEqual(d4, st)
+
+        for ds in [d1, d2, d3]:
+            self.assertNotEqual(ds, s4)
+            self.assertNotEqual(ds, d4)
+            self.assertNotEqual(s4, ds)
+            self.assertNotEqual(d4, ds)
+
 if __name__ == '__main__':
     unittest.main()

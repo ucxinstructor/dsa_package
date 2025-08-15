@@ -138,5 +138,28 @@ class TestQueue(unittest.TestCase):
 
         self.assertNotEqual(q1, [1, 2, 3, 4])
 
+        q4 = Queue()
+        dq4 = DynamicQueue()
+        cq4 = CircularQueue()
+        self.assertEqual(q4, dq4)
+        for q in [q1, q2, q3]:
+            self.assertNotEqual(q, q4)
+            self.assertNotEqual(q, dq4)
+            self.assertNotEqual(q, cq4)
+
+            self.assertNotEqual(q4, q)
+            self.assertNotEqual(dq4, q)
+            self.assertNotEqual(cq4, q)
+
+        for dq in [dq1, dq2, dq3]:
+            self.assertNotEqual(dq, q4)
+            self.assertNotEqual(dq, dq4)
+            self.assertNotEqual(dq, cq4)
+
+            self.assertNotEqual(q4, dq)
+            self.assertNotEqual(dq4, dq)
+            self.assertNotEqual(cq4, dq)
+
+
 if __name__ == '__main__':
     unittest.main()
