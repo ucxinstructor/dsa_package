@@ -42,6 +42,7 @@ pip show ucxdsa
 # Revision History
 ## 2025.09.02
 * Added Hash Set 
+* Added data structure generators (not fully tested)
 * Added equality testing for array, stack, queue, deque, linkedlist and heap classes
 * Renamed Hashtable delete() to remove()
 * Updated Dijkstra's algorithm implementation to follow lecture more closely
