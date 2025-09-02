@@ -7,7 +7,7 @@ It is written in Python with an emphasis on readability and clarity, rather than
 Not intended for production use.
 
 
-[API Documentation](https://ucxinstructor.github.io/dsa_package/src/html/dsa/)
+[API Documentation](https://ucxinstructor.github.io/dsa_package/src/html/dsa)
 
 
 Command Line Installation
