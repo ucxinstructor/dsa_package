@@ -95,9 +95,9 @@ class HashTable:
 
         return None
 
-    def delete(self, key):
+    def remove(self, key):
         """
-        Delete key-value pair if specified key is found. Raise KeyError if not found.
+        Remove key-value pair if specified key is found. Raise KeyError if not found.
 
         Args:
             key: The key to check for.
@@ -164,12 +164,12 @@ class HashTable:
 
     def __delitem__(self, key):
         """
-        Delete the key-value pair associated with the key using indexing.
+        Remove the key-value pair associated with the key using indexing.
 
         Args:
-            key: The key to delete.
+            key: The key to remove.
         """
-        self.delete(key)
+        self.remove(key)
 
     def __contains__(self, key):
         """

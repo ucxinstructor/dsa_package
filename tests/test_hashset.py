@@ -2,6 +2,22 @@ import unittest
 from dsa.hashset import HashSet
 
 class TestHashSet(unittest.TestCase):
+    def test_add_duplicates(self):
+        s = HashSet()
+        s.add(1)
+        s.add(1)
+        s.add(2)
+        self.assertEqual(len(s), 2)
+        self.assertIn(1, s)
+        self.assertIn(2, s)
+
+    def test_init_with_iterable(self):
+        s = HashSet([1, 2, 2, 3])
+        self.assertEqual(len(s), 3)
+        self.assertIn(1, s)
+        self.assertIn(2, s)
+        self.assertIn(3, s)
+
     def test_add_and_contains(self):
         s = HashSet()
         s.add(1)

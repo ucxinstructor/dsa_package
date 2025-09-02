@@ -54,28 +54,28 @@ class TestHashTable(unittest.TestCase):
         self.assertTrue("exists" in self.ht)
         self.assertFalse("missing" in self.ht)
 
-    # --- Delete Tests ---
-    def test_delete_keys(self):
+    # --- Remove Tests ---
+    def test_remove_keys(self):
         self.ht.set("A", 1)
         self.ht.set("B", 2)
         self.ht.set("C", 3)
-        self.ht.delete("A")
+        self.ht.remove("A")
         with self.assertRaises(KeyError):
-            self.ht.delete("D")  # nonexistent
+            self.ht.remove("D")  # nonexistent
 
         self.assertEqual(self.ht.count, 2)
-        self.ht.delete("B")
-        self.ht.delete("C")
+        self.ht.remove("B")
+        self.ht.remove("C")
         self.assertEqual(self.ht.count, 0)
 
-    def test_delete_varied_key_types(self):
+    def test_remove_varied_key_types(self):
         self.ht.set(1, "one")
         self.ht.set(2.5, "two point five")
         self.ht.set((1, 2), "tuple key")
 
-        self.ht.delete(1)
-        self.ht.delete(2.5)
-        self.ht.delete((1, 2))
+        self.ht.remove(1)
+        self.ht.remove(2.5)
+        self.ht.remove((1, 2))
 
         self.assertEqual(self.ht.count, 0)
 
@@ -123,7 +123,7 @@ class TestHashTable(unittest.TestCase):
         new_ht.set("A", 1)
         new_ht.set("B", 2)
         self.assertEqual(len(new_ht), 2)
-        new_ht.delete("A")
+        new_ht.remove("A")
         self.assertEqual(len(new_ht), 1)
 
     def test_enumerate_method(self):

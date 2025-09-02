@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ucxdsa"
-version = "2025.7.17"
+version = "2025.9.2"
 description = "Data Structures and Algorithms Source Code"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -35,6 +35,7 @@ dependencies = [
 lint = "ruff check src/dsa"
 docs = "pdoc dsa -o src/html"
 tests = "python -m unittest discover -s tests"
+publish-test = "hatch publish --repo test"
 
 # 📦 Build configuration
 [tool.hatch.build]
