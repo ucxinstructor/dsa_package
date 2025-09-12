@@ -16,6 +16,16 @@ class TestArray(unittest.TestCase):
         self.assertEqual(len(self.array_with_elements), 3)
         self.assertEqual(self.array_with_elements.capacity(), 5)
 
+        self.array_with_elements = CircularArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+        self.assertEqual(len(self.array_with_elements), 12)
+        self.assertEqual(self.array_with_elements.count, 12)
+        self.assertGreaterEqual(self.array_with_elements.capacity(), 12)
+
+        c = CircularArray.from_list([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])        
+        self.assertEqual(len(c), 12)
+        self.assertEqual(c.count, 12)
+
+
     def test_indexing(self):
         self.assertRaises(IndexError, lambda: self.array[0])
 

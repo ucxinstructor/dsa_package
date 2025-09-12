@@ -19,7 +19,11 @@ class Array:
             contents: An optional iterable to fill array with default values.
             capacity (int): The initial size of the array (default is 10)
         """
+        if contents and len(contents) > capacity:
+            capacity = len(contents)
+
         self._array = [ None ] * capacity
+
         #: number of elements currently in array
         self.count = 0
 
@@ -199,7 +203,7 @@ class Array:
         Returns:
             An instance of the Array class.
         """        
-        list_instance = cls()
+        list_instance = cls(capacity=len(mylist))
         list_instance.extend(mylist)
  
         return list_instance
@@ -351,9 +355,15 @@ class CircularArray(Array):
             contents: An optional iterable to fill array with default values.
             capacity (int): The initial size of the array (default is 10)
         """
+        if contents and len(contents) > capacity:
+            capacity = len(contents)
+        # don't pass the contents to the parent class because we need to handle wrap-around
         super().__init__(None, capacity)
+        
         #: index of the first element in the circular array
         self._start = 0
+        
+        # need to call circular array's extend to handle wrap-around
         if contents:
             self.extend(contents)
         

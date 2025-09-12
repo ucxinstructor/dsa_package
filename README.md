@@ -40,6 +40,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+##2025.09.12
+* Fixed bug when initial list is greater than 10 for Array, CircularArray and DynamicArray constructors
+
 ## 2025.09.02
 * Added Hash Set 
 * Added data structure generators (not fully tested)

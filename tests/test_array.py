@@ -24,6 +24,16 @@ class TestArray(unittest.TestCase):
         c = Array.from_list([1, 2, 3, 4, 5])        
         self.assertEqual(len(c), 5)
         self.assertEqual(c.count, 5)
+        
+        # Test with more elements than initial capacity
+        self.array_with_elements = Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+        self.assertEqual(len(self.array_with_elements), 12)
+        self.assertEqual(self.array_with_elements.count, 12)
+        self.assertGreaterEqual(self.array_with_elements.capacity(), 12)
+
+        c = Array.from_list([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])        
+        self.assertEqual(len(c), 12)
+        self.assertEqual(c.count, 12)
 
     def test_create_dynamic(self):
         self.assertEqual(len(self.dynarray), 0)
@@ -37,6 +47,18 @@ class TestArray(unittest.TestCase):
         dc = DynamicArray.from_list([1, 2, 3, 4, 5])        
         self.assertEqual(len(dc), 5)
         self.assertEqual(dc.count, 5)
+
+        # Test with more elements than initial capacity
+        self.array_with_elements = DynamicArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+        self.assertEqual(len(self.array_with_elements), 12)
+        self.assertEqual(self.array_with_elements.count, 12)
+        self.assertGreaterEqual(self.array_with_elements.capacity(), 12)
+
+        c = DynamicArray.from_list([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])        
+        self.assertEqual(len(c), 12)
+        self.assertEqual(c.count, 12)
+
+
 
     def test_modify_static(self):
         a = Array()
@@ -299,7 +321,7 @@ class TestArray(unittest.TestCase):
         new_array = Array.from_list([5, 6, 7])
         self.assertEqual(new_array.to_list(), [5, 6, 7])
         self.assertEqual(len(new_array), 3)
-        self.assertEqual(new_array.capacity(), 10)
+        self.assertEqual(new_array.capacity(), 3)
 
     def test_from_list_dynamic(self):
         """Test creating an array from a standard Python list."""
