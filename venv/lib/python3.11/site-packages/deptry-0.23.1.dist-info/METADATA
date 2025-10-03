@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: deptry
+Version: 0.23.1
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: click>=8.0.0,<9
+Requires-Dist: colorama>=0.4.6 ; sys_platform == 'win32'
+Requires-Dist: packaging>=23.2
+Requires-Dist: requirements-parser>=0.11.0,<1
+Requires-Dist: tomli>=2.0.1 ; python_full_version < '3.11'
+License-File: LICENSE
+Summary: A command line utility to check for unused, missing and transitive dependencies in a Python project.
+Author-email: Florian Maas <fpgmaas@gmail.com>
+Maintainer-email: Mathieu Kniewallner <mathieu.kniewallner@gmail.com>
+Requires-Python: >=3.9
+Project-URL: homepage, https://deptry.com
+Project-URL: repository, https://github.com/fpgmaas/deptry
+Project-URL: documentation, https://deptry.com
+Project-URL: changelog, https://github.com/fpgmaas/deptry/blob/main/CHANGELOG.md
