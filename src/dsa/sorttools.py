@@ -8,6 +8,7 @@ def rand_int_array(n: int, maxnum: int) -> list:
     Args:
         n (int): The number of integers to generate.
         maxnum (int): The maximum number in a range (0-maxnum inclusive).
+
     Returns:
         Array of n integers of random numbers from 0 to maxnum.
     """
@@ -37,6 +38,7 @@ def shuffle_array(n: int) -> list:
 
     Args:
         n (int): The number of integers to generate.
+
     Returns:
         Array shuffled with integers from 0 to n-1.
     """
@@ -52,6 +54,7 @@ def is_sorted(array: list) -> bool:
 
     Args:
         array: the array to verify.
+
     Returns:
         True if the array is sorted, False otherwise.   
     """
@@ -63,8 +66,10 @@ def is_sorted(array: list) -> bool:
 def array_details(array: list) -> str:
     """
     Return a string with details about the array.
+
     Args:
         array: the array to analyze.
+
     Returns:
         A string with the count of elements, first 10 elements, and last 10 elements.
     """
@@ -73,9 +78,11 @@ def array_details(array: list) -> str:
 def generate_almost_sorted_array(size: int, swaps: int) -> list:
     """
     Generate an almost sorted array of a given size with a specified number of swaps.   
+
     Args:
         size (int): The size of the array to generate.
         swaps (int): The number of adjacent elements to swap to create disorder.
+
     Returns:
         list: An array of integers that is mostly sorted with a few local swaps.
     """
