@@ -2,3 +2,41 @@ __pycache__/
 *.py[cod]
 dsabuild_readme.md
 tests/images/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build / distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Editor settings
+.vscode/
+.idea/
+
+# pyenv
+.python-version
+
+# Coverage / testing
+.coverage
+htmlcov/
+.cache/
+
+# Logs
+*.log
