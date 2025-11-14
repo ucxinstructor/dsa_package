@@ -195,6 +195,15 @@ class AdjacencyMatrixGraph:
         index = self.label_index[vertex]
         return [self.labels[i] for i in range(len(self.array[index])) if self.array[index][i]]
     
+    def __contains__(self, label: str) -> bool:
+        """ 
+        Args:
+            label (str): The vertex label.
+        Returns:
+            A boolean indicating if the vertex is in the graph.
+        """
+        return label in self.label_index
+    
     def print_graph(self):
         """ 
         Print the contents of the graph.
@@ -538,6 +547,15 @@ class AdjacencyListGraph:
             int: The number of nodes in the graph.
         """
         return len(self._adjacents)
+
+    def __contains__(self, label: str) -> bool:
+        """ 
+        Args:
+            label (str): The vertex label.
+        Returns:
+            A boolean indicating if the vertex is in the graph.
+        """
+        return label in self._adjacents
 
     def edges(self) -> list:
         """ 

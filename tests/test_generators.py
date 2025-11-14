@@ -1,4 +1,3 @@
-from os import link
 import unittest
 import random
 import dsa.generators

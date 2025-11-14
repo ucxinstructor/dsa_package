@@ -231,3 +231,22 @@ class TestAdjacencyListGraph(unittest.TestCase):
             g.delete_edge('A', 'B', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
+        
+    def test_contains_method(self):
+        g = AdjacencyListGraph()
+        g.add_edge('A', 'B')
+        g.add_edge('B', 'C')
+
+        self.assertTrue('A' in g)
+        self.assertTrue('B' in g)
+        self.assertTrue('C' in g)
+        self.assertFalse('D' in g)
+
+        gw = AdjacencyListWeightedGraph()
+        gw.add_edge('X', 'Y', 10)
+        gw.add_edge('Y', 'Z', 20)
+
+        self.assertTrue('X' in gw)
+        self.assertTrue('Y' in gw)
+        self.assertTrue('Z' in gw)
+        self.assertFalse('W' in gw)

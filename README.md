@@ -40,7 +40,12 @@ pip show ucxdsa
 
 ***
 # Revision History
-##2025.09.12
+## 2025.11.13
+* Fixed Dijkstra’s algorithm implementation (shortest_path) to align with lecture slides
+* Added contains method (in operator) to both Graph implementations for vertex existence checks
+* Updated tests accordingly
+
+## 2025.09.12
 * Fixed bug when initial list is greater than 10 for Array, CircularArray and DynamicArray constructors
 
 ## 2025.09.02

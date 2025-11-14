@@ -296,3 +296,18 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
             g.delete_edge('A', 'B', directed=True)
         self.assertFalse(g.is_edge('A', 'B'))
         self.assertTrue(g.is_edge('B', 'A'))
+        
+    def test_contains(self):
+        labels = ['A', 'B', 'C']
+        g = AdjacencyMatrixGraph(labels)
+        self.assertIn('A', g)
+        self.assertIn('B', g)
+        self.assertIn('C', g)
+        self.assertNotIn('D', g)
+
+        gw = AdjacencyMatrixWeightedGraph(labels)
+        self.assertIn('A', gw)
+        self.assertIn('B', gw)
+        self.assertIn('C', gw)
+        self.assertNotIn('D', gw)
+        

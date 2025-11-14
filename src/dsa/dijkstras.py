@@ -12,40 +12,45 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
         end (str): The ending vertex label.
         debug (bool): If True, display weight table as it is being built.
     
+    Raises:
+        KeyError: If start or end vertex is not in the graph.
+        
     Returns:
-        A tuple of a weight table hashtable and a predecesor hashtable.
+        A tuple of a weight table hashtable and a predecessor predecessorhashtable.
     """
-    weight_table = {}
-    predecessor = {}
-    visited = set()
-    h = MinHeap()
+    if start not in graph:
+        raise KeyError(f"Start vertex {start} not in graph.")
+    if end not in graph:
+        raise KeyError(f"End vertex {end} not in graph.")
 
-    current = start
-    h.insert(current)
-    weight_table[current] = 0
-    predecessor[current] = current
+    weight_table = {start: 0}
+    predecessor = {start: start}
+    visited = set()
+    pq = MinHeap()
+
+    pq.insert((0, start))
     
-    while not h.is_empty():
-        current_weight = weight_table.get(current, float('inf'))
+    while not pq.is_empty():
+        current_weight, current = pq.pop()
+        if current in visited:
+            continue
         visited.add(current)
 
-        for adjacent in graph[current]:
-            weight = graph[current][adjacent]
-            if adjacent not in visited:
-                h.insert(adjacent)
+        if current == end:
+            break
 
-            wt = weight_table.get(adjacent, float('inf'))
-            if wt > weight + current_weight:
-                weight_table[adjacent] = weight + current_weight
+        for adjacent, weight in graph[current].items():
+            new_dist = current_weight + weight
+            if new_dist < weight_table.get(adjacent, float('inf')):
+                weight_table[adjacent] = new_dist
                 predecessor[adjacent] = current
+                pq.insert((new_dist, adjacent))
                 if debug:
                     print(weight_table)
-
-        current = h.pop()
-
+    
     return weight_table, predecessor
 
-def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> list:
+def find_path1(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> list:
     """ 
     Return the shortest path of two vertices using Dijkstra's Algorithm.
 
@@ -76,4 +81,46 @@ def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bo
         print("weight table")
         print(weight_table)
         print("shortest path weight ", weight_table[end])
+    return path
+
+
+def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> list:
+    """ 
+    Return the shortest path of two vertices using Dijkstra's Algorithm.
+
+    Args:
+        graph (AdjacencyListWeighted Graph): The graph to search.
+        start (str): The starting vertex label.
+        end (str): The ending vertex label.
+        debug (bool): If True, display the weight table.
+    
+    Raises:
+        KeyError: If there is no path from start to end.
+
+    Returns:
+        A list of vertices that form a shortest path.
+    """
+    weight_table, predecessor = shortest_path(graph, start, end, debug)
+
+    # No path or invalid start/end
+    if end not in predecessor:
+        raise KeyError(f"No path from {start} to {end}.")
+
+    path = []
+    current = end
+    path.append(current)
+
+    while current != start:
+        current = predecessor[current]
+        path.append(current)
+
+    path.reverse()
+
+    if debug:
+        print("predecessor table")
+        print(predecessor)
+        print("weight table")
+        print(weight_table)
+        print("shortest path weight", weight_table[end])
+
     return path
