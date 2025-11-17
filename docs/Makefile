@@ -1,29 +1,20 @@
-# Minimal Sphinx Makefile
+# Minimal makefile for Sphinx documentation
+#
 
-SPHINXBUILD   = sphinx-build
-SOURCEDIR     = docs/source
-BUILDDIR      = docs/build
-APIDOCSRC     = ../src/dsa
-APIDOCOUT     = docs/source
+# You can set these variables from the command line, and also
+# from the environment for the first two.
+SPHINXOPTS    ?=
+SPHINXBUILD   ?= sphinx-build
+SOURCEDIR     = source
+BUILDDIR      = build
 
-.PHONY: help clean apidoc html
-
+# Put it first so that "make" without argument is like "make help".
 help:
-	@echo "make clean     – remove all generated files"
-	@echo "make apidoc    – regenerate .rst API docs"
-	@echo "make html      – build HTML docs"
+	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-clean:
-	rm -rf $(BUILDDIR)/*
-	rm -f $(SOURCEDIR)/*.rst~
-	rm -f $(SOURCEDIR)/*~ 
-	# remove apidoc-generated module rst files
-	rm -f $(SOURCEDIR)/dsa.*.rst
-	rm -f $(SOURCEDIR)/modules.rst
+.PHONY: help Makefile
 
-apidoc:
-	sphinx-apidoc -f -o $(APIDOCOUT) $(APIDOCSRC)
-
-html: clean apidoc
-	$(SPHINXBUILD) -b html $(SOURCEDIR) $(BUILDDIR)
-	@echo "Build finished. HTML in $(BUILDDIR)/html"
+# Catch-all target: route all unknown targets to Sphinx using the new
+# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
+%: Makefile
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

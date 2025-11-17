@@ -40,3 +40,12 @@ htmlcov/
 
 # Logs
 *.log
+
+_build/
+
+# Sphinx cache files
+.doctrees/
+docs2/
+
+# Sphinx environment pickles
+environment.pickle
