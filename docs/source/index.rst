@@ -14,4 +14,39 @@ Computer Science X404.1: Data Structures and Algorithms Class.
    :caption: Contents:
 
    README
-   dsa
+   TODO
+   modules
+      
+.. toctree::
+   :maxdepth: 2
+   :caption: Data Structures
+
+   dsa.array
+   dsa.deque
+   dsa.doublylinkedlist
+   dsa.graph
+   dsa.hashset
+   dsa.hashtable
+   dsa.heap
+   dsa.queue
+   dsa.singlylinkedlist
+   dsa.stack
+   dsa.tree
+   dsa.trie
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Algorithms
+
+   dsa.dijkstras
+   dsa.prim
+   dsa.huffman
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Helper Modules
+
+   dsa.draw
+   dsa.generators
+   dsa.pretty_print
+   dsa.sorttools

@@ -1,4 +1,4 @@
-UC Berkeley Extension - Data Structures and Algorithms Class
+UCXDSA Package
 =============================================================
 
 A collection of classes and functions for use in UC Berkeley Extension's 
@@ -12,8 +12,7 @@ experiment with data structures and algorithms. It is written in Python with
 an emphasis on readability and clarity, rather than performance or optimization. 
 **Not intended for production use.**
 
-API Documentation
------------------
+Project repository: `UCXDSA on GitHub <https://github.com/ucxinstructor/dsa_package>`_
 
 Command Line Installation
 -------------------------
@@ -22,21 +21,16 @@ Command Line Installation
 
    pip install ucxdsa
 
-Updating an existing version of the DSA package
+Updating an Existing Version
 -----------------------------------------------
 
 .. code-block:: bash
 
    pip install --upgrade ucxdsa
 
-Quick Usage Guide
------------------
-
-.. code-block:: python
-
-   from dsa.modulename import classname
-
-To determine the version, enter the following in Python or Jupyter:
+Determining Current Version
+-----------------------------------------------
+To determine the dsa package version, enter the following in Python or Jupyter:
 
 .. code-block:: python
 
@@ -48,3 +42,13 @@ or from the terminal
 .. code-block:: bash
 
    pip show ucxdsa
+
+Quick Usage Guide
+-----------------
+
+.. code-block:: python
+
+   from dsa.modulename import classname
+
+Replace ``modulename`` and ``classname`` with the module and class to be used.
+
