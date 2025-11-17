@@ -32,6 +32,7 @@ autosummary_generate = True     # generate stub files automatically
 autodoc_mock_imports = ["matplotlib", "networkx"]
 
 templates_path = ["_templates"]
+html_static_path = ['_static']
 exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
