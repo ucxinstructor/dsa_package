@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dsa.stack module &mdash; ucxdsa  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dsa.tree module" href="dsa.tree.html" />
+    <link rel="prev" title="dsa.sorttools module" href="dsa.sorttools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ucxdsa
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.stack module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dsa.stack.DynamicStack"><code class="docutils literal notranslate"><span class="pre">DynamicStack</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.DynamicStack.check_capacity"><code class="docutils literal notranslate"><span class="pre">DynamicStack.check_capacity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.DynamicStack.grow"><code class="docutils literal notranslate"><span class="pre">DynamicStack.grow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.DynamicStack.pop"><code class="docutils literal notranslate"><span class="pre">DynamicStack.pop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.DynamicStack.push"><code class="docutils literal notranslate"><span class="pre">DynamicStack.push()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.DynamicStack.shrink"><code class="docutils literal notranslate"><span class="pre">DynamicStack.shrink()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dsa.stack.Stack"><code class="docutils literal notranslate"><span class="pre">Stack</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.capacity"><code class="docutils literal notranslate"><span class="pre">Stack.capacity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.count"><code class="docutils literal notranslate"><span class="pre">Stack.count</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.from_list"><code class="docutils literal notranslate"><span class="pre">Stack.from_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.is_empty"><code class="docutils literal notranslate"><span class="pre">Stack.is_empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.peek"><code class="docutils literal notranslate"><span class="pre">Stack.peek()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.pop"><code class="docutils literal notranslate"><span class="pre">Stack.pop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.push"><code class="docutils literal notranslate"><span class="pre">Stack.push()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.to_list"><code class="docutils literal notranslate"><span class="pre">Stack.to_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.stack.Stack.top"><code class="docutils literal notranslate"><span class="pre">Stack.top()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.dijkstras.html">dsa.dijkstras module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.prim.html">dsa.prim module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.huffman.html">dsa.huffman module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ucxdsa</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">dsa</a></li>
+          <li class="breadcrumb-item"><a href="dsa.html">dsa package</a></li>
+      <li class="breadcrumb-item active">dsa.stack module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dsa.stack.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-dsa.stack">
+<span id="dsa-stack-module"></span><h1>dsa.stack module<a class="headerlink" href="#module-dsa.stack" title="Link to this heading"></a></h1>
+<p>Module containing stack classes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dsa.stack.DynamicStack">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.stack.</span></span><span class="sig-name descname"><span class="pre">DynamicStack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.DynamicStack" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dsa.stack.Stack" title="dsa.stack.Stack"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stack</span></code></a></p>
+<p>A dynamic stack implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.DynamicStack.check_capacity">
+<span class="sig-name descname"><span class="pre">check_capacity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.DynamicStack.check_capacity" title="Link to this definition"></a></dt>
+<dd><p>Check the capacity of the stack.
+If count &gt;= capacity, grow the array
+If count &lt;= 1/4 of capacity, shrink the array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.DynamicStack.grow">
+<span class="sig-name descname"><span class="pre">grow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.DynamicStack.grow" title="Link to this definition"></a></dt>
+<dd><p>Helper method to double the capacity of the current array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.DynamicStack.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.DynamicStack.pop" title="Link to this definition"></a></dt>
+<dd><p>Return an element from the stack. Automatically shrinks array if capacity is 4x the count.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The top element in the stack.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – When the stack is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.DynamicStack.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.DynamicStack.push" title="Link to this definition"></a></dt>
+<dd><p>Push an element into the stack. Automatically grows array if capacity needs to increase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – The element to push.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.DynamicStack.shrink">
+<span class="sig-name descname"><span class="pre">shrink</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.DynamicStack.shrink" title="Link to this definition"></a></dt>
+<dd><p>Helper method to halve the capacity of the current array.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dsa.stack.Stack">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.stack.</span></span><span class="sig-name descname"><span class="pre">Stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A static stack implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.capacity">
+<span class="sig-name descname"><span class="pre">capacity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.capacity" title="Link to this definition"></a></dt>
+<dd><p>Return the capacity of the stack.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dsa.stack.Stack.count">
+<span class="sig-name descname"><span class="pre">count</span></span><a class="headerlink" href="#dsa.stack.Stack.count" title="Link to this definition"></a></dt>
+<dd><p>number of elements in stack</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.from_list">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.from_list" title="Link to this definition"></a></dt>
+<dd><p>Set the contents of a stack from a list. Raise Exception when trying to push more elements than the capacity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span>) – The list with contents to set as an array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.is_empty" title="Link to this definition"></a></dt>
+<dd><p>Return a Boolean on whether the stack is empty or not.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.peek">
+<span class="sig-name descname"><span class="pre">peek</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.peek" title="Link to this definition"></a></dt>
+<dd><p>Return the element from the top of the stack. Raise Exception if stack is empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The top element in the stack.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – When the stack is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.pop" title="Link to this definition"></a></dt>
+<dd><p>Pop an element from the stack. Raise Exception when there are no elements to pop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The top element in the stack.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – When the stack is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.push" title="Link to this definition"></a></dt>
+<dd><p>Push an element into the stack. Raise Exception when trying to push more elements than the capacity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – The element to push.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – When the capacity is reached.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.to_list" title="Link to this definition"></a></dt>
+<dd><p>Return the contents of the stack as an array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.stack.Stack.top">
+<span class="sig-name descname"><span class="pre">top</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.stack.Stack.top" title="Link to this definition"></a></dt>
+<dd><p>Return the top index of the stack.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dsa.sorttools.html" class="btn btn-neutral float-left" title="dsa.sorttools module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.tree.html" class="btn btn-neutral float-right" title="dsa.tree module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Carl Limsico.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,6 +1,13 @@
 import os
 import sys
 
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('..'))
+
+import dsa
+
 # Add the src folder to sys.path so Sphinx can import your package
 sys.path.insert(0, os.path.abspath("../src"))
 
@@ -8,6 +15,7 @@ sys.path.insert(0, os.path.abspath("../src"))
 project = "ucxdsa"
 author = "Carl Limsico"
 copyright = "2025, Carl Limsico"
+version = dsa.__version__
 
 # -- General configuration ---------------------------------------------------
 extensions = [
