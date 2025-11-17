@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dsa.hashtable module &mdash; ucxdsa  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dsa.heap module" href="dsa.heap.html" />
+    <link rel="prev" title="dsa.hashset module" href="dsa.hashset.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ucxdsa
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.hashtable module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dsa.hashtable.HashTable"><code class="docutils literal notranslate"><span class="pre">HashTable</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.count"><code class="docutils literal notranslate"><span class="pre">HashTable.count</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.enumerate"><code class="docutils literal notranslate"><span class="pre">HashTable.enumerate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.get"><code class="docutils literal notranslate"><span class="pre">HashTable.get()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.hash_function"><code class="docutils literal notranslate"><span class="pre">HashTable.hash_function()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.key_exists"><code class="docutils literal notranslate"><span class="pre">HashTable.key_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.pop"><code class="docutils literal notranslate"><span class="pre">HashTable.pop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.remove"><code class="docutils literal notranslate"><span class="pre">HashTable.remove()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.set"><code class="docutils literal notranslate"><span class="pre">HashTable.set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.hashtable.HashTable.show_buckets"><code class="docutils literal notranslate"><span class="pre">HashTable.show_buckets()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.dijkstras.html">dsa.dijkstras module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.prim.html">dsa.prim module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.huffman.html">dsa.huffman module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ucxdsa</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">dsa</a></li>
+          <li class="breadcrumb-item"><a href="dsa.html">dsa package</a></li>
+      <li class="breadcrumb-item active">dsa.hashtable module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dsa.hashtable.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-dsa.hashtable">
+<span id="dsa-hashtable-module"></span><h1>dsa.hashtable module<a class="headerlink" href="#module-dsa.hashtable" title="Link to this heading"></a></h1>
+<p>Module containing hash table class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.hashtable.</span></span><span class="sig-name descname"><span class="pre">HashTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A hashtable implementation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.count">
+<span class="sig-name descname"><span class="pre">count</span></span><a class="headerlink" href="#dsa.hashtable.HashTable.count" title="Link to this definition"></a></dt>
+<dd><p>the number of items in the hashtable</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.enumerate">
+<span class="sig-name descname"><span class="pre">enumerate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.enumerate" title="Link to this definition"></a></dt>
+<dd><p>Return the enumeration of key-value pairs in the hashtable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Enumeration of key-value pairs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.get" title="Link to this definition"></a></dt>
+<dd><p>Get corresponding value of a given key in the hash table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – The key to check for.</p></li>
+<li><p><strong>value</strong> – The value to set or create.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>corresponding value of key.
+None if key is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.hash_function">
+<span class="sig-name descname"><span class="pre">hash_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.hash_function" title="Link to this definition"></a></dt>
+<dd><p>Return a hash value based on a given key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – The key to convert to a hashvalue.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Hash value modded to the hashtable capacity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.key_exists">
+<span class="sig-name descname"><span class="pre">key_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.key_exists" title="Link to this definition"></a></dt>
+<dd><p>Returns a Boolean on whether a key exists in the hashtable or not .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – The key to check for in the hashtable.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Boolean of key existence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.pop" title="Link to this definition"></a></dt>
+<dd><p>Remove specified key and return the value.
+If key is not found, return default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.remove" title="Link to this definition"></a></dt>
+<dd><p>Remove key-value pair if specified key is found. Raise KeyError if not found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – The key to check for.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>KeyError</strong> – If the key is not found in the hashtable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.set" title="Link to this definition"></a></dt>
+<dd><p>Set a key-value pair in the hashtable.</p>
+<p>If key exists, replace the value otherwise, create a new key-pair.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – The key to check for.</p></li>
+<li><p><strong>value</strong> – The value to set or create.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.hashtable.HashTable.show_buckets">
+<span class="sig-name descname"><span class="pre">show_buckets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashtable.HashTable.show_buckets" title="Link to this definition"></a></dt>
+<dd><p>Return a string displaying the contents of all buckets in the hashtable.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dsa.hashset.html" class="btn btn-neutral float-left" title="dsa.hashset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.heap.html" class="btn btn-neutral float-right" title="dsa.heap module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Carl Limsico.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

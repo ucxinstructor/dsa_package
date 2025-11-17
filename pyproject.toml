@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ucxdsa"
+version = "2025.11.13"
+description = "Data Structures and Algorithms Source Code"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+dependencies = [
+  "networkx",
+  "matplotlib"
+]
+
+authors = [
+  { name = "Carl Limsico", email = "limsico@berkeley.edu" }
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://github.com/ucxinstructor/dsa_package"
+
+# 🎯 Environment setup
+[tool.hatch.envs.default]
+dependencies = [
+  "pdoc",
+]
+
+[tool.hatch.envs.default.scripts]
+lint = "ruff check src/dsa"
+docs = "pdoc dsa -o src/html"
+tests = "python -m unittest discover -s tests"
+publish-test = "hatch publish --repo test"
+
+# 📦 Build configuration
+[tool.hatch.build]
+exclude = [
+  "/__pycache__",
+  "dsabuild_readme.md"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dsa"]
+
+# 🚀 Publishing configuration
+[tool.hatch.publish]  # Main publish config (defaults to PyPI)
+[tool.hatch.publish.twine]  # Placeholder for future Twine options
+
+[tool.hatch.publish.index.repos.test]
+url = "https://test.pypi.org/legacy/"
+
+build-all = [
+  "hatch build",
+  "hatch run lint",
+  "hatch run tests",
+  "hatch run docs"
+]
+
