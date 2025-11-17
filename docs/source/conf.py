@@ -22,7 +22,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",       # for Google/NumPy docstrings
     "sphinx.ext.autosummary",    # generate pages for each class/function
-    "sphinx_autodoc_typehints"
+    "sphinx_autodoc_typehints",
+    "sphinx.ext.githubpages"
 ]
 
 autosummary_generate = True     # generate stub files automatically
