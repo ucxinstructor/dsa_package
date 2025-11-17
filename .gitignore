@@ -15,7 +15,6 @@ __pycache__/
 *.pyd
 
 # Build / distribution
-build/
 dist/
 *.egg-info/
 .eggs/
