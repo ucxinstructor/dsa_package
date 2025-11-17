@@ -8,6 +8,9 @@ Not intended for production use.
 
 
 [API Documentation - Latest](https://ucxinstructor.github.io/dsa_package/)
+
+
+
 [API Documentation - old version](https://ucxinstructor.github.io/dsa_package/src/html/dsa)
 
 Command Line Installation
