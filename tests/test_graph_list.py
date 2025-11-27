@@ -250,3 +250,29 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertTrue('Y' in gw)
         self.assertTrue('Z' in gw)
         self.assertFalse('W' in gw)
+        
+        
+    def test_to_dict_method(self):
+        g = AdjacencyListWeightedGraph()
+        g.add_edge('A', 'B', 1)
+        g.add_edge('A', 'C', 2)
+        g.add_edge('B', 'D', 3)
+
+        expected_dict = {
+            'A': {'B': 1, 'C': 2},
+            'B': {'A': 1, 'D': 3},
+            'C': {'A': 2},
+            'D': {'B': 3}
+        }
+
+        self.assertEqual(g.to_dict(), expected_dict)
+        
+        gw = AdjacencyListGraph()
+        gw.add_edge('X', 'Y', directed=False)
+        gw.add_edge('Y', 'Z', directed=False)
+        expected_dict = {
+            'X': ['Y'],
+            'Y': ['X', 'Z'],
+            'Z': ['Y']
+        }
+        self.assertEqual(gw.to_dict(), expected_dict)

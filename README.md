@@ -43,6 +43,12 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.11.27
+* Made sure that both vertices in add_edge() are included in the internal representation for the Adjacency List
+* Adjacency Matrix self-loop vertices are now set to none
+* Added to_dict() methods for Adjacency List and Adjacency Matrix classes
+* Added is_weighted member for Adjacency List and Adjacency Matrix classes
+
 ## 2025.11.13
 * Fixed Dijkstra’s algorithm implementation (shortest_path) to align with lecture slides
 * Added contains method (in operator) to both Graph implementations for vertex existence checks

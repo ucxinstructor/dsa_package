@@ -7,16 +7,16 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
     Helper function that returns a weight table and a predecessor table using Dijkstra's Algorithm.
 
     Args:
-        graph (AdjacencyListWeighted Graph): The graph to search.
+        graph (AdjacencyListWeightedGraph): The graph to search.
         start (str): The starting vertex label.
         end (str): The ending vertex label.
         debug (bool): If True, display weight table as it is being built.
     
     Raises:
         KeyError: If start or end vertex is not in the graph.
-        
+
     Returns:
-        A tuple of a weight table hashtable and a predecessor predecessorhashtable.
+        A tuple of a weight table hashtable and a predecessor hashtable.
     """
     if start not in graph:
         raise KeyError(f"Start vertex {start} not in graph.")
@@ -55,13 +55,13 @@ def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bo
     Return the shortest path of two vertices using Dijkstra's Algorithm.
 
     Args:
-        graph (AdjacencyListWeighted Graph): The graph to search.
+        graph (AdjacencyListWeightedGraph): The graph to search.
         start (str): The starting vertex label.
         end (str): The ending vertex label.
         debug (bool): If True, display the weight table.
     
     Raises:
-        KeyError: If there is no path from start to end.
+        KeyError: If start or end vertex is not in the graph, or if there is no path from start to end.
 
     Returns:
         A list of vertices that form a shortest path.

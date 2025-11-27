@@ -1,5 +1,6 @@
 """ Module containing graph classes. """
 
+from operator import is_
 from dsa.queue import Queue
 
 class AdjacencyMatrixGraph:
@@ -17,10 +18,11 @@ class AdjacencyMatrixGraph:
             labels (list[str]): List of labels for each vertex.
         """
         self.labels = labels
+        self.is_weighted = False
         self.label_index = { label: index for index, label  in enumerate(labels) }
 
         node_count = len(self.labels)
-        self.array = [[None for i in range(node_count)] for j in range(node_count)]
+        self._matrix = [[None for i in range(node_count)] for j in range(node_count)]
 
     def add_edge(self, start_label: str, end_label: str, directed=False):
         """ 
@@ -33,9 +35,9 @@ class AdjacencyMatrixGraph:
         """
         a = self.label_index[start_label]
         b = self.label_index[end_label]
-        self.array[a][b] = True
+        self._matrix[a][b] = True
         if not directed:
-            self.array[b][a] = True
+            self._matrix[b][a] = True
 
     def add_vertex(self, label: str):
         """ 
@@ -46,9 +48,9 @@ class AdjacencyMatrixGraph:
         """
         self.labels.append(label)
         self.label_index[label] = len(self.labels) - 1
-        for row in self.array:
+        for row in self._matrix:
             row.append(None)
-        self.array.append([None for i in range(len(self.labels))])
+        self._matrix.append([None for i in range(len(self.labels))])
 
     def delete_vertex(self, label: str):
         """ 
@@ -60,8 +62,8 @@ class AdjacencyMatrixGraph:
         index = self.label_index[label]
         self.labels.pop(index)
         self.label_index = { label: index for index, label in enumerate(self.labels) }
-        self.array.pop(index)
-        for row in self.array:
+        self._matrix.pop(index)
+        for row in self._matrix:
             row.pop(index)
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):
@@ -75,14 +77,14 @@ class AdjacencyMatrixGraph:
         """
         a = self.label_index[start_label]
         b = self.label_index[end_label]
-        if self.array[a][b] is None:
+        if self._matrix[a][b] is None:
             raise KeyError(f"Edge {start_label} to {end_label} does not exist")
 
-        self.array[a][b] = None
+        self._matrix[a][b] = None
         if not directed:
-            if self.array[b][a] is None:
+            if self._matrix[b][a] is None:
                 raise KeyError(f"Edge {end_label} to {start_label} does not exist")
-            self.array[b][a] = None
+            self._matrix[b][a] = None
 
     def dfs_traverse(self, start_label: str):
         """ 
@@ -104,7 +106,7 @@ class AdjacencyMatrixGraph:
         visited.add(start_label)
         dfs.append(self.labels[start_index])
 
-        for adj_index, is_connected in enumerate(self.array[start_index]):
+        for adj_index, is_connected in enumerate(self._matrix[start_index]):
             adj_label = self.labels[adj_index]
             if is_connected and adj_label not in visited:
                 self._df_rec_traverse(adj_label, visited, dfs)
@@ -130,8 +132,8 @@ class AdjacencyMatrixGraph:
         bfs.append(self.labels[start_index])
         while not q.is_empty():
             current = q.dequeue()
-            for i in range(len(self.array)):
-                if start_index != i and self.array[current][i] and (i not in visited):
+            for i in range(len(self._matrix)):
+                if start_index != i and self._matrix[current][i] and (i not in visited):
                     visited.add(i)
                     q.enqueue(i)
                     bfs.append(self.labels[i])
@@ -151,7 +153,7 @@ class AdjacencyMatrixGraph:
         vertex_count = len(self.labels)
         for i in range(vertex_count):
             for j in range(vertex_count):
-                if self.array[i][j] and i != j:  
+                if self._matrix[i][j] and i != j:  
                     edges.append((self.labels[i], self.labels[j]))
     
         return edges
@@ -164,7 +166,7 @@ class AdjacencyMatrixGraph:
         vertex_count = len(self.labels)
         for i in range(vertex_count):
             for j in range(vertex_count):
-                if self.array[i][j] and i != j and (self.labels[j], self.labels[i]) not in edges:  
+                if self._matrix[i][j] and i != j and (self.labels[j], self.labels[i]) not in edges:  
                     edges.append((self.labels[i], self.labels[j]))
     
         return edges
@@ -183,7 +185,7 @@ class AdjacencyMatrixGraph:
         start_index = self.label_index[start_label]
         end_index = self.label_index[end_label]
 
-        return self.array[start_index][end_index] is not None
+        return self._matrix[start_index][end_index] is not None
 
     def __getitem__(self, vertex: str) -> list:
         """ 
@@ -193,7 +195,7 @@ class AdjacencyMatrixGraph:
             A list of adjacent vertex labels.
         """
         index = self.label_index[vertex]
-        return [self.labels[i] for i in range(len(self.array[index])) if self.array[index][i]]
+        return [self.labels[i] for i in range(len(self._matrix[index])) if self._matrix[index][i]]
     
     def __contains__(self, label: str) -> bool:
         """ 
@@ -212,8 +214,8 @@ class AdjacencyMatrixGraph:
         for label in self.labels:
             print(f"{label:^3}", end=" ")
         print()
-        print("----" * (len(self.array) + 1))
-        for r, row in enumerate(self.array):
+        print("----" * (len(self._matrix) + 1))
+        for r, row in enumerate(self._matrix):
             label = self.labels[r]
             print(f"{label:^3}|", end="")
             for col in row:
@@ -221,6 +223,35 @@ class AdjacencyMatrixGraph:
                 print(b, end=" ")
             print()
             
+    def to_dict(self) -> dict:
+        """ 
+        Return the adjacency matrix as a dictionary.
+        
+        For unweighted graphs, returns a dictionary of lists.
+        For weighted graphs, returns a dictionary of dictionaries.
+        
+        Returns:
+            A dictionary representing the adjacency matrix of the graph.
+            - Unweighted: {vertex: [neighbor1, neighbor2, ...]}
+            - Weighted: {vertex: {neighbor1: weight1, neighbor2: weight2, ...}}
+        """
+        matrix_dict = {}
+        
+        for i, row in enumerate(self._matrix):
+            if self.is_weighted:
+                matrix_dict[self.labels[i]] = {}
+            else:
+                matrix_dict[self.labels[i]] = []
+            
+            for j, val in enumerate(row):
+                if val is not None:
+                    if self.is_weighted:
+                        matrix_dict[self.labels[i]][self.labels[j]] = val
+                    else:
+                        matrix_dict[self.labels[i]].append(self.labels[j])
+        
+        return matrix_dict
+
 class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     """ 
     A weighted adjacency matrix graph implementation
@@ -233,6 +264,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
             labels: list of labels for each vertex (string types)
         """
         super().__init__(labels)
+        self.is_weighted=True
 
     def add_edge(self, start_label: str, end_label: str, weight, directed=False):
         """ 
@@ -247,12 +279,12 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         a = self.label_index[start_label]
         b = self.label_index[end_label]
 
-        self.array[a][b] = weight
-        self.array[a][a] = 0
-        self.array[b][b] = 0
+        self._matrix[a][b] = weight
+        self._matrix[a][a] = None # prevent self-loop
+        self._matrix[b][b] = None
 
         if not directed:
-            self.array[b][a] = weight
+            self._matrix[b][a] = weight
         
     def print_graph(self):
         """ 
@@ -262,8 +294,8 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         for label in self.labels:
             print(f"{label:>3}", end=" ")
         print()
-        print("----" * (len(self.array) + 1))
-        for r, row in enumerate(self.array):
+        print("----" * (len(self._matrix) + 1))
+        for r, row in enumerate(self._matrix):
             label = self.labels[r]
             print(f"{label:^3}|", end="")
             for col in row:
@@ -279,7 +311,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         vertex_count = len(self.labels)
         for i in range(vertex_count):
             for j in range(vertex_count):
-                weight = self.array[i][j]
+                weight = self._matrix[i][j]
                 if weight and i != j:  
                     edges.append((self.labels[i], self.labels[j], weight))
     
@@ -293,7 +325,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         vertex_count = len(self.labels)
         for i in range(vertex_count):
             for j in range(vertex_count):
-                weight = self.array[i][j]
+                weight = self._matrix[i][j]
                 if weight and i != j and (self.labels[j], self.labels[i], weight) not in edges:  
                     edges.append((self.labels[i], self.labels[j], weight))
     
@@ -333,7 +365,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
             a dictionary of adjacent vertex labels and weights
         """
         index = self.label_index[vertex]
-        return {self.labels[i] : self.array[index][i] for i in range(len(self.array[index])) if self.array[index][i]}
+        return {self.labels[i] : self._matrix[index][i] for i in range(len(self._matrix[index])) if self._matrix[index][i]}
 
 class AdjacencyListGraph:
     """ 
@@ -344,6 +376,7 @@ class AdjacencyListGraph:
     def __init__(self):
         #: hash table of vertices in graph
         self._adjacents = {}
+        self.is_weighted = False
         
     def add_edge(self, start_label: str, end_label: str, directed=False):
         """ 
@@ -578,7 +611,21 @@ class AdjacencyListGraph:
                 if start != end and (end, start) not in edges:  
                     edges.append((start, end))
         return edges
-
+    
+    def to_dict(self) -> dict:
+        """ 
+        Return the adjacency list as a dictionary.
+        
+        For unweighted graphs, returns a dictionary of lists.
+        For weighted graphs, returns a dictionary of dictionaries.
+        
+        Returns:
+            A dictionary representing the adjacency list of the graph.
+            - Unweighted: {vertex: [neighbor1, neighbor2, ...]}
+            - Weighted: {vertex: {neighbor1: weight1, neighbor2: weight2, ...}}
+        """
+        return {key: values.copy() for key, values in self._adjacents.items()}
+    
 class AdjacencyListWeightedGraph(AdjacencyListGraph):
     """ 
     A weighted adjacency list vertex implementation in Python
@@ -587,6 +634,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
     def __init__(self):
         #: hash table of vertices in graph
         self._adjacents = {}
+        self.is_weighted = True
         
     def add_edge(self, start_label: str, end_label: str, weight, directed=False):
         """ 
@@ -600,12 +648,13 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         """
         if start_label not in self._adjacents:
             self._adjacents[start_label] = {}
+
+        if end_label not in self._adjacents:
+            self._adjacents[end_label] = {}
             
         self._adjacents[start_label][end_label] = weight
 
         if not directed:
-            if end_label not in self._adjacents:
-                self._adjacents[end_label] = {}
             self._adjacents[end_label][start_label] = weight
 
     def delete_edge(self, start_label: str, end_label: str, directed=False):

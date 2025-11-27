@@ -311,3 +311,29 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertIn('C', gw)
         self.assertNotIn('D', gw)
         
+    def test_to_dict(self):
+        labels = ['A', 'B', 'C']
+        g = AdjacencyMatrixGraph(labels)
+        g.add_edge('A', 'B')
+        g.add_edge('A', 'C')
+        g.add_edge('B', 'C')
+
+        expected_dict = {
+            'A': ['B', 'C'],
+            'B': ['A', 'C'],
+            'C': ['A', 'B']
+        }
+        self.assertEqual(g.to_dict(), expected_dict)
+
+        gw = AdjacencyMatrixWeightedGraph(labels)
+        gw.add_edge('A', 'B', 2, directed=False)
+        gw.add_edge('A', 'C', 3, directed=False)
+        gw.add_edge('B', 'C', 4, directed=False)
+
+        expected_weighted_dict = {
+            'A': {'B': 2, 'C': 3},
+            'B': {'A': 2, 'C': 4},
+            'C': {'A': 3, 'B': 4}
+        }
+        self.assertEqual(gw.to_dict(), expected_weighted_dict)
+        
