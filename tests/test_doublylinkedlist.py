@@ -1,6 +1,7 @@
 import unittest
 from dsa.doublylinkedlist import DoublyLinkedList, Node
 
+
 class TestDoublyLinkedList(unittest.TestCase):
 
     # --- Initialization Tests ---
@@ -86,24 +87,24 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.verify_prev_links(ll)
 
     # --- Deletion Tests ---
-    def test_delete_at_indices(self):
+    def test_delete_value(self):
         ll = DoublyLinkedList.from_list(range(15))
-        self.assertRaises(IndexError, ll.delete, 15)
-        for _ in range(15):
-            ll.delete(0)
+        self.assertRaises(ValueError, ll.delete, 15)
+
+        for i in range(15):
+            ll.delete(i)
         self.assertEqual(ll.count, 0)
-        self.assertRaises(IndexError, ll.delete, 0)
+        self.assertRaises(ValueError, ll.delete, 0)
 
         ll = DoublyLinkedList.from_list(range(15))
-        for _ in range(15):
-            ll.delete(len(ll) - 1)
+        for i in range(14, -1, -1):
+            ll.delete(i)
         self.assertEqual(ll.count, 0)
         self.verify_prev_links(ll)
 
-        ll = DoublyLinkedList.from_list(range(15))
-        for _ in range(5):
-            ll.delete(len(ll) // 2)
-        self.assertEqual(ll.count, 10)
+        ll = DoublyLinkedList.from_list([1, 2, 3, 4, 5])
+        ll.delete(3)
+        self.assertEqual(ll.to_list(), [1, 2, 4, 5])
         self.verify_prev_links(ll)
 
     def test_delete_head_tail_and_middle(self):
@@ -113,7 +114,7 @@ class TestDoublyLinkedList(unittest.TestCase):
         ll.delete(0)
         self.assertEqual(ll.head.value, 1)
         ll.delete(3)
-        self.assertEqual(ll[3], 5)
+        self.assertEqual(ll[2], 4)
         self.assertEqual(ll.count, 17)
         self.verify_prev_links(ll)
 
@@ -153,7 +154,7 @@ class TestDoublyLinkedList(unittest.TestCase):
             self.assertEqual(node.next.prev, node)
             node = node.next
             self.assertIsNotNone(node.prev, "Malformed list: missing prev link")
-    
+
     def test_eq(self):
         dll1 = DoublyLinkedList.from_list([1, 2, 3, 4])
         dll2 = DoublyLinkedList.from_list([1, 2, 3, 4])
@@ -166,5 +167,6 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.assertNotEqual(dll1, DoublyLinkedList.from_list([1, 2, 3]))
         self.assertNotEqual(dll1, [1, 2, 3, 4])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
