@@ -238,41 +238,40 @@ class LinkedList:
         
         self.count += 1
 
-    def delete(self, index: int):
+    def delete(self, value):
         """
-        Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.
+        Delete the first occurrence of a value in the linked list.
 
         Args:
-            index: Index of element to be deleted.
+            value: The value to be deleted.
         
         Returns:
             None
             
         Raises:
-            IndexError: If linked list is empty or index is not found.
+            ValueError: If the value is not found.
         """
-        if index == 0:
-            self.delete_head()
-            return
-        elif index + 1 == self.count:
-            self.delete_tail()
+        if self.head is None:
+            raise ValueError("Value not found")
+
+        if self.head.value == value:
+            self.head = self.head.next
+            self.count -= 1
+            if self.count == 0:
+                self.tail = None
             return
 
-        i = 0
         current = self.head
-        prev = None
-        while current:
-            if index == i:
-                if prev is not None:
-                    prev.next = current.next
-                else:
-                    self.head = current.next
+        while current.next:
+            if current.next.value == value:
+                if current.next == self.tail:
+                    self.tail = current
+                current.next = current.next.next
                 self.count -= 1
                 return
-            i += 1
-            prev = current
             current = current.next
-        raise IndexError("Index not found")
+            
+        raise ValueError("Value not found")
 
     def delete_head(self):
         """

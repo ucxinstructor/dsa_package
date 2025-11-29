@@ -1,6 +1,7 @@
 import unittest
 from dsa.singlylinkedlist import LinkedList, Node
 
+
 class TestLinkedList(unittest.TestCase):
 
     # --- Creation Tests ---
@@ -31,9 +32,7 @@ class TestLinkedList(unittest.TestCase):
 
     # --- Conversion Tests ---
     def test_from_list(self):
-        for values, expected_count in [
-            ([], 0), ([1], 1), ([1, 2], 2), ([1, 2, 3], 3)
-        ]:
+        for values, expected_count in [([], 0), ([1], 1), ([1, 2], 2), ([1, 2, 3], 3)]:
             ll = LinkedList.from_list(values)
             self.assertEqual(ll.count, expected_count)
             if values:
@@ -92,33 +91,33 @@ class TestLinkedList(unittest.TestCase):
         self.assertRaises(IndexError, ll.insert, 20, 300)
 
     # --- Deletion Tests ---
-    def test_delete_index(self):
+    def test_delete_value(self):
         ll = LinkedList()
         for i in range(15):
             ll.append(i)
-        self.assertRaises(IndexError, ll.delete, 15)
+        self.assertRaises(ValueError, ll.delete, 15)
 
         for i in range(15):
-            ll.delete(0)
+            ll.delete(i)
             self.assertEqual(ll.count, 14 - i)
-        self.assertRaises(IndexError, ll.delete, 0)
+        self.assertRaises(ValueError, ll.delete, 0)
 
         for i in range(15):
             ll.append(i)
-        for i in range(15):
-            ll.delete(len(ll) - 1)
-            self.assertEqual(ll.count, 14 - i)
-        self.assertRaises(IndexError, ll.delete, 0)
+        for i in range(14, -1, -1):
+            ll.delete(i)
+            self.assertEqual(ll.count, i)
+        self.assertRaises(ValueError, ll.delete, 0)
 
     def test_delete_middle_and_edges(self):
         ll = LinkedList.from_list(range(15))
-        for i in range(5):
-            ll.delete(len(ll) // 2)
-            self.assertEqual(ll.count, 14 - i)
+        ll.delete(7)
+        self.assertEqual(ll.count, 14)
+        self.assertRaises(ValueError, ll.delete, 7)
 
-        ll.delete(len(ll) - 1)
+        ll.delete(14)
         self.assertEqual(ll.tail.value, 13)
-        self.assertEqual(ll.count, 9)
+        self.assertEqual(ll.count, 13)
 
         ll = LinkedList.from_list(range(20))
         ll.delete(19)
@@ -126,7 +125,7 @@ class TestLinkedList(unittest.TestCase):
         ll.delete(0)
         self.assertEqual(ll.head.value, 1)
         ll.delete(3)
-        self.assertEqual(ll[3], 5)
+        self.assertEqual(ll[2], 4)
         self.assertEqual(ll.count, 17)
 
     def test_delete_head(self):
@@ -177,5 +176,6 @@ class TestLinkedList(unittest.TestCase):
 
         self.assertNotEqual(ll1, [1, 2, 3, 4])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
