@@ -128,14 +128,14 @@ class TestRandomArray(unittest.TestCase):
         linked_list = dsa.generators.random_linked_list(size)
         self.assertEqual(len(linked_list), size)
         for _ in range(size):
-            linked_list.delete(0)
+            linked_list.delete(linked_list.head.value)
         self.assertEqual(len(linked_list), 0)
 
         size = 20_000
         linked_list = dsa.generators.random_linked_list(size)
         self.assertEqual(len(linked_list), size)
         for _ in range(size):
-            linked_list.delete(0)
+            linked_list.delete(linked_list.tail.value)
         self.assertEqual(len(linked_list), 0)
 
     def test_random_doubly_linked_list(self):
@@ -143,14 +143,14 @@ class TestRandomArray(unittest.TestCase):
         linked_list = dsa.generators.random_doubly_linked_list(size)
         self.assertEqual(len(linked_list), size)
         for _ in range(size):
-            linked_list.delete(0)
+            linked_list.delete(linked_list.head.value)
         self.assertEqual(len(linked_list), 0)
 
         size = 20_000
         linked_list = dsa.generators.random_doubly_linked_list(size)
         self.assertEqual(len(linked_list), size)
         for _ in range(size):
-            linked_list.delete(0)
+            linked_list.delete(linked_list.tail.value)
         self.assertEqual(len(linked_list), 0)
 
     def test_random_binary_tree(self):
