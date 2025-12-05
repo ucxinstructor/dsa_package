@@ -1,6 +1,8 @@
 """ Module containing graph classes. """
 
-from operator import is_
+from tkinter import N
+from turtle import st
+from venv import create
 from dsa.queue import Queue
 
 class Graph:
@@ -9,28 +11,56 @@ class Graph:
     
     """
     @staticmethod
-    def graph_factory(cls, type: str, directed: bool, weighted: bool):
+    def create(graph_type: str, directed: bool=False, weighted: bool=False, vertices=None) -> object:
         """ 
         Return a graph object based on the specified parameters.
 
         Args:
-            type: The type of graph ('adjacency_matrix' or 'adjacency_list').
+            graph_type: The type of graph ('adjacency_matrix' or 'adjacency_list').
             directed: Whether the graph is directed.
             weighted: Whether the graph is weighted.
             labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
         """
-        if type == 'adjacency_matrix':
-            if weighted:
-                return AdjacencyMatrixWeightedGraph(labels)
-            else:
-                return AdjacencyMatrixGraph(labels)
-        elif type == 'adjacency_list':
-            if weighted:
-                return AdjacencyListWeightedGraph()
-            else:
-                return AdjacencyListGraph()
+        if graph_type == 'adjacency_matrix':
+            if vertices is None:
+                vertices = []
+            return Graph.create_adjacency_matrix(directed=directed, weighted=weighted, vertices=vertices)
+        elif graph_type == 'adjacency_list':
+            return Graph.create_adjacency_list(directed=directed, weighted=weighted, vertices=vertices)
         else:
             raise ValueError("Invalid graph type. Use 'adjacency_matrix' or 'adjacency_list'.")
+    
+    @staticmethod
+    def create_adjacency_matrix(directed: bool=False, weighted: bool=False, vertices=None) -> object:
+        """ 
+        Return an adjacency matrix graph object.
+
+        Args:
+            directed: Whether the graph is directed.
+            weighted: Whether the graph is weighted.
+            labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
+        """
+        if vertices is None:
+            vertices = []
+        if weighted:
+            return AdjacencyMatrixWeightedGraph(directed=directed, vertices=vertices)
+        else:
+            return AdjacencyMatrixGraph(directed=directed, vertices=vertices)
+    
+    @staticmethod
+    def create_adjacency_list(directed: bool=False, weighted: bool=False, vertices=None) -> object:
+        """ 
+        Return an adjacency list graph object.
+
+        Args:
+            directed: Whether the graph is directed.
+            weighted: Whether the graph is weighted.
+            labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
+        """
+        if weighted:
+            return AdjacencyListWeightedGraph(directed=directed, vertices=vertices)
+        else:
+            return AdjacencyListGraph(directed=directed, vertices=vertices)
 
 class AdjacencyMatrixGraph:
     """ 
@@ -39,21 +69,36 @@ class AdjacencyMatrixGraph:
     This class allows either directed or undirected representation of a graph.
     Vertex labels are string types.
     """
-    def __init__(self, labels: list[str]):
-        """ 
-        Initialize the graph with a list of vertex labels.
-
-        Args:
-            labels (list[str]): List of labels for each vertex.
+    def __init__(self, directed=False, weighted=False, vertices=None):
         """
-        self.labels = labels
-        self.is_weighted = False
-        self.label_index = { label: index for index, label  in enumerate(labels) }
+        Initialize the graph with optional vertex labels.
+        
+        Args:
+            directed (bool): Whether the graph is directed.
+            vertices (list[str]): List of labels for each vertex.
 
-        node_count = len(self.labels)
-        self._matrix = [[None for i in range(node_count)] for j in range(node_count)]
+        """
+        if vertices is None:
+            vertices = []
 
-    def add_edge(self, start_label: str, end_label: str, directed=False):
+        self.labels = list(vertices)
+
+        # Prevent duplicates
+        if len(self.labels) != len(set(self.labels)):
+            raise ValueError("Duplicate vertex labels are not allowed.")
+
+        self.is_directed = directed
+        self.is_weighted = weighted
+
+        # Map labels to indices
+        self.label_index = {label: i for i, label in enumerate(self.labels)}
+
+        # Initialize matrix
+        n = len(self.labels)
+        self._matrix = [[None for _ in range(n)] for _ in range(n)]
+
+
+    def add_edge(self, start_label: str, end_label: str, directed=None):
         """ 
         Add an edge in the graph.
         
@@ -62,9 +107,18 @@ class AdjacencyMatrixGraph:
             end_label (str): Ending vertex label.
             directed (bool): Whether the edge is directed.
         """
+        if start_label not in self.label_index:
+            self.add_vertex(start_label)
+        if end_label not in self.label_index:
+            self.add_vertex(end_label)
+        
         a = self.label_index[start_label]
         b = self.label_index[end_label]
         self._matrix[a][b] = True
+
+        if directed is None:            
+            directed = self.is_directed
+        
         if not directed:
             self._matrix[b][a] = True
 
@@ -74,7 +128,12 @@ class AdjacencyMatrixGraph:
         
         Args:
             label (str): The vertex label to add.
+        
+        Raises:
+            ValueError: If the vertex label already exists.
         """
+        if label in self.label_index:
+            raise ValueError(f"Vertex {label} already exists")
         self.labels.append(label)
         self.label_index[label] = len(self.labels) - 1
         for row in self._matrix:
@@ -95,7 +154,7 @@ class AdjacencyMatrixGraph:
         for row in self._matrix:
             row.pop(index)
 
-    def delete_edge(self, start_label: str, end_label: str, directed=False):
+    def delete_edge(self, start_label: str, end_label: str, directed=None):
         """ 
         Delete an edge in the graph.
         
@@ -110,6 +169,10 @@ class AdjacencyMatrixGraph:
             raise KeyError(f"Edge {start_label} to {end_label} does not exist")
 
         self._matrix[a][b] = None
+        
+        if directed is None:
+            directed = self.is_directed
+        
         if not directed:
             if self._matrix[b][a] is None:
                 raise KeyError(f"Edge {end_label} to {start_label} does not exist")
@@ -252,6 +315,33 @@ class AdjacencyMatrixGraph:
                 print(b, end=" ")
             print()
             
+    def order(self) -> int:
+        """
+        Return the number of nodes in the graph.
+        Returns:
+            int: The number of nodes in the graph.
+        """
+        return len(self.labels)
+    
+    def __len__(self):
+        """
+        Return the number of nodes in the graph.
+        """
+        return len(self.labels)
+            
+    def size(self) -> int:
+        """
+        Return the number of edges in the graph.
+        Returns:
+            int: The number of edges in the graph.
+        """
+        edge_count = 0
+        for start in self.labels:
+            edge_count += len(self[start])
+        if not self.is_directed:
+            edge_count = edge_count // 2
+        return edge_count
+    
     def to_dict(self) -> dict:
         """ 
         Return the adjacency matrix as a dictionary.
@@ -287,15 +377,15 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     (allows either directed or undirected representation)
     vertex labels are string types
     """
-    def __init__(self, labels):
+    def __init__(self, directed=False, vertices=None):
         """ 
         Args:
-            labels: list of labels for each vertex (string types)
+            vertices: list of labels for each vertex (string types)
         """
-        super().__init__(labels)
+        super().__init__(directed=directed, vertices=vertices)
         self.is_weighted=True
 
-    def add_edge(self, start_label: str, end_label: str, weight, directed=False):
+    def add_edge(self, start_label: str, end_label: str, weight, directed=None):
         """ 
         Add an edge to the graph.
 
@@ -305,12 +395,20 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
             weight: The weight of the vertex.
             directed: Whether the edge is directed.
         """
+        if start_label not in self.label_index:
+            self.add_vertex(start_label)
+        if end_label not in self.label_index:
+            self.add_vertex(end_label)
+
         a = self.label_index[start_label]
         b = self.label_index[end_label]
 
         self._matrix[a][b] = weight
         self._matrix[a][a] = None # prevent self-loop
         self._matrix[b][b] = None
+
+        if directed is None:
+            directed = self.is_directed
 
         if not directed:
             self._matrix[b][a] = weight
@@ -360,19 +458,19 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     
         return edges
 
-    def has_edge(self, start_label: str, end_label: str) -> bool:
-        """ 
-        Return boolean if an edge exists.
+    # def has_edge(self, start_label: str, end_label: str) -> bool:
+    #     """ 
+    #     Return boolean if an edge exists.
 
         
-        Args:
-            start_label (str): Starting vertex label.
-            end_label (str): Ending vertex label.
+    #     Args:
+    #         start_label (str): Starting vertex label.
+    #         end_label (str): Ending vertex label.
         
-        Returns:
-            A boolean of whether there is an edge from start to end.
-        """
-        return super().has_edge(start_label, end_label)
+    #     Returns:
+    #         A boolean of whether there is an edge from start to end.
+    #     """
+    #     return super().has_edge(start_label, end_label)
     
     def get_weight(self, start_label: str, end_label: str):
         """ 
@@ -406,12 +504,46 @@ class AdjacencyListGraph:
     (allows either directed or undirected representation)
     vertex labels are string types
     """
-    def __init__(self):
+    def __init__(self, directed=False, vertices=None):
         #: hash table of vertices in graph
         self._adjacents = {}
+        self.is_directed = directed
         self.is_weighted = False
+        if vertices is None:
+            vertices = []
+        for vertex in vertices:
+            self.add_vertex(vertex)
+
+
+    def add_vertex(self, label: str):
+        """ 
+        Add a vertex to the graph.
+
+        Args:
+            label (str): The vertex label to add.
+            
+        Raises:
+            ValueError: If the vertex label already exists.
+        """
+        if label in self._adjacents:
+            raise ValueError(f"Vertex {label} already exists")
         
-    def add_edge(self, start_label: str, end_label: str, directed=False):
+        self._adjacents[label] = []
+
+    def delete_vertex(self, label: str):
+        """ 
+        Delete a vertex from the graph.
+
+        Args:
+            label (str): The vertex label to delete.
+        """
+        if label in self._adjacents:
+            del self._adjacents[label]
+        for key in self._adjacents.keys():
+            if label in self._adjacents[key]:
+                self._adjacents[key].remove(label)
+        
+    def add_edge(self, start_label: str, end_label: str, directed=None):
         """ 
         Add an edge to the graph.
 
@@ -420,6 +552,9 @@ class AdjacencyListGraph:
             end_label (str): The label of the ending vertex.
             directed (bool): Whether the edge is directed.
         """
+        if directed is None:
+            directed = self.is_directed
+
         self.add_directed_edge(start_label, end_label)
         if not directed:
             self.add_directed_edge(end_label, start_label)
@@ -440,7 +575,7 @@ class AdjacencyListGraph:
         if end_label not in self._adjacents:
             self._adjacents[end_label] = []
 
-    def delete_edge(self, start_label: str, end_label: str, directed=False):
+    def delete_edge(self, start_label: str, end_label: str, directed=None):
         """ 
         Delete an edge in the graph.
         
@@ -456,6 +591,10 @@ class AdjacencyListGraph:
         if end_label not in self._adjacents[start_label]:
             raise KeyError(f"Vertex {end_label} does not exist")
         self._adjacents[start_label].remove(end_label)
+        
+        if directed is None:
+            directed = self.is_directed
+
         if not directed:
             if end_label not in self._adjacents:
                 raise KeyError(f"Vertex {end_label} does not exist")
@@ -606,7 +745,29 @@ class AdjacencyListGraph:
         """
         return end_label in self[start_label]
 
+    def size(self) -> int:
+        """
+        Return the number of edges in the graph.
+        Returns:
+            int: The number of edges in the graph.
+        """
+        edge_count = 0
+        for start in self._adjacents.keys():
+            edge_count += len(self.adjacents(start))
+        if not self.is_directed:
+            edge_count = edge_count // 2
+        return edge_count
+
     def __len__(self):
+        """
+        Return the number of nodes in the graph.
+        Returns:
+            int: The number of nodes in the graph.
+        """
+        return len(self._adjacents)
+
+
+    def order(self) -> int:
         """
         Return the number of nodes in the graph.
         Returns:
@@ -664,12 +825,13 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
     A weighted adjacency list vertex implementation in Python
     (allows either directed or undirected representation)
     """
-    def __init__(self):
+    def __init__(self, directed=False, vertices=None):
         #: hash table of vertices in graph
+        super().__init__(directed=directed, vertices=vertices)
         self._adjacents = {}
         self.is_weighted = True
         
-    def add_edge(self, start_label: str, end_label: str, weight, directed=False):
+    def add_edge(self, start_label: str, end_label: str, weight, directed=None):
         """ 
         Add an edge to the graph.
 
@@ -687,10 +849,13 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
             
         self._adjacents[start_label][end_label] = weight
 
+        if directed is None:
+            directed = self.is_directed
+
         if not directed:
             self._adjacents[end_label][start_label] = weight
 
-    def delete_edge(self, start_label: str, end_label: str, directed=False):
+    def delete_edge(self, start_label: str, end_label: str, directed=None):
         """ 
         Delete an edge in the graph.
         
@@ -707,6 +872,10 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         if end_label not in self._adjacents[start_label]:
             raise KeyError(f"Vertex {end_label} does not exist") 
         del self._adjacents[start_label][end_label]
+        
+        if directed is None:
+            directed = self.is_directed
+        
         if not directed:
             if end_label not in self._adjacents:
                 raise KeyError(f"Vertex {end_label} does not exist")
@@ -898,10 +1067,3 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         """
         return end_label in self[start_label]
 
-
-
-__pdoc__ = {
-    'AdjacencyMatrixGraph.add_vertex': False,
-    'AdjacencyMatrixGraph.delete_vertex': False,
-    'AdjacencyListGraph.add_directed_edge': False,
-}

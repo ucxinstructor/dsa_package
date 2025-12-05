@@ -134,18 +134,18 @@ class TestDraw(unittest.TestCase):
         gd.set_figsize((12, 6))
         gd.save('images/graph1.1.png')
 
-        graph = AdjacencyMatrixGraph(["A", "B", "C", "D"])
-        graph.add_edge("A", "B", directed=True)
-        graph.add_edge("A", "C", directed=True)
-        graph.add_edge("B", "C", directed=True)
-        graph.add_edge("C", "D", directed=True)
-        graph.add_edge("D", "A", directed=True)
-
+        graph = AdjacencyMatrixGraph(directed=True, vertices=["A", "B", "C", "D"])
+        graph.add_edge("A", "B")
+        graph.add_edge("A", "C")
+        graph.add_edge("B", "C")
+        graph.add_edge("C", "D")
+        graph.add_edge("D", "A")
+        
         gd = GraphDraw(graph, directed=True)
         gd.set_figsize((8, 4))
         gd.save('images/graph2.png')
 
-        graph = AdjacencyMatrixWeightedGraph(["A", "B", "C", "D"])
+        graph = AdjacencyMatrixWeightedGraph(vertices=["A", "B", "C", "D"])
         graph.add_edge("A", "B", 1)
         graph.add_edge("A", "C", 2)
         graph.add_edge("B", "C", 3)
@@ -157,13 +157,13 @@ class TestDraw(unittest.TestCase):
         gd.save('images/graph3.png')
 
         #weighted #adjacency list
-        graph = AdjacencyMatrixWeightedGraph(["A", "B", "C", "D"])
-        graph.add_edge("A", "B", 1, directed=True)
-        graph.add_edge("A", "C", 2, directed=True)
-        graph.add_edge("B", "C", 3, directed=True)
-        graph.add_edge("C", "D", 4, directed=True)
-        graph.add_edge("D", "A", 5, directed=True)
-
+        graph = AdjacencyMatrixWeightedGraph(directed=True, vertices=["A", "B", "C", "D"])
+        graph.add_edge("A", "B", 1)
+        graph.add_edge("A", "C", 2)
+        graph.add_edge("B", "C", 3)
+        graph.add_edge("C", "D", 4)
+        graph.add_edge("D", "A", 5)
+        
         gd = GraphDraw(graph, directed=True, weighted=True)
         gd.set_figsize((5, 5))
         gd.save('images/graph4.png')

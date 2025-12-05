@@ -7,8 +7,8 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('A', 'B')
         g.add_edge('A', 'C')
         self.assertEqual(g['A'], ['B', 'C'])
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
         g.add_edge('B', 'C')
         g.add_edge('B', 'D')
         g.add_edge('C', 'D')
@@ -54,14 +54,14 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('D', 'E', directed=True)
         g.add_edge('E', 'A', directed=True)
 
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         self.assertEqual(g['A'], ['B'])
         self.assertEqual(g['E'], ['A'])
         self.assertEqual(g.edges(), [('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E'), ('E', 'A')])
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         self.assertEqual(g.dfs('A', 'B'), 'B')
         self.assertEqual(g.dfs('A', 'E'), 'E')
@@ -80,20 +80,20 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('D', 'E', directed=True)
         g.add_edge('E', 'A', directed=True)
 
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
 
         self.assertEqual(g['A'], ['B'])
         self.assertEqual(g['B'], ['A', 'C'])
 
         g.delete_edge('A', 'B', directed=True)
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
-        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
+        self.assertTrue(g.has_edge('B', 'C'))
 
         g.delete_edge('B', 'A', directed=True)
-        self.assertTrue(g.is_edge('B', 'C'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('B', 'C'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         with self.assertRaises(KeyError):
             g.delete_edge('B', 'A', directed=True)
@@ -107,8 +107,8 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('D', 'E', 4)
         g.add_edge('E', 'A', 5)
 
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
 
 
         self.assertEqual(g['A'], {'B': 1, 'E': 5})
@@ -136,33 +136,33 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('D', 'E')
         g.add_edge('E', 'A')
 
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
 
         self.assertEqual(g['A'], ['B', 'E'])
         self.assertEqual(g['B'], ['A', 'C'])
 
         g.delete_edge('A', 'B')
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
-        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
+        self.assertTrue(g.has_edge('B', 'C'))
 
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         with self.assertRaises(KeyError):
             g.delete_edge('B', 'A')
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         g.add_edge('B', 'A')
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
-        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
+        self.assertTrue(g.has_edge('B', 'C'))
 
         g.delete_edge('A', 'B')
-        self.assertFalse(g.is_edge('B', 'A'))
-        self.assertFalse(g.is_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
+        self.assertFalse(g.has_edge('A', 'B'))
 
     def test_create_directed_weighted(self):
         g = AdjacencyListWeightedGraph()
@@ -172,8 +172,8 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('D', 'E', 4, directed=True)
         g.add_edge('E', 'A', 5, directed=True)
 
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         self.assertEqual(g['A'], {'B': 1})
         self.assertEqual(g.edges(), [('A', 'B', 1), ('B', 'C', 2), ('C', 'D', 3), ('D', 'E', 4), ('E', 'A', 5)])
@@ -202,35 +202,35 @@ class TestAdjacencyListGraph(unittest.TestCase):
         g.add_edge('D', 'E', 4, directed=True)
         g.add_edge('E', 'A', 5, directed=True)
 
-        self.assertTrue(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertTrue(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         self.assertEqual(g['A'], {'B': 1})
         self.assertEqual(g['B'], {'C': 2})
 
         g.delete_edge('A', 'B', directed=True)
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
-        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
+        self.assertTrue(g.has_edge('B', 'C'))
 
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         with self.assertRaises(KeyError):
             g.delete_edge('B', 'A', directed=True)
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertFalse(g.is_edge('B', 'A'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertFalse(g.has_edge('B', 'A'))
 
         g.add_edge('B', 'A', 3, directed=True)
         self.assertEqual(g['A'], {})
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
-        self.assertTrue(g.is_edge('B', 'C'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
+        self.assertTrue(g.has_edge('B', 'C'))
 
         with self.assertRaises(KeyError):
             g.delete_edge('A', 'B', directed=True)
-        self.assertFalse(g.is_edge('A', 'B'))
-        self.assertTrue(g.is_edge('B', 'A'))
+        self.assertFalse(g.has_edge('A', 'B'))
+        self.assertTrue(g.has_edge('B', 'A'))
         
     def test_contains_method(self):
         g = AdjacencyListGraph()

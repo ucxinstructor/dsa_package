@@ -372,24 +372,34 @@ class GraphDraw(Draw):
     This class extends the `Draw` class to visualize graphs. It supports both directed 
     and undirected graphs, as well as weighted and unweighted graphs. Additionally, 
     it provides an option to display the Minimum Spanning Tree (MST) of the graph.
+    
+    If directed or weighted parameters are not provided, they will be inferred from the graph type.
 
     Attributes:
         graph: The graph to be drawn
-        directed (bool): Specifies if the graph is directed. Defaults to False
-        weighted (bool): Specifies if the graph has weighted edges. Defaults to False
+        directed (bool): Specifies if the graph is directed. Defaults to None
+        weighted (bool): Specifies if the graph has weighted edges. Defaults to None
 
     Usage Example:
         gd = GraphDraw(g) # g is a Graph type (AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph, AdjacencyListWeightedGraph, AdjacencyListGraph)
         gd.draw()
     """
-    def __init__(self, graph, directed=False, weighted=False):
+    def __init__(self, graph, directed=None, weighted=None):
         """
         Initializes the GraphDraw object.
         """
         super().__init__()
         self.graph = graph
-        self.directed = directed
-        self.weighted = weighted
+        
+        if directed is None:
+            self.directed = graph.is_directed
+        else:
+            self.directed = directed
+
+        if weighted is None:
+            self.weighted = graph.is_weighted
+        else:
+            self.weighted = weighted
             
     def render(self, pos=None, show_mst=False, mst_only=False, **kwargs):
         """
