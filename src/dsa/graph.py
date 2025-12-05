@@ -3,6 +3,35 @@
 from operator import is_
 from dsa.queue import Queue
 
+class Graph:
+    """
+    Graph Factory
+    
+    """
+    @staticmethod
+    def graph_factory(cls, type: str, directed: bool, weighted: bool):
+        """ 
+        Return a graph object based on the specified parameters.
+
+        Args:
+            type: The type of graph ('adjacency_matrix' or 'adjacency_list').
+            directed: Whether the graph is directed.
+            weighted: Whether the graph is weighted.
+            labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
+        """
+        if type == 'adjacency_matrix':
+            if weighted:
+                return AdjacencyMatrixWeightedGraph(labels)
+            else:
+                return AdjacencyMatrixGraph(labels)
+        elif type == 'adjacency_list':
+            if weighted:
+                return AdjacencyListWeightedGraph()
+            else:
+                return AdjacencyListGraph()
+        else:
+            raise ValueError("Invalid graph type. Use 'adjacency_matrix' or 'adjacency_list'.")
+
 class AdjacencyMatrixGraph:
     """ 
     An unweighted adjacency matrix graph implementation.
@@ -171,7 +200,7 @@ class AdjacencyMatrixGraph:
     
         return edges
 
-    def is_edge(self, start_label: str, end_label: str) -> bool:
+    def has_edge(self, start_label: str, end_label: str) -> bool:
         """ 
         Return boolean if an edge exists.
 
@@ -331,7 +360,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     
         return edges
 
-    def is_edge(self, start_label: str, end_label: str) -> bool:
+    def has_edge(self, start_label: str, end_label: str) -> bool:
         """ 
         Return boolean if an edge exists.
 
@@ -343,19 +372,23 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         Returns:
             A boolean of whether there is an edge from start to end.
         """
-        return super().is_edge(start_label, end_label)
+        return super().has_edge(start_label, end_label)
     
-    def weightx(self, start: str, end: str) -> bool:
+    def get_weight(self, start_label: str, end_label: str):
         """ 
-        Return weight of an edge (is this used???)
+        Get the weight of an edge.
+
         Args:
-            start_label: starting vertex label
-            end_label: starting vertex label
-        
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+
         Returns:
-            weight value of an edge from start to end
+            The weight of the edge from start to end.
         """
-        return super().is_edge(start, end)
+        start_index = self.label_index[start_label]
+        end_index = self.label_index[end_label]
+
+        return self._matrix[start_index][end_index]
 
     def __getitem__(self, vertex: str) -> dict:
         """ 
@@ -561,7 +594,7 @@ class AdjacencyListGraph:
 
         return self._adjacents[label]
 
-    def is_edge(self, start_label: str, end_label: str) -> bool:
+    def has_edge(self, start_label: str, end_label: str) -> bool:
         """ 
         Return boolean if an edge exists
         Args:
@@ -688,6 +721,19 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
             vertex: starting vertex label 
         """
         return self._adjacents[vertex]
+
+    def get_weight(self, start_label: str, end_label: str):
+        """ 
+        Get the weight of an edge.
+
+        Args:
+            start_label: The starting vertex label. 
+            end_label: The ending vertex label. 
+
+        Returns:
+            The weight of the edge from start to end.
+        """
+        return self._adjacents[start_label][end_label]
 
     def dfs_traverse(self):
         """
@@ -840,7 +886,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
                     edges.append((start, end, weight))
         return edges
 
-    def is_edge(self, start_label: str, end_label: str) -> bool:
+    def has_edge(self, start_label: str, end_label: str) -> bool:
         """ 
         Return boolean if an edge exists
         Args:
