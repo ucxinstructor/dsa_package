@@ -1,5 +1,5 @@
 """Module containing doubly linked list class."""
-
+from dsa.singlylinkedlist import LinkedList
 
 class Node:
     """
@@ -19,16 +19,18 @@ class Node:
         self.prev = None
 
 
-class DoublyLinkedList:
+class DoublyLinkedList(LinkedList):
     """
     A doubly linked list implementation.
+    Inherits several methods from singly linked list, except for methods that  modify the the contents of the list.
     """
 
-    def __init__(
-        self, head: Node | None = None, tail: Node | None = None, count: int = 0
+    def __init__(self, head: Node | None = None, 
+                       tail: Node | None = None, 
+                       count: int = 0
     ):
         """
-        Initialize a singly linked list.
+        Initialize a doubly linked list.
 
         if only the head node is specified, tail is set to the head node and count is automatically set to 0.
         if both head and tail nodes are specified, count should be specified as well.
@@ -77,66 +79,7 @@ class DoublyLinkedList:
             current = current.next
         return mylist
 
-    def __repr__(self):
-        """
-        Return a string representation of the doubly linked list.
-
-        The string representation includes all the values in the list
-        separated by spaces and the total count of nodes in the list.
-
-        Returns:
-            str: A string representation of the list in the format
-                 "[ value1 value2 ... valueN] Count: count"
-        """
-        s = ""
-        current = self.head
-        while current:
-            s += str(current.value) + " "
-            current = current.next
-
-        return f"[ {s}] Count: {self.count}"
-
-    def __getitem__(self, index: int) -> Node:
-        """
-        Return value at a specified index. Raise exception if index is out of bounds.
-
-        Args:
-            index (int): The index of the value.
-        Raises:
-            IndexError: if index is out of bounds.
-        """
-        i = 0
-        current = self.head
-        while current:
-            if i == index:
-                return current.value
-            current = current.next
-            i += 1
-        raise IndexError("Index Out of Bounds")
-
-    def __len__(self) -> int:
-        """
-        Return the number of elements in the doubly linked list.
-        """
-        return self.count
-
-    def is_empty(self) -> bool:
-        """
-        Return True if the doubly linked list is empty.
-        """
-        return self.count == 0
-
-    def print(self):
-        """
-        Print the contents of the doubly linked list.
-        """
-        current = self.head
-        while current:
-            print(current.value, end=" ")
-            current = current.next
-        print()
-
-    def print_reverse(self):
+    def traverse_reverse(self):
         """
         Print the contents of the doubly linked list in reverse order.
         """
@@ -146,68 +89,42 @@ class DoublyLinkedList:
             current = current.prev
         print()
 
-    def search(self, value) -> int:
+    def insert_after(self, after_value, value):
         """
-        Search for a value in the linked list. Raise exception if value is not found.
+        Insert a value after a specified value. Raise exception if value is not found.
 
         Args:
-            value: The value to search for in the doubly linked list.
+            after_value: The value to insert after.
+            value: The value to append.
 
         Returns:
-            Return index of found value.
+            None
 
         Raises:
-            Exception: if value is not found.
+            ValueError: If value is not found.
         """
-        i = 0
+                
+        # find node to insert after
         current = self.head
         while current:
-            if current.value == value:
-                return i
-            i += 1
-            current = current.next
-        raise Exception("Value not found")
-
-    def insert(self, index: int, value):
-        """
-        Insert a value at a specified index. Raise exception if index is out of bounds.
-
-        Args:
-            index (int): The index to insert a value.
-            value: The value to insert in the doubly linked list.
-
-        Raises:
-            IndexError: if index is out of bounds.
-        """
-
-        # insert front
-        if index == 0:
-            self.prepend(value)
-            return
-        elif index == self.count:
-            self.append(value)
-            return
-        elif index > self.count:
-            raise IndexError("Index Out of Bounds")
-
-        # find node to insert after
-        i = 0
-        current = self.head
-        while index < i or current:
-            if i == index:
+            if current.value == after_value:
                 break
             current = current.next
-            i += 1
+        
+        if current is None:
+            raise ValueError("Value not found")
+        
+        # insert at the end
+        if current == self.tail:
+            self.append(value)
+            return
 
-        if index > i:
-            raise IndexError("Index Out of Bounds")
-
+        # insert in the middle
         new_node = Node(value)
-        new_node.next = current
-        new_node.prev = current.prev
-        current.prev = new_node
-        new_node.prev.next = new_node
-
+        new_node.next = current.next
+        new_node.prev = current
+        current.next.prev = new_node
+        current.next = new_node
         self.count += 1
 
     def prepend(self, value):

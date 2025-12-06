@@ -1,7 +1,6 @@
 import unittest
 from dsa.singlylinkedlist import LinkedList, Node
 
-
 class TestLinkedList(unittest.TestCase):
 
     # --- Creation Tests ---
@@ -52,10 +51,14 @@ class TestLinkedList(unittest.TestCase):
     # --- Search Tests ---
     def test_search_valid_and_invalid(self):
         ll = LinkedList.from_list(range(20))
-        self.assertEqual(ll.search(10), 10)
-        self.assertEqual(ll.search(1), 1)
-        self.assertRaises(Exception, ll.search, -1)
-        self.assertRaises(Exception, ll.search, 20)
+        node = ll.search(10)
+        self.assertEqual(node.value, 10)
+        node = ll.search(1)
+        self.assertEqual(node.value, 1)
+        node = ll.search(-1)
+        self.assertIsNone(node)
+        node = ll.search(20)
+        self.assertIsNone(node)
 
     # --- Insertion Tests ---
     def test_append_and_prepend(self):
@@ -72,23 +75,32 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(ll[2], 7)
         self.assertEqual(ll.count, 25)
 
-    def test_insert_at_index(self):
+
+    def test_insert_after_empty_list(self):
         ll = LinkedList()
-        for i in range(15):
+        self.assertRaises(ValueError, ll.insert_after, 0, 100)
+
+    def test_insert_after_invalid(self):
+        ll = LinkedList()
+        for i in range(10):
             ll.append(i)
+        self.assertRaises(ValueError, ll.insert_after, 20, 100)
 
-        ll.insert(1, -1)
-        ll.insert(0, -2)
-        ll.insert(8, 100)
-        ll.insert(len(ll), 200)
-
-        self.assertEqual(ll[2], -1)
-        self.assertEqual(ll[0], -2)
-        self.assertEqual(ll[8], 100)
-        self.assertEqual(ll[ll.count - 1], 200)
-        self.assertEqual(ll.count, 19)
-
-        self.assertRaises(IndexError, ll.insert, 20, 300)
+    def test_insert_after_head_tail_and_middle(self):
+        ll = LinkedList.from_list(range(10))
+        ll.insert_after(0, -1)  # after head
+        self.assertEqual(ll[1], -1) 
+        node = ll.search(0)
+        self.assertEqual(node.value, 0)
+        node = ll.search(-1)
+        self.assertEqual(node.value, -1)
+        ll.insert_after(9, 100)  # after tail
+        self.assertEqual(ll.tail.value, 100)
+        ll.insert_after(4, 50)  # in the middle
+        node = ll.search(50)
+        self.assertEqual(node.value, 50)
+        self.assertEqual(node.next.value, 5)
+        self.assertEqual(ll.count, 13)
 
     # --- Deletion Tests ---
     def test_delete_value(self):

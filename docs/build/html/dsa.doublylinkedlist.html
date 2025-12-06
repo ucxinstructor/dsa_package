@@ -59,13 +59,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.delete_head"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.delete_head()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.delete_tail"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.delete_tail()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.from_list"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.from_list()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.insert"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.insert()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.is_empty"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.is_empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.insert_after"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.insert_after()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.prepend"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.prepend()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.print"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.print()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.print_reverse"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.print_reverse()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.search"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.search()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.to_list"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.to_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.doublylinkedlist.DoublyLinkedList.traverse_reverse"><code class="docutils literal notranslate"><span class="pre">DoublyLinkedList.traverse_reverse()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dsa.doublylinkedlist.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
@@ -132,8 +129,9 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.doublylinkedlist.</span></span><span class="sig-name descname"><span class="pre">DoublyLinkedList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">head</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A doubly linked list implementation.</p>
+<dd><p>Bases: <a class="reference internal" href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList" title="dsa.singlylinkedlist.LinkedList"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkedList</span></code></a></p>
+<p>A doubly linked list implementation.
+Inherits several methods from singly linked list, except for methods that  modify the the contents of the list.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.append">
 <span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.append" title="Link to this definition"></a></dt>
@@ -196,29 +194,21 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.insert" title="Link to this definition"></a></dt>
-<dd><p>Insert a value at a specified index. Raise exception if index is out of bounds.</p>
+<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.insert_after">
+<span class="sig-name descname"><span class="pre">insert_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">after_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.insert_after" title="Link to this definition"></a></dt>
+<dd><p>Insert a value after a specified value. Raise exception if value is not found.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>index</strong> (<em>int</em>) – The index to insert a value.</p></li>
-<li><p><strong>value</strong> – The value to insert in the doubly linked list.</p></li>
+<li><p><strong>after_value</strong> – The value to insert after.</p></li>
+<li><p><strong>value</strong> – The value to append.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>IndexError</strong> – if index is out of bounds.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.is_empty">
-<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.is_empty" title="Link to this definition"></a></dt>
-<dd><p>Return True if the doubly linked list is empty.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -235,38 +225,6 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.print">
-<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.print" title="Link to this definition"></a></dt>
-<dd><p>Print the contents of the doubly linked list.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.print_reverse">
-<span class="sig-name descname"><span class="pre">print_reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.print_reverse" title="Link to this definition"></a></dt>
-<dd><p>Print the contents of the doubly linked list in reverse order.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.search">
-<span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.search" title="Link to this definition"></a></dt>
-<dd><p>Search for a value in the linked list. Raise exception if value is not found.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> – The value to search for in the doubly linked list.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Return index of found value.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – if value is not found.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.to_list">
 <span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.to_list" title="Link to this definition"></a></dt>
 <dd><p>Create a list with contents of the doubly linked list.</p>
@@ -278,6 +236,12 @@
 <dd class="field-even"><p>A list with contents of the doubly linked list.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.doublylinkedlist.DoublyLinkedList.traverse_reverse">
+<span class="sig-name descname"><span class="pre">traverse_reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.doublylinkedlist.DoublyLinkedList.traverse_reverse" title="Link to this definition"></a></dt>
+<dd><p>Print the contents of the doubly linked list in reverse order.</p>
 </dd></dl>
 
 </dd></dl>

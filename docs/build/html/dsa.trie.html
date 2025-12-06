@@ -62,7 +62,6 @@
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.trie module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#dsa.trie.Trie"><code class="docutils literal notranslate"><span class="pre">Trie</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.autocomplete"><code class="docutils literal notranslate"><span class="pre">Trie.autocomplete()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.build_word_list"><code class="docutils literal notranslate"><span class="pre">Trie.build_word_list()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.copy"><code class="docutils literal notranslate"><span class="pre">Trie.copy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.copy_node"><code class="docutils literal notranslate"><span class="pre">Trie.copy_node()</span></code></a></li>
@@ -71,6 +70,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.end_marker"><code class="docutils literal notranslate"><span class="pre">Trie.end_marker</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.insert"><code class="docutils literal notranslate"><span class="pre">Trie.insert()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.list_words"><code class="docutils literal notranslate"><span class="pre">Trie.list_words()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.prefix"><code class="docutils literal notranslate"><span class="pre">Trie.prefix()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.root"><code class="docutils literal notranslate"><span class="pre">Trie.root</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.search"><code class="docutils literal notranslate"><span class="pre">Trie.search()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.trie.Trie.search_node"><code class="docutils literal notranslate"><span class="pre">Trie.search_node()</span></code></a></li>
@@ -132,24 +132,6 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.trie.</span></span><span class="sig-name descname"><span class="pre">Trie</span></span><a class="headerlink" href="#dsa.trie.Trie" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A trie implementation.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.trie.Trie.autocomplete">
-<span class="sig-name descname"><span class="pre">autocomplete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.trie.Trie.autocomplete" title="Link to this definition"></a></dt>
-<dd><p>Return a list of words that begin with a given prefix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>prefix</strong> (<em>str</em>) – The prefix to search for.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of words that begin with a given prefix.
-None if there are no matching words.</p>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If no words are found.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.trie.Trie.build_word_list">
 <span class="sig-name descname"><span class="pre">build_word_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.trie.Trie.build_word_list" title="Link to this definition"></a></dt>
@@ -268,6 +250,24 @@ None if there are no matching words.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.trie.Trie.prefix">
+<span class="sig-name descname"><span class="pre">prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.trie.Trie.prefix" title="Link to this definition"></a></dt>
+<dd><p>Return a list of words that begin with a given prefix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prefix</strong> (<em>str</em>) – The prefix to search for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of words that begin with a given prefix.
+None if there are no matching words.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no words are found.</p>
 </dd>
 </dl>
 </dd></dl>

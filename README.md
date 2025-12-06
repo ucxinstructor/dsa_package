@@ -43,6 +43,14 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.12.8
+* Created Graph Factory class
+  * Added and modified methods to Graph classes follow CLRS closely
+  * Any graph object now works on any graph algorithm
+* Graph Draw now reads weighted and directed properties from graph object
+* SinglyLinkedList now implements search and insert_after. Removed insert with index
+* DoublyLinkedList now inherits from SinglyLinkedList and implements only methods that affect the contents of the list
+
 ## 2025.11.27
 * Made sure that both vertices in add_edge() are included in the internal representation for the Adjacency List
 * Adjacency Matrix self-loop vertices are now set to none

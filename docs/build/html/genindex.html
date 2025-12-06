@@ -114,6 +114,7 @@
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
@@ -143,8 +144,12 @@
       </ul></li>
       <li><a href="dsa.draw.html#dsa.draw.TreeDraw.add_edges">add_edges() (dsa.draw.TreeDraw method)</a>
 </li>
-      <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.add_vertex">add_vertex() (dsa.graph.AdjacencyMatrixGraph method)</a>
+      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.add_vertex">add_vertex() (dsa.graph.AdjacencyListGraph method)</a>
+
+      <ul>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.add_vertex">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
+      </ul></li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph">AdjacencyListGraph (class in dsa.graph)</a>
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph">AdjacencyListWeightedGraph (class in dsa.graph)</a>
@@ -153,14 +158,14 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph">AdjacencyMatrixWeightedGraph (class in dsa.graph)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.adjacents">adjacents() (dsa.graph.AdjacencyListGraph method)</a>
 
       <ul>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.adjacents">(dsa.graph.AdjacencyListWeightedGraph method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.array.html#dsa.array.Array.append">append() (dsa.array.Array method)</a>
 
       <ul>
@@ -190,8 +195,6 @@
       <li><a href="dsa.sorttools.html#dsa.sorttools.array_details">array_details() (in module dsa.sorttools)</a>
 </li>
       <li><a href="dsa.draw.html#dsa.draw.HeapDraw.array_to_node">array_to_node() (dsa.draw.HeapDraw method)</a>
-</li>
-      <li><a href="dsa.trie.html#dsa.trie.Trie.autocomplete">autocomplete() (dsa.trie.Trie method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -259,12 +262,12 @@
       </ul></li>
       <li><a href="dsa.trie.html#dsa.trie.TrieNode.children">children (dsa.trie.TrieNode attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.array.html#dsa.array.CircularArray">CircularArray (class in dsa.array)</a>
 </li>
       <li><a href="dsa.queue.html#dsa.queue.CircularQueue">CircularQueue (class in dsa.queue)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.hashset.html#dsa.hashset.HashSet.contains">contains() (dsa.hashset.HashSet method)</a>
 </li>
       <li><a href="dsa.tree.html#dsa.tree.TreeNode.copy">copy() (dsa.tree.TreeNode method)</a>
@@ -286,6 +289,12 @@
 </li>
       </ul></li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.count">count() (dsa.heap.Heap method)</a>
+</li>
+      <li><a href="dsa.graph.html#dsa.graph.Graph.create">create() (dsa.graph.Graph static method)</a>
+</li>
+      <li><a href="dsa.graph.html#dsa.graph.Graph.create_adjacency_list">create_adjacency_list() (dsa.graph.Graph static method)</a>
+</li>
+      <li><a href="dsa.graph.html#dsa.graph.Graph.create_adjacency_matrix">create_adjacency_matrix() (dsa.graph.Graph static method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -335,8 +344,12 @@
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.delete_tail">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
       </ul></li>
-      <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.delete_vertex">delete_vertex() (dsa.graph.AdjacencyMatrixGraph method)</a>
+      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.delete_vertex">delete_vertex() (dsa.graph.AdjacencyListGraph method)</a>
+
+      <ul>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.delete_vertex">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
+      </ul></li>
       <li><a href="dsa.deque.html#dsa.deque.Deque">Deque (class in dsa.deque)</a>
 </li>
       <li><a href="dsa.queue.html#dsa.queue.CircularQueue.dequeue">dequeue() (dsa.queue.CircularQueue method)</a>
@@ -603,10 +616,18 @@
 </li>
       <li><a href="dsa.pretty_print.html#dsa.pretty_print.get_tree_height">get_tree_height() (in module dsa.pretty_print)</a>
 </li>
-      <li><a href="dsa.draw.html#dsa.draw.GraphDraw.graph">graph (dsa.draw.GraphDraw attribute)</a>
+      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.get_weight">get_weight() (dsa.graph.AdjacencyListWeightedGraph method)</a>
+
+      <ul>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.get_weight">(dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
+</li>
+      </ul></li>
+      <li><a href="dsa.graph.html#dsa.graph.Graph">Graph (class in dsa.graph)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dsa.draw.html#dsa.draw.GraphDraw.graph">graph (dsa.draw.GraphDraw attribute)</a>
+</li>
       <li><a href="dsa.draw.html#dsa.draw.GraphDraw">GraphDraw (class in dsa.draw)</a>
 </li>
       <li><a href="dsa.array.html#dsa.array.DynamicArray.grow">grow() (dsa.array.DynamicArray method)</a>
@@ -625,6 +646,14 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.has_edge">has_edge() (dsa.graph.AdjacencyListGraph method)</a>
+
+      <ul>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.has_edge">(dsa.graph.AdjacencyListWeightedGraph method)</a>
+</li>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.has_edge">(dsa.graph.AdjacencyMatrixGraph method)</a>
+</li>
+      </ul></li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.has_left">has_left() (dsa.heap.Heap method)</a>
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.has_parent">has_parent() (dsa.heap.Heap method)</a>
@@ -639,10 +668,10 @@
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap">Heap (class in dsa.heap)</a>
 </li>
-      <li><a href="dsa.draw.html#dsa.draw.HeapDraw.heap">heap (dsa.draw.HeapDraw attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dsa.draw.html#dsa.draw.HeapDraw.heap">heap (dsa.draw.HeapDraw attribute)</a>
+</li>
       <li><a href="dsa.pretty_print.html#dsa.pretty_print.heap_print">heap_print() (in module dsa.pretty_print)</a>
 </li>
       <li><a href="dsa.draw.html#dsa.draw.HeapDraw">HeapDraw (class in dsa.draw)</a>
@@ -678,39 +707,29 @@
 </li>
         <li><a href="dsa.array.html#dsa.array.DynamicArray.insert">(dsa.array.DynamicArray method)</a>
 </li>
-        <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.insert">(dsa.doublylinkedlist.DoublyLinkedList method)</a>
-</li>
         <li><a href="dsa.heap.html#dsa.heap.Heap.insert">(dsa.heap.Heap method)</a>
-</li>
-        <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.insert">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
         <li><a href="dsa.tree.html#dsa.tree.Tree.insert">(dsa.tree.Tree method)</a>
 </li>
         <li><a href="dsa.trie.html#dsa.trie.Trie.insert">(dsa.trie.Trie method)</a>
 </li>
       </ul></li>
-      <li><a href="dsa.tree.html#dsa.tree.Tree.insert_iterative">insert_iterative() (dsa.tree.Tree method)</a>
-</li>
-      <li><a href="dsa.tree.html#dsa.tree.Tree.insert_rec">insert_rec() (dsa.tree.Tree method)</a>
-</li>
-      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.is_edge">is_edge() (dsa.graph.AdjacencyListGraph method)</a>
+      <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.insert_after">insert_after() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 
       <ul>
-        <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.is_edge">(dsa.graph.AdjacencyListWeightedGraph method)</a>
-</li>
-        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.is_edge">(dsa.graph.AdjacencyMatrixGraph method)</a>
-</li>
-        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.is_edge">(dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
+        <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.insert_after">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dsa.tree.html#dsa.tree.Tree.insert_iterative">insert_iterative() (dsa.tree.Tree method)</a>
+</li>
+      <li><a href="dsa.tree.html#dsa.tree.Tree.insert_rec">insert_rec() (dsa.tree.Tree method)</a>
+</li>
       <li><a href="dsa.array.html#dsa.array.Array.is_empty">is_empty() (dsa.array.Array method)</a>
 
       <ul>
         <li><a href="dsa.deque.html#dsa.deque.Deque.is_empty">(dsa.deque.Deque method)</a>
-</li>
-        <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.is_empty">(dsa.doublylinkedlist.DoublyLinkedList method)</a>
 </li>
         <li><a href="dsa.heap.html#dsa.heap.Heap.is_empty">(dsa.heap.Heap method)</a>
 </li>
@@ -839,6 +858,18 @@
   </ul></td>
 </tr></table>
 
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.order">order() (dsa.graph.AdjacencyListGraph method)</a>
+
+      <ul>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.order">(dsa.graph.AdjacencyMatrixGraph method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -886,15 +917,17 @@
       </ul></li>
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.pop_pair">pop_pair() (dsa.heap.PriorityQueue method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.deque.html#dsa.deque.Deque.pop_right">pop_right() (dsa.deque.Deque method)</a>
 
       <ul>
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.pop_right">(dsa.deque.DynamicDeque method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.tree.html#dsa.tree.Tree.predecessor_node">predecessor_node() (dsa.tree.Tree method)</a>
+</li>
+      <li><a href="dsa.trie.html#dsa.trie.Trie.prefix">prefix() (dsa.trie.Trie method)</a>
 </li>
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.prepend">prepend() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 
@@ -906,13 +939,9 @@
 </li>
       <li><a href="dsa.prim.html#dsa.prim.prims_mst">prims_mst() (in module dsa.prim)</a>
 </li>
-      <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.print">print() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
+      <li><a href="dsa.heap.html#dsa.heap.Heap.print">print() (dsa.heap.Heap method)</a>
 
       <ul>
-        <li><a href="dsa.heap.html#dsa.heap.Heap.print">(dsa.heap.Heap method)</a>
-</li>
-        <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.print">(dsa.singlylinkedlist.LinkedList method)</a>
-</li>
         <li><a href="dsa.tree.html#dsa.tree.Tree.print">(dsa.tree.Tree method)</a>
 </li>
         <li><a href="dsa.tree.html#dsa.tree.TreeNode.print">(dsa.tree.TreeNode method)</a>
@@ -924,8 +953,6 @@
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.print_graph">(dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
 </li>
       </ul></li>
-      <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.print_reverse">print_reverse() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
-</li>
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue">PriorityQueue (class in dsa.heap)</a>
 </li>
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.push">push() (dsa.heap.PriorityQueue method)</a>
@@ -1034,11 +1061,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.draw.html#dsa.draw.Draw.save">save() (dsa.draw.Draw method)</a>
 </li>
-      <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.search">search() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
+      <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.search">search() (dsa.singlylinkedlist.LinkedList method)</a>
 
       <ul>
-        <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.search">(dsa.singlylinkedlist.LinkedList method)</a>
-</li>
         <li><a href="dsa.tree.html#dsa.tree.Tree.search">(dsa.tree.Tree method)</a>
 </li>
         <li><a href="dsa.trie.html#dsa.trie.Trie.search">(dsa.trie.Trie method)</a>
@@ -1052,12 +1077,12 @@
 </li>
       <li><a href="dsa.array.html#dsa.array.Array.shift_left">shift_left() (dsa.array.Array method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.array.html#dsa.array.Array.shift_right">shift_right() (dsa.array.Array method)</a>
 </li>
       <li><a href="dsa.dijkstras.html#dsa.dijkstras.shortest_path">shortest_path() (in module dsa.dijkstras)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.show_buckets">show_buckets() (dsa.hashtable.HashTable method)</a>
 </li>
       <li><a href="dsa.array.html#dsa.array.DynamicArray.shrink">shrink() (dsa.array.DynamicArray method)</a>
@@ -1070,6 +1095,12 @@
       </ul></li>
       <li><a href="dsa.sorttools.html#dsa.sorttools.shuffle_array">shuffle_array() (in module dsa.sorttools)</a>
 </li>
+      <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.size">size() (dsa.graph.AdjacencyListGraph method)</a>
+
+      <ul>
+        <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.size">(dsa.graph.AdjacencyMatrixGraph method)</a>
+</li>
+      </ul></li>
       <li><a href="dsa.stack.html#dsa.stack.Stack">Stack (class in dsa.stack)</a>
 </li>
       <li><a href="dsa.tree.html#dsa.tree.Tree.successor_node">successor_node() (dsa.tree.Tree method)</a>
@@ -1108,11 +1139,15 @@
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.to_sorted_list">to_sorted_list() (dsa.heap.Heap method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.to_string_with_priority">to_string_with_priority() (dsa.heap.PriorityQueue method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.stack.html#dsa.stack.Stack.top">top() (dsa.stack.Stack method)</a>
+</li>
+      <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.traverse">traverse() (dsa.singlylinkedlist.LinkedList method)</a>
+</li>
+      <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.traverse_reverse">traverse_reverse() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 </li>
       <li><a href="dsa.tree.html#dsa.tree.Tree">Tree (class in dsa.tree)</a>
 </li>
@@ -1177,10 +1212,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dsa.draw.html#dsa.draw.GraphDraw.weighted">weighted (dsa.draw.GraphDraw attribute)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.weightx">weightx() (dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
 </li>
   </ul></td>
 </tr></table>

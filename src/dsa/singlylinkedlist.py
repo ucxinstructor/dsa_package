@@ -19,7 +19,9 @@ class LinkedList:
     """ 
     A singly linked list implementation.
     """
-    def __init__(self, head: Node=None, tail: Node=None, count: int=0):
+    def __init__(self, head: Node | None = None,
+                       tail: Node | None = None,
+                       count: int = 0):
         """ 
         Initialize a singly linked list.
         
@@ -27,10 +29,9 @@ class LinkedList:
         if both head and tail nodes are specified, count should be specified as well
         
         Args:
-            head: The reference to the head node.
-            tail: The reference to the tail node.
-            count: The number of nodes in the linked list.
-
+            head (Node): Reference to the head node.
+            tail (Node): Reference to the tail node.
+            count (int): The number of nodes in the linked list.
         """        
         self.head = head
         if head and tail is None:
@@ -52,6 +53,9 @@ class LinkedList:
             A  linked list containing the items from mylist.
         """
         ll = cls()
+        if mylist is None:
+            return ll
+
         for value in mylist:
             ll.append(value)
 
@@ -71,7 +75,7 @@ class LinkedList:
             current = current.next
         return mylist
 
-    def print(self):
+    def traverse(self):
         """
         Print the contents of the linked list.
         """
@@ -81,57 +85,7 @@ class LinkedList:
             current = current.next
         print()
 
-            
-    def __repr__(self):
-        """
-        Return a string representation of the linked list.
-
-        Returns:
-            A string representation of the linked list.
-        """
-        s = ""
-        current = self.head
-        while current:
-            s += str(current.value) + " "
-            current = current.next
-
-        return f"[ {s}] Count: {self.count}"
-    
-    def __getitem__(self, index: int) -> Node:
-        """ 
-        Return value at a specified index. Raise IndexError if index is out of bounds.
-        
-        Args:
-            index: Index of value.
-
-        Raises:
-            IndexError: If index is out of bounds.
-
-        Returns:
-            The value at the specified index.
-        """        
-        i = 0
-        current = self.head
-        while current:
-            if i == index:
-                return current.value
-            current = current.next
-            i += 1
-        raise IndexError("Index Out of Bounds")
-
-    def __len__(self) -> int:
-        """
-        Return the number of elements in the linked list.
-        """
-        return self.count
-    
-    def is_empty(self) -> bool:
-        """
-        Check if the linked list is empty.
-        """
-        return self.count == 0
-        
-    def search(self, value) -> int:
+    def search(self, value) -> Node | None:
         """
         Search for a value in the linked list.
 
@@ -140,56 +94,55 @@ class LinkedList:
 
         Returns:
             Return index of found value.
-        
-        Raises:
-            Exception: If value is not found.
+            Return None if value is not found.
         """
-        i = 0
         current = self.head
         while current:
             if current.value == value:
-                return i
-            i += 1
+                return current
             current = current.next
-        raise Exception("Value not found")
+        return None
+            
+
     
-    def insert(self, index: int, value):
+    def is_empty(self) -> bool:
         """
-        Insert a value at a specified index. Raise exception if index is out of bounds.
+        Check if the linked list is empty.
+        """
+        return self.count == 0
+        
+
+    def insert_after(self, after_value, value):
+        """
+        Insert a value after a specified value. Raise exception if value is not found.
 
         Args:
-            index (int): The index to insert a value.
+            after_value: The value to insert after.
             value: The value to append.
 
         Returns:
             None
 
         Raises:
-            IndexError: If index is out of bounds.
+            ValueError: If value is not found.
         """
-        i = 0
-        
-        # insert front
-        if index == 0:
-            self.prepend(value)
-            return
-        elif index == self.count: # insert at end
-            self.append(value)
-            return
-        elif index > self.count:
-            raise IndexError("Index Out of Bounds")
-        
+                
         # find node to insert after
         current = self.head
-        while index < i or current:
-            i += 1
-            if i == index:
+        while current:
+            if current.value == after_value:
                 break
             current = current.next
         
-        if index > i:
-            raise IndexError("Index Out of Bounds")
+        if current is None:
+            raise ValueError("Value not found")
+        
+        # insert at the end
+        if current == self.tail:
+            self.append(value)
+            return
 
+        # insert in the middle
         new_node = Node(value)
         tmp = current.next
         current.next = new_node
@@ -314,6 +267,49 @@ class LinkedList:
         self.tail = current
         self.count -= 1
 
+    def __repr__(self):
+        """
+        Return a string representation of the linked list.
+
+        Returns:
+            A string representation of the linked list.
+        """
+        s = ""
+        current = self.head
+        while current:
+            s += str(current.value) + " "
+            current = current.next
+
+        return f"[ {s}] Count: {self.count}"
+    
+    def __getitem__(self, index: int) -> Node:
+        """ 
+        Return value at a specified index. Raise IndexError if index is out of bounds.
+        
+        Args:
+            index: Index of value.
+
+        Raises:
+            IndexError: If index is out of bounds.
+
+        Returns:
+            The value at the specified index.
+        """        
+        i = 0
+        current = self.head
+        while current:
+            if i == index:
+                return current.value
+            current = current.next
+            i += 1
+        raise IndexError("Index Out of Bounds")
+
+    def __len__(self) -> int:
+        """
+        Return the number of elements in the linked list.
+        """
+        return self.count
+    
     def __eq__(self, other):
         """
         Compare two LinkedList objects for value-based equality.

@@ -6,26 +6,25 @@ class TestDoublyLinkedList(unittest.TestCase):
 
     # --- Initialization Tests ---
     def test_empty_initialization(self):
-        ll = DoublyLinkedList()
-        self.assertEqual(ll.count, 0)
-        self.assertTrue(ll.is_empty())
-        self.assertIsNone(ll.head)
-        self.assertIsNone(ll.tail)
-
+        dll = DoublyLinkedList()
+        self.assertEqual(dll.count, 0)
+        self.assertTrue(dll.is_empty())
+        self.assertIsNone(dll.head)
+        self.assertIsNone(dll.tail)
     def test_init_with_head(self):
         node = Node(1)
-        ll = DoublyLinkedList(head=node)
-        self.assertEqual(ll.head, node)
-        self.assertEqual(ll.tail, node)
-        self.assertEqual(ll.count, 1)
+        dll = DoublyLinkedList(head=node)
+        self.assertEqual(dll.head, node)
+        self.assertEqual(dll.tail, node)
+        self.assertEqual(dll.count, 1)
 
     def test_init_with_head_and_tail(self):
         head = Node(1)
         tail = Node(2)
-        ll = DoublyLinkedList(head=head, tail=tail, count=2)
-        self.assertEqual(ll.head, head)
-        self.assertEqual(ll.tail, tail)
-        self.assertEqual(ll.count, 2)
+        dll = DoublyLinkedList(head=head, tail=tail, count=2)
+        self.assertEqual(dll.head, head)
+        self.assertEqual(dll.tail, tail)
+        self.assertEqual(dll.count, 2)
 
     def test_create_chain(self):
         n1, n2, n3 = Node(10), Node(20), Node(30)
@@ -52,10 +51,14 @@ class TestDoublyLinkedList(unittest.TestCase):
     # --- Search and Indexing ---
     def test_search_existing_and_invalid(self):
         ll = DoublyLinkedList.from_list(range(20))
-        self.assertEqual(ll.search(1), 1)
-        self.assertEqual(ll.search(10), 10)
-        self.assertRaises(Exception, ll.search, -1)
-        self.assertRaises(Exception, ll.search, 20)
+        node = ll.search(10)
+        self.assertEqual(node.value, 10)
+        node = ll.search(1)
+        self.assertEqual(node.value, 1)
+        node = ll.search(-1)
+        self.assertIsNone(node)
+        node = ll.search(20)
+        self.assertIsNone(node)
 
     def test_index_access(self):
         ll = DoublyLinkedList.from_list(range(20))
@@ -74,16 +77,22 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.assertEqual(ll.count, 25)
         self.verify_prev_links(ll)
 
-    def test_insert_at_various_indices(self):
-        ll = DoublyLinkedList.from_list(list(range(15)))
-        inserts = [(0, 100), (1, 200), (10, 300), (14, 400), (15, 500)]
-        for index, value in inserts:
-            ll.insert(index, value)
-            self.assertEqual(ll[index], value)
-        self.assertEqual(ll.head.value, 100)
-        self.assertEqual(ll.tail.value, 14)
-        self.assertRaises(IndexError, ll.insert, 21, 600)
-        self.assertEqual(ll.tail.value, 14)
+    def test_insert_after_head_tail_and_middle(self):
+        ll = DoublyLinkedList.from_list(range(10))
+        ll.insert_after(0, -1)  # after head
+        self.assertEqual(ll[1], -1) 
+        ll.insert_after(9, 100)  # after tail
+        self.assertEqual(ll.tail.value, 100)
+        ll.insert_after(4, 50)  # in the middle
+        node = ll.search(50)
+        self.assertEqual(node.value, 50)
+        self.assertEqual(node.next.value, 5)
+        self.assertEqual(ll.count, 13)
+        self.verify_prev_links(ll)
+        
+    def test_insert_after_invalid_value(self):
+        ll = DoublyLinkedList.from_list(range(10))
+        self.assertRaises(ValueError, ll.insert_after, 20, 100)
         self.verify_prev_links(ll)
 
     # --- Deletion Tests ---
@@ -125,6 +134,7 @@ class TestDoublyLinkedList(unittest.TestCase):
         dll.delete_head()
         self.assertEqual(dll.to_list(), [2, 3])
         self.assertEqual(dll.count, 2)
+        self.verify_prev_links(dll)
 
     def test_delete_tail_method(self):
         dll = DoublyLinkedList()
@@ -133,23 +143,24 @@ class TestDoublyLinkedList(unittest.TestCase):
         dll.delete_tail()
         self.assertEqual(dll.to_list(), [1, 2])
         self.assertEqual(dll.count, 2)
+        self.verify_prev_links(dll)
 
     # --- Traversal ---
     def test_traverse_forward_and_backward(self):
-        ll = DoublyLinkedList.from_list(range(15))
-        node = ll.head
+        dll = DoublyLinkedList.from_list(range(15))
+        node = dll.head
         for i in range(15):
             self.assertEqual(node.value, i)
             node = node.next
 
-        node = ll.tail
+        node = dll.tail
         for i in range(15):
             self.assertEqual(node.value, 14 - i)
             node = node.prev
 
     # --- Helper Verification ---
-    def verify_prev_links(self, ll):
-        node = ll.head
+    def verify_prev_links(self, dll):
+        node = dll.head
         while node and node.next:
             self.assertEqual(node.next.prev, node)
             node = node.next
@@ -167,6 +178,27 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.assertNotEqual(dll1, DoublyLinkedList.from_list([1, 2, 3]))
         self.assertNotEqual(dll1, [1, 2, 3, 4])
 
+    def test_traverse_order(self):
+        ll = DoublyLinkedList()
+        for i in range(15):
+            ll.append(i)
 
+        node = ll.head
+        for i in range(15):
+            self.assertEqual(node.value, i)
+            node = node.next
+        ll.traverse()
+
+    def test_reverse_traverse_order(self):
+        ll = DoublyLinkedList()
+        for i in range(15):
+            ll.append(i)
+
+        node = ll.tail
+        for i in range(14, -1, -1):
+            self.assertEqual(node.value, i)
+            node = node.prev
+        ll.traverse_reverse()
+    
 if __name__ == "__main__":
     unittest.main()
