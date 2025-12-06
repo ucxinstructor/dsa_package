@@ -50,3 +50,4 @@ docs2/
 environment.pickle
 todo_generators.md
 .jupyter
+deploy_docs.sh
