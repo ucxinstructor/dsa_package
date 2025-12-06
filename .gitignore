@@ -48,3 +48,5 @@ docs2/
 
 # Sphinx environment pickles
 environment.pickle
+todo_generators.md
+.jupyter
