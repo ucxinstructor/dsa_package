@@ -23,20 +23,20 @@ class TestTrie(unittest.TestCase):
         self.assertFalse(t.search("python"))
         self.assertIsNone(t.search_node("python"))
 
-        # autocomplete
-        words = t.autocomplete("a")
+        # prefix
+        words = t.prefix("a")
         self.assertEqual(len(words), 1)
-        words = t.autocomplete("apple")
+        words = t.prefix("apple")
         self.assertEqual(len(words), 1)
-        words = t.autocomplete("Apple")
+        words = t.prefix("Apple")
         self.assertIsNone(words, 0)
 
-        words = t.autocomplete("p")
+        words = t.prefix("p")
         self.assertEqual(len(words), 2)
-        words = t.autocomplete("py")
+        words = t.prefix("py")
         self.assertEqual(len(words), 1)
         t.insert("python")
-        words = t.autocomplete("py")
+        words = t.prefix("py")
         self.assertEqual(len(words), 2)
 
         # suggest
@@ -123,31 +123,31 @@ class TestTrie(unittest.TestCase):
         self.assertIsNotNone(self.trie.search_node("he"))
         self.assertIsNotNone(self.trie.search_node("goo"))
 
-    def test_autocomplete(self):
+    def test_prefix(self):
         self.trie.insert("test")
         self.trie.insert("testing")
         self.trie.insert("tester")
         self.trie.insert("team")
         self.trie.insert("teach")
 
-        # Test autocomplete with full word
-        words = self.trie.autocomplete("test")
+        # Test prefix with full word
+        words = self.trie.prefix("test")
         self.assertEqual(sorted(words), ["test", "tester", "testing"])
 
-        # Test autocomplete with prefix
-        words = self.trie.autocomplete("te")
+        # Test prefix with prefix
+        words = self.trie.prefix("te")
         self.assertEqual(sorted(words), ["teach", "team", "test", "tester", "testing"])
 
-        # Test autocomplete with single character prefix
-        words = self.trie.autocomplete("t")
+        # Test prefix with single character prefix
+        words = self.trie.prefix("t")
         self.assertEqual(sorted(words), ["teach", "team", "test", "tester", "testing"])
 
-        # Test autocomplete with no matching prefix
-        words = self.trie.autocomplete("toast")
+        # Test prefix with no matching prefix
+        words = self.trie.prefix("toast")
         self.assertIsNone(words)
 
-        # Test autocomplete with empty string
-        words = self.trie.autocomplete("")
+        # Test prefix with empty string
+        words = self.trie.prefix("")
         self.assertIsNone(words)
 #        self.assertEqual(sorted(words), ["goodbye", "heaven", "hell", "hello"])
 

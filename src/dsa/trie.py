@@ -191,7 +191,7 @@ class Trie:
                 self.build_word_list(node, word + key, words)
         return words
     
-    def autocomplete(self, prefix: str):
+    def prefix(self, prefix: str):
         """ 
         Return a list of words that begin with a given prefix.
         
@@ -226,7 +226,7 @@ class Trie:
         """        
         if prefix is None or len(prefix) == 0:
             return None
-        suggestions = self.autocomplete(prefix)
+        suggestions = self.prefix(prefix)
         if suggestions is None or len(suggestions) == 0:
             return self.suggest(prefix[:-1])
         else:
