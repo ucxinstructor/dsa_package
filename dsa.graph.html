@@ -57,14 +57,19 @@
 <li class="toctree-l2"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.add_directed_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.add_directed_edge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.add_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.add_vertex"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.add_vertex()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.adjacents"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.adjacents()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.bfs"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.bfs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.bfs_traverse"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.bfs_traverse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.delete_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.delete_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.delete_vertex"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.delete_vertex()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.dfs"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.dfs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.dfs_traverse"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.dfs_traverse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.edges()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.is_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.is_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.has_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.has_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.order"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.size"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.to_dict"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.to_dict()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.undirected_edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.undirected_edges()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.vertices"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.vertices()</span></code></a></li>
 </ul>
@@ -79,7 +84,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.dfs_rec"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.dfs_rec()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.dfs_traverse"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.dfs_traverse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.edges()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.is_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.is_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.get_weight"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.get_weight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.has_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.has_edge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.undirected_edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.undirected_edges()</span></code></a></li>
 </ul>
 </li>
@@ -91,8 +97,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.delete_vertex"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.delete_vertex()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.dfs_traverse"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.dfs_traverse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.edges()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.is_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.is_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.has_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.has_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.order"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.order()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.print_graph"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.print_graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.size"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.to_dict"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.to_dict()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.undirected_edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.undirected_edges()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph.vertices"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph.vertices()</span></code></a></li>
 </ul>
@@ -100,10 +109,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.add_edge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.edges()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.is_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.is_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.get_weight"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.get_weight()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.print_graph"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.print_graph()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.undirected_edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.undirected_edges()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.weightx"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.weightx()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dsa.graph.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.Graph.create"><code class="docutils literal notranslate"><span class="pre">Graph.create()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.Graph.create_adjacency_list"><code class="docutils literal notranslate"><span class="pre">Graph.create_adjacency_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.Graph.create_adjacency_matrix"><code class="docutils literal notranslate"><span class="pre">Graph.create_adjacency_matrix()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -162,7 +176,7 @@
 <p>Module containing graph classes.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyListGraph</span></span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyListGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A unweighted adjacency list vertex implementation
 (allows either directed or undirected representation)
@@ -183,7 +197,7 @@ vertex labels are string types</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.add_edge">
-<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.add_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.add_edge" title="Link to this definition"></a></dt>
 <dd><p>Add an edge to the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -192,6 +206,20 @@ vertex labels are string types</p>
 <li><p><strong>end_label</strong> (<em>str</em>) – The label of the ending vertex.</p></li>
 <li><p><strong>directed</strong> (<em>bool</em>) – Whether the edge is directed.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.add_vertex">
+<span class="sig-name descname"><span class="pre">add_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.add_vertex" title="Link to this definition"></a></dt>
+<dd><p>Add a vertex to the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label</strong> (<em>str</em>) – The vertex label to add.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the vertex label already exists.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -246,7 +274,7 @@ vertex labels are string types</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.delete_edge">
-<span class="sig-name descname"><span class="pre">delete_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.delete_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delete_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.delete_edge" title="Link to this definition"></a></dt>
 <dd><p>Delete an edge in the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -258,6 +286,17 @@ vertex labels are string types</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>KeyError</strong> – If the edge does exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.delete_vertex">
+<span class="sig-name descname"><span class="pre">delete_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.delete_vertex" title="Link to this definition"></a></dt>
+<dd><p>Delete a vertex from the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label</strong> (<em>str</em>) – The vertex label to delete.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -308,8 +347,8 @@ vertex labels are string types</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.is_edge">
-<span class="sig-name descname"><span class="pre">is_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.is_edge" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.has_edge">
+<span class="sig-name descname"><span class="pre">has_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.has_edge" title="Link to this definition"></a></dt>
 <dd><p>Return boolean if an edge exists
 :type start_label: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>
 :param start_label: The starting vertex label.
@@ -323,6 +362,40 @@ vertex labels are string types</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A boolean of whether there is an edge from start to end</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.order">
+<span class="sig-name descname"><span class="pre">order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.order" title="Link to this definition"></a></dt>
+<dd><p>Return the number of nodes in the graph.
+:returns: The number of nodes in the graph.
+:rtype: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.size" title="Link to this definition"></a></dt>
+<dd><p>Return the number of edges in the graph.
+:returns: The number of edges in the graph.
+:rtype: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListGraph.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListGraph.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Return the adjacency list as a dictionary.</p>
+<p>For unweighted graphs, returns a dictionary of lists.
+For weighted graphs, returns a dictionary of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary representing the adjacency list of the graph.
+- Unweighted: {vertex: [neighbor1, neighbor2, …]}
+- Weighted: {vertex: {neighbor1: weight1, neighbor2: weight2, …}}</p>
 </dd>
 </dl>
 </dd></dl>
@@ -353,13 +426,13 @@ vertex labels are string types</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyListWeightedGraph</span></span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyListWeightedGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dsa.graph.AdjacencyListGraph" title="dsa.graph.AdjacencyListGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdjacencyListGraph</span></code></a></p>
 <p>A weighted adjacency list vertex implementation in Python
 (allows either directed or undirected representation)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.add_edge">
-<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.add_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.add_edge" title="Link to this definition"></a></dt>
 <dd><p>Add an edge to the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -412,7 +485,7 @@ None if not found.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.delete_edge">
-<span class="sig-name descname"><span class="pre">delete_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.delete_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delete_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.delete_edge" title="Link to this definition"></a></dt>
 <dd><p>Delete an edge in the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -485,8 +558,25 @@ none if not found.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.is_edge">
-<span class="sig-name descname"><span class="pre">is_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.is_edge" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.get_weight">
+<span class="sig-name descname"><span class="pre">get_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.get_weight" title="Link to this definition"></a></dt>
+<dd><p>Get the weight of an edge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_label</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The starting vertex label.</p></li>
+<li><p><strong>end_label</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ending vertex label.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The weight of the edge from start to end.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.has_edge">
+<span class="sig-name descname"><span class="pre">has_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.has_edge" title="Link to this definition"></a></dt>
 <dd><p>Return boolean if an edge exists
 :type start_label: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>
 :param start_label: starting vertex label
@@ -519,14 +609,14 @@ none if not found.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyMatrixGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyMatrixGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An unweighted adjacency matrix graph implementation.</p>
 <p>This class allows either directed or undirected representation of a graph.
 Vertex labels are string types.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.add_edge">
-<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.add_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.add_edge" title="Link to this definition"></a></dt>
 <dd><p>Add an edge in the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -547,6 +637,9 @@ Vertex labels are string types.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>label</strong> (<em>str</em>) – The vertex label to add.</p>
 </dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the vertex label already exists.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -566,7 +659,7 @@ Vertex labels are string types.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.delete_edge">
-<span class="sig-name descname"><span class="pre">delete_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delete_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.delete_edge" title="Link to this definition"></a></dt>
 <dd><p>Delete an edge in the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -616,8 +709,8 @@ Vertex labels are string types.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.is_edge">
-<span class="sig-name descname"><span class="pre">is_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.is_edge" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.has_edge">
+<span class="sig-name descname"><span class="pre">has_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.has_edge" title="Link to this definition"></a></dt>
 <dd><p>Return boolean if an edge exists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -637,9 +730,43 @@ Vertex labels are string types.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.order">
+<span class="sig-name descname"><span class="pre">order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.order" title="Link to this definition"></a></dt>
+<dd><p>Return the number of nodes in the graph.
+:returns: The number of nodes in the graph.
+:rtype: int</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.print_graph">
 <span class="sig-name descname"><span class="pre">print_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.print_graph" title="Link to this definition"></a></dt>
 <dd><p>Print the contents of the graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.size" title="Link to this definition"></a></dt>
+<dd><p>Return the number of edges in the graph.
+:returns: The number of edges in the graph.
+:rtype: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixGraph.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixGraph.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Return the adjacency matrix as a dictionary.</p>
+<p>For unweighted graphs, returns a dictionary of lists.
+For weighted graphs, returns a dictionary of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary representing the adjacency matrix of the graph.
+- Unweighted: {vertex: [neighbor1, neighbor2, …]}
+- Weighted: {vertex: {neighbor1: weight1, neighbor2: weight2, …}}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -668,14 +795,14 @@ Vertex labels are string types.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyMatrixWeightedGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">AdjacencyMatrixWeightedGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dsa.graph.AdjacencyMatrixGraph" title="dsa.graph.AdjacencyMatrixGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdjacencyMatrixGraph</span></code></a></p>
 <p>A weighted adjacency matrix graph implementation
 (allows either directed or undirected representation)
 vertex labels are string types</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph.add_edge">
-<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.add_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.add_edge" title="Link to this definition"></a></dt>
 <dd><p>Add an edge to the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -701,21 +828,18 @@ vertex labels are string types</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph.is_edge">
-<span class="sig-name descname"><span class="pre">is_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.is_edge" title="Link to this definition"></a></dt>
-<dd><p>Return boolean if an edge exists.</p>
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph.get_weight">
+<span class="sig-name descname"><span class="pre">get_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.get_weight" title="Link to this definition"></a></dt>
+<dd><p>Get the weight of an edge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>start_label</strong> (<em>str</em>) – Starting vertex label.</p></li>
-<li><p><strong>end_label</strong> (<em>str</em>) – Ending vertex label.</p></li>
+<li><p><strong>start_label</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The starting vertex label.</p></li>
+<li><p><strong>end_label</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The ending vertex label.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A boolean of whether there is an edge from start to end.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The weight of the edge from start to end.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -737,18 +861,64 @@ vertex labels are string types</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dsa.graph.Graph">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.graph.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><a class="headerlink" href="#dsa.graph.Graph" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Graph Factory</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph.weightx">
-<span class="sig-name descname"><span class="pre">weightx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.weightx" title="Link to this definition"></a></dt>
-<dd><p>Return weight of an edge (is this used???)
-:param start_label: starting vertex label
-:param end_label: starting vertex label</p>
+<dt class="sig sig-object py" id="dsa.graph.Graph.create">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.Graph.create" title="Link to this definition"></a></dt>
+<dd><p>Return a graph object based on the specified parameters.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The type of graph (‘adjacency_matrix’ or ‘adjacency_list’).</p></li>
+<li><p><strong>directed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is directed.</p></li>
+<li><p><strong>weighted</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is weighted.</p></li>
+<li><p><strong>labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of vertex labels for adjacency matrix graphs. Defaults to [].</p></li>
+</ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>weight value of an edge from start to end</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.Graph.create_adjacency_list">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_adjacency_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.Graph.create_adjacency_list" title="Link to this definition"></a></dt>
+<dd><p>Return an adjacency list graph object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is directed.</p></li>
+<li><p><strong>weighted</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is weighted.</p></li>
+<li><p><strong>labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of vertex labels for adjacency matrix graphs. Defaults to [].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.Graph.create_adjacency_matrix">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_adjacency_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.Graph.create_adjacency_matrix" title="Link to this definition"></a></dt>
+<dd><p>Return an adjacency matrix graph object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is directed.</p></li>
+<li><p><strong>weighted</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is weighted.</p></li>
+<li><p><strong>labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of vertex labels for adjacency matrix graphs. Defaults to [].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>

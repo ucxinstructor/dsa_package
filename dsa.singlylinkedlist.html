@@ -65,12 +65,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.delete_head"><code class="docutils literal notranslate"><span class="pre">LinkedList.delete_head()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.delete_tail"><code class="docutils literal notranslate"><span class="pre">LinkedList.delete_tail()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.from_list"><code class="docutils literal notranslate"><span class="pre">LinkedList.from_list()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.insert"><code class="docutils literal notranslate"><span class="pre">LinkedList.insert()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.insert_after"><code class="docutils literal notranslate"><span class="pre">LinkedList.insert_after()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.is_empty"><code class="docutils literal notranslate"><span class="pre">LinkedList.is_empty()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.prepend"><code class="docutils literal notranslate"><span class="pre">LinkedList.prepend()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.print"><code class="docutils literal notranslate"><span class="pre">LinkedList.print()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.search"><code class="docutils literal notranslate"><span class="pre">LinkedList.search()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.to_list"><code class="docutils literal notranslate"><span class="pre">LinkedList.to_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.singlylinkedlist.LinkedList.traverse"><code class="docutils literal notranslate"><span class="pre">LinkedList.traverse()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dsa.singlylinkedlist.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
@@ -151,17 +151,17 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.delete">
-<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.delete" title="Link to this definition"></a></dt>
-<dd><p>Delete a node at a specified index. Raise IndexError if linked list is empty or if index is not found.</p>
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.delete" title="Link to this definition"></a></dt>
+<dd><p>Delete the first occurrence of a value in the linked list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Index of element to be deleted.</p>
+<dd class="field-odd"><p><strong>value</strong> – The value to be deleted.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>IndexError</strong> – If linked list is empty or index is not found.</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -209,13 +209,13 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.insert" title="Link to this definition"></a></dt>
-<dd><p>Insert a value at a specified index. Raise exception if index is out of bounds.</p>
+<dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.insert_after">
+<span class="sig-name descname"><span class="pre">insert_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">after_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.insert_after" title="Link to this definition"></a></dt>
+<dd><p>Insert a value after a specified value. Raise exception if value is not found.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>index</strong> (<em>int</em>) – The index to insert a value.</p></li>
+<li><p><strong>after_value</strong> – The value to insert after.</p></li>
 <li><p><strong>value</strong> – The value to append.</p></li>
 </ul>
 </dd>
@@ -223,7 +223,7 @@
 <dd class="field-even"><p>None</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>IndexError</strong> – If index is out of bounds.</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -254,12 +254,6 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.print">
-<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.print" title="Link to this definition"></a></dt>
-<dd><p>Print the contents of the linked list.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.search">
 <span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.search" title="Link to this definition"></a></dt>
 <dd><p>Search for a value in the linked list.</p>
@@ -268,13 +262,11 @@
 <dd class="field-odd"><p><strong>value</strong> – The value to search for.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#dsa.singlylinkedlist.Node" title="dsa.singlylinkedlist.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Return index of found value.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – If value is not found.</p>
+<dd class="field-odd"><p>Return index of found value.
+Return None if value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -291,6 +283,12 @@
 <dd class="field-even"><p>List with contents of linked list.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.traverse">
+<span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.singlylinkedlist.LinkedList.traverse" title="Link to this definition"></a></dt>
+<dd><p>Print the contents of the linked list.</p>
 </dd></dl>
 
 </dd></dl>
