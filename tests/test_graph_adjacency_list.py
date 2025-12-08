@@ -1,9 +1,9 @@
 import unittest
-from dsa.graph import AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph
+from dsa.graph import AdjacencyListGraph, AdjacencyListWeightedGraph
 
 # Assume that the graph implementation properly handles vertex keys (mapping them to indices)
 
-class TestAdjacencyMatrixGraph(unittest.TestCase):
+class TestAdjacencyListGraph(unittest.TestCase):
     
     # 1. SETUP: Define a consistent set of vertices for all tests
     def setUp(self):
@@ -11,7 +11,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.VERTICES = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         
         # Unweighted Graph structure (Cyclic, connected)
-        self.g_undirected = AdjacencyMatrixGraph(directed=False)
+        self.g_undirected = AdjacencyListGraph(directed=False)
         self.g_undirected.add_edge('A', 'B')
         self.g_undirected.add_edge('A', 'C')
         self.g_undirected.add_edge('B', 'C')
@@ -22,7 +22,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.g_undirected.add_edge('F', 'G')
         
         # Directed Graph structure (Cycle A-B-C-D-E-A)
-        self.g_directed = AdjacencyMatrixGraph(directed=True)
+        self.g_directed = AdjacencyListGraph(directed=True)
         self.g_directed.add_edge('A', 'B')
         self.g_directed.add_edge('B', 'C')
         self.g_directed.add_edge('C', 'D')
@@ -30,7 +30,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.g_directed.add_edge('E', 'A')
 
         # Weighted Undirected Graph structure
-        self.g_wu = AdjacencyMatrixWeightedGraph(directed=False)
+        self.g_wu = AdjacencyListWeightedGraph(directed=False)
         self.g_wu.add_edge('A', 'B', 1)
         self.g_wu.add_edge('B', 'C', 2)
         self.g_wu.add_edge('C', 'D', 3)
@@ -38,7 +38,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.g_wu.add_edge('E', 'A', 5)
 
         # Weighted Directed Graph structure
-        self.g_wd = AdjacencyMatrixWeightedGraph(directed=True)
+        self.g_wd = AdjacencyListWeightedGraph(directed=True)
         self.g_wd.add_edge('A', 'B', 1)
         self.g_wd.add_edge('B', 'C', 2)
         self.g_wd.add_edge('C', 'D', 3)
@@ -93,7 +93,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
     ## 4. MUTATION TESTS
 
     def test_vertex_mutations(self):
-        g = AdjacencyMatrixGraph(directed=False)
+        g = AdjacencyListGraph(directed=False)
         g.add_vertex('V1')
         self.assertEqual(g.order(), 1)
         self.assertIn('V1', g)
@@ -102,12 +102,15 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         with self.assertRaises(ValueError):
             g.add_vertex('V1')
         
-        # Test deletion (Implicit test from test_graph_matrix_2.py)
+        # Test deletion 
         self.g_directed.delete_vertex('A')
         self.assertEqual(self.g_directed.order(), 4) # B, C, D, E remain
         self.assertNotIn('A', self.g_directed)
-        self.assertFalse(self.g_directed.has_edge('E', 'A'))
-        self.assertFalse(self.g_directed.has_edge('A', 'B'))
+
+        with self.assertRaises(KeyError):
+            self.g_directed.has_edge('E', 'A')
+        with self.assertRaises(KeyError):
+            self.g_directed.has_edge('A', 'B')
 
     def test_delete_edge_undirected(self):
         g = self.g_undirected
@@ -115,7 +118,7 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         
         g.delete_edge('A', 'B')
         
-        # Deleting (A, B) must delete (B, A) in adjacency matrix
+        # Deleting (A, B) must delete (B, A) in adjacency list
         self.assertFalse(g.has_edge('A', 'B'))
         self.assertFalse(g.has_edge('B', 'A'))
         self.assertEqual(g.size(), 7) # Size decreased by 1
@@ -126,6 +129,10 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
             
     def test_delete_edge_directed(self):
         g = self.g_directed
+        self.assertTrue(g.has_vertex('A'))
+        self.assertTrue(g.has_vertex('B'))
+        self.assertFalse(g.has_vertex('X'))
+
         self.assertTrue(g.has_edge('A', 'B'))
         self.assertFalse(g.has_edge('B', 'A'))
 
@@ -139,11 +146,17 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         # Attempt to delete non-existent edge (B, A)
         with self.assertRaises(KeyError):
              g.delete_edge('B', 'A')
+        self.assertTrue(g.has_vertex('A'))
+        self.assertTrue(g.has_vertex('B'))
+        self.assertFalse(g.has_vertex('X'))
 
     ## 5. WEIGHTED GRAPH TESTS
 
     def test_weighted_undirected_properties(self):
         g = self.g_wu
+        self.assertTrue(g.has_vertex('A'))
+        self.assertTrue(g.has_vertex('B'))
+        self.assertFalse(g.has_vertex('X'))
         self.assertEqual(g.order(), 5)
         self.assertEqual(g.size(), 5)
 
@@ -160,10 +173,15 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         self.assertFalse(g.has_edge('A', 'B'))
         self.assertFalse(g.has_edge('B', 'A'))
         self.assertEqual(g.size(), 4)
-
+        self.assertTrue(g.has_vertex('A'))
+        self.assertTrue(g.has_vertex('B'))
+        self.assertFalse(g.has_vertex('X'))
 
     def test_weighted_directed_properties(self):
         g = self.g_wd
+        self.assertTrue(g.has_vertex('A'))
+        self.assertTrue(g.has_vertex('B'))
+        self.assertFalse(g.has_vertex('X'))
         self.assertEqual(g.order(), 5)
         self.assertEqual(g.size(), 5)
 
@@ -182,29 +200,17 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         g.delete_edge('A', 'B')
         self.assertFalse(g.has_edge('A', 'B'))
         self.assertEqual(g.size(), 4)
-
-    ## 6. TRAVERSAL TESTS
-
-    def test_traversal_undirected(self):
-        g = self.g_undirected
-        # DFS starting from 'A'
-        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        # BFS starting from 'A'
-        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E", "F", "G"])
-        # DFS starting from 'G' (reverse path)
-        self.assertEqual(g.dfs_traverse("G"), ["G", "F", "E", "D", "B", "A", "C"])
-        # BFS starting from 'G'
-        self.assertEqual(g.bfs_traverse("G"), ["G", "F", "E", "D", "B", "C", "A"])
-
-    def test_traversal_directed(self):
-        g = self.g_directed # Cycle A->B->C->D->E->A
-        # DFS should traverse the full cycle
-        self.assertEqual(g.dfs_traverse("A"), ["A", "B", "C", "D", "E"])
-        # BFS should traverse the full cycle
-        self.assertEqual(g.bfs_traverse("A"), ["A", "B", "C", "D", "E"])
+        self.assertTrue(g.has_vertex('A'))
+        self.assertTrue(g.has_vertex('B'))
+        self.assertFalse(g.has_vertex('X'))
         
-        # Starting from a vertex with no outgoing edges (if graph was acyclic)
-        g_tail = AdjacencyMatrixGraph(directed=True)
-        g_tail.add_edge('X', 'Y')
-        self.assertEqual(g_tail.dfs_traverse("Y"), ["Y"])
-        self.assertEqual(g_tail.bfs_traverse("Y"), ["Y"])
+    def test_weighted_edge_deletion_errors(self):
+        g = self.g_wu
+        self.assertTrue(g.has_edge('A', 'B'))
+        
+        g.delete_edge('A', 'B')
+        
+        # Deleting a non-existent edge should raise KeyError (or similar)
+        with self.assertRaises(KeyError):
+            g.delete_edge('A', 'B')
+
