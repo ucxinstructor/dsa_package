@@ -44,11 +44,18 @@ pip show ucxdsa
 ***
 # Revision History
 ## 2025.12.8
-* Created Graph Factory class
-  * Added and modified methods to Graph classes follow CLRS closely
+* Created Graph Factory class 
+* Major revisions to Graph class
+  * Added and modified methods to Graph classes to take advantage of inheritance and follow CLRS closely
+     * graph now has is_directed and is_weighted members (both default to False)
+     * added size() - # of edges and order() -- # of vertices
+     * added delete_vertex(), has_vertex() and get_weight()
+     * renamed is_edge() to has_edge()
+     * add_edge() now automatically adds directed or undirected edge based on the type graph type
+  * Added graph_traversal module (moved all DFS and BFS methods to this module)   
   * Any graph object now works on any graph algorithm
 * Graph Draw now reads weighted and directed properties from graph object
-* SinglyLinkedList now implements search and insert_after. Removed insert with index
+* SinglyLinkedList and DoublyLinkedList now implements search and insert_after(). Removed insert() with index
 * DoublyLinkedList now inherits from SinglyLinkedList and implements only methods that affect the contents of the list
 
 ## 2025.11.27
