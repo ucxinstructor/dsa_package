@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dsa.prim module &mdash; ucxdsa  documentation</title>
+  <title>Graph Quick Start &mdash; ucxdsa  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dsa.queue module" href="dsa.queue.html" />
-    <link rel="prev" title="dsa.pretty_print module" href="dsa.pretty_print.html" /> 
+    <link rel="next" title="dsa.graph_traversal module" href="dsa.graph_traversal.html" />
+    <link rel="prev" title="Array Quick Start" href="dsa.array.quick_start.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,7 +53,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linear Stuctures</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Class Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
@@ -76,19 +76,21 @@
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Graph</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.graph.quick_start.html">Graph Quick Start</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graph Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-related-classes">Other Related Classes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="dsa.graph_traversal.html">dsa.graph_traversal module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.dijkstra.html">dsa.dijkstra module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.prim module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dsa.prim.mst_weight"><code class="docutils literal notranslate"><span class="pre">mst_weight()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dsa.prim.prims_mst"><code class="docutils literal notranslate"><span class="pre">prims_mst()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.prim.html">dsa.prim module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.huffman.html">dsa.huffman module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
@@ -113,11 +115,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">dsa</a></li>
-          <li class="breadcrumb-item"><a href="dsa.html">dsa package</a></li>
-      <li class="breadcrumb-item active">dsa.prim module</li>
+      <li class="breadcrumb-item active">Graph Quick Start</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dsa.prim.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dsa.graph.quick_start.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -125,56 +125,61 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-dsa.prim">
-<span id="dsa-prim-module"></span><h1>dsa.prim module<a class="headerlink" href="#module-dsa.prim" title="Link to this heading"></a></h1>
-<p>Module to access functions for Prim’s Algorithm.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="dsa.prim.mst_weight">
-<span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">mst_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.prim.mst_weight" title="Link to this definition"></a></dt>
-<dd><p>Returns the total weight of a graph given a starting vertex</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>graph</strong> – The graph to find the total edge weight of.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The total weight of the graph.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="dsa.prim.prims_mst">
-<span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">prims_mst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mst_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.prim.prims_mst" title="Link to this definition"></a></dt>
-<dd><p>Returns an MST given a graph and starting vertex.
-(Future: return a Tree type instead of a Graph type)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> – The graph to search an MST from. (can be either an AdjacencyListWeightedGraph or AdjacencyMatrixWeightedGraph)</p></li>
-<li><p><strong>start</strong> (<em>string</em>) – The starting vertex label.</p></li>
-<li><p><strong>mst_graph</strong> – An empty graph object to output the MST in to.</p></li>
+  <section id="graph-quick-start">
+<h1>Graph Quick Start<a class="headerlink" href="#graph-quick-start" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+</section>
+<section id="creation">
+<h2>Creation<a class="headerlink" href="#creation" title="Link to this heading"></a></h2>
+<p><strong>Import class</strong></p>
+<p>To use Graphs, first import the Graph class from the graph module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">Graph</span>
+</pre></div>
+</div>
+<p><strong>Creation</strong>
+Create a Graph</p>
+<p>Before creating a graph, choose its characteristics:</p>
+<ul class="simple">
+<li><p>Representation: adjacency matrix or adjacency list</p></li>
+<li><p>Edge direction: directed or undirected</p></li>
+<li><p>Weights: weighted or unweighted</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the MST of the graph.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph" title="dsa.graph.AdjacencyListWeightedGraph">AdjacencyListWeightedGraph</a></p>
-</dd>
-</dl>
-</dd></dl>
-
+<p>Create an adjacency matrix graph with undirected and unweighted edges (default):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">create_adjacency_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Create an adjacency list graph with undirected and unweighted edges:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">create_adjacency_list</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create an adjacency list graph with directed and weighted edges:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">create_adjacency_list</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="common-operations">
+<h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add Vertices and Edges
+- add_vertex(v)
+- add_edge(u, v, weight=None)</p></li>
+<li><p>Query
+- has_edge(u, v)
+- has_vertex(v)</p></li>
+</ul>
+</section>
+<section id="other-related-classes">
+<h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dsa.pretty_print.html" class="btn btn-neutral float-left" title="dsa.pretty_print module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dsa.queue.html" class="btn btn-neutral float-right" title="dsa.queue module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dsa.array.quick_start.html" class="btn btn-neutral float-left" title="Array Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.graph_traversal.html" class="btn btn-neutral float-right" title="dsa.graph_traversal module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

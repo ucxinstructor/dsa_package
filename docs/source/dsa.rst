@@ -9,7 +9,7 @@ Submodules
 
    dsa.array
    dsa.deque
-   dsa.dijkstras
+   dsa.dijkstra
    dsa.doublylinkedlist
    dsa.draw
    dsa.generators

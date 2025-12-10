@@ -46,13 +46,38 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Data Structures</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
-<ul class="current">
+<p class="caption" role="heading"><span class="caption-text">Linear Stuctures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Class Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Hash</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tree</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Graph</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.quick_start.html">Graph Quick Start</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.graph module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListGraph.add_directed_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListGraph.add_directed_edge()</span></code></a></li>
@@ -73,6 +98,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.add_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.adjacent_items"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.adjacent_items()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.adjacents"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.adjacents()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.delete_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.delete_edge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyListWeightedGraph.edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyListWeightedGraph.edges()</span></code></a></li>
@@ -99,6 +125,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.add_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.adjacent_items"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.adjacent_items()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.edges"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.edges()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.get_weight"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.get_weight()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dsa.graph.AdjacencyMatrixWeightedGraph.print_graph"><code class="docutils literal notranslate"><span class="pre">AdjacencyMatrixWeightedGraph.print_graph()</span></code></a></li>
@@ -113,27 +140,20 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.dijkstras.html">dsa.dijkstras module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph_traversal.html">dsa.graph_traversal module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.dijkstra.html">dsa.dijkstra module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.prim.html">dsa.prim module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.huffman.html">dsa.huffman module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
 </ul>
 
         </div>
@@ -390,14 +410,29 @@ For weighted graphs, returns a dictionary of dictionaries.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.adjacent_items">
+<span class="sig-name descname"><span class="pre">adjacent_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.adjacent_items" title="Link to this definition"></a></dt>
+<dd><p>Return a list of adjacents and weights of a given vertex</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – starting vertex label</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyListWeightedGraph.adjacents">
 <span class="sig-name descname"><span class="pre">adjacents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyListWeightedGraph.adjacents" title="Link to this definition"></a></dt>
-<dd><p>Return a list of adjacents of a given vertex
-:type vertex: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>
-:param vertex: starting vertex label</p>
+<dd><p>Return a list of adjacents of a given vertex</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – starting vertex label</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -673,6 +708,20 @@ vertex labels are string types</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph.adjacent_items">
+<span class="sig-name descname"><span class="pre">adjacent_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.adjacent_items" title="Link to this definition"></a></dt>
+<dd><p>Return a list of adjacents and weights of a given vertex</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – starting vertex label</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dsa.graph.AdjacencyMatrixWeightedGraph.edges">
 <span class="sig-name descname"><span class="pre">edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dsa.graph.AdjacencyMatrixWeightedGraph.edges" title="Link to this definition"></a></dt>
 <dd><p>Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight).</p>
@@ -732,8 +781,8 @@ vertex labels are string types</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>graph_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The type of graph (‘adjacency_matrix’ or ‘adjacency_list’).</p></li>
-<li><p><strong>directed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is directed.</p></li>
-<li><p><strong>weighted</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is weighted.</p></li>
+<li><p><strong>directed</strong> (<em>bool</em>) – Whether the graph is directed.</p></li>
+<li><p><strong>weighted</strong> (<em>bool</em>) – Whether the graph is weighted.</p></li>
 <li><p><strong>labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of vertex labels for adjacency matrix graphs. Defaults to [].</p></li>
 </ul>
 </dd>
@@ -750,8 +799,8 @@ vertex labels are string types</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>directed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is directed.</p></li>
-<li><p><strong>weighted</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is weighted.</p></li>
+<li><p><strong>directed</strong> (<em>bool</em>) – Whether the graph is directed.</p></li>
+<li><p><strong>weighted</strong> (<em>bool</em>) – Whether the graph is weighted.</p></li>
 <li><p><strong>labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of vertex labels for adjacency matrix graphs. Defaults to [].</p></li>
 </ul>
 </dd>
@@ -768,8 +817,8 @@ vertex labels are string types</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>directed</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is directed.</p></li>
-<li><p><strong>weighted</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether the graph is weighted.</p></li>
+<li><p><strong>directed</strong> (<em>bool</em>) – Whether the graph is directed.</p></li>
+<li><p><strong>weighted</strong> (<em>bool</em>) – Whether the graph is weighted.</p></li>
 <li><p><strong>labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of vertex labels for adjacency matrix graphs. Defaults to [].</p></li>
 </ul>
 </dd>

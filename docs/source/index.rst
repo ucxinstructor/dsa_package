@@ -17,30 +17,58 @@ Version: |version|
 
    README
    TODO
-   modules
       
 .. toctree::
    :maxdepth: 2
-   :caption: Data Structures
+   :caption: Core Data Structures
 
+   modules
+       
+.. toctree::
+   :maxdepth: 2
+   :caption: Linear Stuctures
+   
+   dsa.array.quick_start
    dsa.array
+   dsa.queue
+   dsa.stack
    dsa.deque
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Linked List
+
+   dsa.singlylinkedlist
    dsa.doublylinkedlist
-   dsa.graph
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Hash
+
    dsa.hashset
    dsa.hashtable
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tree
+
    dsa.heap
-   dsa.queue
-   dsa.singlylinkedlist
-   dsa.stack
    dsa.tree
    dsa.trie
 
 .. toctree::
    :maxdepth: 2
+   :caption: Graph
+
+   dsa.graph.quick_start
+   dsa.graph
+
+.. toctree::
+   :maxdepth: 2
    :caption: Algorithms
 
-   dsa.dijkstras
+   dsa.graph_traversal
+   dsa.dijkstra
    dsa.prim
    dsa.huffman
 
@@ -48,7 +76,7 @@ Version: |version|
    :maxdepth: 2
    :caption: Helper Modules
 
-   dsa.draw
-   dsa.generators
-   dsa.pretty_print
    dsa.sorttools
+   dsa.generators
+   dsa.draw
+   dsa.pretty_print

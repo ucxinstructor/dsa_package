@@ -1,13 +1,13 @@
 """ Module to access functions for Dijkstra's Algorithm. """
 from dsa.heap import MinHeap
-from dsa.graph import AdjacencyListWeightedGraph
+from dsa.graph import Graph
 
-def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> tuple:
+def shortest_path(graph: Graph, start: str, end: str, debug: bool=False) -> tuple:
     """ 
     Helper function that returns a weight table and a predecessor table using Dijkstra's Algorithm.
 
     Args:
-        graph (AdjacencyListWeightedGraph): The graph to search.
+        graph (Graph): The graph to search.
         start (str): The starting vertex label.
         end (str): The ending vertex label.
         debug (bool): If True, display weight table as it is being built.
@@ -28,34 +28,37 @@ def shortest_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug
     visited = set()
     pq = MinHeap()
 
+    # insert starting vertex with weight 0
     pq.insert((0, start))
     
     while not pq.is_empty():
-        current_weight, current = pq.pop()
-        if current in visited:
+        current_weight, current_vertex = pq.pop()
+        if current_vertex in visited:
             continue
-        visited.add(current)
+        visited.add(current_vertex)
 
-        if current == end:
+        if current_vertex == end:
             break
 
-        for adjacent, weight in graph[current].items():
+        for adjacent, weight in graph.adjacent_items(current_vertex):
             new_dist = current_weight + weight
+            if debug:
+                print("current_vertex ", current_vertex, " adjacent ", adjacent, " weight ", weight, " new_dist ", new_dist, " predecessor ", predecessor)
             if new_dist < weight_table.get(adjacent, float('inf')):
                 weight_table[adjacent] = new_dist
-                predecessor[adjacent] = current
+                predecessor[adjacent] = current_vertex
                 pq.insert((new_dist, adjacent))
                 if debug:
                     print(weight_table)
     
     return weight_table, predecessor
 
-def find_path(graph: AdjacencyListWeightedGraph, start: str, end: str, debug: bool=False) -> list:
+def find_path(graph: Graph, start: str, end: str, debug: bool=False) -> list:
     """ 
     Return the shortest path of two vertices using Dijkstra's Algorithm.
 
     Args:
-        graph (AdjacencyListWeightedGraph): The graph to search.
+        graph (Graph): The graph to search.
         start (str): The starting vertex label.
         end (str): The ending vertex label.
         debug (bool): If True, display the weight table.

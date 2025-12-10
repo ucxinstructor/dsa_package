@@ -1,7 +1,5 @@
 """ Module containing graph classes. """
 
-from dsa.queue import Queue
-
 class Graph:
     """
     Graph Factory
@@ -14,8 +12,8 @@ class Graph:
 
         Args:
             graph_type: The type of graph ('adjacency_matrix' or 'adjacency_list').
-            directed: Whether the graph is directed.
-            weighted: Whether the graph is weighted.
+            directed (bool): Whether the graph is directed.
+            weighted (bool): Whether the graph is weighted.
             labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
         """
         if graph_type == 'adjacency_matrix':
@@ -33,8 +31,8 @@ class Graph:
         Return an adjacency matrix graph object.
 
         Args:
-            directed: Whether the graph is directed.
-            weighted: Whether the graph is weighted.
+            directed (bool): Whether the graph is directed.
+            weighted (bool): Whether the graph is weighted.
             labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
         """
         if vertices is None:
@@ -50,8 +48,8 @@ class Graph:
         Return an adjacency list graph object.
 
         Args:
-            directed: Whether the graph is directed.
-            weighted: Whether the graph is weighted.
+            directed (bool): Whether the graph is directed.
+            weighted (bool): Whether the graph is weighted.
             labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
         """
         if weighted:
@@ -249,7 +247,7 @@ class AdjacencyMatrixGraph:
             vertex (str): The label of the vertex.
         """
         index = self.label_index[vertex]
-        return [self.labels[i] for i in range(len(self._matrix[index])) if self._matrix[index][i]]
+        return [self.labels[i] for i in range(len(self._matrix[index])) if self.has_edge(vertex, self.labels[i])]
 
     def __getitem__(self, vertex: str) -> list:
         """ 
@@ -415,6 +413,17 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
                     edges.append((self.labels[i], self.labels[j], weight))
     
         return edges
+
+    def adjacent_items(self, vertex: str) -> list:
+        """
+        Return a list of adjacents and weights of a given vertex (adjacent label, weight) pair.
+        
+        Args:
+            vertex: starting vertex label 
+        """
+        index = self.label_index[vertex]
+        return [(self.labels[i], self._matrix[index][i]) for i in range(len(self._matrix[index])) if self.has_edge(vertex, self.labels[i])]
+
     
     def undirected_edges(self) -> list:
         """ 
@@ -755,10 +764,20 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
     def adjacents(self, vertex: str) -> list:
         """
         Return a list of adjacents of a given vertex
+        
         Args:
             vertex: starting vertex label 
         """
-        return self._adjacents[vertex]
+        return list(self._adjacents[vertex].keys())
+    
+    def adjacent_items(self, vertex: str) -> list:
+        """
+        Return a list of adjacents and weights of a given vertex (adjacent label, weight) pair.
+        
+        Args:
+            vertex: starting vertex label 
+        """
+        return self._adjacents[vertex].items()
 
     def get_weight(self, start_label: str, end_label: str):
         """ 
@@ -800,9 +819,9 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Return a list of edges in the graph. Each edge is represented by a tuple (start, end, weight)
         """
         edges = []
-        for start in self._adjacents.keys():
+        for start in self.vertices():
             for end in self.adjacents(start):
-                weight = self[start][end]
+                weight = self.get_weight(start, end)
                 if start != end:  
                     edges.append((start, end, weight))
         return edges
@@ -812,9 +831,9 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end, weight)
         """
         edges = []
-        for start in self._adjacents.keys():
+        for start in self.vertices():
             for end in self.adjacents(start):
-                weight = self[start][end]
+                weight = self.get_weight(start, end)
                 if start != end and (end, start, weight) not in edges:  
                     edges.append((start, end, weight))
         return edges

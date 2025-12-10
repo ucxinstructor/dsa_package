@@ -43,6 +43,11 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.12.9
+* Renamed dijkstras to dijkstra
+* Cleaned up graph bugs and added adjacent_items() for weighted graphs (vertex and weight) pair
+* adjacents() now returns a list of adjacent vertices only 
+
 ## 2025.12.8
 * Created Graph Factory class 
 * Major revisions to Graph class
