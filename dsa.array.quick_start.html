@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dsa.hashset module &mdash; ucxdsa  documentation</title>
+  <title>Array Quick Start &mdash; ucxdsa  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dsa.hashtable module" href="dsa.hashtable.html" />
-    <link rel="prev" title="dsa.graph module" href="dsa.graph.html" /> 
+    <link rel="next" title="Graph Quick Start" href="dsa.graph.quick_start.html" />
+    <link rel="prev" title="dsa.trie module" href="dsa.trie.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,8 +52,14 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linear Stuctures</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Array Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-related-classes">Other Related Classes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
@@ -65,16 +71,8 @@
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Hash</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.hashset module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dsa.hashset.HashSet"><code class="docutils literal notranslate"><span class="pre">HashSet</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.hashset.HashSet.add"><code class="docutils literal notranslate"><span class="pre">HashSet.add()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.hashset.HashSet.contains"><code class="docutils literal notranslate"><span class="pre">HashSet.contains()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dsa.hashset.HashSet.remove"><code class="docutils literal notranslate"><span class="pre">HashSet.remove()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tree</span></p>
@@ -117,11 +115,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">dsa</a></li>
-          <li class="breadcrumb-item"><a href="dsa.html">dsa package</a></li>
-      <li class="breadcrumb-item active">dsa.hashset module</li>
+      <li class="breadcrumb-item active">Array Quick Start</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dsa.hashset.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dsa.array.quick_start.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -129,57 +125,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-dsa.hashset">
-<span id="dsa-hashset-module"></span><h1>dsa.hashset module<a class="headerlink" href="#module-dsa.hashset" title="Link to this heading"></a></h1>
-<p>Module containing a HashSet class implemented using HashTable.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="dsa.hashset.HashSet">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dsa.hashset.</span></span><span class="sig-name descname"><span class="pre">HashSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashset.HashSet" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A set implementation using a hash table for storage.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.hashset.HashSet.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashset.HashSet.add" title="Link to this definition"></a></dt>
-<dd><p>Add an item to the set.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>item</strong> – The item to add.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.hashset.HashSet.contains">
-<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashset.HashSet.contains" title="Link to this definition"></a></dt>
-<dd><p>Check if an item is in the set.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>item</strong> – The item to check.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.hashset.HashSet.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.hashset.HashSet.remove" title="Link to this definition"></a></dt>
-<dd><p>Remove an item from the set.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>item</strong> – The item to remove.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+  <section id="array-quick-start">
+<h1>Array Quick Start<a class="headerlink" href="#array-quick-start" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>An array is a linear data structure that is simple and fast. It provides index-based access to a fixed-size, contiguous block of elements.</p>
+</section>
+<section id="creation">
+<h2>Creation<a class="headerlink" href="#creation" title="Link to this heading"></a></h2>
+<p><strong>Import class</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.array</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>  <span class="c1"># or the appropriate Array class</span>
+</pre></div>
+</div>
+<p><strong>Creation</strong></p>
+<p>Create an array with a default capacity of 10 element:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Array</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Create an array with a capacity of 100 elements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="common-operations">
+<h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Access</p></li>
+<li><p>Update</p></li>
+<li><p>Append / Insert</p></li>
+<li><p>Delete</p></li>
+<li><p>Iteration / Traversal</p></li>
+</ul>
+</section>
+<section id="other-related-classes">
+<h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="dsa.array.html#dsa.array.DynamicArray" title="dsa.array.DynamicArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">dsa.array.DynamicArray</span></code></a></p></li>
+<li><p><a class="reference internal" href="dsa.array.html#dsa.array.CircularArray" title="dsa.array.CircularArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">dsa.array.CircularArray</span></code></a></p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dsa.graph.html" class="btn btn-neutral float-left" title="dsa.graph module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dsa.hashtable.html" class="btn btn-neutral float-right" title="dsa.hashtable module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dsa.trie.html" class="btn btn-neutral float-left" title="dsa.trie module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.graph.quick_start.html" class="btn btn-neutral float-right" title="Graph Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

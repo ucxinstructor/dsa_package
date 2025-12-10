@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dsa.dijkstras module &mdash; ucxdsa  documentation</title>
+  <title>dsa.dijkstra module &mdash; ucxdsa  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -46,28 +46,46 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Data Structures</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<p class="caption" role="heading"><span class="caption-text">Linear Stuctures</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Hash</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tree</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.quick_start.html">Graph Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.dijkstras module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dsa.dijkstras.find_path"><code class="docutils literal notranslate"><span class="pre">find_path()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dsa.dijkstras.shortest_path"><code class="docutils literal notranslate"><span class="pre">shortest_path()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph_traversal.html">dsa.graph_traversal module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dsa.dijkstra module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dsa.dijkstra.find_path"><code class="docutils literal notranslate"><span class="pre">find_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dsa.dijkstra.shortest_path"><code class="docutils literal notranslate"><span class="pre">shortest_path()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.prim.html">dsa.prim module</a></li>
@@ -75,10 +93,10 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
 </ul>
 
         </div>
@@ -97,9 +115,9 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">dsa</a></li>
           <li class="breadcrumb-item"><a href="dsa.html">dsa package</a></li>
-      <li class="breadcrumb-item active">dsa.dijkstras module</li>
+      <li class="breadcrumb-item active">dsa.dijkstra module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dsa.dijkstras.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dsa.dijkstra.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -107,17 +125,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-dsa.dijkstras">
-<span id="dsa-dijkstras-module"></span><h1>dsa.dijkstras module<a class="headerlink" href="#module-dsa.dijkstras" title="Link to this heading"></a></h1>
+  <section id="module-dsa.dijkstra">
+<span id="dsa-dijkstra-module"></span><h1>dsa.dijkstra module<a class="headerlink" href="#module-dsa.dijkstra" title="Link to this heading"></a></h1>
 <p>Module to access functions for Dijkstra’s Algorithm.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="dsa.dijkstras.find_path">
-<span class="sig-prename descclassname"><span class="pre">dsa.dijkstras.</span></span><span class="sig-name descname"><span class="pre">find_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.dijkstras.find_path" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="dsa.dijkstra.find_path">
+<span class="sig-prename descclassname"><span class="pre">dsa.dijkstra.</span></span><span class="sig-name descname"><span class="pre">find_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.dijkstra.find_path" title="Link to this definition"></a></dt>
 <dd><p>Return the shortest path of two vertices using Dijkstra’s Algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> (<a class="reference internal" href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph" title="dsa.graph.AdjacencyListWeightedGraph"><em>AdjacencyListWeightedGraph</em></a>) – The graph to search.</p></li>
+<li><p><strong>graph</strong> (<a class="reference internal" href="dsa.graph.html#dsa.graph.Graph" title="dsa.graph.Graph"><em>Graph</em></a>) – The graph to search.</p></li>
 <li><p><strong>start</strong> (<em>str</em>) – The starting vertex label.</p></li>
 <li><p><strong>end</strong> (<em>str</em>) – The ending vertex label.</p></li>
 <li><p><strong>debug</strong> (<em>bool</em>) – If True, display the weight table.</p></li>
@@ -136,13 +154,13 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="dsa.dijkstras.shortest_path">
-<span class="sig-prename descclassname"><span class="pre">dsa.dijkstras.</span></span><span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.dijkstras.shortest_path" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="dsa.dijkstra.shortest_path">
+<span class="sig-prename descclassname"><span class="pre">dsa.dijkstra.</span></span><span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dsa.dijkstra.shortest_path" title="Link to this definition"></a></dt>
 <dd><p>Helper function that returns a weight table and a predecessor table using Dijkstra’s Algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> (<a class="reference internal" href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph" title="dsa.graph.AdjacencyListWeightedGraph"><em>AdjacencyListWeightedGraph</em></a>) – The graph to search.</p></li>
+<li><p><strong>graph</strong> (<a class="reference internal" href="dsa.graph.html#dsa.graph.Graph" title="dsa.graph.Graph"><em>Graph</em></a>) – The graph to search.</p></li>
 <li><p><strong>start</strong> (<em>str</em>) – The starting vertex label.</p></li>
 <li><p><strong>end</strong> (<em>str</em>) – The ending vertex label.</p></li>
 <li><p><strong>debug</strong> (<em>bool</em>) – If True, display weight table as it is being built.</p></li>
