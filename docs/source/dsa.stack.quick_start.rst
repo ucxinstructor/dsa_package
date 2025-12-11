@@ -56,38 +56,6 @@ Return the element from the top of the stack. Raise Exception if stack is empty.
 
    value = s.peek()  # Peek at the top element
 
-**Check if empty**
-
-Return a Boolean on whether the stack is empty or not.
-
-.. code-block:: python
-
-   empty = s.is_empty()  # True if empty
-
-**Get capacity**
-
-Return the capacity of the stack.
-
-.. code-block:: python
-
-   cap = s.capacity()  # Get the maximum capacity
-
-**Convert to list**
-
-Return the contents of the stack as an array.
-
-.. code-block:: python
-
-   lst = s.to_list()  # Get a list copy of elements
-
-**Create from list**
-
-Set the contents of a stack from a list. Raise Exception when trying to push more elements than the capacity.
-
-.. code-block:: python
-
-   s = Stack.from_list([1, 2, 3])  # Create stack from list
-
 Other Related Classes
 ---------------------
 

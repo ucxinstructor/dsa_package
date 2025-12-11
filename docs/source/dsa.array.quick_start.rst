@@ -64,8 +64,6 @@ Delete an element at a specified index, shifting subsequent elements to the left
 .. code-block:: python
 
    a.delete(3)  # Delete the element at index 3
-**Iteration**
-- Iteration / Traversal
 
 Other Related Classes
 ---------------------
