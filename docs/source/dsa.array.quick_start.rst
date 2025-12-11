@@ -41,26 +41,33 @@ Retrieve an element by its index. Raises IndexError if the index is out of bound
    value = a[5]  # Access the element at index 5
 
 **Update element**
+
 Assign a new value to an element at a specific index. Raises IndexError if the index is out of bounds.
 
 .. code-block:: python
 
-   a[5] = 40 # Update the element at index 5 to 42
+   a[5] = 40  # Update the element at index 5 to 40
 
 **Append element**
 
 Append an element to the array. Raise an exception if capacity is exceeded.
+
 .. code-block:: python
 
    a.append(10)  # Append 10 to the end of the array
 
 **Insert**
+
 Insert an element at a specified index, shifting existing elements to the right.
+
 .. code-block:: python
 
    a.insert(2, 15)  # Insert 15 at index 2
+
 **Delete**
+
 Delete an element at a specified index, shifting subsequent elements to the left.
+
 .. code-block:: python
 
    a.delete(3)  # Delete the element at index 3
