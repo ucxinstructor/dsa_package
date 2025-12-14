@@ -26,18 +26,25 @@ Version: |version|
        
 .. toctree::
    :maxdepth: 2
-   :caption: Linear Stuctures
+   :caption: Linear Structures
    
    dsa.array.quick_start
    dsa.array
+
+   dsa.queue.quick_start
    dsa.queue
+
+   dsa.stack.quick_start
    dsa.stack
+   
+   dsa.deque.quick_start
    dsa.deque
 
 .. toctree::
    :maxdepth: 2
    :caption: Linked List
 
+   dsa.singlylinkedlist.quick_start
    dsa.singlylinkedlist
    dsa.doublylinkedlist
 
@@ -45,15 +52,21 @@ Version: |version|
    :maxdepth: 2
    :caption: Hash
 
+   dsa.hashset.quick_start
    dsa.hashset
+
+   dsa.hashtable.quick_start
    dsa.hashtable
 
 .. toctree::
    :maxdepth: 2
    :caption: Tree
 
+   dsa.heap.quick_start
    dsa.heap
+   dsa.tree.quick_start
    dsa.tree
+   dsa.trie.quick_start
    dsa.trie
 
 .. toctree::

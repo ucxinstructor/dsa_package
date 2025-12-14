@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UCXDSA Package &mdash; ucxdsa  documentation</title>
+  <title>HashTable Quick Start &mdash; ucxdsa  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="TODO" href="TODO.html" />
-    <link rel="prev" title="UCXDSA documentation" href="index.html" /> 
+    <link rel="next" title="Heap Quick Start" href="dsa.heap.quick_start.html" />
+    <link rel="prev" title="HashSet Quick Start" href="dsa.hashset.quick_start.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,15 +43,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">UCXDSA Package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#command-line-installation">Command Line Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#updating-an-existing-version">Updating an Existing Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#determining-current-version">Determining Current Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#quick-usage-guide">Quick Usage Guide</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Core Data Structures</span></p>
@@ -76,10 +69,16 @@
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Hash</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashset.quick_start.html">HashSet Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.quick_start.html">HashTable Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HashTable Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-related-classes">Other Related Classes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tree</span></p>
@@ -124,9 +123,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">UCXDSA Package</li>
+      <li class="breadcrumb-item active">HashTable Quick Start</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/README.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dsa.hashtable.quick_start.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -134,48 +133,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ucxdsa-package">
-<h1>UCXDSA Package<a class="headerlink" href="#ucxdsa-package" title="Link to this heading"></a></h1>
-<p>A collection of classes and functions for use in UC Berkeley Extension’s
-Computer Science X404.1: Data Structures and Algorithms Class.</p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>This package is designed as an educational tool for students to learn and
-experiment with data structures and algorithms. It is written in Python with
-an emphasis on readability and clarity, rather than performance or optimization.
-<strong>Not intended for production use.</strong></p>
-<p>Project repository: <a class="reference external" href="https://github.com/ucxinstructor/dsa_package">UCXDSA on GitHub</a></p>
+  <section id="hashtable-quick-start">
+<h1>HashTable Quick Start<a class="headerlink" href="#hashtable-quick-start" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>A hashtable is a data structure that implements an associative array, using a hash function to map keys to values for efficient lookups.</p>
 </section>
-<section id="command-line-installation">
-<h2>Command Line Installation<a class="headerlink" href="#command-line-installation" title="Link to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ucxdsa
+<section id="creation">
+<h2>Creation<a class="headerlink" href="#creation" title="Link to this heading"></a></h2>
+<p><strong>Import class</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.hashtable</span><span class="w"> </span><span class="kn">import</span> <span class="n">HashTable</span>  <span class="c1"># or the appropriate HashTable class</span>
 </pre></div>
 </div>
-</section>
-<section id="updating-an-existing-version">
-<h2>Updating an Existing Version<a class="headerlink" href="#updating-an-existing-version" title="Link to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>ucxdsa
+<p><strong>Creation</strong></p>
+<p>Create a hashtable with default capacity of 20:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Create a hashtable with a capacity of 100:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="determining-current-version">
-<h2>Determining Current Version<a class="headerlink" href="#determining-current-version" title="Link to this heading"></a></h2>
-<p>To determine the dsa package version, enter the following in Python or Jupyter:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dsa</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dsa</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+<section id="common-operations">
+<h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
+<p><strong>Set</strong></p>
+<p>Set a key-value pair in the hashtable. If key exists, replace the value otherwise, create a new key-pair.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>  <span class="c1"># Set key-value pair</span>
 </pre></div>
 </div>
-<p>or from the terminal</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>show<span class="w"> </span>ucxdsa
+<p><strong>Get</strong></p>
+<p>Get corresponding value of a given key in the hash table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>  <span class="c1"># Get value for key</span>
+</pre></div>
+</div>
+<p><strong>Remove</strong></p>
+<p>Remove key-value pair if specified key is found. Raise KeyError if not found.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>  <span class="c1"># Remove key-value pair</span>
 </pre></div>
 </div>
 </section>
-<section id="quick-usage-guide">
-<h2>Quick Usage Guide<a class="headerlink" href="#quick-usage-guide" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.modulename</span><span class="w"> </span><span class="kn">import</span> <span class="n">classname</span>
-</pre></div>
-</div>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">modulename</span></code> and <code class="docutils literal notranslate"><span class="pre">classname</span></code> with the module and class to be used.</p>
+<section id="other-related-classes">
+<h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="dsa.hashset.html#dsa.hashset.HashSet" title="dsa.hashset.HashSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">dsa.hashset.HashSet</span></code></a></p></li>
+</ul>
 </section>
 </section>
 
@@ -183,8 +185,8 @@ an emphasis on readability and clarity, rather than performance or optimization.
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="UCXDSA documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="TODO.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dsa.hashset.quick_start.html" class="btn btn-neutral float-left" title="HashSet Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.heap.quick_start.html" class="btn btn-neutral float-right" title="Heap Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
