@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Array Quick Start &mdash; ucxdsa  documentation</title>
+  <title>Stack Quick Start &mdash; ucxdsa  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -18,9 +18,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Graph Quick Start" href="dsa.graph.quick_start.html" />
-    <link rel="prev" title="dsa.trie module" href="dsa.trie.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,14 +50,8 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linear Stuctures</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Array Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-related-classes">Other Related Classes</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
@@ -115,9 +107,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Array Quick Start</li>
+      <li class="breadcrumb-item active">Stack Quick Start</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dsa.array.quick_start.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dsa.stack.quick_start.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -125,61 +117,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="array-quick-start">
-<h1>Array Quick Start<a class="headerlink" href="#array-quick-start" title="Link to this heading"></a></h1>
+  <section id="stack-quick-start">
+<h1>Stack Quick Start<a class="headerlink" href="#stack-quick-start" title="Link to this heading"></a></h1>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>An array is a linear data structure that is simple and fast. It provides index-based access to a fixed-size, contiguous block of elements.</p>
+<p>A stack is a linear data structure that follows the Last In, First Out (LIFO) principle. It supports push and pop operations at one end.</p>
 </section>
 <section id="creation">
 <h2>Creation<a class="headerlink" href="#creation" title="Link to this heading"></a></h2>
 <p><strong>Import class</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.array</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>  <span class="c1"># or the appropriate Array class</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.stack</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stack</span>  <span class="c1"># or the appropriate Stack class</span>
 </pre></div>
 </div>
 <p><strong>Creation</strong></p>
-<p>Create an array with a default capacity of 10 element:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Array</span><span class="p">()</span>
+<p>Create a stack with a default capacity of 10 elements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Create an array with a capacity of 100 elements:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<p>Create a stack with a capacity of 100 elements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="common-operations">
 <h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
-<p><strong>Access element</strong></p>
-<p>Retrieve an element by its index. Raises IndexError if the index is out of bounds.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># Access the element at index 5</span>
+<p><strong>Push element</strong></p>
+<p>Push an element into the stack. Raise Exception when trying to push more elements than the capacity.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Push 10 onto the stack</span>
 </pre></div>
 </div>
-<p><strong>Update element</strong></p>
-<p>Assign a new value to an element at a specific index. Raises IndexError if the index is out of bounds.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># Update the element at index 5 to 40</span>
+<p><strong>Pop element</strong></p>
+<p>Pop an element from the stack. Raise Exception when there are no elements to pop.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># Pop the top element</span>
 </pre></div>
 </div>
-<p><strong>Append element</strong></p>
-<p>Append an element to the array. Raise an exception if capacity is exceeded.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Append 10 to the end of the array</span>
-</pre></div>
-</div>
-<p><strong>Insert</strong></p>
-<p>Insert an element at a specified index, shifting existing elements to the right.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Insert 15 at index 2</span>
-</pre></div>
-</div>
-<p><strong>Delete</strong></p>
-<p>Delete an element at a specified index, shifting subsequent elements to the left.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Delete the element at index 3</span>
+<p><strong>Peek element</strong></p>
+<p>Return the element from the top of the stack. Raise Exception if stack is empty.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>  <span class="c1"># Peek at the top element</span>
 </pre></div>
 </div>
 </section>
 <section id="other-related-classes">
 <h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="dsa.array.html#dsa.array.DynamicArray" title="dsa.array.DynamicArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">dsa.array.DynamicArray</span></code></a></p></li>
-<li><p><a class="reference internal" href="dsa.array.html#dsa.array.CircularArray" title="dsa.array.CircularArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">dsa.array.CircularArray</span></code></a></p></li>
+<li><p><a class="reference internal" href="dsa.stack.html#dsa.stack.DynamicStack" title="dsa.stack.DynamicStack"><code class="xref py py-class docutils literal notranslate"><span class="pre">dsa.stack.DynamicStack</span></code></a></p></li>
 </ul>
 </section>
 </section>
@@ -187,10 +168,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dsa.trie.html" class="btn btn-neutral float-left" title="dsa.trie module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dsa.graph.quick_start.html" class="btn btn-neutral float-right" title="Graph Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
