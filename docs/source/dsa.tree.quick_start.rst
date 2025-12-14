@@ -13,7 +13,7 @@ Creation
 
 .. code-block:: python
 
-   from dsa.tree import Tree  # or the appropriate Tree class
+   from dsa.tree import Tree, TreeNode  # or the appropriate Tree class
 
 **Creation**
 
@@ -22,6 +22,32 @@ Create an empty binary search tree:
 .. code-block:: python
 
    t = Tree()
+
+TreeNodes Construction
+---------------------------
+
+**Build a binary search tree using TreeNodes**
+
+.. code-block:: python
+
+   # Create TreeNode instances
+   root = TreeNode(10)
+   root.left = TreeNode(5)
+   root.right = TreeNode(15)
+   root.left.left = TreeNode(3)
+   root.right.right = TreeNode(20)
+
+   # Initialize the Tree with the root
+   t = Tree(root=root)
+This creates the following tree structure:
+
+.. code-block::
+
+       10
+      /  \
+     5    15
+    /      \
+   3        20
 
 Common Operations
 -----------------

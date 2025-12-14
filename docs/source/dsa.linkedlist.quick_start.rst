@@ -28,13 +28,6 @@ Creation
 
    dll = DoublyLinkedList()
 
-**Create from Python list (both types)**
-
-.. code-block:: python
-
-   ll = LinkedList.from_list([1, 2, 3])
-   dll = DoublyLinkedList.from_list([1, 2, 3])
-
 Nodes-Only Construction
 -----------------------
 
@@ -133,12 +126,3 @@ Return value at a specified index. Raise IndexError if index is out of bounds.
 
    first = ll[0]
    first2 = dll[0]
-
-**Convert to/from list**
-
-Create a list with contents of the linked list; or create from a list.
-
-.. code-block:: python
-
-   values = ll.to_list()
-   more = DoublyLinkedList.from_list([5, 6, 7]).to_list()
