@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tree Quick Start &mdash; ucxdsa  documentation</title>
+  <title>Trie Quick Start &mdash; ucxdsa  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Trie Quick Start" href="dsa.trie.quick_start.html" />
-    <link rel="prev" title="Heap Quick Start" href="dsa.heap.quick_start.html" /> 
+    <link rel="next" title="Graph Quick Start" href="dsa.graph.quick_start.html" />
+    <link rel="prev" title="Tree Quick Start" href="dsa.tree.quick_start.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -78,15 +78,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tree Quick Start</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trie Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#treenodes-construction">TreeNodes Construction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-equality">Copy &amp; Equality</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.trie.quick_start.html">Trie Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Graph</span></p>
@@ -123,9 +123,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Tree Quick Start</li>
+      <li class="breadcrumb-item active">Trie Quick Start</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/dsa.tree.quick_start.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dsa.trie.quick_start.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -133,62 +133,93 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="tree-quick-start">
-<h1>Tree Quick Start<a class="headerlink" href="#tree-quick-start" title="Link to this heading"></a></h1>
+  <section id="trie-quick-start">
+<h1>Trie Quick Start<a class="headerlink" href="#trie-quick-start" title="Link to this heading"></a></h1>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>A binary search tree is a data structure that maintains sorted order, allowing efficient search, insertion, and deletion operations.</p>
+<p>A trie (prefix tree) is a tree-based data structure optimized for storing and querying strings, especially for operations based on prefixes.</p>
 </section>
 <section id="creation">
 <h2>Creation<a class="headerlink" href="#creation" title="Link to this heading"></a></h2>
 <p><strong>Import class</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tree</span><span class="p">,</span> <span class="n">TreeNode</span>  <span class="c1"># or the appropriate Tree class</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.trie</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trie</span>
 </pre></div>
 </div>
 <p><strong>Creation</strong></p>
-<p>Create an empty binary search tree:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-<section id="treenodes-construction">
-<h2>TreeNodes Construction<a class="headerlink" href="#treenodes-construction" title="Link to this heading"></a></h2>
-<p><strong>Build a binary search tree using TreeNodes</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create TreeNode instances</span>
-<span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-
-<span class="c1"># Initialize the Tree with the root</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This creates the following tree structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="mi">10</span>
-   <span class="o">/</span>  \
-  <span class="mi">5</span>    <span class="mi">15</span>
- <span class="o">/</span>      \
-<span class="mi">3</span>        <span class="mi">20</span>
+<p>Create an empty trie:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
 <section id="common-operations">
 <h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
 <p><strong>Insert</strong></p>
-<p>Insert a value in the binary search tree.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Insert 10 into the tree</span>
+<p>Insert a word into a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Search</strong></p>
-<p>Search for a value in the binary search tree.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Search for 10</span>
+<p>Search for a word in a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>   <span class="c1"># True</span>
+<span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;appl&quot;</span><span class="p">)</span>    <span class="c1"># False (missing end marker)</span>
+</pre></div>
+</div>
+<p><strong>Search node</strong></p>
+<p>Search for a substring in a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">search_node</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+<span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>      <span class="c1"># True if prefix exists</span>
 </pre></div>
 </div>
 <p><strong>Delete</strong></p>
-<p>Delete a value from the binary search tree.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Delete 10 from the tree</span>
+<p>Delete a word from the trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>   <span class="c1"># False</span>
+</pre></div>
+</div>
+<p><strong>Delete (preorder)</strong></p>
+<p>Delete a word using preorder (Do not use! For demonstration purposes only).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not recommended, shown for completeness</span>
+<span class="n">t</span><span class="o">.</span><span class="n">delete_preorder</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>List words</strong></p>
+<p>Return a list of all words in the trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">list_words</span><span class="p">()</span>   <span class="c1"># e.g., [&quot;app&quot;] after deletions above</span>
+</pre></div>
+</div>
+<p><strong>Build word list</strong></p>
+<p>Helper method to return a list of words given a starting node.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">search_node</span><span class="p">(</span><span class="s2">&quot;ap&quot;</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">build_word_list</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;ap&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Prefix</strong></p>
+<p>Return a list of words that begin with a given prefix.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;bat&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;batch&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">prefix</span><span class="p">(</span><span class="s2">&quot;ba&quot;</span><span class="p">)</span>        <span class="c1"># [&quot;bat&quot;, &quot;batch&quot;]</span>
+</pre></div>
+</div>
+<p><strong>Suggest</strong></p>
+<p>Return a list of close words with a given prefix.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">suggest</span><span class="p">(</span><span class="s2">&quot;batc&quot;</span><span class="p">)</span>     <span class="c1"># Falls back to &quot;bat&quot; prefix → [&quot;batch&quot;]</span>
+</pre></div>
+</div>
+</section>
+<section id="copy-equality">
+<h2>Copy &amp; Equality<a class="headerlink" href="#copy-equality" title="Link to this heading"></a></h2>
+<p><strong>Copy</strong></p>
+<p>Create a deep copy of the Trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Equality</strong></p>
+<p>Compare two Trie objects for value-based equality (all words in the trie).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t3</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">list_words</span><span class="p">():</span>
+         <span class="n">t3</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">==</span> <span class="n">t3</span>    <span class="c1"># True if same words</span>
 </pre></div>
 </div>
 </section>
@@ -198,8 +229,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dsa.heap.quick_start.html" class="btn btn-neutral float-left" title="Heap Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dsa.trie.quick_start.html" class="btn btn-neutral float-right" title="Trie Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dsa.tree.quick_start.html" class="btn btn-neutral float-left" title="Tree Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.graph.quick_start.html" class="btn btn-neutral float-right" title="Graph Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
