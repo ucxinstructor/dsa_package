@@ -48,6 +48,17 @@ class TestGraphFactory(unittest.TestCase):
         
         with self.assertRaises(ValueError):
             Graph.create(graph_type='unknown_type')
+
+    def test_graph_from_dict(self):
+        data = {'A': ['B'], 'B': ['A']}
+        g = Graph.from_dict(data, graph_type='adjacency_list', directed=False, weighted=False)
+        self.assertIsInstance(g, AdjacencyListGraph)
+        self.assertEqual(g.to_dict(), data)
+
+        data_weighted = {'A': {'B': 1}, 'B': {'A': 1}}
+        g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_matrix', directed=False, weighted=True)
+        self.assertIsInstance(g_weighted, AdjacencyMatrixWeightedGraph)
+        self.assertEqual(g_weighted.to_dict(), data_weighted)
             
 class TestAdjacencyListGraph(unittest.TestCase):
     def test_create_undirected(self):
