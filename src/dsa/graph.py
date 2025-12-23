@@ -57,6 +57,33 @@ class Graph:
         else:
             return AdjacencyListGraph(directed=directed, vertices=vertices)
 
+    @staticmethod
+    def from_dict(data: dict, graph_type: str, directed: bool = False, weighted: bool = False) -> object:
+        """ 
+        Create a graph from a dictionary representation using the factory.
+        
+        Args:
+            data (dict): The dictionary representation of the graph.
+            graph_type (str): The type of graph ('adjacency_matrix' or 'adjacency_list').
+            directed (bool): Whether the graph is directed.
+            weighted (bool): Whether the graph is weighted.
+            
+        Returns:
+            An instance of the specified graph class.
+        """
+        if graph_type == 'adjacency_matrix':
+            if weighted:
+                return AdjacencyMatrixWeightedGraph.from_dict(data, directed=directed)
+            else:
+                return AdjacencyMatrixGraph.from_dict(data, directed=directed)
+        elif graph_type == 'adjacency_list':
+            if weighted:
+                return AdjacencyListWeightedGraph.from_dict(data, directed=directed)
+            else:
+                return AdjacencyListGraph.from_dict(data, directed=directed)
+        else:
+            raise ValueError("Invalid graph type. Use 'adjacency_matrix' or 'adjacency_list'.")
+
 class AdjacencyMatrixGraph:
     """ 
     An unweighted adjacency matrix graph implementation.
@@ -341,6 +368,25 @@ class AdjacencyMatrixGraph:
         
         return matrix_dict
 
+    @classmethod
+    def from_dict(cls, data: dict, directed: bool = False):
+        """ 
+        Create a graph from a dictionary representation.
+        
+        Args:
+            data (dict): The dictionary representation of the graph.
+            directed (bool): Whether the graph is directed.
+            
+        Returns:
+            An instance of the graph class.
+        """
+        vertices = list(data.keys())
+        graph = cls(directed=directed, vertices=vertices)
+        for start_node, neighbors in data.items():
+            for end_node in neighbors:
+                graph.add_edge(start_node, end_node)
+        return graph
+
 class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     """ 
     A weighted adjacency matrix graph implementation
@@ -464,6 +510,25 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         """
         index = self.label_index[vertex]
         return {self.labels[i] : self._matrix[index][i] for i in range(len(self._matrix[index])) if self._matrix[index][i]}
+
+    @classmethod
+    def from_dict(cls, data: dict, directed: bool = False):
+        """ 
+        Create a weighted graph from a dictionary representation.
+        
+        Args:
+            data (dict): The dictionary representation of the graph.
+            directed (bool): Whether the graph is directed.
+            
+        Returns:
+            An instance of the weighted graph class.
+        """
+        vertices = list(data.keys())
+        graph = cls(directed=directed, vertices=vertices)
+        for start_node, neighbors in data.items():
+            for end_node, weight in neighbors.items():
+                graph.add_edge(start_node, end_node, weight)
+        return graph
 
 class AdjacencyListGraph:
     """ 
@@ -698,6 +763,25 @@ class AdjacencyListGraph:
         """
         return {key: values.copy() for key, values in self._adjacents.items()}
     
+    @classmethod
+    def from_dict(cls, data: dict, directed: bool = False):
+        """ 
+        Create a graph from a dictionary representation.
+        
+        Args:
+            data (dict): The dictionary representation of the graph.
+            directed (bool): Whether the graph is directed.
+            
+        Returns:
+            An instance of the graph class.
+        """
+        vertices = list(data.keys())
+        graph = cls(directed=directed, vertices=vertices)
+        for start_node, neighbors in data.items():
+            for end_node in neighbors:
+                graph.add_edge(start_node, end_node)
+        return graph
+    
 class AdjacencyListWeightedGraph(AdjacencyListGraph):
     """ 
     A weighted adjacency list vertex implementation in Python
@@ -837,4 +921,23 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
                 if start != end and (end, start, weight) not in edges:  
                     edges.append((start, end, weight))
         return edges
+
+    @classmethod
+    def from_dict(cls, data: dict, directed: bool = False):
+        """ 
+        Create a weighted graph from a dictionary representation.
+        
+        Args:
+            data (dict): The dictionary representation of the graph.
+            directed (bool): Whether the graph is directed.
+            
+        Returns:
+            An instance of the weighted graph class.
+        """
+        vertices = list(data.keys())
+        graph = cls(directed=directed, vertices=vertices)
+        for start_node, neighbors in data.items():
+            for end_node, weight in neighbors.items():
+                graph.add_edge(start_node, end_node, weight)
+        return graph
 

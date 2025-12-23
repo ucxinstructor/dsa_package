@@ -89,6 +89,32 @@ class TestAdjacencyMatrixGraph(unittest.TestCase):
         # Edge List
         self.assertSetEqual(set(g.edges()), {('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E'), ('E', 'A')})
 
+    def test_from_dict(self):
+        # Unweighted
+        data = {
+            'A': ['B', 'C'],
+            'B': ['A', 'C', 'D'],
+            'C': ['A', 'B', 'D'],
+            'D': ['B', 'C', 'E'],
+            'E': ['D', 'F'],
+            'F': ['E', 'G'],
+            'G': ['F']
+        }
+        g = AdjacencyMatrixGraph.from_dict(data, directed=False)
+        self.assertEqual(g.to_dict(), data)
+        self.assertEqual(g.order(), 7)
+        self.assertEqual(g.size(), 8)
+
+        # Weighted
+        data_weighted = {
+            'A': {'B': 1, 'C': 2},
+            'B': {'A': 1, 'C': 3},
+            'C': {'A': 2, 'B': 3}
+        }
+        g_weighted = AdjacencyMatrixWeightedGraph.from_dict(data_weighted, directed=False)
+        self.assertEqual(g_weighted.to_dict(), data_weighted)
+        self.assertEqual(g_weighted.order(), 3)
+        self.assertEqual(g_weighted.size(), 3)
 
     ## 4. MUTATION TESTS
 
