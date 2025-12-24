@@ -79,6 +79,26 @@ Get the element at the right of the deque without removing it. Raises an excepti
 .. code-block:: python
 
    value = d.peek_right()  # Peek at the right
+   
+   
+**Printing Contents**
+
+Use print() to print the elements of the dequeue.
+
+.. code-block:: python
+
+  d = Deque()
+  d.push_front(1)
+  d.push_front(2)
+  d.push_back(3)
+  print(d)
+
+Outputs the following:
+
+.. code-block:: python
+
+   [2, 1, 3] Count: 3 Capacity: 10
+
 
 Other Related Classes
 ---------------------

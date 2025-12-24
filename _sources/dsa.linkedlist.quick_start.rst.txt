@@ -126,3 +126,18 @@ Return value at a specified index. Raise IndexError if index is out of bounds.
 
    first = ll[0]
    first2 = dll[0]
+
+**Printing Contents**
+
+Use print() to print the elements of the linked list.
+
+.. code-block:: python
+
+   ll = LinkedList.from_list([1, 2, 3, 4])
+   print(ll)
+
+Outputs the following:
+
+.. code-block:: python
+
+   [1, 2, 3, 4] Count: 4

@@ -75,3 +75,59 @@ Delete a value from the binary search tree.
 .. code-block:: python
 
    t.delete(10)  # Delete 10 from the tree
+   
+   
+**Printing Contents**
+
+Use print method to print the elements of the tree.
+
+.. code-block:: python
+
+   t = Tree()
+   t.insert(20)
+   t.insert(10)
+   t.insert(30)
+   
+   t.print()
+
+Outputs the following (note that the output is rotated 90 degrees to the left):
+
+.. code-block:: python
+
+     30
+  20
+     10
+     
+Alternative way to print the tree:
+
+.. code-block:: python
+   
+   from dsa.pretty_print import tree_print
+   tree_print(t)
+
+Outputs the following:
+
+.. code-block:: python   
+
+    20
+  10 30
+
+
+Use the TreeDraw class to draw a visual representation of a tree.
+
+.. code-block:: python   
+
+   from dsa.draw import TreeDraw
+   t = Tree()
+   t.insert(20)
+   t.insert(10)
+   t.insert(30)
+
+   td = TreeDraw(t)
+   td.draw()
+
+.. figure:: images/tree.png
+   :alt: Tree structure image
+   :width: 400px
+
+   Example of a Tree structure using TreeDraw.

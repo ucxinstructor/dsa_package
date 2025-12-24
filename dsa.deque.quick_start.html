@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="HashSet Quick Start" href="dsa.hashset.quick_start.html" />
-    <link rel="prev" title="Stack Quick Start" href="dsa.stack.quick_start.html" /> 
+    <link rel="next" title="Linked List Quick Start" href="dsa.linkedlist.quick_start.html" />
+    <link rel="prev" title="Queue Quick Start" href="dsa.queue.quick_start.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,10 +55,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deque Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
@@ -70,6 +70,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.linkedlist.quick_start.html">Linked List Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
 </ul>
@@ -82,10 +83,10 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tree</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.quick_start.html">Trie Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
@@ -103,10 +104,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.quick_start.html">Draw Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
 </ul>
 
         </div>
@@ -187,6 +189,19 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">peek_right</span><span class="p">()</span>  <span class="c1"># Peek at the right</span>
 </pre></div>
 </div>
+<p><strong>Printing Contents</strong></p>
+<p>Use print() to print the elements of the dequeue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Deque</span><span class="p">()</span>
+<span class="n">d</span><span class="o">.</span><span class="n">push_front</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">push_front</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Outputs the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="n">Count</span><span class="p">:</span> <span class="mi">3</span> <span class="n">Capacity</span><span class="p">:</span> <span class="mi">10</span>
+</pre></div>
+</div>
 </section>
 <section id="other-related-classes">
 <h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
@@ -200,8 +215,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dsa.stack.quick_start.html" class="btn btn-neutral float-left" title="Stack Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dsa.hashset.quick_start.html" class="btn btn-neutral float-right" title="HashSet Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dsa.queue.quick_start.html" class="btn btn-neutral float-left" title="Queue Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.linkedlist.quick_start.html" class="btn btn-neutral float-right" title="Linked List Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

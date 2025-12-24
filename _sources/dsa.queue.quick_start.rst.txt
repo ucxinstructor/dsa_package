@@ -55,6 +55,25 @@ Return the element in front of the queue. Raise Exception if queue is empty.
 .. code-block:: python
 
    value = q.peek()  # Peek at the front element
+   
+**Printing Contents**
+
+Use print() to print the elements of the queue.
+
+.. code-block:: python
+
+   q = Queue()
+   q.enqueue(1)
+   q.enqueue(2)
+   q.enqueue(3)
+   print(q)
+
+Outputs the following:
+
+.. code-block:: python
+
+   [1, 2, 3] Count: 3 Capacity: 10
+
 
 Other Related Classes
 ---------------------

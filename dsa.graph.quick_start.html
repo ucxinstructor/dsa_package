@@ -55,15 +55,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.quick_start.html">Deque Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.linkedlist.quick_start.html">Linked List Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
 </ul>
@@ -76,10 +77,10 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tree</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.quick_start.html">Trie Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
@@ -89,7 +90,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-related-classes">Other Related Classes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
@@ -103,10 +103,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.quick_start.html">Draw Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
 </ul>
 
         </div>
@@ -168,17 +169,120 @@ Create a Graph</p>
 </section>
 <section id="common-operations">
 <h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Add Vertices and Edges
-- add_vertex(v)
-- add_edge(u, v, weight=None)</p></li>
-<li><p>Query
-- has_edge(u, v)
-- has_vertex(v)</p></li>
+<p>Add a vertex to a graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">create_adjacency_list</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add an edge to a graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#   omit weight for non-weighted graphs: g.add_edge(&quot;A&quot;, &quot;B&quot;)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Existence Methods</dt><dd><ul class="simple">
+<li><p>Vertex existence</p></li>
+<li><p>Edge existence</p></li>
 </ul>
-</section>
-<section id="other-related-classes">
-<h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">Graph</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">create_adjacency_matrix</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_vertex</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">has_vertex</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span> <span class="c1"># True</span>
+<span class="n">g</span><span class="o">.</span><span class="n">has_vertex</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span> <span class="c1"># True</span>
+<span class="n">g</span><span class="o">.</span><span class="n">has_vertex</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span> <span class="c1"># False</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span> <span class="c1"># True</span>
+<span class="n">g</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span> <span class="c1"># True</span>
+<span class="n">g</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span> <span class="c1"># False</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>List Methods</dt><dd><ul class="simple">
+<li><p>List of vertices</p></li>
+<li><p>List of edges</p></li>
+<li><p>List of adjacents from a given edge</p></li>
+</ul>
+</dd>
+</dl>
+<p>To list all of the vertices in a graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To list all of the edges in a graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Output (starting vertex, ending vertex and weight (if weighted graph) as a list of tuples):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>To list all of the adjacents from a given edge in a graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">adjacents</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To list all of the adjacents from a given edge in a graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">adjacent_items</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output as a list of tuples (includes weight in a weighted graph):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>View contents</p>
+<p>To list the contents of an adjacency matrix graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">print_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="o">|</span>  <span class="n">A</span>   <span class="n">B</span>   <span class="n">C</span>
+<span class="o">----------------</span>
+ <span class="n">A</span> <span class="o">|</span>      <span class="mi">1</span>   <span class="mi">2</span>
+ <span class="n">B</span> <span class="o">|</span>          <span class="mi">3</span>
+ <span class="n">C</span> <span class="o">|</span>
+</pre></div>
+</div>
+<p>Use the GraphDraw class to draw a visual representation of a graph.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.draw</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphDraw</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">create_adjacency_matrix</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># accepts any graph type</span>
+<span class="n">gd</span> <span class="o">=</span> <span class="n">GraphDraw</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">gd</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="images/graph.png"><img alt="Graph structure image" src="images/graph.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Example of a Graph structure using GraphDraw.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 

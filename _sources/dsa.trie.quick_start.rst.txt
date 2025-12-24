@@ -106,6 +106,29 @@ Return a list of close words with a given prefix.
 
 	t.suggest("batc")     # Falls back to "bat" prefix → ["batch"]
 
+
+**Printing Contents**
+
+Use the TrieDraw class to draw a visual representation of a trie.
+
+.. code-block:: python
+
+   from dsa.draw import TrieDraw
+
+   t = Trie()
+   t.insert("cab")
+   t.insert("car")
+   t.insert("cut")
+   
+   td = TrieDraw(t)
+   td.draw()
+
+.. figure:: images/trie.png
+   :alt: Trie structure image
+   :width: 400px
+
+   Example of a Trie structure using TrieDraw.
+
 Copy & Equality
 ---------------
 

@@ -31,12 +31,12 @@ Version: |version|
    dsa.array.quick_start
    dsa.array
 
-   dsa.queue.quick_start
-   dsa.queue
-
    dsa.stack.quick_start
    dsa.stack
    
+   dsa.queue.quick_start
+   dsa.queue
+
    dsa.deque.quick_start
    dsa.deque
 
@@ -44,7 +44,7 @@ Version: |version|
    :maxdepth: 2
    :caption: Linked List
 
-   dsa.singlylinkedlist.quick_start
+   dsa.linkedlist.quick_start
    dsa.singlylinkedlist
    dsa.doublylinkedlist
 
@@ -62,10 +62,10 @@ Version: |version|
    :maxdepth: 2
    :caption: Tree
 
-   dsa.heap.quick_start
-   dsa.heap
    dsa.tree.quick_start
    dsa.tree
+   dsa.heap.quick_start
+   dsa.heap
    dsa.trie.quick_start
    dsa.trie
 
@@ -89,7 +89,8 @@ Version: |version|
    :maxdepth: 2
    :caption: Helper Modules
 
-   dsa.sorttools
-   dsa.generators
+   dsa.draw.quick_start
    dsa.draw
    dsa.pretty_print
+   dsa.sorttools
+   dsa.generators
