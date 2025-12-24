@@ -71,6 +71,21 @@ Delete an element at a specified index, shifting subsequent elements to the left
 .. code-block:: python
 
    a.delete(3)  # Delete the element at index 3
+   
+**Printing Contents**
+
+Use print() to print the elements of the array.
+
+.. code-block:: python
+
+   a = Array.from_list([1, 2, 3, 4])
+   print(a)
+
+Outputs the following:
+
+.. code-block:: python
+
+   [1, 2, 3, 4] Count: 4 Capacity: 4
 
 Other Related Classes
 ---------------------

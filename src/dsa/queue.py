@@ -143,12 +143,8 @@ class Queue:
             A string with details of the queue.
         """
         ordered_list = self.to_ordered_list()
-        # arr = []
-        # for i in range(self.count):
-        #     index = (i + self._front) % len(self._array)
-        #     arr.append(str(self._array[index]))
         arrstr = ", ".join([str(e) for e in ordered_list])
-        return f"[{arrstr}] count: {self.count} Capacity: {self.capacity()}"
+        return f"[{arrstr}] Count: {self.count} Capacity: {self.capacity()}"
     
     def __len__(self):
         """

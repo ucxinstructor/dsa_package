@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trie Quick Start &mdash; ucxdsa  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graph Quick Start" href="dsa.graph.quick_start.html" />
+    <link rel="prev" title="Heap Quick Start" href="dsa.heap.quick_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ucxdsa
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Data Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linear Structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.deque.quick_start.html">Deque Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.linkedlist.quick_start.html">Linked List Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Hash</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.quick_start.html">HashSet Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">dsa.hashset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.quick_start.html">HashTable Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">dsa.hashtable module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tree</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trie Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-operations">Common Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-equality">Copy &amp; Equality</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.quick_start.html">Graph Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">dsa.graph module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph_traversal.html">dsa.graph_traversal module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.dijkstra.html">dsa.dijkstra module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.prim.html">dsa.prim module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.huffman.html">dsa.huffman module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.quick_start.html">Draw Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">dsa.draw module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">dsa.pretty_print module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">dsa.sorttools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">dsa.generators module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ucxdsa</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Trie Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dsa.trie.quick_start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trie-quick-start">
+<h1>Trie Quick Start<a class="headerlink" href="#trie-quick-start" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>A trie (prefix tree) is a tree-based data structure optimized for storing and querying strings, especially for operations based on prefixes.</p>
+</section>
+<section id="creation">
+<h2>Creation<a class="headerlink" href="#creation" title="Link to this heading"></a></h2>
+<p><strong>Import class</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.trie</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trie</span>
+</pre></div>
+</div>
+<p><strong>Creation</strong></p>
+<p>Create an empty trie:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="common-operations">
+<h2>Common Operations<a class="headerlink" href="#common-operations" title="Link to this heading"></a></h2>
+<p><strong>Insert</strong></p>
+<p>Insert a word into a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Search</strong></p>
+<p>Search for a word in a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>   <span class="c1"># True</span>
+<span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;appl&quot;</span><span class="p">)</span>    <span class="c1"># False (missing end marker)</span>
+</pre></div>
+</div>
+<p><strong>Search node</strong></p>
+<p>Search for a substring in a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">search_node</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+<span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>      <span class="c1"># True if prefix exists</span>
+</pre></div>
+</div>
+<p><strong>Delete</strong></p>
+<p>Delete a word from the trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span>   <span class="c1"># False</span>
+</pre></div>
+</div>
+<p><strong>Delete (preorder)</strong></p>
+<p>Delete a word using preorder (Do not use! For demonstration purposes only).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not recommended, shown for completeness</span>
+<span class="n">t</span><span class="o">.</span><span class="n">delete_preorder</span><span class="p">(</span><span class="s2">&quot;app&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>List words</strong></p>
+<p>Return a list of all words in the trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">list_words</span><span class="p">()</span>   <span class="c1"># e.g., [&quot;app&quot;] after deletions above</span>
+</pre></div>
+</div>
+<p><strong>Build word list</strong></p>
+<p>Helper method to return a list of words given a starting node.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">search_node</span><span class="p">(</span><span class="s2">&quot;ap&quot;</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">build_word_list</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;ap&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Prefix</strong></p>
+<p>Return a list of words that begin with a given prefix.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;bat&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;batch&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">prefix</span><span class="p">(</span><span class="s2">&quot;ba&quot;</span><span class="p">)</span>        <span class="c1"># [&quot;bat&quot;, &quot;batch&quot;]</span>
+</pre></div>
+</div>
+<p><strong>Suggest</strong></p>
+<p>Return a list of close words with a given prefix.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">suggest</span><span class="p">(</span><span class="s2">&quot;batc&quot;</span><span class="p">)</span>     <span class="c1"># Falls back to &quot;bat&quot; prefix → [&quot;batch&quot;]</span>
+</pre></div>
+</div>
+<p><strong>Printing Contents</strong></p>
+<p>Use the TrieDraw class to draw a visual representation of a trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dsa.draw</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrieDraw</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;cab&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;car&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;cut&quot;</span><span class="p">)</span>
+
+<span class="n">td</span> <span class="o">=</span> <span class="n">TrieDraw</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="images/trie.png"><img alt="Trie structure image" src="images/trie.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Example of a Trie structure using TrieDraw.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="copy-equality">
+<h2>Copy &amp; Equality<a class="headerlink" href="#copy-equality" title="Link to this heading"></a></h2>
+<p><strong>Copy</strong></p>
+<p>Create a deep copy of the Trie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Equality</strong></p>
+<p>Compare two Trie objects for value-based equality (all words in the trie).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t3</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">list_words</span><span class="p">():</span>
+         <span class="n">t3</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">==</span> <span class="n">t3</span>    <span class="c1"># True if same words</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dsa.heap.quick_start.html" class="btn btn-neutral float-left" title="Heap Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.graph.quick_start.html" class="btn btn-neutral float-right" title="Graph Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Carl Limsico.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

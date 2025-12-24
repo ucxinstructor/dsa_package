@@ -50,15 +50,63 @@ class TestGraphFactory(unittest.TestCase):
             Graph.create(graph_type='unknown_type')
 
     def test_graph_from_dict(self):
-        data = {'A': ['B'], 'B': ['A']}
-        g = Graph.from_dict(data, graph_type='adjacency_list', directed=False, weighted=False)
-        self.assertIsInstance(g, AdjacencyListGraph)
-        self.assertEqual(g.to_dict(), data)
+        # adjacency list graphs
+        dict_tests = [
+            {'A': ['B'], 'B': ['A']},
+            {'A': ['B', 'C'], 'B': ['A', 'C'], 'C': ['A', 'B']},
+            {'1': ['2', '3'], '2': ['1'], '3': ['1']},
+            {'X': ['Y'], 'Y': ['X', 'Z'], 'Z': ['Y']},
+            {}
+        ]           
 
-        data_weighted = {'A': {'B': 1}, 'B': {'A': 1}}
-        g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_matrix', directed=False, weighted=True)
-        self.assertIsInstance(g_weighted, AdjacencyMatrixWeightedGraph)
-        self.assertEqual(g_weighted.to_dict(), data_weighted)
+        for data in dict_tests:
+            g = Graph.from_dict(data, graph_type='adjacency_list', directed=False, weighted=False)
+            self.assertIsInstance(g, AdjacencyListGraph)
+            self.assertEqual(g.to_dict(), data)
+
+            g = Graph.from_dict(data, graph_type='adjacency_list', directed=True, weighted=False)
+            self.assertIsInstance(g, AdjacencyListGraph)
+            self.assertEqual(g.to_dict(), data)
+
+        dict_weighted_tests = [
+            {'A': {'B': 1}, 'B': {'A': 1}},
+            {'A': {'B': 2, 'C': 3}, 'B': {'A': 2, 'C': 4}, 'C': {'A': 3, 'B': 4}},
+            {'1': {'2': 5, '3': 10}, '2': {'1': 5}, '3': {'1': 10}},
+            {'X': {'Y': 1}, 'Y': {'X': 1, 'Z': 2}, 'Z': {'Y': 2}},
+            {}
+        ]
+
+        for data_weighted in dict_weighted_tests:
+            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_list', directed=False, weighted=True)
+            self.assertIsInstance(g_weighted, AdjacencyListWeightedGraph)
+            self.assertEqual(g_weighted.to_dict(), data_weighted)
+
+            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_list', directed=True, weighted=True)
+            self.assertIsInstance(g_weighted, AdjacencyListWeightedGraph)
+            self.assertEqual(g_weighted.to_dict(), data_weighted)
+
+        # adjacency matrix graphs
+        for data in dict_tests:
+            g = Graph.from_dict(data, graph_type='adjacency_matrix', directed=False, weighted=False)
+            self.assertIsInstance(g, AdjacencyMatrixGraph)
+            self.assertEqual(g.to_dict(), data)
+
+            g = Graph.from_dict(data, graph_type='adjacency_matrix', directed=True, weighted=False)
+            self.assertIsInstance(g, AdjacencyMatrixGraph)
+            self.assertEqual(g.to_dict(), data)
+
+        for data_weighted in dict_weighted_tests:
+            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_matrix', directed=False, weighted=True)
+            self.assertIsInstance(g_weighted, AdjacencyMatrixWeightedGraph)
+            self.assertEqual(g_weighted.to_dict(), data_weighted)
+
+            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_matrix', directed=True, weighted=True)
+            self.assertIsInstance(g_weighted, AdjacencyMatrixWeightedGraph)
+            self.assertEqual(g_weighted.to_dict(), data_weighted)
+
+
+        
+        
             
 class TestAdjacencyListGraph(unittest.TestCase):
     def test_create_undirected(self):

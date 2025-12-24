@@ -55,6 +55,25 @@ Return the element from the top of the stack. Raise Exception if stack is empty.
 .. code-block:: python
 
    value = s.peek()  # Peek at the top element
+   
+**Printing Contents**
+
+Use print() to print the elements of the stack.
+
+.. code-block:: python
+
+   s = Stack()
+   s.push(1)
+   s.push(2)
+   s.push(3)
+   print(s)
+
+Outputs the following:
+
+.. code-block:: python
+
+   [1, 2, 3] Top: 2 Capacity: 10
+
 
 Other Related Classes
 ---------------------

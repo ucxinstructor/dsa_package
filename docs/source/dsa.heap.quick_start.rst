@@ -17,11 +17,11 @@ Creation
 
 **Creation**
 
-Create an empty heap:
+Create an empty heap (max heap). Use MinHeap() to create a min heap:
 
 .. code-block:: python
 
-   h = Heap()
+   h = Heap() 
 
 Common Operations
 -----------------
@@ -49,6 +49,65 @@ Get the max value of the max heap.
 .. code-block:: python
 
    value = h.peek()  # Get the max value without removing
+   
+   
+**Printing Contents**
+
+Use print() method to print the elements of the heap.
+
+.. code-block:: python
+
+   h = Heap()
+   h.insert(1)
+   h.insert(2)
+   h.insert(3)
+   h.insert(4)
+   
+   h.print()
+
+Outputs the following:
+
+.. code-block:: python
+
+   4
+   3 2
+   1
+   
+Alternative way to print the heap:
+
+.. code-block:: python
+   
+   from dsa.pretty_print import heap_print
+   heap_print(h)
+
+Outputs the following:
+
+.. code-block:: python
+   
+       4
+    3     2
+   1
+
+Use the HeapDraw class to draw a visual representation of a heap.
+
+.. code-block:: python   
+
+   from dsa.draw import HeapDraw
+   h = Heap()
+   h.insert(1)
+   h.insert(2)
+   h.insert(3)
+   h.insert(4)
+ 
+   hd = HeapDraw(h)
+   hd.draw()
+
+.. figure:: images/heap.png
+   :alt: Heap structure image
+   :width: 400px
+
+   Example of a Heap structure using HeapDraw.
+
 
 Other Related Classes
 ---------------------

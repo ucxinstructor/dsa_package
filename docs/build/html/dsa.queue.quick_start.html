@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Stack Quick Start" href="dsa.stack.quick_start.html" />
-    <link rel="prev" title="Array Quick Start" href="dsa.array.quick_start.html" /> 
+    <link rel="next" title="Deque Quick Start" href="dsa.deque.quick_start.html" />
+    <link rel="prev" title="Stack Quick Start" href="dsa.stack.quick_start.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,6 +55,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">dsa.array module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Queue Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creation">Creation</a></li>
@@ -63,14 +65,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">dsa.queue module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">dsa.stack module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.quick_start.html">Deque Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">dsa.deque module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.quick_start.html">SinglyLinkedList Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.linkedlist.quick_start.html">Linked List Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">dsa.singlylinkedlist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">dsa.doublylinkedlist module</a></li>
 </ul>
@@ -83,10 +83,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tree</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">dsa.tree module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">dsa.heap module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.trie.quick_start.html">Trie Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">dsa.trie module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Graph</span></p>
@@ -172,6 +173,19 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>  <span class="c1"># Peek at the front element</span>
 </pre></div>
 </div>
+<p><strong>Printing Contents</strong></p>
+<p>Use print() to print the elements of the queue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="n">q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Outputs the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="n">Count</span><span class="p">:</span> <span class="mi">3</span> <span class="n">Capacity</span><span class="p">:</span> <span class="mi">10</span>
+</pre></div>
+</div>
 </section>
 <section id="other-related-classes">
 <h2>Other Related Classes<a class="headerlink" href="#other-related-classes" title="Link to this heading"></a></h2>
@@ -186,8 +200,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dsa.array.quick_start.html" class="btn btn-neutral float-left" title="Array Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dsa.stack.quick_start.html" class="btn btn-neutral float-right" title="Stack Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dsa.stack.quick_start.html" class="btn btn-neutral float-left" title="Stack Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dsa.deque.quick_start.html" class="btn btn-neutral float-right" title="Deque Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

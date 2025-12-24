@@ -55,3 +55,24 @@ Remove an item from the set.
 .. code-block:: python
 
    hs.remove(10)  # Remove 10 from the set
+
+
+**Printing Contents**
+
+Use print() to print the contents of the set.
+
+.. code-block:: python
+
+   hs = HashSet()
+   hs.add(1)
+   hs.add(2)
+   hs.add(3)
+   hs.add(1)
+   
+   print(hs)
+
+Outputs the following:
+
+.. code-block:: python
+
+   HashSet([1, 2, 3])

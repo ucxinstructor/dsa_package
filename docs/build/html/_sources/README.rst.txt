@@ -1,15 +1,16 @@
 UCXDSA Package
 =============================================================
 
-A collection of classes and functions for use in UC Berkeley Extension's 
+A collection of data structures and algorithms implemented in Pythonfor use in UC Berkeley Extension's 
 Computer Science X404.1: Data Structures and Algorithms Class.
+
 
 Overview
 --------
 
-This package is designed as an educational tool for students to learn and 
-experiment with data structures and algorithms. It is written in Python with 
-an emphasis on readability and clarity, rather than performance or optimization. 
+This package is an educational tool for students to learn and experiment with data structures and algorithms. It helps learners understand core concepts and allows developers to explore implementations.
+
+Written in Python, the package emphasizes readability and clarity over performance or optimization.
 **Not intended for production use.**
 
 Project repository: `UCXDSA on GitHub <https://github.com/ucxinstructor/dsa_package>`_
@@ -51,4 +52,30 @@ Quick Usage Guide
    from dsa.modulename import classname
 
 Replace ``modulename`` and ``classname`` with the module and class to be used.
+
+
+
+Contributing
+------------
+
+We welcome contributions! You can help by:
+
+- Reporting bugs or unexpected behavior
+- Suggesting new features or improvements
+- Submitting pull requests with code enhancements or documentation updates
+
+How to Contribute
+-----------------
+
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Commit your changes with clear messages.
+4. Submit a pull request explaining your changes.
+
+Reporting Issues
+----------------
+
+Please use the  `GitHub Issues￼ page <https://github.com/ucxinstructor/dsa_package/issues>`_  to report any problems or request features. Provide detailed information so we can reproduce and address the issue efficiently.
+
+Thank you for helping improve this project!
 
