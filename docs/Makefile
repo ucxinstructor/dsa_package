@@ -18,6 +18,7 @@ apidoc:
 # Build HTML docs (depends on apidoc)
 html: apidoc
 	@$(SPHINXBUILD) -b html $(SPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)/html"
+	@cp -r $(SOURCEDIR)/images $(BUILDDIR)/html/
 	@echo "Build finished. HTML pages are in $(BUILDDIR)/html."
 
 # Catch-all: forward unknown targets to Sphinx
