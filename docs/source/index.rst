@@ -29,68 +29,68 @@ Version: |version|
    :caption: Linear Structures
    
    dsa.array.quick_start
-   dsa.array
+   Array Module <dsa.array>
 
    dsa.stack.quick_start
-   dsa.stack
+   Stack Module <dsa.stack>
    
    dsa.queue.quick_start
-   dsa.queue
+   Queue Module <dsa.queue>
 
    dsa.deque.quick_start
-   dsa.deque
+   Deque Module <dsa.deque>
 
 .. toctree::
    :maxdepth: 2
    :caption: Linked List
 
    dsa.linkedlist.quick_start
-   dsa.singlylinkedlist
-   dsa.doublylinkedlist
+   Singly Linked List Module <dsa.singlylinkedlist>
+   Doubly Linked List Module <dsa.doublylinkedlist>
 
 .. toctree::
    :maxdepth: 2
    :caption: Hash
 
    dsa.hashset.quick_start
-   dsa.hashset
+   HashSet Module <dsa.hashset>
 
    dsa.hashtable.quick_start
-   dsa.hashtable
+   HashTable Module <dsa.hashtable>
 
 .. toctree::
    :maxdepth: 2
    :caption: Tree
 
    dsa.tree.quick_start
-   dsa.tree
+   Tree Module <dsa.tree>
    dsa.heap.quick_start
-   dsa.heap
+   Heap Module <dsa.heap>
    dsa.trie.quick_start
-   dsa.trie
+   Trie Module <dsa.trie>
 
 .. toctree::
    :maxdepth: 2
    :caption: Graph
 
    dsa.graph.quick_start
-   dsa.graph
+   Graph Module <dsa.graph>
 
 .. toctree::
    :maxdepth: 2
    :caption: Algorithms
 
-   dsa.graph_traversal
-   dsa.dijkstra
-   dsa.prim
-   dsa.huffman
+   Graph Module <dsa.graph_traversal>
+   Dijkstra Module <dsa.dijkstra>
+   Prim Module <dsa.prim>
+   Huffman Module <dsa.huffman>
 
 .. toctree::
    :maxdepth: 2
    :caption: Helper Modules
 
    dsa.draw.quick_start
-   dsa.draw
-   dsa.pretty_print
-   dsa.sorttools
-   dsa.generators
+   Draw Module <dsa.draw>
+   Pretty Print Module <dsa.pretty_print>
+   Sort Tools Module <dsa.sorttools>
+   Generator Module <dsa.generators>
