@@ -43,8 +43,13 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2025.12.24
+* Added from_dict() import methods to Graph classes
+* Added more quick start documentation for the main data structures
+* Thank you for your work, Rishab!
+
 ## 2025.12.9
-* Renamed dijkstras to dijkstra
+* Renamed class dijkstras to dijkstra
 * Cleaned up graph bugs and added adjacent_items() for weighted graphs (vertex and weight) pair
 * adjacents() now returns a list of adjacent vertices only 
 
