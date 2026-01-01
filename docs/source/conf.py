@@ -22,7 +22,7 @@ extensions = [
 ]
 
 autosummary_generate = True  # generate stub files automatically
-
+ 
 # Mock imports to prevent hanging if packages are missing
 autodoc_mock_imports = ["matplotlib", "networkx"]
 
@@ -31,4 +31,6 @@ html_static_path = ["_static"]
 exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = "sphinx_rtd_theme"
+html_theme = "sphinxawesome_theme"
+html_permalinks = False
+html_css_files = ['custom.css']

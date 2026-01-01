@@ -42,6 +42,9 @@ htmlcov/
 
 _build/
 
+# Sphinx build directory
+docs/build/
+
 # Sphinx cache files
 .doctrees/
 docs2/
