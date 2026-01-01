@@ -1,0 +1,25 @@
+/* Custom CSS for Sphinx Awesome Theme */
+
+/* Change font size of sidebar headings (captions) - multiple selectors for compatibility */
+.toctree-wrapper p.caption,
+p.caption,
+.caption-text,
+nav .caption,
+aside .caption,
+.sphinxsidebar .caption,
+.sidebar .caption,
+div[role="navigation"] .caption {
+    font-size: 1.2rem !important;  /* Larger heading size */
+    font-weight: 700 !important;   /* Bolder */
+    /* margin-top: 1.2em !important;
+    margin-bottom: 0.5em !important; */
+}
+
+/* Hide the ⌘K keyboard shortcut indicator in search box */
+.search-icon kbd,
+kbd.search-shortcut,
+.headerlink kbd,
+input[type="search"] + kbd,
+form kbd {
+    display: none !important;
+}

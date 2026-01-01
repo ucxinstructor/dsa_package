@@ -1,89 +1,157 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html lang="en"
+      data-content_root="./"
+      x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }"
+      x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+      class="scroll-smooth"
+      :class="{'dark': darkMode === 'dark' || (darkMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)}"
+>
 <head>
-  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; ucxdsa  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-
+  <meta charset="utf-8" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <title>Index | ucxdsa  documentation</title>
+    <meta property="og:title" content="Index | ucxdsa  documentation" />
+    <meta name="twitter:title" content="Index | ucxdsa  documentation" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=e72c8e07" />
+      <link rel="stylesheet" type="text/css" href="_static/theme.css?v=42baaae4" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b32cff1b" />
+        <link rel="search" title="Search" href="search.html" />
+        <link rel="index" title="Index" href="#" />
+
+    <script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
 </head>
+  <body x-data="{ showSidebar: false, showScrollTop: false }" class="min-h-screen font-sans antialiased bg-background text-foreground" :class="{ 'overflow-hidden': showSidebar }">
+    <div x-cloak x-show="showSidebar" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" @click.self="showSidebar = false"></div><div id="page" class="relative flex flex-col min-h-screen"><a href="#content" class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100">
+      Skip to content
+    </a><header
+  class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+    <div class="hidden mr-4 md:flex">
+      <a href="index.html" class="flex items-center mr-6"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">ucxdsa  documentation</span>
+      </a></div><button
+      class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden"
+      type="button" @click="showSidebar = true">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" aria-hidden="true"
+        fill="currentColor">
+        <path
+          d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z" />
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+    <div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+      <div class="flex-1 w-full md:w-auto md:flex-none"><form id="searchbox"
+      action="search.html"
+      method="get"
+      class="relative flex items-center group"
+      @keydown.k.window.meta="$refs.search.focus()">
+  <input x-ref="search"
+          name="q"
+          id="search-input"
+          type="search"
+          aria-label="Search the docs"
+          placeholder="Search ..."
+          class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" />
+  <kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+    <span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+      </div>
+      <nav class="flex items-center space-x-1">
+        <button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'"
+          class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9"
+          type="button"
+          aria-label="Color theme switcher">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0">
+            <path
+              d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100">
+            <path
+              d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+    <div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside id="left-sidebar"
+  class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky"
+  :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }">
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            ucxdsa
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+    <a href="index.html" class="!justify-start text-sm md:!hidden bg-background"><span class="font-bold text-clip whitespace-nowrap">ucxdsa  documentation</span>
+    </a>
+
+    <div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+      <div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">UCXDSA Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Start Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.deque.quick_start.html">Deque Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.linkedlist.quick_start.html">Linked List Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.quick_start.html">HashSet Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.quick_start.html">HashTable Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.trie.quick_start.html">Trie Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.graph.quick_start.html">Graph Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsa.draw.quick_start.html">Draw Quick Start</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Core Data Structures</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">dsa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dsa.html">dsa package</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linear Structures</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.array.quick_start.html">Array Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.array.html">Array Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.stack.quick_start.html">Stack Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.stack.html">Stack Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.queue.quick_start.html">Queue Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.queue.html">Queue Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.deque.quick_start.html">Deque Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.deque.html">Deque Module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Linked List</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.linkedlist.quick_start.html">Linked List Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.singlylinkedlist.html">Singly Linked List Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.doublylinkedlist.html">Doubly Linked List Module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Hash</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.hashset.quick_start.html">HashSet Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashset.html">HashSet Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.quick_start.html">HashTable Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.hashtable.html">HashTable Module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tree</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.tree.quick_start.html">Tree Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.tree.html">Tree Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.heap.quick_start.html">Heap Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.heap.html">Heap Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dsa.trie.quick_start.html">Trie Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.trie.html">Trie Module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Graph</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.graph.quick_start.html">Graph Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.graph.html">Graph Module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
@@ -95,74 +163,60 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Helper Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dsa.draw.quick_start.html">Draw Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.draw.html">Draw Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.pretty_print.html">Pretty Print Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.sorttools.html">Sort Tools Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsa.generators.html">Generator Module</a></li>
 </ul>
 
-        </div>
+</nav>
       </div>
-    </nav>
+    </div>
+    <button type="button" @click="showSidebar = false"
+      class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+        stroke="none" class="h-4 w-4">
+        <path
+          d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z" />
+      </svg>
+    </button>
+  </aside>
+        <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs"
+     class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+  <a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground"
+     href="index.html">
+    <span class="hidden md:inline">ucxdsa  documentation</span>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         height="18"
+         width="18"
+         viewBox="0 96 960 960"
+         aria-label="Home"
+         fill="currentColor"
+         stroke="none"
+         class="md:hidden">
+      <path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z" />
+    </svg>
+  </a>
+  
+<div class="mr-1">/</div><span aria-current="page"
+        class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Index</span>
+</nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ucxdsa</a>
-      </nav>
+<div id="content" role="main">
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
- | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
- | <a href="#F"><strong>F</strong></a>
- | <a href="#G"><strong>G</strong></a>
- | <a href="#H"><strong>H</strong></a>
- | <a href="#I"><strong>I</strong></a>
- | <a href="#K"><strong>K</strong></a>
- | <a href="#L"><strong>L</strong></a>
- | <a href="#M"><strong>M</strong></a>
- | <a href="#N"><strong>N</strong></a>
- | <a href="#O"><strong>O</strong></a>
- | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
- | <a href="#U"><strong>U</strong></a>
- | <a href="#V"><strong>V</strong></a>
- | <a href="#W"><strong>W</strong></a>
- 
-</div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <h1 id="index">Index</h1>
+  <h2 id="A">A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.hashset.html#dsa.hashset.HashSet.add">add() (dsa.hashset.HashSet method)</a>
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.add_directed_edge">add_directed_edge() (dsa.graph.AdjacencyListGraph method)</a>
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.add_edge">add_edge() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.add_edge">(dsa.graph.AdjacencyListWeightedGraph method)</a>
 </li>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.add_edge">(dsa.graph.AdjacencyMatrixGraph method)</a>
@@ -174,7 +228,7 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.add_vertex">add_vertex() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.add_vertex">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
@@ -188,15 +242,15 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.adjacent_items">adjacent_items() (dsa.graph.AdjacencyListWeightedGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.adjacent_items">(dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.adjacents">adjacents() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.adjacents">(dsa.graph.AdjacencyListWeightedGraph method)</a>
 </li>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.adjacents">(dsa.graph.AdjacencyMatrixGraph method)</a>
@@ -204,7 +258,7 @@
       </ul></li>
       <li><a href="dsa.array.html#dsa.array.Array.append">append() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.array.html#dsa.array.CircularArray.append">(dsa.array.CircularArray method)</a>
 </li>
         <li><a href="dsa.array.html#dsa.array.DynamicArray.append">(dsa.array.DynamicArray method)</a>
@@ -216,13 +270,13 @@
       </ul></li>
       <li><a href="dsa.deque.html#dsa.deque.Deque.append_left">append_left() (dsa.deque.Deque method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.append_left">(dsa.deque.DynamicDeque method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.deque.html#dsa.deque.Deque.append_right">append_right() (dsa.deque.Deque method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.append_right">(dsa.deque.DynamicDeque method)</a>
 </li>
       </ul></li>
@@ -233,11 +287,12 @@
       <li><a href="dsa.draw.html#dsa.draw.HeapDraw.array_to_node">array_to_node() (dsa.draw.HeapDraw method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="B">B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.deque.html#dsa.deque.Deque.back">back() (dsa.deque.Deque method)</a>
 </li>
       <li><a href="dsa.graph_traversal.html#dsa.graph_traversal.bfs">bfs() (in module dsa.graph_traversal)</a>
@@ -247,7 +302,7 @@
       <li><a href="dsa.huffman.html#dsa.huffman.bitstring_to_bytes">bitstring_to_bytes() (in module dsa.huffman)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.huffman.html#dsa.huffman.build_frequency_table">build_frequency_table() (in module dsa.huffman)</a>
 </li>
       <li><a href="dsa.huffman.html#dsa.huffman.build_huffman_dictionary">build_huffman_dictionary() (in module dsa.huffman)</a>
@@ -259,14 +314,15 @@
       <li><a href="dsa.huffman.html#dsa.huffman.bytes_to_bitstring">bytes_to_bitstring() (in module dsa.huffman)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="C">C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.array.html#dsa.array.Array.capacity">capacity() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.Deque.capacity">(dsa.deque.Deque method)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.Queue.capacity">(dsa.queue.Queue method)</a>
@@ -278,7 +334,7 @@
 </li>
       <li><a href="dsa.array.html#dsa.array.DynamicArray.check_capacity">check_capacity() (dsa.array.DynamicArray method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.check_capacity">(dsa.deque.DynamicDeque method)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.DynamicQueue.check_capacity">(dsa.queue.DynamicQueue method)</a>
@@ -293,12 +349,12 @@
       <li><a href="dsa.queue.html#dsa.queue.CircularQueue">CircularQueue (class in dsa.queue)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.hashset.html#dsa.hashset.HashSet.contains">contains() (dsa.hashset.HashSet method)</a>
 </li>
       <li><a href="dsa.tree.html#dsa.tree.TreeNode.copy">copy() (dsa.tree.TreeNode method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.trie.html#dsa.trie.Trie.copy">(dsa.trie.Trie method)</a>
 </li>
       </ul></li>
@@ -306,7 +362,7 @@
 </li>
       <li><a href="dsa.array.html#dsa.array.Array.count">count (dsa.array.Array attribute)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.count">(dsa.hashtable.HashTable attribute)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.Queue.count">(dsa.queue.Queue attribute)</a>
@@ -323,14 +379,15 @@
       <li><a href="dsa.graph.html#dsa.graph.Graph.create_adjacency_matrix">create_adjacency_matrix() (dsa.graph.Graph static method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="D">D</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="D">D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.array.html#dsa.array.Array.delete">delete() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.array.html#dsa.array.CircularArray.delete">(dsa.array.CircularArray method)</a>
 </li>
         <li><a href="dsa.array.html#dsa.array.DynamicArray.delete">(dsa.array.DynamicArray method)</a>
@@ -346,7 +403,7 @@
       </ul></li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.delete_edge">delete_edge() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.delete_edge">(dsa.graph.AdjacencyListWeightedGraph method)</a>
 </li>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.delete_edge">(dsa.graph.AdjacencyMatrixGraph method)</a>
@@ -354,7 +411,7 @@
       </ul></li>
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.delete_head">delete_head() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.delete_head">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
       </ul></li>
@@ -366,13 +423,13 @@
 </li>
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.delete_tail">delete_tail() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.delete_tail">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.delete_vertex">delete_vertex() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.delete_vertex">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
@@ -380,7 +437,7 @@
 </li>
       <li><a href="dsa.queue.html#dsa.queue.CircularQueue.dequeue">dequeue() (dsa.queue.CircularQueue method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.queue.html#dsa.queue.Queue.dequeue">(dsa.queue.Queue method)</a>
 </li>
       </ul></li>
@@ -399,149 +456,149 @@
       <li>
     dsa
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.html#module-dsa">module</a>
 </li>
       </ul></li>
       <li>
     dsa.array
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.array.html#module-dsa.array">module</a>
 </li>
       </ul></li>
       <li>
     dsa.deque
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#module-dsa.deque">module</a>
 </li>
       </ul></li>
       <li>
     dsa.dijkstra
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.dijkstra.html#module-dsa.dijkstra">module</a>
 </li>
       </ul></li>
       <li>
     dsa.doublylinkedlist
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.doublylinkedlist.html#module-dsa.doublylinkedlist">module</a>
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li>
     dsa.draw
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.draw.html#module-dsa.draw">module</a>
 </li>
       </ul></li>
       <li>
     dsa.generators
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.generators.html#module-dsa.generators">module</a>
 </li>
       </ul></li>
       <li>
     dsa.graph
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#module-dsa.graph">module</a>
 </li>
       </ul></li>
       <li>
     dsa.graph_traversal
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph_traversal.html#module-dsa.graph_traversal">module</a>
 </li>
       </ul></li>
       <li>
     dsa.hashset
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.hashset.html#module-dsa.hashset">module</a>
 </li>
       </ul></li>
       <li>
     dsa.hashtable
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.hashtable.html#module-dsa.hashtable">module</a>
 </li>
       </ul></li>
       <li>
     dsa.heap
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#module-dsa.heap">module</a>
 </li>
       </ul></li>
       <li>
     dsa.huffman
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.huffman.html#module-dsa.huffman">module</a>
 </li>
       </ul></li>
       <li>
     dsa.pretty_print
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.pretty_print.html#module-dsa.pretty_print">module</a>
 </li>
       </ul></li>
       <li>
     dsa.prim
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.prim.html#module-dsa.prim">module</a>
 </li>
       </ul></li>
       <li>
     dsa.queue
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.queue.html#module-dsa.queue">module</a>
 </li>
       </ul></li>
       <li>
     dsa.singlylinkedlist
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#module-dsa.singlylinkedlist">module</a>
 </li>
       </ul></li>
       <li>
     dsa.sorttools
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.sorttools.html#module-dsa.sorttools">module</a>
 </li>
       </ul></li>
       <li>
     dsa.stack
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.stack.html#module-dsa.stack">module</a>
 </li>
       </ul></li>
       <li>
     dsa.tree
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.tree.html#module-dsa.tree">module</a>
 </li>
       </ul></li>
       <li>
     dsa.trie
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.trie.html#module-dsa.trie">module</a>
 </li>
       </ul></li>
@@ -554,14 +611,15 @@
       <li><a href="dsa.stack.html#dsa.stack.DynamicStack">DynamicStack (class in dsa.stack)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="E">E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.edges">edges() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.edges">(dsa.graph.AdjacencyListWeightedGraph method)</a>
 </li>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.edges">(dsa.graph.AdjacencyMatrixGraph method)</a>
@@ -573,32 +631,33 @@
 </li>
       <li><a href="dsa.queue.html#dsa.queue.CircularQueue.enqueue">enqueue() (dsa.queue.CircularQueue method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.queue.html#dsa.queue.DynamicQueue.enqueue">(dsa.queue.DynamicQueue method)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.Queue.enqueue">(dsa.queue.Queue method)</a>
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.enumerate">enumerate() (dsa.hashtable.HashTable method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#dsa.heap.Heap.enumerate">(dsa.heap.Heap method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.array.html#dsa.array.Array.extend">extend() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.array.html#dsa.array.DynamicArray.extend">(dsa.array.DynamicArray method)</a>
 </li>
       </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="F">F</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="F">F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.pretty_print.html#dsa.pretty_print.fill_complete_tree">fill_complete_tree() (in module dsa.pretty_print)</a>
 </li>
       <li><a href="dsa.sorttools.html#dsa.sorttools.filled_array">filled_array() (in module dsa.sorttools)</a>
@@ -607,7 +666,7 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.from_dict">from_dict() (dsa.graph.AdjacencyListGraph class method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.from_dict">(dsa.graph.AdjacencyListWeightedGraph class method)</a>
 </li>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.from_dict">(dsa.graph.AdjacencyMatrixGraph class method)</a>
@@ -618,10 +677,10 @@
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.array.html#dsa.array.Array.from_list">from_list() (dsa.array.Array class method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.Deque.from_list">(dsa.deque.Deque class method)</a>
 </li>
         <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.from_list">(dsa.doublylinkedlist.DoublyLinkedList class method)</a>
@@ -638,11 +697,12 @@
       <li><a href="dsa.deque.html#dsa.deque.Deque.front">front() (dsa.deque.Deque method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="G">G</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="G">G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.sorttools.html#dsa.sorttools.generate_almost_sorted_array">generate_almost_sorted_array() (in module dsa.sorttools)</a>
 </li>
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.get">get() (dsa.hashtable.HashTable method)</a>
@@ -651,21 +711,21 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.get_weight">get_weight() (dsa.graph.AdjacencyListWeightedGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.get_weight">(dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.graph.html#dsa.graph.Graph">Graph (class in dsa.graph)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.draw.html#dsa.draw.GraphDraw.graph">graph (dsa.draw.GraphDraw attribute)</a>
 </li>
       <li><a href="dsa.draw.html#dsa.draw.GraphDraw">GraphDraw (class in dsa.draw)</a>
 </li>
       <li><a href="dsa.array.html#dsa.array.DynamicArray.grow">grow() (dsa.array.DynamicArray method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.grow">(dsa.deque.DynamicDeque method)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.DynamicQueue.grow">(dsa.queue.DynamicQueue method)</a>
@@ -674,14 +734,15 @@
 </li>
       </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="H">H</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="H">H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.has_edge">has_edge() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.has_edge">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
@@ -693,7 +754,7 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.has_vertex">has_vertex() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.has_vertex">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
@@ -704,7 +765,7 @@
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable">HashTable (class in dsa.hashtable)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.heap.html#dsa.heap.Heap">Heap (class in dsa.heap)</a>
 </li>
       <li><a href="dsa.draw.html#dsa.draw.HeapDraw.heap">heap (dsa.draw.HeapDraw attribute)</a>
@@ -715,13 +776,13 @@
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.heapify_down">heapify_down() (dsa.heap.Heap method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#dsa.heap.MinHeap.heapify_down">(dsa.heap.MinHeap method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.heapify_up">heapify_up() (dsa.heap.Heap method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#dsa.heap.MinHeap.heapify_up">(dsa.heap.MinHeap method)</a>
 </li>
       </ul></li>
@@ -732,14 +793,15 @@
       <li><a href="dsa.huffman.html#dsa.huffman.huffman_encode">huffman_encode() (in module dsa.huffman)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="I">I</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="I">I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.array.html#dsa.array.Array.insert">insert() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.array.html#dsa.array.CircularArray.insert">(dsa.array.CircularArray method)</a>
 </li>
         <li><a href="dsa.array.html#dsa.array.DynamicArray.insert">(dsa.array.DynamicArray method)</a>
@@ -753,19 +815,19 @@
       </ul></li>
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.insert_after">insert_after() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.insert_after">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.tree.html#dsa.tree.Tree.insert_iterative">insert_iterative() (dsa.tree.Tree method)</a>
 </li>
       <li><a href="dsa.tree.html#dsa.tree.Tree.insert_rec">insert_rec() (dsa.tree.Tree method)</a>
 </li>
       <li><a href="dsa.array.html#dsa.array.Array.is_empty">is_empty() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.Deque.is_empty">(dsa.deque.Deque method)</a>
 </li>
         <li><a href="dsa.heap.html#dsa.heap.Heap.is_empty">(dsa.heap.Heap method)</a>
@@ -780,19 +842,21 @@
       <li><a href="dsa.sorttools.html#dsa.sorttools.is_sorted">is_sorted() (in module dsa.sorttools)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="K">K</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="K">K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.key_exists">key_exists() (dsa.hashtable.HashTable method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="L">L</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="L">L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.heap.html#dsa.heap.Heap.last">last() (dsa.heap.Heap method)</a>
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.left_index">left_index() (dsa.heap.Heap method)</a>
@@ -804,7 +868,7 @@
       <li><a href="dsa.generators.html#dsa.generators.linear_dynamic_stack">linear_dynamic_stack() (in module dsa.generators)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.generators.html#dsa.generators.linear_linked_list">linear_linked_list() (in module dsa.generators)</a>
 </li>
       <li><a href="dsa.generators.html#dsa.generators.linear_queue">linear_queue() (in module dsa.generators)</a>
@@ -816,17 +880,18 @@
       <li><a href="dsa.trie.html#dsa.trie.Trie.list_words">list_words() (dsa.trie.Trie method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="M">M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.heap.html#dsa.heap.MinHeap">MinHeap (class in dsa.heap)</a>
 </li>
       <li>
     module
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.html#module-dsa">dsa</a>
 </li>
         <li><a href="dsa.array.html#module-dsa.array">dsa.array</a>
@@ -871,52 +936,55 @@
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.prim.html#dsa.prim.mst_weight">mst_weight() (in module dsa.prim)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="N">N</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="N">N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.Node.next">next (dsa.doublylinkedlist.Node attribute)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.Node.next">(dsa.singlylinkedlist.Node attribute)</a>
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.Node">Node (class in dsa.doublylinkedlist)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.Node">(class in dsa.singlylinkedlist)</a>
 </li>
       </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="O">O</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="O">O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.order">order() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.order">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="P">P</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="P">P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.heap.html#dsa.heap.Heap.parent_index">parent_index() (dsa.heap.Heap method)</a>
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.peek">peek() (dsa.heap.Heap method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.peek">(dsa.heap.PriorityQueue method)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.CircularQueue.peek">(dsa.queue.CircularQueue method)</a>
@@ -934,7 +1002,7 @@
 </li>
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.pop">pop() (dsa.hashtable.HashTable method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#dsa.heap.Heap.pop">(dsa.heap.Heap method)</a>
 </li>
         <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.pop">(dsa.heap.PriorityQueue method)</a>
@@ -950,17 +1018,17 @@
 </li>
       <li><a href="dsa.deque.html#dsa.deque.Deque.pop_left">pop_left() (dsa.deque.Deque method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.pop_left">(dsa.deque.DynamicDeque method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.pop_pair">pop_pair() (dsa.heap.PriorityQueue method)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.deque.html#dsa.deque.Deque.pop_right">pop_right() (dsa.deque.Deque method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.pop_right">(dsa.deque.DynamicDeque method)</a>
 </li>
       </ul></li>
@@ -970,7 +1038,7 @@
 </li>
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.DoublyLinkedList.prepend">prepend() (dsa.doublylinkedlist.DoublyLinkedList method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.prepend">(dsa.singlylinkedlist.LinkedList method)</a>
 </li>
       </ul></li>
@@ -980,7 +1048,7 @@
 </li>
       <li><a href="dsa.heap.html#dsa.heap.Heap.print">print() (dsa.heap.Heap method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.tree.html#dsa.tree.Tree.print">(dsa.tree.Tree method)</a>
 </li>
         <li><a href="dsa.tree.html#dsa.tree.TreeNode.print">(dsa.tree.TreeNode method)</a>
@@ -988,7 +1056,7 @@
       </ul></li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.print_graph">print_graph() (dsa.graph.AdjacencyMatrixGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixWeightedGraph.print_graph">(dsa.graph.AdjacencyMatrixWeightedGraph method)</a>
 </li>
       </ul></li>
@@ -996,7 +1064,7 @@
 </li>
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.push">push() (dsa.heap.PriorityQueue method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.stack.html#dsa.stack.DynamicStack.push">(dsa.stack.DynamicStack method)</a>
 </li>
         <li><a href="dsa.stack.html#dsa.stack.Stack.push">(dsa.stack.Stack method)</a>
@@ -1007,19 +1075,21 @@
       <li><a href="dsa.deque.html#dsa.deque.Deque.push_front">push_front() (dsa.deque.Deque method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="Q">Q</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="Q">Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.queue.html#dsa.queue.Queue">Queue (class in dsa.queue)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="R">R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.sorttools.html#dsa.sorttools.rand_int_array">rand_int_array() (in module dsa.sorttools)</a>
 </li>
       <li><a href="dsa.generators.html#dsa.generators.random_adjacency_list_graph">random_adjacency_list_graph() (in module dsa.generators)</a>
@@ -1053,14 +1123,14 @@
       <li><a href="dsa.generators.html#dsa.generators.random_queue">random_queue() (in module dsa.generators)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.generators.html#dsa.generators.random_stack">random_stack() (in module dsa.generators)</a>
 </li>
       <li><a href="dsa.generators.html#dsa.generators.random_trie">random_trie() (in module dsa.generators)</a>
 </li>
       <li><a href="dsa.array.html#dsa.array.CircularArray.raw_view">raw_view() (dsa.array.CircularArray method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.heap.html#dsa.heap.Heap.raw_view">(dsa.heap.Heap method)</a>
 </li>
         <li><a href="dsa.queue.html#dsa.queue.Queue.raw_view">(dsa.queue.Queue method)</a>
@@ -1068,13 +1138,13 @@
       </ul></li>
       <li><a href="dsa.hashset.html#dsa.hashset.HashSet.remove">remove() (dsa.hashset.HashSet method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.remove">(dsa.hashtable.HashTable method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.draw.html#dsa.draw.Draw.render">render() (dsa.draw.Draw method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.draw.html#dsa.draw.GraphDraw.render">(dsa.draw.GraphDraw method)</a>
 </li>
         <li><a href="dsa.draw.html#dsa.draw.HeapDraw.render">(dsa.draw.HeapDraw method)</a>
@@ -1093,16 +1163,17 @@
       <li><a href="dsa.heap.html#dsa.heap.Heap.root">root() (dsa.heap.Heap method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="S">S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.draw.html#dsa.draw.Draw.save">save() (dsa.draw.Draw method)</a>
 </li>
       <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.search">search() (dsa.singlylinkedlist.LinkedList method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.tree.html#dsa.tree.Tree.search">(dsa.tree.Tree method)</a>
 </li>
         <li><a href="dsa.trie.html#dsa.trie.Trie.search">(dsa.trie.Trie method)</a>
@@ -1121,12 +1192,12 @@
       <li><a href="dsa.dijkstra.html#dsa.dijkstra.shortest_path">shortest_path() (in module dsa.dijkstra)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.hashtable.html#dsa.hashtable.HashTable.show_buckets">show_buckets() (dsa.hashtable.HashTable method)</a>
 </li>
       <li><a href="dsa.array.html#dsa.array.DynamicArray.shrink">shrink() (dsa.array.DynamicArray method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.deque.html#dsa.deque.DynamicDeque.shrink">(dsa.deque.DynamicDeque method)</a>
 </li>
         <li><a href="dsa.stack.html#dsa.stack.DynamicStack.shrink">(dsa.stack.DynamicStack method)</a>
@@ -1136,7 +1207,7 @@
 </li>
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.size">size() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.size">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
@@ -1147,20 +1218,21 @@
       <li><a href="dsa.trie.html#dsa.trie.Trie.suggest">suggest() (dsa.trie.Trie method)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="T">T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.to_dict">to_dict() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.to_dict">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
       <li><a href="dsa.array.html#dsa.array.Array.to_list">to_list() (dsa.array.Array method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.array.html#dsa.array.CircularArray.to_list">(dsa.array.CircularArray method)</a>
 </li>
         <li><a href="dsa.deque.html#dsa.deque.Deque.to_list">(dsa.deque.Deque method)</a>
@@ -1181,7 +1253,7 @@
       <li><a href="dsa.heap.html#dsa.heap.PriorityQueue.to_string_with_priority">to_string_with_priority() (dsa.heap.PriorityQueue method)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.stack.html#dsa.stack.Stack.top">top() (dsa.stack.Stack method)</a>
 </li>
       <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.LinkedList.traverse">traverse() (dsa.singlylinkedlist.LinkedList method)</a>
@@ -1209,14 +1281,15 @@
       <li><a href="dsa.trie.html#dsa.trie.TrieNode">TrieNode (class in dsa.trie)</a>
 </li>
   </ul></td>
-</tr></table>
-
-<h2 id="U">U</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="U">U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.undirected_edges">undirected_edges() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyListWeightedGraph.undirected_edges">(dsa.graph.AdjacencyListWeightedGraph method)</a>
 </li>
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.undirected_edges">(dsa.graph.AdjacencyMatrixGraph method)</a>
@@ -1225,63 +1298,63 @@
 </li>
       </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="V">V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.doublylinkedlist.html#dsa.doublylinkedlist.Node.value">value (dsa.doublylinkedlist.Node attribute)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.singlylinkedlist.html#dsa.singlylinkedlist.Node.value">(dsa.singlylinkedlist.Node attribute)</a>
 </li>
       </ul></li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.graph.html#dsa.graph.AdjacencyListGraph.vertices">vertices() (dsa.graph.AdjacencyListGraph method)</a>
 
-      <ul>
+      <ul style="list-style-type:none">
         <li><a href="dsa.graph.html#dsa.graph.AdjacencyMatrixGraph.vertices">(dsa.graph.AdjacencyMatrixGraph method)</a>
 </li>
       </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="W">W</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
+  </tr>
+      </table>
+  
+  <h2 id="W">W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="dsa.draw.html#dsa.draw.GraphDraw.weighted">weighted (dsa.draw.GraphDraw attribute)</a>
 </li>
   </ul></td>
-</tr></table>
+  </tr>
+      </table>
+  
 
-
-
-           </div>
-          </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2025, Carl Limsico.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
+</div></div>
+<aside id="right-sidebar" class="hidden text-sm xl:block">
+<div class="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-6 space-y-2">
+<a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#A">A</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#B">B</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#C">C</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#D">D</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#E">E</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#F">F</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#G">G</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#H">H</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#I">I</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#K">K</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#L">L</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#M">M</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#N">N</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#O">O</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#P">P</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#Q">Q</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#R">R</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#S">S</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#T">T</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#U">U</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#V">V</a><a class="pt-2 block text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:outline-offset-[-1px]" href="#W">W</a>
+</div>
+</aside>
+        </main>
       </div>
-    </section>
+    </div><footer class="py-6 border-t border-border md:py-0">
+    <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+      <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+        <p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2025, Carl Limsico&nbsp;Built with <a class="font-medium underline underline-offset-4"
+    href="https://www.sphinx-doc.org"
+    rel="noreferrer">Sphinx 8.2.3</a></p>
+</div>
+</div>
+</footer>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
+  
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer="defer" src="_static/theme.js?v=073f68d9"></script>
+  
 </body>
 </html>
