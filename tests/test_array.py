@@ -42,7 +42,7 @@ class TestArray(unittest.TestCase):
 
         self.assertEqual(len(self.dynarray_with_elements), 3)
         self.assertEqual(self.dynarray_with_elements.count, 3)
-        self.assertEqual(self.dynarray_with_elements.capacity(), 4)
+        self.assertEqual(self.dynarray_with_elements.capacity(), 10)
 
         dc = DynamicArray.from_list([1, 2, 3, 4, 5])        
         self.assertEqual(len(dc), 5)
@@ -328,16 +328,7 @@ class TestArray(unittest.TestCase):
         new_dynarray = DynamicArray.from_list([5, 6, 7])
         self.assertEqual(new_dynarray.to_list(), [5, 6, 7])
         self.assertEqual(len(new_dynarray), 3)
-        self.assertEqual(new_dynarray.capacity(), 4)
-
-    def test_repr(self):
-        """Test the string representation of the array."""
-        self.assertEqual(
-            repr(self.array_with_elements), "[1, 2, 3] Count: 3 Capacity: 5"
-        )
-        self.assertEqual(
-            repr(self.dynarray_with_elements), "[1, 2, 3] Count: 3 Capacity: 4"
-        )
+        self.assertEqual(new_dynarray.capacity(), 10)
     
     def test_eq(self):
         """

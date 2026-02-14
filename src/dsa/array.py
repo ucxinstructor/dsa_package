@@ -259,13 +259,15 @@ class DynamicArray(Array):
 
     def shrink(self):
         """ 
-        Helper method to halve the capacity of the current array.
+        Helper method to halve the capacity of the current array. minimum capacity is 10.
         """
         new_size = len(self._array) // 2
+        if new_size < 10:
+            new_size = 10
         new_array = [ None ] * new_size
         
         # copy elements
-        for i in range(new_size):
+        for i in range(self.count):
             new_array[i] = self._array[i]
 
         self._array = new_array

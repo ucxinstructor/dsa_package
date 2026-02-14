@@ -40,9 +40,10 @@ pip show ucxdsa
 ***
 # Revision History
 ## 2026.02.13
-* Changed HashSet constructor to accept an optional initial capacity (Thanks, John!)
+* Updated HashSet constructor to accept an optional initial capacity (Thanks, John!)
 * Added from_list() and to_list() methods to HashSet
-* Added extract_min() and extract_max() as method aliases to pop() in Heap/MinHeap
+* Added extract_min() and extract_max() as aliases for pop() in Heap/MinHeap
+* Set DynamicArray minimum capacity to 10 when shrinking
 
 ## 2025.12.24
 * Added from_dict() import methods to Graph classes
