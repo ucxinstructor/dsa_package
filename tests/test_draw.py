@@ -120,6 +120,12 @@ class TestDraw(unittest.TestCase):
         td.set_figsize((12, 4))
         td.save('images/trie.png')
 
+    def test_trie_empty(self):
+        t = Trie()
+        td = TrieDraw(t)
+        td.set_figsize((12, 4))
+        td.save('images/trie_empty.png')
+
     def test_graph(self):
         graph = AdjacencyMatrixGraph(["A", "B", "C", "D"])
         graph.add_edge("A", "B")
