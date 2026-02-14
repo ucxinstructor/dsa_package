@@ -58,6 +58,39 @@ class TestHeap(unittest.TestCase):
             self.assertEqual(v, i)
             i += 1
         self.assertTrue(mnh.is_empty())
+        
+    def test_peek(self):
+        mxh = Heap()
+        mnh = MinHeap()
+
+        for _ in range(20):
+            mxh.insert(_)
+            mnh.insert(_)
+
+        self.assertEqual(mxh.peek(), 19)
+        self.assertEqual(mnh.peek(), 0)
+    
+    def test_extract_max_min(self):
+        mxh = Heap()
+        mnh = MinHeap()
+
+        for _ in range(20):
+            mxh.insert(_)
+            mnh.insert(_)
+
+        i = 19
+        while not mxh.is_empty():
+            v = mxh.extract_max()
+            self.assertEqual(v, i)
+            i = i - 1
+        self.assertTrue(mxh.is_empty())
+
+        i = 0
+        while not mnh.is_empty():
+            v = mnh.extract_min()
+            self.assertEqual(v, i)
+            i += 1
+        self.assertTrue(mnh.is_empty())
 
     def test_pq(self):
         pq = PriorityQueue()

@@ -5,17 +5,14 @@ class HashSet:
     """
     A set implementation using a hash table for storage.
     """
-    def __init__(self, iterable=None):
+    def __init__(self, capacity=10):
         """
         Initialize a hash set.
 
         Args:
-            iterable: An optional iterable of initial elements.
+            capacity: The initial capacity of the hash table.
         """
-        self._table = HashTable()
-        if iterable:
-            for item in iterable:
-                self.add(item)
+        self._table = HashTable(capacity)
 
     def add(self, item):
         """
@@ -97,3 +94,27 @@ class HashSet:
         if not isinstance(other, HashSet):
             return False
         return set(self) == set(other)
+
+    @classmethod
+    def from_list(cls, iterable=None):
+        """
+        Construct a hash set from an iterable.
+
+        Args:
+            iterable: An optional iterable of initial elements.
+        """
+        capacity = len(iterable) * 2 if iterable else 10
+        self = cls(capacity)
+        if iterable:
+            for item in iterable:
+                self.add(item)
+        return self
+    
+    def to_list(self):
+        """
+        Convert the hash set to a list.
+
+        Returns:
+            list: A list of the items in the set.
+        """
+        return list(self._table)

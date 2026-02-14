@@ -286,7 +286,25 @@ class Heap:
             return False
         return self._array == other._array
 
+    def extract_max(self):
+        """
+        Return the value of the root node (max value) and remove it from the heap.
+
+        Returns:
+            Return the value from the root node.
+        """
+        return self.pop()
+
 class MinHeap(Heap):
+    def extract_min(self):
+        """
+        Return the value of the root node (min value) and remove it from the heap.
+
+        Returns:
+            Return the value from the root node.
+        """
+        return super().pop()
+
     def heapify_up(self, index: int):
         """
         Perform heapify up starting at a given index.
