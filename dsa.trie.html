@@ -25,7 +25,7 @@
 <meta content="dsa.trie module | ucxdsa  documentation" property="og:title"/>
 <meta content="dsa.trie module | ucxdsa  documentation" name="twitter:title"/>
 <link href="_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css"/>
-<link href="_static/theme.css?v=73505e79" rel="stylesheet" type="text/css"/>
+<link href="_static/theme.css?v=d6d7c91b" rel="stylesheet" type="text/css"/>
 <link href="_static/custom.css?v=b32cff1b" rel="stylesheet" type="text/css"/>
 <link href="search.html" rel="search" title="Search"/>
 <link href="genindex.html" rel="index" title="Index"/>
@@ -215,24 +215,17 @@
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.trie.Trie.delete">
-<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Delete a word from the trie.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>word</strong> (<em>str</em>) – The word to delete.</p></li>
-<li><p><strong>i</strong> (<em>int</em>) – The index of character.</p></li>
-<li><p><strong>current</strong> (<a class="reference internal" href="#dsa.trie.TrieNode" title="dsa.trie.TrieNode"><em>TrieNode</em></a>) – The current node.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>word</strong> (<em>str</em>) – The word to delete.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Boolean indicating if child node can be deleted.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the word is not found.</p>
+<dd class="field-odd"><p>Boolean indicating if the word was deleted.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -253,6 +246,29 @@
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – If the word is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.trie.Trie.deleteold">
+<span class="sig-name descname"><span class="pre">deleteold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Delete a word from the trie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word</strong> (<em>str</em>) – The word to delete.</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – The index of character.</p></li>
+<li><p><strong>current</strong> (<a class="reference internal" href="#dsa.trie.TrieNode" title="dsa.trie.TrieNode"><em>TrieNode</em></a>) – The current node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Boolean indicating if child node can be deleted.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the word is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -378,6 +394,7 @@ None if there are no matching words.</p>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.copy_node'" class="reference internal" href="#dsa.trie.Trie.copy_node"><code class="docutils literal notranslate"><span class="pre">Trie.copy_node()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.delete'" class="reference internal" href="#dsa.trie.Trie.delete"><code class="docutils literal notranslate"><span class="pre">Trie.delete()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.delete_preorder'" class="reference internal" href="#dsa.trie.Trie.delete_preorder"><code class="docutils literal notranslate"><span class="pre">Trie.delete_preorder()</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.trie.Trie.deleteold'" class="reference internal" href="#dsa.trie.Trie.deleteold"><code class="docutils literal notranslate"><span class="pre">Trie.deleteold()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.end_marker'" class="reference internal" href="#dsa.trie.Trie.end_marker"><code class="docutils literal notranslate"><span class="pre">Trie.end_marker</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.insert'" class="reference internal" href="#dsa.trie.Trie.insert"><code class="docutils literal notranslate"><span class="pre">Trie.insert()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.list_words'" class="reference internal" href="#dsa.trie.Trie.list_words"><code class="docutils literal notranslate"><span class="pre">Trie.list_words()</span></code></a></li>
@@ -408,6 +425,6 @@ None if there are no matching words.</p>
 <script src="_static/documentation_options.js?v=5929fcd5"></script>
 <script src="_static/doctools.js?v=fd6eb6e6"></script>
 <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-<script defer="defer" src="_static/theme.js?v=582b20c5"></script>
+<script defer="defer" src="_static/theme.js?v=5db23cf8"></script>
 </body>
 </html>
