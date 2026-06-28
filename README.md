@@ -39,6 +39,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.06.28
+* Updated the implementation of Trie delete: returns True if word was successfully deleted
+
 ## 2026.02.13
 * Updated HashSet constructor to accept an optional initial capacity (Thanks, John!)
 * Added from_list() and to_list() methods to HashSet

@@ -19,7 +19,7 @@ class TestTrie(unittest.TestCase):
         self.assertIsNotNone(t.search_node("python"))
         self.assertIsNotNone(t.search_node("py"))
         self.assertIsNone(t.search_node("java"))
-        t.delete("python")
+        self.assertTrue(t.delete("python"))
         self.assertFalse(t.search("python"))
         self.assertIsNone(t.search_node("python"))
 
@@ -111,10 +111,23 @@ class TestTrie(unittest.TestCase):
         self.trie.delete("test")
         self.assertFalse(self.trie.search("test"))
         self.assertTrue(self.trie.search("testing"))
+        
+        self.trie.insert("tester")
+        self.trie.delete("tester")
+        self.assertFalse(self.trie.search("tester"))
+        self.assertTrue(self.trie.search("testing"))
+        
+        self.trie.insert("tester")
+        self.trie.delete("testing")
+        self.assertTrue(self.trie.search("tester"))
+        self.assertFalse(self.trie.search("testing"))
+        
+        self.trie.delete("")
+        self.trie.delete("t")
+        self.assertTrue(self.trie.search("tester"))        
 
     def test_delete_empty_string(self):
-        # perhaps this should be false?
-        self.assertTrue(self.trie.delete(""))
+        self.assertFalse(self.trie.delete(""))
 
     def test_search_node_empty_string(self):
         self.assertIsNone(self.trie.search_node(""))

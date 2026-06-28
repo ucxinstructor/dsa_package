@@ -81,7 +81,48 @@ class Trie:
             current = current.children[c]
         return current
     
-    def delete(self, word: str, i: int=0, current: TrieNode=None) -> bool:
+    def delete(self, word: str) -> bool:
+        """ 
+        Delete a word from the trie.
+        
+        Args:
+            word (str): The word to delete.
+
+        Returns:
+            Boolean indicating if the word was deleted.
+        """
+        if not self.search(word):
+            return False  # Word not found, cannot delete
+        
+        self._delete_recursive(self.root, word + Trie.end_marker, 0)
+        return True
+
+    def _delete_recursive(self, current: TrieNode, word: str, i: int) -> bool:
+        """ 
+        Recursively delete a word from the trie. Assumes the word is in the trie.
+        
+        Args:
+            word (str): The word to delete.
+            i (int): The index of character.
+            current (TrieNode): The current node.
+
+        Returns:
+            Boolean indicating if child node can be deleted.
+        """
+        char = word[i]
+        # Base case: delete the end marker and signal parent to prune
+        if char == Trie.end_marker:
+            del current.children[char]
+            return not current.children  # Return True if no more children, else False
+
+        next_node = current.children[char]
+        if self._delete_recursive(next_node, word, i + 1):
+            del current.children[char]
+
+        return not current.children
+
+
+    def deleteold(self, word: str, i: int=0, current: TrieNode=None) -> bool:
         """ 
         Delete a word from the trie.
         
