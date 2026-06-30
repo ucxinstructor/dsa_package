@@ -121,40 +121,6 @@ class Trie:
 
         return not current.children
     
-    def delete_preorder(self, word: str, i: int=0, current: TrieNode=None):
-        """ 
-        Delete a word using preorder (Do not use! For demonstration purposes only).
-        
-        Args:
-            word (str): The word to delete.
-            i (int): The index of character.
-            current (TrieNode): The current node.
-
-        Returns:
-            Boolean indicating if child node can be deleted.
-
-        Raises:
-            ValueError: If the word is not found.
-        """        
-        if i == len(word):
-            return True
-
-        if current is None:
-            current = self.root
-            word = word + Trie.end_marker
-
-        char = word[i]
-        if char not in current.children:
-            return False
-        
-        next_node = current.children[char]
-
-        del current.children[char]
-
-        self.delete(word, i + 1, next_node)
-        
-        return False
-            
     def list_words(self) -> list:
         """
         Return a list of all words in the trie.
