@@ -440,22 +440,6 @@ the root will be determined automatically.</p></li>
 <p>This version uses NetworkX’s default drawing tools with circular nodes for simplicity and clarity.</p>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.draw.TrieDraw.render_rectangle">
-<span class="sig-name descname"><span class="pre">render_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.</p>
-<p>This method uses the hierarchical positions of the nodes to render the Trie
-as a directed graph. Nodes are drawn as rectangles, and edges represent the transitions
-between prefixes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Matplotlib plot object for further customization or display.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>matplotlib.pyplot</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="dsa.draw.TrieDraw.to_networkx">
 <span class="sig-name descname"><span class="pre">to_networkx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Converts the Trie into a NetworkX directed graph (DiGraph).</p>
@@ -505,7 +489,6 @@ represents a prefix and each edge represents a character transition.</p>
 <li><a :data-current="activeSection === '#dsa.draw.TrieDraw.trie'" class="reference internal" href="#dsa.draw.TrieDraw.trie"><code class="docutils literal notranslate"><span class="pre">TrieDraw.trie</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.draw.TrieDraw.hierarchical_pos'" class="reference internal" href="#dsa.draw.TrieDraw.hierarchical_pos"><code class="docutils literal notranslate"><span class="pre">TrieDraw.hierarchical_pos()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.draw.TrieDraw.render'" class="reference internal" href="#dsa.draw.TrieDraw.render"><code class="docutils literal notranslate"><span class="pre">TrieDraw.render()</span></code></a></li>
-<li><a :data-current="activeSection === '#dsa.draw.TrieDraw.render_rectangle'" class="reference internal" href="#dsa.draw.TrieDraw.render_rectangle"><code class="docutils literal notranslate"><span class="pre">TrieDraw.render_rectangle()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.draw.TrieDraw.to_networkx'" class="reference internal" href="#dsa.draw.TrieDraw.to_networkx"><code class="docutils literal notranslate"><span class="pre">TrieDraw.to_networkx()</span></code></a></li>
 </ul>
 </li>
