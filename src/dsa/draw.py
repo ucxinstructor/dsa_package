@@ -307,35 +307,6 @@ class TrieDraw(Draw):
     
         return _hierarchical_pos(G, root, width, vert_gap, vert_loc, xcenter)
     
-    def render_rectangle(self, **kwargs):
-        """
-        Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
-
-        This method uses the hierarchical positions of the nodes to render the Trie
-        as a directed graph. Nodes are drawn as rectangles, and edges represent the transitions
-        between prefixes.
-
-        Returns:
-            matplotlib.pyplot: The Matplotlib plot object for further customization or display.
-        """
-        super().render(**kwargs)
-        trie_graph = self.to_networkx()
-        
-        pos = self.hierarchical_pos(trie_graph)
-        
-        plt.figure(figsize=self.figsize)
-        nx.draw_networkx_edges(trie_graph, pos, arrows=True)
-        
-        ax = plt.gca()
-        rect_width = 0.05
-        rect_height = 0.15
-        for node in pos:
-            x, y = pos[node]
-            rectangle = plt.Rectangle((x - (rect_width / 2), y - (rect_height / 2)), rect_width, rect_height, color="tab:blue")
-            ax.add_patch(rectangle)
-            plt.text(x, y, node[-1] if node else "", verticalalignment='center', horizontalalignment='center', fontsize=12, color="white")
-        return plt
-
     def render(self, **kwargs):
         """
         Renders the Trie as a hierarchical graph using Matplotlib. Not to be called directly. Call draw() instead.
@@ -356,8 +327,9 @@ class TrieDraw(Draw):
             labels={node: node[-1] if node else "" for node in trie_graph.nodes},
             node_shape='o',
             node_color='tab:blue',
+            node_size=800,
             font_color='white',
-            font_size=10,
+            font_size=12,
             edgecolors='none',
             arrows=False,
             **kwargs

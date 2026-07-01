@@ -39,6 +39,10 @@ pip show ucxdsa
 
 ***
 # Revision History
+* Removed preorder_delete() from Trie
+* Increase the size of nodes in TrieDraw
+* Removed render_rectangle() from TrieDraw
+  
 ## 2026.06.28
 * Updated the implementation of Trie delete: returns True if word was successfully deleted
 
