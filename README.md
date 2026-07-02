@@ -39,6 +39,7 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.07.01
 * Removed preorder_delete() from Trie
 * Increase the size of nodes in TrieDraw
 * Removed render_rectangle() from TrieDraw
