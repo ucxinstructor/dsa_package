@@ -118,3 +118,58 @@ def tree_print(tree):
     complete_tree = fill_complete_tree(tree)
     if complete_tree:
         _array_print(len(complete_tree), enumerate(complete_tree))
+
+
+def trie_print(trie):
+    """
+    Print a trie from root to leaves.
+
+    Args:
+        trie: The trie object to print.
+    """
+    trie_lines = trie_to_array(trie)
+    if trie_lines:
+        for line in trie_lines:
+            print(line)
+        print()
+
+
+def trie_to_array(trie):
+    """
+    (helper function) Create an array of display lines from a trie.
+
+    Args:
+        trie: The trie to convert.
+
+    Returns:
+        Array of strings for trie display.
+    """
+    if trie is None or trie.root is None or len(trie.root.children) == 0:
+        return None
+
+    trie_array = ["•"]
+    end_marker = getattr(trie, "end_marker", "*")
+    _build_trie_lines(trie.root, "", trie_array, end_marker)
+    return trie_array
+
+
+def _build_trie_lines(node, prefix, trie_array, end_marker):
+    """
+    (helper function) Recursively append trie display lines.
+    """
+    children = []
+    for key, child in sorted(node.children.items()):
+        if key != end_marker:
+            children.append((key, child))
+
+    for index, pair in enumerate(children):
+        char = pair[0]
+        child = pair[1]
+        is_last = index == len(children) - 1
+
+        connector = "└── " if is_last else "├── "
+        suffix = end_marker if end_marker in child.children else ""
+        trie_array.append(f"{prefix}{connector}{char}{suffix}")
+
+        next_prefix = prefix + ("    " if is_last else "│   ")
+        _build_trie_lines(child, next_prefix, trie_array, end_marker)

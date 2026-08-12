@@ -284,6 +284,9 @@ class TrieDraw(Draw):
         Returns:
             dict: A dictionary mapping each node to its (x, y) position in the layout.
         """
+        if G.number_of_nodes() == 0:
+            return {}
+
         if root is None:
             root = next(iter(nx.topological_sort(G)))
     
