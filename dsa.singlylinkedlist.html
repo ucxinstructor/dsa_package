@@ -181,9 +181,6 @@
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>IndexError</strong> – If linked list is empty or index is not found.</p>
-</dd>
 </dl>
 </dd></dl>
 <dl class="py method">
@@ -192,7 +189,7 @@
 <dd><p>Delete the first occurrence of a value in the linked list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> – The value to be deleted.</p>
+<dd class="field-odd"><p><strong>target</strong> – The value to be deleted.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -211,7 +208,7 @@
 <dd class="field-odd"><p>None</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>IndexError</strong> – If linked list is empty.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If linked list is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -224,7 +221,7 @@
 <dd class="field-odd"><p>None</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>IndexError</strong> – If linked list is empty.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If linked list is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -243,13 +240,13 @@
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="dsa.singlylinkedlist.LinkedList.insert_after">
-<span class="sig-name descname"><span class="pre">insert_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">after_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-name descname"><span class="pre">insert_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Insert a value after a specified value. Raise exception if value is not found.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>after_value</strong> – The value to insert after.</p></li>
-<li><p><strong>value</strong> – The value to append.</p></li>
+<li><p><strong>target_value</strong> – The value of node to insert after.</p></li>
+<li><p><strong>value</strong> – The new value to insert.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
