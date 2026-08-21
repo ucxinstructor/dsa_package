@@ -89,12 +89,12 @@ class DoublyLinkedList(LinkedList):
             current = current.prev
         print()
 
-    def insert_after(self, after_value, value):
+    def insert_after(self, target_value, value):
         """
         Insert a value after a specified value. Raise exception if value is not found.
 
         Args:
-            after_value: The value to insert after.
+            target_value: The value of node to insert after.
             value: The value to append.
 
         Returns:
@@ -104,28 +104,25 @@ class DoublyLinkedList(LinkedList):
             ValueError: If value is not found.
         """
                 
-        # find node to insert after
         current = self.head
-        while current:
-            if current.value == after_value:
-                break
-            current = current.next
-        
-        if current is None:
-            raise ValueError("Value not found")
-        
-        # insert at the end
-        if current == self.tail:
-            self.append(value)
-            return
 
-        # insert in the middle
-        new_node = Node(value)
-        new_node.next = current.next
-        new_node.prev = current
-        current.next.prev = new_node
-        current.next = new_node
-        self.count += 1
+        while current is not None and current.value != target_value:
+            current = current.next
+
+        if current is not None:
+            new_node = Node(value)
+            new_node.next = current.next
+            new_node.prev = current
+
+            if new_node.next is not None:
+                 new_node.next.prev = new_node
+            else:
+                 self.tail = new_node
+
+            current.next = new_node
+            self.count += 1
+        else:
+            raise ValueError("Value not found")
 
     def prepend(self, value):
         """
@@ -136,7 +133,12 @@ class DoublyLinkedList(LinkedList):
         """
         new_node = Node(value)
         new_node.next = self.head
-        self.head.prev = new_node
+
+        if self.head is not None:
+            self.head.prev = new_node
+        else:
+            self.tail = new_node
+
         self.head = new_node
         self.count += 1
 
@@ -147,18 +149,15 @@ class DoublyLinkedList(LinkedList):
         Args:
             value: The value to append to the doubly linked list.
         """
-        if self.head is None:
-            self.head = Node(value)
-            if self.count == 0:
-                self.tail = self.head
-            self.count += 1
-            return
-
-        # go to the end of the list
         new_node = Node(value)
-        new_node.prev = self.tail
-        self.tail.next = new_node
-        self.tail = new_node
+
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
 
         self.count += 1
 
@@ -175,34 +174,34 @@ class DoublyLinkedList(LinkedList):
         if self.head is None:
             raise ValueError("Value not found")
 
+        # 1. Find the actual node to delete
         current = self.head
-        while current:
-            if current.value == value:
-                if current == self.head:
-                    self.delete_head()
-                elif current == self.tail:
-                    self.delete_tail()
-                else:
-                    current.prev.next = current.next
-                    current.next.prev = current.prev
-                    self.count -= 1
-                return
+        while current is not None and current.value != value:
             current = current.next
 
-        raise ValueError("Value not found")
+        # 2. If we finished the loop and didn't find it
+        if current is None:
+            raise ValueError("Value not found")
 
-    def delete_tail(self):
-        """
-        Delete the tail node of the doubly linked list.
+        # 3. Case: Deleting the Head
+        if current == self.head:
+            self.head = current.next
+            if self.head:
+                self.head.prev = None
+            else:
+                self.tail = None  # List is now empty
 
-        Raises:
-            IndexError: If linked list is empty.
-        """
-        if self.tail is None:
-            raise IndexError("DoublyLinkedList is Empty")
+        # 4. Case: Deleting the Tail
+        elif current == self.tail:
+            self.tail = current.prev
+            self.tail.next = None
 
-        self.tail = self.tail.prev
-        self.tail.next = None
+        # 5. Case: Deleting from the Middle
+        else:
+            # The "Double Leapfrog"
+            current.prev.next = current.next
+            current.next.prev = current.prev
+
         self.count -= 1
 
     def delete_head(self):
@@ -210,15 +209,36 @@ class DoublyLinkedList(LinkedList):
         Delete the head node of the doubly linked list.
 
         Raises:
-            IndexError: If linked list is empty.
+            ValueError: If linked list is empty.
         """
-        if self.head is None:
-            raise IndexError("DoublyLinkedList is Empty")
-        self.head = self.head.next
-        if self.head:
-            self.head.prev = None
-        else:  # If the list becomes empty
+        if self.tail is None:
+            raise ValueError("DoublyLinkedList is Empty")
+
+        if self.head == self.tail:
+            self.head = None
             self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+        self.count -= 1
+
+
+    def delete_tail(self):
+        """
+        Delete the tail node of the doubly linked list.
+
+        Raises:
+            ValueError: If linked list is empty.
+        """
+        if self.tail is None:
+            raise ValueError("DoublyLinkedList is Empty")
+
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
         self.count -= 1
 
     def __eq__(self, other):

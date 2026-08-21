@@ -39,6 +39,11 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.08.21
+* Updated singly linked lists and doubly linked lists operations to match the slides
+* Changed to use raise value error instead of inder error when deleting from empty lists or when a value is not found
+* Cleaned up tests
+
 ## 2026.07.01
 * Removed preorder_delete() from Trie
 * Increase the size of nodes in TrieDraw

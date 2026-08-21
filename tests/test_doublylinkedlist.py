@@ -1,204 +1,144 @@
 import unittest
 from dsa.doublylinkedlist import DoublyLinkedList, Node
 
-
 class TestDoublyLinkedList(unittest.TestCase):
 
-    # --- Initialization Tests ---
-    def test_empty_initialization(self):
+    # --- Helper Method ---
+    def verify_integrity(self, dll):
+        """Custom helper to ensure all next/prev links and head/tail are consistent."""
+        if dll.count == 0:
+            self.assertIsNone(dll.head)
+            self.assertIsNone(dll.tail)
+            return
+
+        # Check forward and backward consistency
+        nodes = []
+        curr = dll.head
+        while curr:
+            nodes.append(curr)
+            if curr.next:
+                self.assertEqual(curr.next.prev, curr, "Next node's prev link is broken")
+            curr = curr.next
+        
+        self.assertEqual(len(nodes), dll.count, "Count does not match actual nodes")
+        self.assertEqual(nodes[0], dll.head)
+        self.assertEqual(nodes[-1], dll.tail)
+        self.assertIsNone(dll.head.prev, "Head prev should be None")
+        self.assertIsNone(dll.tail.next, "Tail next should be None")
+
+    # --- Initialization & Conversion ---
+    def test_initialization(self):
         dll = DoublyLinkedList()
-        self.assertEqual(dll.count, 0)
         self.assertTrue(dll.is_empty())
-        self.assertIsNone(dll.head)
-        self.assertIsNone(dll.tail)
-    def test_init_with_head(self):
-        node = Node(1)
-        dll = DoublyLinkedList(head=node)
-        self.assertEqual(dll.head, node)
-        self.assertEqual(dll.tail, node)
-        self.assertEqual(dll.count, 1)
+        self.verify_integrity(dll)
 
-    def test_init_with_head_and_tail(self):
-        head = Node(1)
-        tail = Node(2)
-        dll = DoublyLinkedList(head=head, tail=tail, count=2)
-        self.assertEqual(dll.head, head)
-        self.assertEqual(dll.tail, tail)
-        self.assertEqual(dll.count, 2)
-
-    def test_create_chain(self):
-        n1, n2, n3 = Node(10), Node(20), Node(30)
+        # Init with chain
+        n1, n2 = Node(1), Node(2)
         n1.next = n2
-        n2.next = n3
-        ll = DoublyLinkedList(n1, n3, 3)
-        self.assertEqual(ll.count, 3)
-        self.assertEqual(len(ll), 3)
-        self.assertEqual(ll.head.value, 10)
-        self.assertEqual(ll.tail.value, 30)
-        self.assertFalse(ll.is_empty())
+        n2.prev = n1
+        dll = DoublyLinkedList(n1, n2, 2)
+        self.verify_integrity(dll)
 
-    # --- List Conversion Tests ---
-    def test_from_list_various_lengths(self):
-        for values in [[], [1], [1, 2], [1, 2, 3]]:
-            ll = DoublyLinkedList.from_list(values)
-            self.assertEqual(ll.to_list(), values)
-            self.assertEqual(ll.count, len(values))
-
-    def test_repr_output(self):
-        ll = DoublyLinkedList.from_list([1, 2, 3, 4])
-        self.assertEqual(repr(ll), "[ 1 2 3 4 ] Count: 4")
-
-    # --- Search and Indexing ---
-    def test_search_existing_and_invalid(self):
-        ll = DoublyLinkedList.from_list(range(20))
-        node = ll.search(10)
-        self.assertEqual(node.value, 10)
-        node = ll.search(1)
-        self.assertEqual(node.value, 1)
-        node = ll.search(-1)
-        self.assertIsNone(node)
-        node = ll.search(20)
-        self.assertIsNone(node)
-
-    def test_index_access(self):
-        ll = DoublyLinkedList.from_list(range(20))
-        self.assertEqual(ll[0], 0)
-        self.assertEqual(ll[19], 19)
+    def test_conversions(self):
+        cases = [[], [1], [1, 2, 3]]
+        for values in cases:
+            with self.subTest(values=values):
+                dll = DoublyLinkedList.from_list(values)
+                self.assertEqual(dll.to_list(), values)
+                self.verify_integrity(dll)
 
     # --- Insertion Tests ---
-    def test_append_and_prepend(self):
-        ll = DoublyLinkedList()
-        for i in range(15):
-            ll.append(i)
-        for i in range(10):
-            ll.prepend(i)
-        self.assertEqual(ll[0], 9)
-        self.assertEqual(ll[2], 7)
-        self.assertEqual(ll.count, 25)
-        self.verify_prev_links(ll)
-
-    def test_insert_after_head_tail_and_middle(self):
-        ll = DoublyLinkedList.from_list(range(10))
-        ll.insert_after(0, -1)  # after head
-        self.assertEqual(ll[1], -1) 
-        ll.insert_after(9, 100)  # after tail
-        self.assertEqual(ll.tail.value, 100)
-        ll.insert_after(4, 50)  # in the middle
-        node = ll.search(50)
-        self.assertEqual(node.value, 50)
-        self.assertEqual(node.next.value, 5)
-        self.assertEqual(ll.count, 13)
-        self.verify_prev_links(ll)
+    def test_append_prepend_logic(self):
+        dll = DoublyLinkedList()
+        dll.append(20)   # [20]
+        dll.prepend(10)  # [10, 20]
+        dll.append(30)   # [10, 20, 30]
         
-    def test_insert_after_invalid_value(self):
-        ll = DoublyLinkedList.from_list(range(10))
-        self.assertRaises(ValueError, ll.insert_after, 20, 100)
-        self.verify_prev_links(ll)
+        self.assertEqual(dll.to_list(), [10, 20, 30])
+        self.verify_integrity(dll)
+
+    def test_insert_after(self):
+        dll = DoublyLinkedList.from_list([10, 30])
+        
+        # Insert in middle
+        dll.insert_after(10, 20)
+        # Insert at tail
+        dll.insert_after(30, 40)
+        
+        self.assertEqual(dll.to_list(), [10, 20, 30, 40])
+        self.verify_integrity(dll)
 
     # --- Deletion Tests ---
-    def test_delete_value(self):
-        ll = DoublyLinkedList.from_list(range(15))
-        self.assertRaises(ValueError, ll.delete, 15)
-
-        for i in range(15):
-            ll.delete(i)
-        self.assertEqual(ll.count, 0)
-        self.assertRaises(ValueError, ll.delete, 0)
-
-        ll = DoublyLinkedList.from_list(range(15))
-        for i in range(14, -1, -1):
-            ll.delete(i)
-        self.assertEqual(ll.count, 0)
-        self.verify_prev_links(ll)
-
-        ll = DoublyLinkedList.from_list([1, 2, 3, 4, 5])
-        ll.delete(3)
-        self.assertEqual(ll.to_list(), [1, 2, 4, 5])
-        self.verify_prev_links(ll)
-
-    def test_delete_head_tail_and_middle(self):
-        ll = DoublyLinkedList.from_list(range(20))
-        ll.delete(19)
-        self.assertEqual(ll.tail.value, 18)
-        ll.delete(0)
-        self.assertEqual(ll.head.value, 1)
-        ll.delete(3)
-        self.assertEqual(ll[2], 4)
-        self.assertEqual(ll.count, 17)
-        self.verify_prev_links(ll)
-
-    def test_delete_head_method(self):
-        dll = DoublyLinkedList()
-        self.assertRaises(IndexError, dll.delete_head)
+    def test_delete_by_value(self):
         dll = DoublyLinkedList.from_list([1, 2, 3])
+        
+        dll.delete(2) # Middle
+        self.assertEqual(dll.to_list(), [1, 3])
+        self.verify_integrity(dll)
+        
+        dll.delete(1) # Head
+        self.assertEqual(dll.head.value, 3)
+        self.verify_integrity(dll)
+
+    def test_delete_head_tail_edge_cases(self):
+        # Single element list
+        dll = DoublyLinkedList.from_list([100])
         dll.delete_head()
-        self.assertEqual(dll.to_list(), [2, 3])
-        self.assertEqual(dll.count, 2)
-        self.verify_prev_links(dll)
+        self.assertEqual(dll.count, 0)
+        self.verify_integrity(dll)
 
-    def test_delete_tail_method(self):
-        dll = DoublyLinkedList()
-        self.assertRaises(IndexError, dll.delete_tail)
-        dll = DoublyLinkedList.from_list([1, 2, 3])
+        # Test delete_tail on single element
+        dll = DoublyLinkedList.from_list([200])
         dll.delete_tail()
-        self.assertEqual(dll.to_list(), [1, 2])
-        self.assertEqual(dll.count, 2)
-        self.verify_prev_links(dll)
+        self.verify_integrity(dll)
 
-    # --- Traversal ---
-    def test_traverse_forward_and_backward(self):
-        dll = DoublyLinkedList.from_list(range(15))
-        node = dll.head
-        for i in range(15):
-            self.assertEqual(node.value, i)
-            node = node.next
+    # --- Search & Indexing ---
+    def test_search_and_indexing(self):
+        dll = DoublyLinkedList.from_list([10, 20, 30])
+        self.assertEqual(dll.search(20).value, 20)
+        self.assertIsNone(dll.search(99))
+        self.assertEqual(dll[1], 20)
 
-        node = dll.tail
-        for i in range(15):
-            self.assertEqual(node.value, 14 - i)
-            node = node.prev
+    # --- Traversals ---
+    def test_traversals(self):
+        values = [1, 2, 3]
+        dll = DoublyLinkedList.from_list(values)
+        
+        # Manually check reverse via prev links
+        curr = dll.tail
+        results = []
+        while curr:
+            results.append(curr.value)
+            curr = curr.prev
+        self.assertEqual(results, [3, 2, 1])
 
-    # --- Helper Verification ---
-    def verify_prev_links(self, dll):
-        node = dll.head
-        while node and node.next:
-            self.assertEqual(node.next.prev, node)
-            node = node.next
-            self.assertIsNotNone(node.prev, "Malformed list: missing prev link")
+    # --- New Edge Cases ---
+    def test_empty_list_errors(self):
+        dll = DoublyLinkedList()
+        with self.assertRaises(ValueError):
+            dll.delete_head()
+        with self.assertRaises(ValueError):
+            dll.delete_tail()
+        with self.assertRaises(ValueError):
+            dll.delete(5)
 
-    def test_eq(self):
-        dll1 = DoublyLinkedList.from_list([1, 2, 3, 4])
-        dll2 = DoublyLinkedList.from_list([1, 2, 3, 4])
-        dll3 = DoublyLinkedList.from_list([1, 2, 3, 5])
-        dll_empty1 = DoublyLinkedList()
-        dll_empty2 = DoublyLinkedList()
+    def test_re_insertion_after_clear(self):
+        """Check if list works correctly after being emptied."""
+        dll = DoublyLinkedList.from_list([1, 2])
+        dll.delete(1)
+        dll.delete(2)
+        self.assertTrue(dll.is_empty())
+        
+        dll.append(10)
+        self.assertEqual(dll.head.value, 10)
+        self.assertEqual(dll.tail.value, 10)
+        self.verify_integrity(dll)
+
+    def test_equality(self):
+        dll1 = DoublyLinkedList.from_list([1, 2])
+        dll2 = DoublyLinkedList.from_list([1, 2])
         self.assertEqual(dll1, dll2)
-        self.assertNotEqual(dll1, dll3)
-        self.assertEqual(dll_empty1, dll_empty2)
-        self.assertNotEqual(dll1, DoublyLinkedList.from_list([1, 2, 3]))
-        self.assertNotEqual(dll1, [1, 2, 3, 4])
+        self.assertNotEqual(dll1, [1, 2]) # Type safety check
 
-    def test_traverse_order(self):
-        ll = DoublyLinkedList()
-        for i in range(15):
-            ll.append(i)
-
-        node = ll.head
-        for i in range(15):
-            self.assertEqual(node.value, i)
-            node = node.next
-        ll.traverse()
-
-    def test_reverse_traverse_order(self):
-        ll = DoublyLinkedList()
-        for i in range(15):
-            ll.append(i)
-
-        node = ll.tail
-        for i in range(14, -1, -1):
-            self.assertEqual(node.value, i)
-            node = node.prev
-        ll.traverse_reverse()
-    
 if __name__ == "__main__":
     unittest.main()

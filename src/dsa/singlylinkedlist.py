@@ -112,14 +112,13 @@ class LinkedList:
         return self.count == 0
         
 
-    def insert_after(self, after_value, value):
+    def insert_after(self, target_value, value):
         """
         Insert a value after a specified value. Raise exception if value is not found.
 
         Args:
-            after_value: The value to insert after.
-            value: The value to append.
-
+            target_value: The value of node to insert after.
+            value: The new value to insert.
         Returns:
             None
 
@@ -129,26 +128,20 @@ class LinkedList:
                 
         # find node to insert after
         current = self.head
-        while current:
-            if current.value == after_value:
-                break
+        while current is not None and current.value != target_value:
             current = current.next
         
-        if current is None:
+        if current is not None:
+            new_node = Node(value)
+            new_node.next = current.next
+            current.next = new_node
+            if new_node.next is None:
+                self.tail = new_node
+            self.count += 1
+        else:
             raise ValueError("Value not found")
         
-        # insert at the end
-        if current == self.tail:
-            self.append(value)
-            return
-
-        # insert in the middle
-        new_node = Node(value)
-        tmp = current.next
-        current.next = new_node
-        new_node.next = tmp
-        self.count += 1
-
+ 
     def prepend(self, value):
         """
         Place a value at the beginning of the linked list.
@@ -162,6 +155,9 @@ class LinkedList:
         new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
+
+        if self.tail is None:
+            self.tail = new_node
         self.count += 1
         
     def append(self, value):
@@ -173,22 +169,14 @@ class LinkedList:
 
         Returns:
             None
-        
-        Raises:
-            IndexError: If linked list is empty or index is not found.
         """
-        if self.head is None:
-            self.head = Node(value)
-            if self.count == 0:
-                self.tail = self.head
-            self.count += 1
-            return
-
-        # go to the end of the list
         new_node = Node(value)
-        self.tail.next = new_node
-        self.tail = new_node
-        
+        if self.head is None:
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+
+        self.tail = new_node        
         self.count += 1
 
     def delete(self, value):
@@ -196,7 +184,7 @@ class LinkedList:
         Delete the first occurrence of a value in the linked list.
 
         Args:
-            value: The value to be deleted.
+            target: The value to be deleted.
         
         Returns:
             None
@@ -209,22 +197,23 @@ class LinkedList:
 
         if self.head.value == value:
             self.head = self.head.next
-            self.count -= 1
-            if self.count == 0:
+            if self.head is None:
                 self.tail = None
+            self.count -= 1
             return
 
         current = self.head
-        while current.next:
-            if current.next.value == value:
-                if current.next == self.tail:
-                    self.tail = current
-                current.next = current.next.next
-                self.count -= 1
-                return
+        while current.next is not None and current.next.value != value:
             current = current.next
-            
-        raise ValueError("Value not found")
+
+        if current.next is not None:
+            if current.next == self.tail:
+                self.tail = current
+            current.next = current.next.next
+            self.count -= 1
+        else:
+            raise ValueError("Value not found")
+    
 
     def delete_head(self):
         """
@@ -234,11 +223,16 @@ class LinkedList:
             None
 
         Raises:
-            IndexError: If linked list is empty.
+            ValueError: If linked list is empty.
         """
         if self.head is None:
-            raise IndexError("LinkedList is Empty")
+            raise ValueError("LinkedList is Empty")
+
         self.head = self.head.next
+
+        if self.head is None:
+            self.tail = None
+
         self.count -= 1
 
     def delete_tail(self):
@@ -249,22 +243,20 @@ class LinkedList:
             None
             
         Raises:
-            IndexError: If linked list is empty.
+            ValueError: If linked list is empty.
         """
         if self.head is None:
-            raise IndexError("LinkedList is Empty")
-        
-        if self.head.next is None:
+            raise ValueError("LinkedList is Empty")
+
+        if self.count == 1:
             self.head = None
-            self.count -= 1
-            return
-        
-        current = self.head
-        while current.next.next:
-            current = current.next
-        
-        current.next = None
-        self.tail = current
+            self.tail = None
+        else:         
+            current = self.head
+            while current.next != self.tail:
+                current = current.next        
+            current.next = None
+            self.tail = current
         self.count -= 1
 
     def __repr__(self):
