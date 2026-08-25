@@ -166,6 +166,30 @@
 <span id="dsa-dijkstra-module"></span><h1>dsa.dijkstra module</h1>
 <p>Module to access functions for Dijkstra’s Algorithm.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="dsa.dijkstra.dijkstra_tables">
+<span class="sig-prename descclassname"><span class="pre">dsa.dijkstra.</span></span><span class="sig-name descname"><span class="pre">dijkstra_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Helper function that returns a weight table and a predecessor table using Dijkstra’s Algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="dsa.graph.html#dsa.graph.Graph" title="dsa.graph.Graph"><em>Graph</em></a>) – The graph to search.</p></li>
+<li><p><strong>start</strong> (<em>str</em>) – The starting vertex label.</p></li>
+<li><p><strong>end</strong> (<em>str</em>) – The ending vertex label.</p></li>
+<li><p><strong>debug</strong> (<em>bool</em>) – If True, display weight table as it is being built.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>KeyError</strong> – If start or end vertex is not in the graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of a weight table hashtable and a predecessor hashtable.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
 <dt class="sig sig-object py" id="dsa.dijkstra.find_path">
 <span class="sig-prename descclassname"><span class="pre">dsa.dijkstra.</span></span><span class="sig-name descname"><span class="pre">find_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Return the shortest path of two vertices using Dijkstra’s Algorithm.</p>
@@ -189,36 +213,12 @@
 </dd>
 </dl>
 </dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="dsa.dijkstra.shortest_path">
-<span class="sig-prename descclassname"><span class="pre">dsa.dijkstra.</span></span><span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Helper function that returns a weight table and a predecessor table using Dijkstra’s Algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> (<a class="reference internal" href="dsa.graph.html#dsa.graph.Graph" title="dsa.graph.Graph"><em>Graph</em></a>) – The graph to search.</p></li>
-<li><p><strong>start</strong> (<em>str</em>) – The starting vertex label.</p></li>
-<li><p><strong>end</strong> (<em>str</em>) – The ending vertex label.</p></li>
-<li><p><strong>debug</strong> (<em>bool</em>) – If True, display weight table as it is being built.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>KeyError</strong> – If start or end vertex is not in the graph.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple of a weight table hashtable and a predecessor hashtable.</p>
-</dd>
-</dl>
-</dd></dl>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
+<li><a :data-current="activeSection === '#dsa.dijkstra.dijkstra_tables'" class="reference internal" href="#dsa.dijkstra.dijkstra_tables"><code class="docutils literal notranslate"><span class="pre">dijkstra_tables()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.dijkstra.find_path'" class="reference internal" href="#dsa.dijkstra.find_path"><code class="docutils literal notranslate"><span class="pre">find_path()</span></code></a></li>
-<li><a :data-current="activeSection === '#dsa.dijkstra.shortest_path'" class="reference internal" href="#dsa.dijkstra.shortest_path"><code class="docutils literal notranslate"><span class="pre">shortest_path()</span></code></a></li>
 </ul>
 </div>
 </aside>

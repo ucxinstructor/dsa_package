@@ -189,8 +189,8 @@
 </dl>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="dsa.prim.mst_weight">
-<span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">mst_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span></dt>
+<dt class="sig sig-object py" id="dsa.prim.get_total_weight">
+<span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">get_total_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Returns the total weight of a graph given a starting vertex</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -231,14 +231,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="dsa.prim.prim_simple">
 <span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">prim_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mst_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Returns an MST given a graph and starting vertex.
-(Future: return a Tree type instead of a Graph type)</p>
+<dd><p>Returns an MST given a graph and starting vertex. Uses a simpler implementation of Prim’s algorithm that does not return weight and predecessor tables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>graph</strong> – The graph to search an MST from. (can be either an AdjacencyListWeightedGraph or AdjacencyMatrixWeightedGraph)</p></li>
 <li><p><strong>start</strong> (<em>string</em>) – The starting vertex label.</p></li>
-<li><p><strong>mst_graph</strong> – An empty graph object to output the MST in to.</p></li>
+<li><p><strong>mst_graph</strong> – An empty graph object to output the MST in to. If not specified, a new AdjacencyListWeightedGraph will be created.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -251,13 +250,13 @@
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="dsa.prim.reconstruct_mst">
-<span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">reconstruct_mst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predecessor_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Reconstructs a minimum spanning tree (MST) from the predecessor table and distance table</p>
+<span class="sig-prename descclassname"><span class="pre">dsa.prim.</span></span><span class="sig-name descname"><span class="pre">reconstruct_mst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_table</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Reconstructs a minimum spanning tree (MST) from the distance table and predecessor table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>dist_table</strong> (<em>dict</em>) – A hashtable of vertex labels and their distances from the starting vertex in the MST. Set to None if there are no weights available.</p></li>
 <li><p><strong>predecessor_table</strong> (<em>dict</em>) – A hashtable of vertex labels and their predecessors in the MST.</p></li>
-<li><p><strong>dist_table</strong> (<em>dict</em>) – A hashtable of vertex labels and their distances from the starting vertex in the MST.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -273,7 +272,7 @@
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
 <li><a :data-current="activeSection === '#dsa.prim.get_mst'" class="reference internal" href="#dsa.prim.get_mst"><code class="docutils literal notranslate"><span class="pre">get_mst()</span></code></a></li>
-<li><a :data-current="activeSection === '#dsa.prim.mst_weight'" class="reference internal" href="#dsa.prim.mst_weight"><code class="docutils literal notranslate"><span class="pre">mst_weight()</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.prim.get_total_weight'" class="reference internal" href="#dsa.prim.get_total_weight"><code class="docutils literal notranslate"><span class="pre">get_total_weight()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.prim.prim'" class="reference internal" href="#dsa.prim.prim"><code class="docutils literal notranslate"><span class="pre">prim()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.prim.prim_simple'" class="reference internal" href="#dsa.prim.prim_simple"><code class="docutils literal notranslate"><span class="pre">prim_simple()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.prim.reconstruct_mst'" class="reference internal" href="#dsa.prim.reconstruct_mst"><code class="docutils literal notranslate"><span class="pre">reconstruct_mst()</span></code></a></li>
