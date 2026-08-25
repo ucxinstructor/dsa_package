@@ -39,6 +39,10 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.08.25
+* Added Prim's Algorithm implementation that follows Dijkstra's closely
+* Refactored Dijkstra's Algorithm to use more meaningful variable names
+
 ## 2026.08.21
 * Updated singly linked lists and doubly linked lists operations to match the slides
 * Changed to use raise value error instead of inder error when deleting from empty lists or when a value is not found

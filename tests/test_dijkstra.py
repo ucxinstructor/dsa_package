@@ -1,5 +1,5 @@
 import unittest
-from dsa.dijkstra import shortest_path, find_path
+from dsa.dijkstra import dijkstra_tables, find_path
 from dsa.graph import Graph
 
 class TestDijkstra(unittest.TestCase):
@@ -18,49 +18,49 @@ class TestDijkstra(unittest.TestCase):
         self.gm.add_edge('B', 'D', 5)
         self.gm.add_edge('C', 'D', 1)
         
-    def test_shortest_path(self):
-        weight_table, previous = shortest_path(self.gl, 'A', 'D')
+    def test_dijkstra_tables(self):
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'D')
         self.assertEqual(weight_table['D'], 4)
         self.assertEqual(previous['D'], 'C')
         self.assertEqual(previous['C'], 'B')
         self.assertEqual(previous['B'], 'A')
 
-        weight_table, previous = shortest_path(self.gm, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'D')
         self.assertEqual(weight_table['D'], 4)
         self.assertEqual(previous['D'], 'C')
         self.assertEqual(previous['C'], 'B')
         self.assertEqual(previous['B'], 'A')
 
-    def test_shortest_path_same_start_end(self):
-        weight_table, previous = shortest_path(self.gl, 'A', 'A')
+    def test_dijkstra_tables_same_start_end(self):
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'A')
         self.assertEqual(weight_table['A'], 0)
-        self.assertEqual(previous['A'], 'A')
+        self.assertIsNone(previous['A'])
 
-        weight_table, previous = shortest_path(self.gm, 'A', 'A')
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'A')
         self.assertEqual(weight_table['A'], 0)
-        self.assertEqual(previous['A'], 'A')
+        self.assertIsNone(previous['A'])
 
-    def test_shortest_path_no_path(self):
+    def test_dijkstra_tables_no_path(self):
         self.gl.add_edge('E', 'E', 0)
-        weight_table, previous = shortest_path(self.gl, 'A', 'E')
-        self.assertNotIn('E', weight_table)
-        self.assertNotIn('E', previous)
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'E')
+        self.assertEqual(weight_table['E'], float('inf'))
+        self.assertIsNone(previous['E'])
 
         self.gm.add_edge('E', 'E', 0)
-        weight_table, previous = shortest_path(self.gm, 'A', 'E')
-        self.assertNotIn('E', weight_table)
-        self.assertNotIn('E', previous)
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'E')
+        self.assertEqual(weight_table['E'], float('inf'))
+        self.assertIsNone(previous['E'])
 
     def test_graph_with_cycle(self):
         # Add cycle C → A with big weight
         self.gl.add_edge('C', 'A', 10)
-        weight_table, previous = shortest_path(self.gl, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'D')
         # Should still produce the same shortest path as before
         self.assertEqual(weight_table['D'], 4)
 
         # Add cycle C → A with big weight
         self.gl.add_edge('C', 'A', 10)
-        weight_table, previous = shortest_path(self.gm, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'D')
         # Should still produce the same shortest path as before
         self.assertEqual(weight_table['D'], 4)
 
@@ -68,7 +68,7 @@ class TestDijkstra(unittest.TestCase):
         # Add another equally-weighted path A → X → D
         self.gl.add_edge('A', 'X', 2)
         self.gl.add_edge('X', 'D', 2)
-        weight_table, previous = shortest_path(self.gl, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'D')
         self.assertEqual(weight_table['D'], 4)
         # Path may be A-B-C-D or A-X-D; both valid
         self.assertIn(previous['D'], ('C', 'X'))
@@ -77,7 +77,7 @@ class TestDijkstra(unittest.TestCase):
         # Add another equally-weighted path A → X → D
         self.gm.add_edge('A', 'X', 2)
         self.gm.add_edge('X', 'D', 2)
-        weight_table, previous = shortest_path(self.gm, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'D')
         self.assertEqual(weight_table['D'], 4)
         # Path may be A-B-C-D or A-X-D; both valid
         self.assertIn(previous['D'], ('C', 'X'))
@@ -86,22 +86,23 @@ class TestDijkstra(unittest.TestCase):
     def test_disconnected_graph(self):
         # Add entirely separate component
         self.gl.add_edge('X', 'Y', 1)
-        weight_table, previous = shortest_path(self.gl, 'A', 'Y')
-        self.assertNotIn('Y', weight_table)
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'Y')
+        self.assertEqual(weight_table['Y'], float('inf'))
+        self.assertIsNone(previous['Y'])
 
         self.gm.add_edge('X', 'Y', 1)
-        weight_table, previous = shortest_path(self.gm, 'A', 'Y')
-        self.assertNotIn('Y', weight_table)
-
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'Y')
+        self.assertEqual(weight_table['Y'], float('inf'))
+        self.assertIsNone(previous['Y'])
 
     def test_heavier_direct_edge(self):
         # Add direct but worse path
         self.gl.add_edge('A', 'D', 100)
-        weight_table, previous = shortest_path(self.gl, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'D')
         self.assertEqual(weight_table['D'], 4)
 
         self.gm.add_edge('A', 'D', 100)
-        weight_table, previous = shortest_path(self.gm, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gm, 'A', 'D')
         self.assertEqual(weight_table['D'], 4)
 
     def test_zero_weight_edges(self):
@@ -110,7 +111,7 @@ class TestDijkstra(unittest.TestCase):
         self.gl.add_edge('Z', 'D', 0)
         self.assertTrue(self.gl.has_edge('A','Z'))
         self.assertTrue(self.gl.has_edge('Z','D'))
-        weight_table, previous = shortest_path(self.gl, 'A', 'D')
+        weight_table, previous = dijkstra_tables(self.gl, 'A', 'D')
         self.assertEqual(weight_table['D'], 0)
         self.assertEqual(previous['D'], 'Z')
         self.assertEqual(previous['Z'], 'A')
@@ -124,7 +125,7 @@ class TestDijkstra(unittest.TestCase):
         self.assertTrue(self.gm.has_vertex('D'))
         self.assertTrue(self.gm.has_edge('A','Z'))
         self.assertTrue(self.gm.has_edge('Z','D'))
-        weight_table_gm, previous_gm = shortest_path(self.gm, 'A', 'D')
+        weight_table_gm, previous_gm = dijkstra_tables(self.gm, 'A', 'D')
 
         self.assertEqual(weight_table, weight_table_gm)
         self.assertEqual(previous, previous_gm)
@@ -138,16 +139,16 @@ class TestDijkstra(unittest.TestCase):
         letters = "ABCDEFGHIJ"
         for i in range(len(letters)-1):
             g.add_edge(letters[i], letters[i+1], 1)
-        weight_table, previous = shortest_path(g, 'A', 'J')
+        weight_table, previous = dijkstra_tables(g, 'A', 'J')
         self.assertEqual(weight_table['J'], 9)
         self.assertEqual(previous['J'], 'I')
 
     def test_end_not_in_graph(self):
         with self.assertRaises(KeyError):
-            weight_table, previous = shortest_path(self.gl, 'A', 'ZZZ')
+            weight_table, previous = dijkstra_tables(self.gl, 'A', 'ZZZ')
     
         with self.assertRaises(KeyError):
-            weight_table, previous = shortest_path(self.gm, 'A', 'ZZZ')
+            weight_table, previous = dijkstra_tables(self.gm, 'A', 'ZZZ')
 
 class TestFindPath(unittest.TestCase):
     def setUp(self):

@@ -351,8 +351,7 @@ class PriorityQueue(MinHeap):
         Returns:
             Return The highest priority value in the heap.
         """
-        priority, item = super().extract_min()
-        return item
+        return super().extract_min()[1]
 
     def extract_min_pair(self) -> tuple:
         """
@@ -370,8 +369,7 @@ class PriorityQueue(MinHeap):
         Returns:
             Return The highest priority value in the heap.
         """
-        priority, item = super().peek()
-        return item
+        return super().peek()[1]
 
     def peek_pair(self) -> tuple:
         """
@@ -389,7 +387,7 @@ class PriorityQueue(MinHeap):
         temp_array = self._array[:]
         result = []
         while not self.is_empty():
-            result.append(str(self.pop_pair()))
+            result.append(str(self.extract_min_pair()))
         self._array = temp_array
 
         return "[" + " ".join(result) + "]"

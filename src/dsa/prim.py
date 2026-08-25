@@ -21,59 +21,65 @@ def prim(graph: Graph, start: str, debug: bool = False) -> tuple:
     if start not in graph:
         raise KeyError(f"Start vertex {start} not in graph.")
 
-    weight_table = {start: 0}
-    predecessor = {start: start}
+    dist_table = {}
+    pred_table = {}
     visited = set()
     pq = PriorityQueue()
 
+    for vertex in graph.vertices():
+        dist_table[vertex] = float('inf')
+        pred_table[vertex] = None
+
     # insert starting vertex with weight 0
     pq.insert(0, start)
-    
+    dist_table[start] = 0
+
     while not pq.is_empty():
         current_weight, current_vertex = pq.extract_min_pair()
         if current_vertex in visited:
             continue
         visited.add(current_vertex)
 
-        for adjacent, weight in graph.adjacent_items(current_vertex):
+        for adjacent, distance in graph.adjacent_items(current_vertex):
             if adjacent in visited:
                 continue
 
-            new_dist = weight
+            new_dist = distance
 
             if debug:
-                print("current_vertex ", current_vertex, " adjacent ", adjacent, " weight ", weight, " new_dist ", new_dist, " predecessor ", predecessor, "visited ", visited)
-            if new_dist < weight_table.get(adjacent, float('inf')):
-                weight_table[adjacent] = new_dist
-                predecessor[adjacent] = current_vertex
+                print("current_vertex ", current_vertex, " adjacent ", adjacent, " distance ", distance, " new_dist ", new_dist, " predecessor ", pred_table, "visited ", visited)
+            if new_dist < dist_table[adjacent]:
+                dist_table[adjacent] = new_dist
+                pred_table[adjacent] = current_vertex
                 pq.insert(new_dist, adjacent)
                 if debug:
-                    print(weight_table)
-    return weight_table, predecessor
+                    print(dist_table)
+    return dist_table, pred_table
 
-def reconstruct_mst(predecessor_table: dict, dist_table=None):
+def reconstruct_mst(dist_table: dict, pred_table: dict):
     """
-    Reconstructs a minimum spanning tree (MST) from the predecessor table and distance table
+    Reconstructs a minimum spanning tree (MST) from the distance table and predecessor table
     
     Args:
+        dist_table (dict): A hashtable of vertex labels and their distances from the starting vertex in the MST. Set to None if there are no weights available.
         predecessor_table (dict): A hashtable of vertex labels and their predecessors in the MST.
-        dist_table (dict): A hashtable of vertex labels and their distances from the starting vertex in the MST.
     Returns:
         Graph: The minimum spanning tree of the graph.
     """
     mst = Graph.create_adjacency_list(directed=False, weighted=True)
 
-    for vertex, parent in predecessor_table.items():
-        if parent is None or vertex == parent:
+    for vertex, connection in pred_table.items():
+        if connection is None or vertex == connection:
             continue
-            
+
+        # If dist_table is provided, use it to get the weight of the edge; otherwise, default to 1
         w = dist_table[vertex] if dist_table else 1
-        print(vertex, parent, w)
-        mst.add_edge(parent, vertex, w)
+        print(vertex, connection, w)
+        mst.add_edge(connection, vertex, w)
 
     return mst
 
-def get_mst(graph: Graph, start: str, debug: bool=False) -> Graph:
+def get_mst(graph: Graph, start: str, debug: bool = False) -> Graph:
     """
     Returns a minimum spanning tree (MST) of the given graph starting from the specified vertex.
 
@@ -89,19 +95,18 @@ def get_mst(graph: Graph, start: str, debug: bool=False) -> Graph:
         Graph: The minimum spanning tree of the graph.
     """
     weight_table, predecessor_table = prim(graph, start, debug)
-    mst = reconstruct_mst(predecessor_table, weight_table)
+    mst = reconstruct_mst(weight_table, predecessor_table)
 
     return mst
 
-def prim_simple(graph, start: str, mst_graph=None) -> Graph:
+def prim_simple(graph, start: str, mst_graph = None) -> Graph:
     """
-    Returns an MST given a graph and starting vertex.
-    (Future: return a Tree type instead of a Graph type)
+    Returns an MST given a graph and starting vertex. Uses a simpler implementation of Prim's algorithm that does not return weight and predecessor tables.
 
     Args:
         graph: The graph to search an MST from. (can be either an AdjacencyListWeightedGraph or AdjacencyMatrixWeightedGraph)
         start (string): The starting vertex label.
-        mst_graph: An empty graph object to output the MST in to.
+        mst_graph: An empty graph object to output the MST in to. If not specified, a new AdjacencyListWeightedGraph will be created.
 
     Returns:
         AdjacencyListWeightedGraph: the MST of the graph.
@@ -133,7 +138,7 @@ def prim_simple(graph, start: str, mst_graph=None) -> Graph:
             add_adjacent(graph, pq, visited, end)
     return mst_graph
 
-def mst_weight(graph) -> int:
+def get_total_weight(graph) -> int:
     """
     Returns the total weight of a graph given a starting vertex
     
@@ -144,10 +149,15 @@ def mst_weight(graph) -> int:
         int: The total weight of the graph.
     """
     total_weight = 0
-    visited = set()
-    for start, end, weight in graph.edges():
-        if (start, end) not in visited:
-            total_weight += weight
-            visited.add((start, end))
-            visited.add((end, start))
+    visited_edges = set()
+
+    for u in graph.vertices():
+        for v in graph.adjacents(u):
+            # Sort the pair so (A, B) and (B, A) look identical
+            edge = tuple(sorted((u, v)))
+            
+            if edge not in visited_edges:
+                total_weight += graph.weight(u, v)
+                visited_edges.add(edge)
+                
     return total_weight

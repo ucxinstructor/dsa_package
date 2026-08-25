@@ -2,7 +2,7 @@
 from dsa.heap import PriorityQueue
 from dsa.graph import Graph
 
-def shortest_path(graph: Graph, start: str, end: str, debug: bool=False) -> tuple:
+def dijkstra_tables(graph: Graph, start: str, end: str, debug: bool = False) -> tuple:
     """ 
     Helper function that returns a weight table and a predecessor table using Dijkstra's Algorithm.
 
@@ -23,16 +23,22 @@ def shortest_path(graph: Graph, start: str, end: str, debug: bool=False) -> tupl
     if end not in graph:
         raise KeyError(f"End vertex {end} not in graph.")
 
-    dist_table = {start: 0}
-    predecessor = {start: start}
+    dist_table = {}
+    pred_table = {}
     finished = set()
     pq = PriorityQueue()
+
+    for v in graph.vertices():
+        dist_table[v] = float('inf')
+        pred_table[v] = None
+
+    dist_table[start] = 0
 
     # insert starting vertex with weight 0
     pq.insert(0, start)
     
     while not pq.is_empty():
-        current_weight, current_vertex = pq.extract_min_pair()
+        current_dist, current_vertex = pq.extract_min_pair()
         if current_vertex in finished:
             continue
         finished.add(current_vertex)
@@ -43,19 +49,19 @@ def shortest_path(graph: Graph, start: str, end: str, debug: bool=False) -> tupl
 
         for neighbor in graph.adjacents(current_vertex):
             weight = graph.weight(current_vertex, neighbor)
-            new_dist = current_weight + weight
+            new_dist = current_dist + weight
             if debug:
-                print("current_vertex ", current_vertex, " adjacent ", neighbor, " weight ", weight, " new_dist ", new_dist, " predecessor ", predecessor)
-            if new_dist < dist_table.get(neighbor, float('inf')):
+                print("current_vertex ", current_vertex, " adjacent ", neighbor, " weight ", weight, " new_dist ", new_dist, " predecessor ", pred_table)
+            if new_dist < dist_table[neighbor]:
                 dist_table[neighbor] = new_dist
-                predecessor[neighbor] = current_vertex
+                pred_table[neighbor] = current_vertex
                 pq.insert(new_dist, neighbor)
                 if debug:
                     print(dist_table)
     
-    return dist_table, predecessor
+    return dist_table, pred_table
 
-def find_path(graph: Graph, start: str, end: str, debug: bool=False) -> list:
+def find_path(graph: Graph, start: str, end: str, debug: bool = False) -> list:
     """ 
     Return the shortest path of two vertices using Dijkstra's Algorithm.
 
@@ -71,10 +77,10 @@ def find_path(graph: Graph, start: str, end: str, debug: bool=False) -> list:
     Returns:
         A list of vertices that form a shortest path.
     """
-    weight_table, predecessor = shortest_path(graph, start, end, debug)
+    dist_table, pred_table = dijkstra_tables(graph, start, end, debug = False)
 
     # No path or invalid start/end
-    if end not in predecessor:
+    if end not in pred_table:
         raise KeyError(f"No path from {start} to {end}.")
 
     path = []
@@ -82,16 +88,14 @@ def find_path(graph: Graph, start: str, end: str, debug: bool=False) -> list:
     path.append(current)
 
     while current != start:
-        current = predecessor[current]
+        current = pred_table[current]
         path.append(current)
 
     path.reverse()
 
     if debug:
-        print("predecessor table")
-        print(predecessor)
-        print("weight table")
-        print(weight_table)
-        print("shortest path weight", weight_table[end])
+        print(f"Predecessor: {pred_table}")
+        print(f"Weight table: {dist_table}")
+        print(f"Shortest path weight: {dist_table[end]}")
 
     return path

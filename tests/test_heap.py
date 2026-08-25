@@ -154,3 +154,14 @@ class TestHeap(unittest.TestCase):
             pq3.insert(p, v)
         self.assertEqual(pq1, pq2)
         self.assertNotEqual(pq1, pq3)
+
+    def test_to_string_with_priority(self):
+        pq = PriorityQueue()
+        pq.insert(2, "a")
+        pq.insert(1, "b")
+        pq.insert(3, "c")
+        pq.insert(4, "d")
+        pq.insert(5, "e")
+
+        expected_string = "[(1, 'b') (2, 'a') (3, 'c') (4, 'd') (5, 'e')]"
+        self.assertEqual(pq.to_string_with_priority(), expected_string)
