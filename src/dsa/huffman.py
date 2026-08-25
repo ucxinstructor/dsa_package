@@ -35,7 +35,7 @@ def build_frequency_table(s: str) -> PriorityQueue:
     pq = PriorityQueue()
 
     for char, count in frequency_dictionary.items():
-        pq.push(count, TreeNode(char))#, None, None))
+        pq.insert(count, TreeNode(char))#, None, None))
 
     return pq
 
@@ -50,12 +50,12 @@ def build_huffman_tree(pq: PriorityQueue) -> Tree:
         A Huffman Tree.
     """
     while len(pq) > 1:
-        priority1, node1 = pq.pop_pair()
-        priority2, node2 = pq.pop_pair()
+        priority1, node1 = pq.extract_min_pair()
+        priority2, node2 = pq.extract_min_pair()
         node = TreeNode(node1.value + node2.value, node1, node2)
-        pq.push(priority1 + priority2, node)
+        pq.insert(priority1 + priority2, node)
 
-    return Tree(pq.pop())
+    return Tree(pq.extract_min())
 
 def build_huffman_dictionary(node: TreeNode, bit_string: str="") -> dict:
     """

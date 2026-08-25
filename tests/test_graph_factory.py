@@ -221,9 +221,9 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertListEqual(list(g['B'].keys()), ['A', 'C'])
         self.assertListEqual(list(g['C'].keys()), ['A', 'B'])
 
-        self.assertEqual(g.get_weight('A', 'B'), 5)
-        self.assertEqual(g.get_weight('A', 'C'), 10)
-        self.assertEqual(g.get_weight('B', 'C'), 2)
+        self.assertEqual(g.weight('A', 'B'), 5)
+        self.assertEqual(g.weight('A', 'C'), 10)
+        self.assertEqual(g.weight('B', 'C'), 2)
         
     def test_weighted_directed_graph(self):
         g = AdjacencyListWeightedGraph(directed=True)
@@ -246,8 +246,8 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertListEqual(list(g['B'].keys()), ['C'])
         self.assertListEqual(list(g['C'].keys()), [])
 
-        self.assertEqual(g.get_weight('A', 'B'), 3)
-        self.assertEqual(g.get_weight('B', 'C'), 4)
+        self.assertEqual(g.weight('A', 'B'), 3)
+        self.assertEqual(g.weight('B', 'C'), 4)
     
     def test_no_edge_undirected_graph(self):
         g = AdjacencyListGraph(directed=False, vertices=['A', 'B', 'C', 'D'])

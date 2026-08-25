@@ -119,7 +119,7 @@ class TestDijkstra(unittest.TestCase):
         self.assertTrue(self.gm.has_vertex('D'))
         self.gm.add_edge('A', 'Z', 0)
         self.gm.add_edge('Z', 'D', 0)
-        self.assertEqual(self.gm.get_weight('A', 'Z'), 0)
+        self.assertEqual(self.gm.weight('A', 'Z'), 0)
         self.assertTrue(self.gm.has_vertex('Z'))
         self.assertTrue(self.gm.has_vertex('D'))
         self.assertTrue(self.gm.has_edge('A','Z'))

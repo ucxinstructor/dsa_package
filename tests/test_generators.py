@@ -169,13 +169,13 @@ class TestRandomArray(unittest.TestCase):
         heap = dsa.generators.random_heap(size)
         self.assertEqual(len(heap), size)
         for _ in range(size):
-            self.assertIsInstance(heap.pop(), int)
+            self.assertIsInstance(heap.extract_max(), int)
 
         size = 20_000
         heap = dsa.generators.random_heap(size)
         self.assertEqual(len(heap), size)
         for _ in range(size):
-            self.assertIsInstance(heap.pop(), int)
+            self.assertIsInstance(heap.extract_max(), int)
 
 
     def test_random_trie(self):

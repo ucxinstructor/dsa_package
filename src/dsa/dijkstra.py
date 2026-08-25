@@ -1,5 +1,5 @@
 """ Module to access functions for Dijkstra's Algorithm. """
-from dsa.heap import MinHeap
+from dsa.heap import PriorityQueue
 from dsa.graph import Graph
 
 def shortest_path(graph: Graph, start: str, end: str, debug: bool=False) -> tuple:
@@ -23,35 +23,37 @@ def shortest_path(graph: Graph, start: str, end: str, debug: bool=False) -> tupl
     if end not in graph:
         raise KeyError(f"End vertex {end} not in graph.")
 
-    weight_table = {start: 0}
+    dist_table = {start: 0}
     predecessor = {start: start}
-    visited = set()
-    pq = MinHeap()
+    finished = set()
+    pq = PriorityQueue()
 
     # insert starting vertex with weight 0
-    pq.insert((0, start))
+    pq.insert(0, start)
     
     while not pq.is_empty():
-        current_weight, current_vertex = pq.pop()
-        if current_vertex in visited:
+        current_weight, current_vertex = pq.extract_min_pair()
+        if current_vertex in finished:
             continue
-        visited.add(current_vertex)
+        finished.add(current_vertex)
 
+        # early break
         if current_vertex == end:
             break
 
-        for adjacent, weight in graph.adjacent_items(current_vertex):
+        for neighbor in graph.adjacents(current_vertex):
+            weight = graph.weight(current_vertex, neighbor)
             new_dist = current_weight + weight
             if debug:
-                print("current_vertex ", current_vertex, " adjacent ", adjacent, " weight ", weight, " new_dist ", new_dist, " predecessor ", predecessor)
-            if new_dist < weight_table.get(adjacent, float('inf')):
-                weight_table[adjacent] = new_dist
-                predecessor[adjacent] = current_vertex
-                pq.insert((new_dist, adjacent))
+                print("current_vertex ", current_vertex, " adjacent ", neighbor, " weight ", weight, " new_dist ", new_dist, " predecessor ", predecessor)
+            if new_dist < dist_table.get(neighbor, float('inf')):
+                dist_table[neighbor] = new_dist
+                predecessor[neighbor] = current_vertex
+                pq.insert(new_dist, neighbor)
                 if debug:
-                    print(weight_table)
+                    print(dist_table)
     
-    return weight_table, predecessor
+    return dist_table, predecessor
 
 def find_path(graph: Graph, start: str, end: str, debug: bool=False) -> list:
     """ 

@@ -163,7 +163,7 @@ class Heap:
             index = parent_index
             parent_index = self.parent_index(index)
 
-    def pop(self):
+    def extract_max(self):
         """
         Return the value of the root node (max value) and remove it from the heap.
 
@@ -255,7 +255,7 @@ class Heap:
 
         result = []
         while not temp_heap.is_empty():
-            result.append(temp_heap.pop())
+            result.append(temp_heap.extract_max())
 
         return result
 
@@ -286,15 +286,6 @@ class Heap:
             return False
         return self._array == other._array
 
-    def extract_max(self):
-        """
-        Return the value of the root node (max value) and remove it from the heap.
-
-        Returns:
-            Return the value from the root node.
-        """
-        return self.pop()
-
 class MinHeap(Heap):
     def extract_min(self):
         """
@@ -303,7 +294,7 @@ class MinHeap(Heap):
         Returns:
             Return the value from the root node.
         """
-        return super().pop()
+        return super().extract_max()
 
     def heapify_up(self, index: int):
         """
@@ -343,7 +334,7 @@ class PriorityQueue(MinHeap):
     """ 
     A priority queue implementation in Python.
     """
-    def push(self, priority: int, item):
+    def insert(self, priority: int, item):
         """
         Insert an item with a priority into the priority queue.
 
@@ -353,24 +344,24 @@ class PriorityQueue(MinHeap):
         """
         super().insert((priority, item))
 
-    def pop(self):
+    def extract_min(self):
         """
         Return and remove the highest priority value in the heap.
 
         Returns:
             Return The highest priority value in the heap.
         """
-        priority, item = super().pop()
+        priority, item = super().extract_min()
         return item
 
-    def pop_pair(self) -> tuple:
+    def extract_min_pair(self) -> tuple:
         """
         Return and remove the highest priority value pair in the heap.
 
         Returns:
             Return the highest priority, value pair (tuple) in the heap.
         """
-        return super().pop()
+        return super().extract_min()
 
     def peek(self):
         """

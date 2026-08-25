@@ -485,7 +485,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
     
         return edges
 
-    def get_weight(self, start_label: str, end_label: str):
+    def weight(self, start_label: str, end_label: str):
         """ 
         Get the weight of an edge.
 
@@ -863,7 +863,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         """
         return self._adjacents[vertex].items()
 
-    def get_weight(self, start_label: str, end_label: str):
+    def weight(self, start_label: str, end_label: str):
         """ 
         Get the weight of an edge.
 
@@ -905,7 +905,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         edges = []
         for start in self.vertices():
             for end in self.adjacents(start):
-                weight = self.get_weight(start, end)
+                weight = self.weight(start, end)
                 if start != end:  
                     edges.append((start, end, weight))
         return edges
@@ -917,7 +917,7 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         edges = []
         for start in self.vertices():
             for end in self.adjacents(start):
-                weight = self.get_weight(start, end)
+                weight = self.weight(start, end)
                 if start != end and (end, start, weight) not in edges:  
                     edges.append((start, end, weight))
         return edges

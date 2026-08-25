@@ -47,14 +47,14 @@ class TestHeap(unittest.TestCase):
 
         i = 19
         while not mxh.is_empty():
-            v = mxh.pop()
+            v = mxh.extract_max()
             self.assertEqual(v, i)
             i = i - 1
         self.assertTrue(mxh.is_empty())
 
         i = 0
         while not mnh.is_empty():
-            v = mnh.pop()
+            v = mnh.extract_min()
             self.assertEqual(v, i)
             i += 1
         self.assertTrue(mnh.is_empty())
@@ -94,11 +94,11 @@ class TestHeap(unittest.TestCase):
 
     def test_pq(self):
         pq = PriorityQueue()
-        pq.push(2, "a")
-        pq.push(1, "b")
-        pq.push(3, "c")
-        pq.push(4, "d")
-        pq.push(5, "e")
+        pq.insert(2, "a")
+        pq.insert(1, "b")
+        pq.insert(3, "c")
+        pq.insert(4, "d")
+        pq.insert(5, "e")
 
         self.assertEqual(pq.peek(), "b")
         self.assertEqual(pq.peek_pair(), (1, "b"))
@@ -107,29 +107,29 @@ class TestHeap(unittest.TestCase):
 
         while not pq.is_empty():
             v1 = pq.peek()
-            v2 = pq.pop()
+            v2 = pq.extract_min()
             self.assertEqual(v1, v2)
 
     def test_pq_pair(self):
         pq = PriorityQueue()
-        pq.push(2, "a")
-        pq.push(1, "b")
-        pq.push(3, "c")
-        pq.push(4, "d")
-        pq.push(5, "e")
+        pq.insert(2, "a")
+        pq.insert(1, "b")
+        pq.insert(3, "c")
+        pq.insert(4, "d")
+        pq.insert(5, "e")
 
         while not pq.is_empty():
-            v1 = pq.peek_pair()
-            v2 = pq.pop_pair()
+            v1 = pq.peek()
+            v2 = pq.extract_min()
             self.assertEqual(v1, v2)
 
     def test_pq_misc_types(self):
         pq = PriorityQueue()
-        pq.push(3, TreeNode("a"))
-        pq.push(2, TreeNode(" "))
-        pq.push(1, TreeNode("m"))
-        pq.push(0, TreeNode("n"))
-        pq.push(4, TreeNode("p"))
+        pq.insert(3, TreeNode("a"))
+        pq.insert(2, TreeNode(" "))
+        pq.insert(1, TreeNode("m"))
+        pq.insert(0, TreeNode("n"))
+        pq.insert(4, TreeNode("p"))
 
     def test_eq(self):
         h1 = Heap.from_list([5, 3, 8, 1])
@@ -148,9 +148,9 @@ class TestHeap(unittest.TestCase):
         pq2 = PriorityQueue()
         pq3 = PriorityQueue()
         for p, v in [(2, "a"), (1, "b"), (3, "c")]:
-            pq1.push(p, v)
-            pq2.push(p, v)
+            pq1.insert(p, v)
+            pq2.insert(p, v)
         for p, v in [(1, "x"), (2, "y")]:
-            pq3.push(p, v)
+            pq3.insert(p, v)
         self.assertEqual(pq1, pq2)
         self.assertNotEqual(pq1, pq3)
