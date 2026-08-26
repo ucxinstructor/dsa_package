@@ -21,7 +21,8 @@ Create an empty heap (max heap). Use MinHeap() to create a min heap:
 
 .. code-block:: python
 
-   h = Heap() 
+   h = Heap()        # max heap
+   hmin = MinHeap()  # min heap
 
 Common Operations
 -----------------
@@ -34,21 +35,22 @@ Insert a value into the heap.
 
    h.insert(10)  # Insert 10 into the heap
 
-**Pop**
+**Extract**
 
 Return the value of the root node (max value) and remove it from the heap.
 
 .. code-block:: python
 
-   value = h.pop()  # Remove and return the max value
+   value = h.exact_max()  # Remove and return the max value
+   value = hmin.exact_min()  # Remove and return the min value
 
 **Peek**
 
-Get the max value of the max heap.
+Get the max value of a max heap or the min value of a min heap.
 
 .. code-block:: python
 
-   value = h.peek()  # Get the max value without removing
+   value = h.peek()  # Get the max/min value without removing
    
    
 **Printing Contents**
