@@ -157,7 +157,7 @@ class TestDraw(unittest.TestCase):
         gd.save('images/graph3.png')
 
         #weighted #adjacency list
-        graph = AdjacencyMatrixWeightedGraph(directed=True, vertices=["A", "B", "C", "D"])
+        graph = Graph(representation="list", weighted=True, vertices=["A", "B", "C", "D"])
         graph.add_edge("A", "B", 1)
         graph.add_edge("A", "C", 2)
         graph.add_edge("B", "C", 3)

@@ -39,6 +39,10 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.08.26
+* Made Graph() a factory for ease of use
+* Updated all of the tets and notebooks
+
 ## 2026.08.25
 * Added Prim's Algorithm implementation that follows Dijkstra's closely
 * Refactored Dijkstra's Algorithm to use more meaningful variable names

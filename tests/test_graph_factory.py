@@ -5,52 +5,94 @@ from dsa.graph import Graph, AdjacencyListGraph, AdjacencyMatrixGraph, Adjacency
 
 class TestGraphFactory(unittest.TestCase):
     def test_graph_factory(self):
-        g1 = Graph.create(graph_type='adjacency_list', directed=False, weighted=False)
-        self.assertIsInstance(g1, AdjacencyListGraph)
-        self.assertFalse(g1.is_directed)
-        self.assertFalse(g1.is_weighted)
-        
-        g1 = Graph.create_adjacency_list()
+        g1 = Graph.create(representation='list', directed=False, weighted=False)
         self.assertIsInstance(g1, AdjacencyListGraph)
         self.assertFalse(g1.is_directed)
         self.assertFalse(g1.is_weighted)
 
+        g1 = Graph.create_adjacency_list(directed=False, weighted=False)
+        self.assertIsInstance(g1, AdjacencyListGraph)
+        self.assertFalse(g1.is_directed)
+        self.assertFalse(g1.is_weighted)
 
-        g2 = Graph.create(graph_type='adjacency_matrix', directed=True, weighted=False)
-        self.assertIsInstance(g2, AdjacencyMatrixGraph)
-        self.assertTrue(g2.is_directed)
-        self.assertFalse(g2.is_weighted)
-
-        g2 = Graph.create_adjacency_matrix()
-        self.assertIsInstance(g2, AdjacencyMatrixGraph)
+        g2 = Graph.create(representation='list', directed=False, weighted=True)
+        self.assertIsInstance(g2, AdjacencyListWeightedGraph)
         self.assertFalse(g2.is_directed)
-        self.assertFalse(g2.is_weighted)
+        self.assertTrue(g2.is_weighted)
         
-        g3 = Graph.create(graph_type='adjacency_list', directed=False, weighted=True)
-        self.assertIsInstance(g3, AdjacencyListWeightedGraph)
-        self.assertFalse(g3.is_directed)
-        self.assertTrue(g3.is_weighted)
-        
-        g3 = Graph.create_adjacency_list(weighted=True)
-        self.assertIsInstance(g3, AdjacencyListWeightedGraph)
-        self.assertFalse(g3.is_directed)
-        self.assertTrue(g3.is_weighted)
-        
-        g4 = Graph.create(graph_type='adjacency_matrix', directed=True, weighted=True)
-        self.assertIsInstance(g4, AdjacencyMatrixWeightedGraph)
+        g2 = Graph.create_adjacency_list(directed=False, weighted=True)
+        self.assertIsInstance(g2, AdjacencyListWeightedGraph)
+        self.assertFalse(g2.is_directed)
+        self.assertTrue(g2.is_weighted)
+
+        g3 = Graph.create(representation='list', directed=True, weighted=False)
+        self.assertIsInstance(g3, AdjacencyListGraph)
+        self.assertTrue(g3.is_directed)
+        self.assertFalse(g3.is_weighted)
+
+        g3 = Graph.create_adjacency_list(directed=True, weighted=False)
+        self.assertIsInstance(g3, AdjacencyListGraph)
+        self.assertTrue(g3.is_directed)
+        self.assertFalse(g3.is_weighted)
+
+        g4 = Graph.create(representation='list', directed=True, weighted=True)
+        self.assertIsInstance(g4, AdjacencyListWeightedGraph)
         self.assertTrue(g4.is_directed)
         self.assertTrue(g4.is_weighted)
-        
-        g4 = Graph.create_adjacency_matrix(directed=True, weighted=True)
-        self.assertIsInstance(g4, AdjacencyMatrixWeightedGraph)
+
+        g4 = Graph.create_adjacency_list(directed=True, weighted=True)
+        self.assertIsInstance(g4, AdjacencyListWeightedGraph)
         self.assertTrue(g4.is_directed)
+        self.assertTrue(g4.is_weighted) 
+
+
+        # matrix graphs
+        g1 = Graph.create(representation='matrix', directed=True, weighted=False)
+        self.assertIsInstance(g1, AdjacencyMatrixGraph)
+        self.assertTrue(g1.is_directed)
+        self.assertFalse(g1.is_weighted)
+
+        g1 = Graph.create_adjacency_matrix(directed=True, weighted=False)
+        self.assertIsInstance(g1, AdjacencyMatrixGraph)
+        self.assertTrue(g1.is_directed)
+        self.assertFalse(g1.is_weighted)
+        
+        g2 = Graph.create(representation='matrix', directed=True, weighted=True)
+        self.assertIsInstance(g2, AdjacencyMatrixWeightedGraph)
+        self.assertTrue(g2.is_directed)
+        self.assertTrue(g2.is_weighted)
+        
+        g2 = Graph.create_adjacency_matrix(directed=True, weighted=True)
+        self.assertIsInstance(g2, AdjacencyMatrixWeightedGraph)
+        self.assertTrue(g2.is_directed)
+        self.assertTrue(g2.is_weighted)
+
+        g3 = Graph.create(representation='matrix', directed=False, weighted=False)
+        self.assertIsInstance(g3, AdjacencyMatrixGraph)
+        self.assertFalse(g3.is_directed)
+        self.assertFalse(g3.is_weighted)
+
+        g3 = Graph.create_adjacency_matrix(directed=False, weighted=False)
+        self.assertIsInstance(g3, AdjacencyMatrixGraph)
+        self.assertFalse(g3.is_directed)
+        self.assertFalse(g3.is_weighted)
+
+        g4 = Graph.create(representation='matrix', directed=False, weighted=True)
+        self.assertIsInstance(g4, AdjacencyMatrixWeightedGraph)
+        self.assertFalse(g4.is_directed)
         self.assertTrue(g4.is_weighted)
+
+        g4 = Graph.create_adjacency_matrix(directed=False, weighted=True)
+        self.assertIsInstance(g4, AdjacencyMatrixWeightedGraph)
+        self.assertFalse(g4.is_directed)
+        self.assertTrue(g4.is_weighted)
+
         
         with self.assertRaises(ValueError):
-            Graph.create(graph_type='unknown_type')
+            Graph.create(representation='unknown_type')
 
     def test_graph_from_dict(self):
-        # adjacency list graphs
+        # test with non-weighted graphs
         dict_tests = [
             {'A': ['B'], 'B': ['A']},
             {'A': ['B', 'C'], 'B': ['A', 'C'], 'C': ['A', 'B']},
@@ -60,14 +102,31 @@ class TestGraphFactory(unittest.TestCase):
         ]           
 
         for data in dict_tests:
-            g = Graph.from_dict(data, graph_type='adjacency_list', directed=False, weighted=False)
+            g = Graph.from_dict(data, representation='list', directed=False, weighted=False)
             self.assertIsInstance(g, AdjacencyListGraph)
             self.assertEqual(g.to_dict(), data)
+            self.assertFalse(g.is_directed)
+            self.assertFalse(g.is_weighted)
 
-            g = Graph.from_dict(data, graph_type='adjacency_list', directed=True, weighted=False)
+            g = Graph.from_dict(data, representation='list', directed=True, weighted=False)
             self.assertIsInstance(g, AdjacencyListGraph)
             self.assertEqual(g.to_dict(), data)
+            self.assertTrue(g.is_directed)
+            self.assertFalse(g.is_weighted)
 
+            g = Graph.from_dict(data, representation='matrix', directed=False, weighted=False)
+            self.assertIsInstance(g, AdjacencyMatrixGraph)
+            self.assertEqual(g.to_dict(), data)
+            self.assertFalse(g.is_directed)
+            self.assertFalse(g.is_weighted)
+
+            g = Graph.from_dict(data, representation='matrix', directed=True, weighted=False)
+            self.assertIsInstance(g, AdjacencyMatrixGraph)
+            self.assertEqual(g.to_dict(), data)
+            self.assertTrue(g.is_directed)
+            self.assertFalse(g.is_weighted)
+
+        # test with weighted graphs
         dict_weighted_tests = [
             {'A': {'B': 1}, 'B': {'A': 1}},
             {'A': {'B': 2, 'C': 3}, 'B': {'A': 2, 'C': 4}, 'C': {'A': 3, 'B': 4}},
@@ -77,40 +136,34 @@ class TestGraphFactory(unittest.TestCase):
         ]
 
         for data_weighted in dict_weighted_tests:
-            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_list', directed=False, weighted=True)
+            g_weighted = Graph.from_dict(data_weighted, representation='list', directed=False, weighted=True)
             self.assertIsInstance(g_weighted, AdjacencyListWeightedGraph)
             self.assertEqual(g_weighted.to_dict(), data_weighted)
+            self.assertFalse(g_weighted.is_directed)
+            self.assertTrue(g_weighted.is_weighted)
 
-            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_list', directed=True, weighted=True)
+            g_weighted = Graph.from_dict(data_weighted, representation='list', directed=True, weighted=True)
             self.assertIsInstance(g_weighted, AdjacencyListWeightedGraph)
             self.assertEqual(g_weighted.to_dict(), data_weighted)
+            self.assertTrue(g_weighted.is_directed)
+            self.assertTrue(g_weighted.is_weighted)
 
-        # adjacency matrix graphs
-        for data in dict_tests:
-            g = Graph.from_dict(data, graph_type='adjacency_matrix', directed=False, weighted=False)
-            self.assertIsInstance(g, AdjacencyMatrixGraph)
-            self.assertEqual(g.to_dict(), data)
-
-            g = Graph.from_dict(data, graph_type='adjacency_matrix', directed=True, weighted=False)
-            self.assertIsInstance(g, AdjacencyMatrixGraph)
-            self.assertEqual(g.to_dict(), data)
-
-        for data_weighted in dict_weighted_tests:
-            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_matrix', directed=False, weighted=True)
+            g_weighted = Graph.from_dict(data_weighted, representation='matrix', directed=False, weighted=True)
             self.assertIsInstance(g_weighted, AdjacencyMatrixWeightedGraph)
             self.assertEqual(g_weighted.to_dict(), data_weighted)
+            self.assertFalse(g_weighted.is_directed)
+            self.assertTrue(g_weighted.is_weighted)
 
-            g_weighted = Graph.from_dict(data_weighted, graph_type='adjacency_matrix', directed=True, weighted=True)
+            g_weighted = Graph.from_dict(data_weighted, representation='matrix', directed=True, weighted=True)
             self.assertIsInstance(g_weighted, AdjacencyMatrixWeightedGraph)
             self.assertEqual(g_weighted.to_dict(), data_weighted)
-
-
-        
+            self.assertTrue(g_weighted.is_directed)
+            self.assertTrue(g_weighted.is_weighted)
         
             
 class TestAdjacencyListGraph(unittest.TestCase):
     def test_create_undirected(self):
-        g = AdjacencyListGraph(directed=False)
+        g = Graph(representation="list", weighted=False, directed=False)
         self.assertEqual(g.order(), 0)
         self.assertEqual(len(g), 0)
         self.assertEqual(g.size(), 0)
@@ -152,7 +205,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         # self.assertEqual(g.dfs_traverse("G"), ["G", "F", "E", "D", "B", "A", "C"])
         # self.assertEqual(g.bfs_traverse("G"), ["G", "F", "E", "D", "B", "C", "A"])
 
-        g = AdjacencyListGraph(directed=False)
+        g = Graph(representation="list", weighted=False, directed=False)
         g.add_edge("A", 'B')
         g.add_edge("A", 'C')
         self.assertEqual(g.order(), 3)
@@ -176,7 +229,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         
         
     def test_create_directed(self):
-        g = AdjacencyListGraph(directed=True)
+        g = Graph(representation="list", weighted=False, directed=True)
         self.assertEqual(g.order(), 0)
         self.assertEqual(len(g), 0)
         self.assertEqual(g.size(), 0)
@@ -198,7 +251,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertSetEqual(set(g.edges()), {('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E'), ('E', 'A')})
         
     def test_weighted_graph(self):
-        g = AdjacencyListWeightedGraph(directed=False)
+        g = Graph(representation="list", weighted=True, directed=False)
         self.assertEqual(g.order(), 0)
         self.assertEqual(len(g), 0)
         self.assertEqual(g.size(), 0)
@@ -226,7 +279,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g.weight('B', 'C'), 2)
         
     def test_weighted_directed_graph(self):
-        g = AdjacencyListWeightedGraph(directed=True)
+        g = Graph(representation="list", weighted=True, directed=True)
         self.assertEqual(g.order(), 0)
         self.assertEqual(len(g), 0)
         self.assertEqual(g.size(), 0)
@@ -250,7 +303,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g.weight('B', 'C'), 4)
     
     def test_no_edge_undirected_graph(self):
-        g = AdjacencyListGraph(directed=False, vertices=['A', 'B', 'C', 'D'])
+        g = Graph(representation="list", weighted=False, directed=False, vertices=['A', 'B', 'C', 'D'])
         self.assertEqual(g.order(), 4)
         self.assertEqual(len(g), 4)
         self.assertEqual(g.size(), 0)   
@@ -268,7 +321,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(g.edges(), [])
 
     def test_delete_edge_directed(self):
-        g = AdjacencyListGraph(directed=True)
+        g = Graph(representation="list", weighted=False, directed=True)
         g.add_edge('A', 'B')
         g.add_edge('B', 'C')
         g.add_edge('C', 'D')
@@ -315,7 +368,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(len(g), 5)
 
     def test_delete_edge_undirected(self):
-        g = AdjacencyListGraph(directed=False)
+        g = Graph(representation="list", weighted=False, directed=False)
         g.add_edge('A', 'B')
         g.add_edge('B', 'C')
         g.add_edge('C', 'D')
@@ -357,7 +410,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(len(g), 5)
         
     def test_weighted_undirected_graph_delete_edge(self):
-        g = AdjacencyListWeightedGraph(directed=False)
+        g = Graph(representation="list", weighted=True, directed=False)
         g.add_edge('A', 'B', weight=5)
         g.add_edge('A', 'C', weight=10)
         g.add_edge('B', 'C', weight=2)
@@ -380,7 +433,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.assertEqual(len(g), 3)
         
     def test_weighted_directed_graph_delete_edge(self):
-        g = AdjacencyListWeightedGraph(directed=True)
+        g = Graph(representation="list", weighted=True, directed=True)
         g.add_edge('A', 'B', weight=3)
         g.add_edge('B', 'C', weight=4)
         self.assertEqual(g.size(), 2)

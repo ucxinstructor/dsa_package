@@ -56,7 +56,7 @@ def prim(graph: Graph, start: str, debug: bool = False) -> tuple:
                     print(dist_table)
     return dist_table, pred_table
 
-def reconstruct_mst(dist_table: dict, pred_table: dict):
+def reconstruct_mst(dist_table: dict, pred_table: dict, representation: str = "list") -> Graph:
     """
     Reconstructs a minimum spanning tree (MST) from the distance table and predecessor table
     
@@ -66,7 +66,7 @@ def reconstruct_mst(dist_table: dict, pred_table: dict):
     Returns:
         Graph: The minimum spanning tree of the graph.
     """
-    mst = Graph.create_adjacency_list(directed=False, weighted=True)
+    mst = Graph(representation=representation, directed=False, weighted=True)
 
     for vertex, connection in pred_table.items():
         if connection is None or vertex == connection:

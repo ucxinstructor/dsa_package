@@ -1,5 +1,5 @@
 import unittest
-from dsa.graph import AdjacencyListGraph, AdjacencyListWeightedGraph
+from dsa.graph import Graph
 
 # Assume that the graph implementation properly handles vertex keys (mapping them to indices)
 
@@ -11,7 +11,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.VERTICES = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         
         # Unweighted Graph structure (Cyclic, connected)
-        self.g_undirected = AdjacencyListGraph(directed=False)
+        self.g_undirected = Graph(representation="list", directed=False)
         self.g_undirected.add_edge('A', 'B')
         self.g_undirected.add_edge('A', 'C')
         self.g_undirected.add_edge('B', 'C')
@@ -22,7 +22,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.g_undirected.add_edge('F', 'G')
         
         # Directed Graph structure (Cycle A-B-C-D-E-A)
-        self.g_directed = AdjacencyListGraph(directed=True)
+        self.g_directed = Graph(representation="list", directed=True)
         self.g_directed.add_edge('A', 'B')
         self.g_directed.add_edge('B', 'C')
         self.g_directed.add_edge('C', 'D')
@@ -30,7 +30,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.g_directed.add_edge('E', 'A')
 
         # Weighted Undirected Graph structure
-        self.g_wu = AdjacencyListWeightedGraph(directed=False)
+        self.g_wu = Graph(representation="list", directed=False, weighted=True)
         self.g_wu.add_edge('A', 'B', 1)
         self.g_wu.add_edge('B', 'C', 2)
         self.g_wu.add_edge('C', 'D', 3)
@@ -38,7 +38,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
         self.g_wu.add_edge('E', 'A', 5)
 
         # Weighted Directed Graph structure
-        self.g_wd = AdjacencyListWeightedGraph(directed=True)
+        self.g_wd = Graph(representation="list", directed=True, weighted=True)
         self.g_wd.add_edge('A', 'B', 1)
         self.g_wd.add_edge('B', 'C', 2)
         self.g_wd.add_edge('C', 'D', 3)
@@ -100,7 +100,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
             'F': ['E', 'G'],
             'G': ['F']
         }
-        g = AdjacencyListGraph.from_dict(data, directed=False)
+        g = Graph.from_dict(data, representation="list", directed=False)
         self.assertEqual(g.to_dict(), data)
         self.assertEqual(g.order(), 7)
         self.assertEqual(g.size(), 8)
@@ -111,7 +111,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
             'B': {'A': 1, 'C': 3},
             'C': {'A': 2, 'B': 3}
         }
-        g_weighted = AdjacencyListWeightedGraph.from_dict(data_weighted, directed=False)
+        g_weighted = Graph.from_dict(representation="list", weighted=True, data=data_weighted, directed=False)
         self.assertEqual(g_weighted.to_dict(), data_weighted)
         self.assertEqual(g_weighted.order(), 3)
         self.assertEqual(g_weighted.size(), 3)
@@ -119,7 +119,7 @@ class TestAdjacencyListGraph(unittest.TestCase):
     ## 4. MUTATION TESTS
 
     def test_vertex_mutations(self):
-        g = AdjacencyListGraph(directed=False)
+        g = Graph(representation="list", weighted=False, directed=False)
         g.add_vertex('V1')
         self.assertEqual(g.order(), 1)
         self.assertIn('V1', g)

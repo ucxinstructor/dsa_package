@@ -4,14 +4,14 @@ from dsa.graph import Graph
 
 class TestDijkstra(unittest.TestCase):
     def setUp(self):
-        self.gl = Graph.create_adjacency_list(directed=True, weighted=True)
+        self.gl = Graph(representation="list", directed=True, weighted=True)
         self.gl.add_edge('A', 'B', 1)
         self.gl.add_edge('A', 'C', 4)
         self.gl.add_edge('B', 'C', 2)
         self.gl.add_edge('B', 'D', 5)
         self.gl.add_edge('C', 'D', 1)
 
-        self.gm = Graph.create_adjacency_matrix(directed=True, weighted=True)
+        self.gm = Graph(representation="matrix", directed=True, weighted=True)
         self.gm.add_edge('A', 'B', 1)
         self.gm.add_edge('A', 'C', 4)
         self.gm.add_edge('B', 'C', 2)

@@ -5,7 +5,7 @@ from dsa.graph import Graph
 class TestPrim(unittest.TestCase):
 
     def setUp(self):
-        self.graph = Graph.create_adjacency_list(directed=False, weighted=True)
+        self.graph = Graph(representation="list", directed=False, weighted=True)
         self.graph.add_edge('A', 'B', 1)
         self.graph.add_edge('A', 'C', 4)
         self.graph.add_edge('B', 'C', 2)
