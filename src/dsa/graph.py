@@ -1,29 +1,149 @@
 """ Module containing graph classes. """
 
-class Graph:
+from abc import ABC, abstractmethod
+
+class Graph(ABC):
     """
-    Graph Factory
+    Abstract base class for graph representations. This class provides a factory method to create specific graph objects based on the specified parameters.
     
     """
+    def __new__(cls, representation="list", directed:bool = False, weighted: bool=False, vertices=None):
+        """
+        Create a new instance of a graph based on the specified representation.
+
+        Args:
+            representation (str): The type of graph representation ('list' or 'matrix').
+            directed (bool): Whether the graph is directed.
+            weighted (bool): Whether the graph is weighted.
+            vertices (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
+        """
+        return Graph.create(representation, directed, weighted, vertices)
+
+    def createxxxx(cls, representation="list", directed:bool = False, weighted: bool=False, vertices=None):
+        """
+        Create a new instance of a graph based on the specified representation.
+        """
+        if cls is Graph:
+            if representation == "list":
+                if weighted:
+                    return AdjacencyListWeightedGraph(directed=directed, vertices=vertices)
+                else:
+                    return AdjacencyListGraph(directed=directed, vertices=vertices)
+            elif representation == "matrix":
+                if weighted:
+                    return AdjacencyMatrixWeightedGraph(directed=directed, vertices=vertices)
+                else:
+                    return AdjacencyMatrixGraph(directed=directed, vertices=vertices)
+            else:
+                raise ValueError("Invalid representation type. Use 'list' or 'matrix'.")
+
+        return super().__new__(cls)
+
+    @abstractmethod
+    def add_vertex(self, label: str):
+        """ 
+        Add a vertex to the graph.
+        
+        Args:
+            label (str): The vertex label to add.
+        """
+        pass
+
+    @abstractmethod
+    def add_edge(self, start_label: str, end_label: str, weight=None, directed=None):
+        """ 
+        Add an edge to the graph.
+        
+        Args:
+            start_label (str): The label of the starting vertex.
+            end_label (str): The label of the ending vertex.
+            weight: The weight of the edge (if applicable).
+            directed: Whether the edge is directed (if applicable).
+        """
+        pass
+
+    @abstractmethod
+    def adjacents(self, vertex: str) -> list:
+        """
+        Return a list of adjacents of a given vertex
+        
+        Args:
+            vertex: starting vertex label 
+        """
+        pass
+
+    @abstractmethod
+    def vertices(self) -> list:
+        """
+        Return a list of vertex labels of the graph
+        """
+        pass
+
+    @abstractmethod
+    def has_edge(self, start_label: str, end_label: str) -> bool:
+        """ 
+        Return boolean if an edge exists.
+        
+        Args:
+            start_label: starting vertex label 
+            end_label: starting vertex label
+        Returns:
+            A boolean of whether there is an edge from start to end.
+        """
+        pass
+
+    def weight(self, start_label: str, end_label: str):
+        """Get the weight of an edge. Defaults to 1 for unweighted graphs if edge exists."""
+        if self.has_edge(start_label, end_label):  # or check adjacency
+            return 1
+        raise KeyError(f"No edge between {start_label} and {end_label}")
+
+    @abstractmethod
+    def delete_vertex(self, label: str):
+        """ 
+        Delete a vertex from the graph.
+        
+        Args:
+            label (str): The vertex label to delete.
+        """
+        pass
+
+    @abstractmethod
+    def delete_edge(self, start_label: str, end_label: str, directed=None):
+        """ 
+        Delete an edge in the graph.
+        
+        Args:
+            start_label (str): Starting vertex label.
+            end_label (str): Ending vertex label.
+            directed (bool): Whether the edge is directed.
+        """
+        pass
     @staticmethod
-    def create(graph_type: str, directed: bool=False, weighted: bool=False, vertices=None) -> object:
+    def create(representation: str, directed: bool = False, weighted: bool = False, vertices = None) -> object:
         """ 
         Return a graph object based on the specified parameters.
 
         Args:
-            graph_type: The type of graph ('adjacency_matrix' or 'adjacency_list').
+            representation: The type of graph ('adjacency_matrix' or 'adjacency_list').
             directed (bool): Whether the graph is directed.
             weighted (bool): Whether the graph is weighted.
-            labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
+            vertices (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
         """
-        if graph_type == 'adjacency_matrix':
+        if representation == 'matrix':
             if vertices is None:
                 vertices = []
-            return Graph.create_adjacency_matrix(directed=directed, weighted=weighted, vertices=vertices)
-        elif graph_type == 'adjacency_list':
-            return Graph.create_adjacency_list(directed=directed, weighted=weighted, vertices=vertices)
+            if weighted:
+                return AdjacencyMatrixWeightedGraph(directed=directed, vertices=vertices)
+            else:
+                return AdjacencyMatrixGraph(directed=directed, vertices=vertices)
+        elif representation == 'list':
+            if weighted:
+                return AdjacencyListWeightedGraph(directed=directed, vertices=vertices)
+            else:
+                return AdjacencyListGraph(directed=directed, vertices=vertices)
         else:
-            raise ValueError("Invalid graph type. Use 'adjacency_matrix' or 'adjacency_list'.")
+            raise ValueError("Invalid graph type. Use 'matrix' or 'list'.")
     
     @staticmethod
     def create_adjacency_matrix(directed: bool=False, weighted: bool=False, vertices=None) -> object:
@@ -33,7 +153,7 @@ class Graph:
         Args:
             directed (bool): Whether the graph is directed.
             weighted (bool): Whether the graph is weighted.
-            labels (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
+            vertices (list[str], optional): List of vertex labels for adjacency matrix graphs. Defaults to [].
         """
         if vertices is None:
             vertices = []
@@ -84,14 +204,15 @@ class Graph:
         else:
             raise ValueError("Invalid graph type. Use 'adjacency_matrix' or 'adjacency_list'.")
 
-class AdjacencyMatrixGraph:
+
+class AdjacencyMatrixGraph(Graph):
     """ 
     An unweighted adjacency matrix graph implementation.
     
     This class allows either directed or undirected representation of a graph.
     Vertex labels are string types.
     """
-    def __init__(self, directed=False, weighted=False, vertices=None):
+    def __init__(self, directed=False, vertices=None):
         """
         Initialize the graph with optional vertex labels.
         
@@ -110,7 +231,7 @@ class AdjacencyMatrixGraph:
             raise ValueError("Duplicate vertex labels are not allowed.")
 
         self.is_directed = directed
-        self.is_weighted = weighted
+        self.is_weighted = False
 
         # Map labels to indices
         self.label_index = {label: i for i, label in enumerate(self.labels)}
@@ -530,7 +651,7 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
                 graph.add_edge(start_node, end_node, weight)
         return graph
 
-class AdjacencyListGraph:
+class AdjacencyListGraph(Graph):
     """ 
     A unweighted adjacency list vertex implementation
     (allows either directed or undirected representation)

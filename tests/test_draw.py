@@ -4,7 +4,7 @@ from dsa.draw import TreeDraw, HeapDraw, TrieDraw, GraphDraw
 from dsa.trie import Trie
 from dsa.tree import Tree, TreeNode
 from dsa.heap import Heap, MinHeap
-from dsa.graph import AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph
+from dsa.graph import Graph
 from dsa.pretty_print import heap_print, tree_print
 
 import os
@@ -121,7 +121,7 @@ class TestDraw(unittest.TestCase):
         td.save('images/trie.png')
 
     def test_graph(self):
-        graph = AdjacencyMatrixGraph(["A", "B", "C", "D"])
+        graph = Graph(representation="matrix", vertices=["A", "B", "C", "D"])
         graph.add_edge("A", "B")
         graph.add_edge("A", "C")
         graph.add_edge("B", "C")
@@ -134,7 +134,7 @@ class TestDraw(unittest.TestCase):
         gd.set_figsize((12, 6))
         gd.save('images/graph1.1.png')
 
-        graph = AdjacencyMatrixGraph(directed=True, vertices=["A", "B", "C", "D"])
+        graph = Graph(representation="matrix", directed=True, vertices=["A", "B", "C", "D"])
         graph.add_edge("A", "B")
         graph.add_edge("A", "C")
         graph.add_edge("B", "C")
@@ -145,7 +145,7 @@ class TestDraw(unittest.TestCase):
         gd.set_figsize((8, 4))
         gd.save('images/graph2.png')
 
-        graph = AdjacencyMatrixWeightedGraph(vertices=["A", "B", "C", "D"])
+        graph = Graph(representation="matrix", weighted=True, vertices=["A", "B", "C", "D"])
         graph.add_edge("A", "B", 1)
         graph.add_edge("A", "C", 2)
         graph.add_edge("B", "C", 3)
