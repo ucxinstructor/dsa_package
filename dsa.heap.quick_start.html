@@ -174,7 +174,8 @@
 </div>
 <p><strong>Creation</strong></p>
 <p>Create an empty heap (max heap). Use MinHeap() to create a min heap:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">h</span> <span class="o">=</span> <span class="n">Heap</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">h</span> <span class="o">=</span> <span class="n">Heap</span><span class="p">()</span>        <span class="c1"># max heap</span>
+</span><span id="line-2"><span class="n">hmin</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">()</span>  <span class="c1"># min heap</span>
 </span></code></pre></div>
 </div>
 </section>
@@ -185,14 +186,15 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">h</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Insert 10 into the heap</span>
 </span></code></pre></div>
 </div>
-<p><strong>Pop</strong></p>
+<p><strong>Extract</strong></p>
 <p>Return the value of the root node (max value) and remove it from the heap.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">value</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># Remove and return the max value</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">value</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">exact_max</span><span class="p">()</span>  <span class="c1"># Remove and return the max value</span>
+</span><span id="line-2"><span class="n">value</span> <span class="o">=</span> <span class="n">hmin</span><span class="o">.</span><span class="n">exact_min</span><span class="p">()</span>  <span class="c1"># Remove and return the min value</span>
 </span></code></pre></div>
 </div>
 <p><strong>Peek</strong></p>
-<p>Get the max value of the max heap.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">value</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>  <span class="c1"># Get the max value without removing</span>
+<p>Get the max value of a max heap or the min value of a min heap.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">value</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>  <span class="c1"># Get the max/min value without removing</span>
 </span></code></pre></div>
 </div>
 <p><strong>Printing Contents</strong></p>

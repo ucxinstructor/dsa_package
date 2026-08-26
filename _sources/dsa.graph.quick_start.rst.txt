@@ -20,29 +20,36 @@ Create a Graph
 
 Before creating a graph, choose its characteristics:
 
-- Representation: adjacency matrix or adjacency list
-- Edge direction: directed or undirected
-- Weights: weighted or unweighted
+- Representation: adjacency list or matrix implementation
+- Directed: directed or undirected graph
+- Weighted: weighted or unweighted graph
 
 
-Create an adjacency matrix graph with undirected and unweighted edges (default):
-
-.. code-block:: python
-
-   g = Graph.create_adjacency_matrix()
-
-
-Create an adjacency list graph with undirected and unweighted edges:
+Create an adjacency list graph with undirected and unweighted edges (default):
 
 .. code-block:: python
 
-   g = Graph.create_adjacency_list(directed=False, weighted=False)
+   g = Graph()
+
+Or recommended for clarity:
+
+.. code-block:: python
+
+   g = Graph(representation="list", directed=False, weighted=False)
+
+
+
+Create an adjacency matrix graph with undirected and unweighted edges:
+
+.. code-block:: python
+
+   g = Graph(representation="matrix", directed=False, weighted=False)
 
 Create an adjacency list graph with directed and weighted edges:
 
 .. code-block:: python
 
-   g = Graph.create_adjacency_list(directed=True, weighted=True)
+   g = Graph(representation="list", directed=True, weighted=True)
 
 Common Operations
 -----------------
@@ -51,7 +58,7 @@ Add a vertex to a graph:
 
 .. code-block:: python
 
-   g = Graph.create_adjacency_list(directed=True, weighted=True)
+   g = Graph(representation="list", directed=True, weighted=True)
    g.add_vertex("A")
    g.add_vertex("B")
    g.add_vertex("C")
@@ -73,7 +80,7 @@ Existence Methods
 
   from dsa.graph import Graph
 
-  g = Graph.create_adjacency_matrix(directed=True, weighted=True)
+  g = Graph(representation="matrix", directed=True, weighted=True)
   g.add_vertex("A")
   g.add_vertex("B")
   g.add_vertex("C")
@@ -173,7 +180,7 @@ Use the GraphDraw class to draw a visual representation of a graph.
 
    from dsa.draw import GraphDraw
 
-   g = Graph.create_adjacency_matrix(directed=True, weighted=True)
+   g = Graph(representation="matrix", directed=True, weighted=True)
 
    g.add_edge("A", "B", 1)
    g.add_edge("A", "C", 2)
