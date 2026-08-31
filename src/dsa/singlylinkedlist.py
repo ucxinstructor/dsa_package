@@ -1,4 +1,6 @@
 """ Module containing singly linked list class. """
+from __future__ import annotations
+
 
 class Node:
     """ 

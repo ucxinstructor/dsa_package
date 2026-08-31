@@ -1,5 +1,13 @@
 """ Module containing stack classes. """
 
+class StackError(Exception): ...
+
+class EmptyStackError(StackError, IndexError):
+    """Raised when attempting to pop/peek an empty stack."""
+
+class StackFullError(StackError, IndexError):
+    """Raised when attempting to push to a full stack.""" 
+
 class Stack:
     """ 
     A static stack implementation.
@@ -22,10 +30,10 @@ class Stack:
         Args:
             element: The element to push.
         Raises:
-            Exception: When the capacity is reached.
+            StackFullError: When the capacity is reached.
         """
         if len(self) >= len(self._array):
-            raise Exception("Capacity Reached")
+            raise StackFullError("Capacity Reached")
         self.count += 1
         self._array[self.top()] = element
         
@@ -37,10 +45,10 @@ class Stack:
             The top element in the stack.
         
         Raises:
-            Exception: When the stack is empty.
+            EmptyStackError: When the stack is empty.
         """
         if self.is_empty():
-            raise Exception("Empty Stack")
+            raise EmptyStackError("Empty Stack")
         element = self._array[self.top()]
         self.count -= 1
         return element
@@ -53,10 +61,10 @@ class Stack:
             The top element in the stack.
         
         Raises:
-            Exception: When the stack is empty. 
+            EmptyStackError: When the stack is empty. 
         """
         if self.is_empty():
-            raise Exception("Empty Stack")
+            raise EmptyStackError("Empty Stack")
         return self._array[self.top()]
     
     def __len__(self):

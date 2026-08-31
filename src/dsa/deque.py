@@ -1,4 +1,18 @@
 """ Module containing deque classes. """
+class DequeError(Exception):
+    """ 
+    Custom exception for deque operations.
+    """
+
+class DequeFullError(DequeError, IndexError):
+    """ 
+    Custom exception for exceeding maximum capacity in deque operations.
+    """
+
+class EmptyDequeError(DequeError, RuntimeError):
+    """ 
+    Custom exception for operations on an empty deque.
+    """
 
 class Deque:
     """ 
@@ -26,7 +40,7 @@ class Deque:
             element: The element to append.
 
         Raises:
-            Exception: If the deque is full.
+            DequeFullError: If the deque is full.
         """
         self.append_left(element)
 
@@ -39,7 +53,7 @@ class Deque:
             element: The element to append.
 
         Raises:
-            Exception: If the deque is full.
+            DequeFullError: If the deque is full.
         """
         self.append_right(element)
 
@@ -52,7 +66,7 @@ class Deque:
             The leftmost element of the deque.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         return self.pop_left()
 
@@ -65,7 +79,7 @@ class Deque:
             The rightmost element of the deque.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         return self.pop_right() 
     
@@ -78,7 +92,7 @@ class Deque:
             The leftmost element.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         return self.peek_left()
     
@@ -91,7 +105,7 @@ class Deque:
             The rightmost element.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         return self.peek_right()
 
@@ -103,10 +117,10 @@ class Deque:
             element: The element to append.
 
         Raises:
-            Exception: If the deque is full.
+            DequeFullError: If the deque is full.
         """
         if self.count >= self.capacity():
-            raise Exception("Deque Full")
+            raise DequeFullError("Deque Full")
         if self._left < 0:
             self._left = self.capacity() - 1
         self._array[self._left] = element
@@ -121,10 +135,10 @@ class Deque:
             element: The element to append.
 
         Raises:
-            Exception: If the deque is full.
+            DequeFullError: If the deque is full.
         """
         if self.count >= self.capacity():
-            raise Exception("Deque Full")
+            raise DequeFullError("Deque Full")
         if self._right > self.capacity() - 1:
             self._right = 0
         self._array[self._right] = element
@@ -139,10 +153,10 @@ class Deque:
             The leftmost element of the deque.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         if self.is_empty():
-            raise Exception("Empty Deque")
+            raise EmptyDequeError("Empty Deque")
 
         element = self._array[self._left + 1]
         self._left += 1
@@ -159,10 +173,10 @@ class Deque:
             The rightmost element of the deque.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         if self.is_empty():
-            raise Exception("Empty Deque")
+            raise EmptyDequeError("Empty Deque")
         element = self._array[self._right - 1]
         self.count -= 1
 
@@ -180,10 +194,10 @@ class Deque:
             The leftmost element.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         if self.is_empty():
-            raise Exception("Empty deque")
+            raise EmptyDequeError("Empty deque")
         return self._array[self._left + 1]
 
     def peek_right(self):
@@ -195,10 +209,10 @@ class Deque:
             The rightmost element.
 
         Raises:
-            Exception: If the deque is empty.
+            EmptyDequeError: If the deque is empty.
         """
         if self.is_empty():
-            raise Exception("Empty deque")
+            raise EmptyDequeError("Empty deque")
         return self._array[self._right - 1]
     
     def is_empty(self) -> bool:
@@ -219,7 +233,7 @@ class Deque:
             a deque instance with elements from the list.
 
         Raises:
-            Exception: If list exceeds the deque's capacity.
+            DequeFullError: If list exceeds the deque's capacity.
         """
         dq = cls()
         for e in alist:

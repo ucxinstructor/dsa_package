@@ -150,11 +150,11 @@ class Trie:
         else:
             current = node
         
-        for key, node in sorted(current.children.items()):
+        for key, next_node in sorted(current.children.items()):
             if key == Trie.end_marker:
                 words.append(word)
             else:
-                self.build_word_list(node, word + key, words)
+                self.build_word_list(next_node, word + key, words)
         return words
     
     def prefix(self, prefix: str):

@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from dsa.queue import DynamicQueue
+
 
 def dfs(graph, vertex: str, visited=None, path=None, debug=False, stack=None) -> list:
     """

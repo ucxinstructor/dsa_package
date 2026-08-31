@@ -1,5 +1,13 @@
 """ Module containing array classes. """
 
+from __future__ import annotations
+
+
+class ArrayFullError(Exception):
+    """ 
+    Custom exception for exceeding maximum capacity in array operations.
+    """
+
 class Array:
     """
     A static array implementation.
@@ -38,10 +46,10 @@ class Array:
             element: The element to append.
         
         Raises:
-            Exception: If the array is full.
+            MaxCapacityError: If the array is full.
         """
         if self.count >= self.capacity():
-            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
+            raise ArrayFullError(f"Capacity Error: Maximum capacity {len(self)} reached.")
 
         self._array[self.count] = element
         self.count += 1
@@ -54,7 +62,7 @@ class Array:
             array: An iterable containing elements to append.
 
         Raises:
-            Exception: If appending the elements exceeds the array's capacity.
+            MaxCapacityError: If appending the elements exceeds the array's capacity.
         """
         for e in array:
             self.append(e)
@@ -89,10 +97,10 @@ class Array:
             start (int): The index at which to start shifting (inclusive).
 
         Raises:
-            Exception: If the array is full and cannot accommodate the shift.
+            MaxCapacityError: If the array is full and cannot accommodate the shift.
         """
         if self.count >= len(self._array):
-            raise Exception(f"Capacity Error: Maximum capacity {len(self)} reached.")
+            raise ArrayFullError(f"Capacity Error: Maximum capacity {len(self)} reached.")
         end = self.count
         for i in range(end, start, -1):
             self._array[i] = self._array[i - 1]
@@ -262,8 +270,7 @@ class DynamicArray(Array):
         Helper method to halve the capacity of the current array. minimum capacity is 10.
         """
         new_size = len(self._array) // 2
-        if new_size < 10:
-            new_size = 10
+        new_size = max(new_size, 10)  # Ensure minimum capacity of 10
         new_array = [ None ] * new_size
         
         # copy elements
@@ -452,12 +459,12 @@ class CircularArray(Array):
 
         Raises:
             IndexError: If the index is out of bounds.
-            Exception: If the array is full.
+            ArrayFullError: If the array is full.
         """
         if index < 0 or index > self.count:
             raise IndexError
         if self.count >= self.capacity():
-            raise Exception(f"Capacity Error: Maximum capacity {self.capacity()} reached.")
+            raise ArrayFullError(f"Capacity Error: Maximum capacity {self.capacity()} reached.")
         # Shift elements to the right
         for i in range(self.count, index, -1):
             self._array[(self._start + i) % self.capacity()] = self._array[(self._start + i - 1) % self.capacity()]

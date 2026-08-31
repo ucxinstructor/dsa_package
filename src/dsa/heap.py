@@ -1,4 +1,11 @@
 """ Module containing heap (max heap), min heap and priority queue classes. """
+from __future__ import annotations
+
+
+class HeapError(Exception): ...
+class EmptyHeapError(HeapError, IndexError):
+    """Raised when attempting to extract from an empty heap."""
+    
 class Heap:
     """ 
     A max heap implementation.
@@ -169,13 +176,16 @@ class Heap:
 
         Returns:
             Return the value from the root node.
+
+        Raises:
+            EmptyHeapError: When the heap is empty.
         """
         root_value = self.root()
         
         # start at root node
         start_index = 0
         if self.count() == 0:
-            raise Exception("Heap is empty")
+            raise EmptyHeapError("Heap is empty")
         if self.count() == 1:
             self._array.pop()
         else:
@@ -286,6 +296,9 @@ class Heap:
             return False
         return self._array == other._array
 
+# alias for Heap to MaxHeap for clarity
+MaxHeap = Heap
+
 class MinHeap(Heap):
     def extract_min(self):
         """
@@ -332,9 +345,9 @@ class MinHeap(Heap):
 
 class PriorityQueue(MinHeap):
     """ 
-    A priority queue implementation in Python.
+    A priority queue implementation using a min-heap.
     """
-    def insert(self, priority: int, item):
+    def enqueue(self, priority: int, item):
         """
         Insert an item with a priority into the priority queue.
 
@@ -344,23 +357,29 @@ class PriorityQueue(MinHeap):
         """
         super().insert((priority, item))
 
-    def extract_min(self):
+    def dequeue(self):
         """
         Return and remove the highest priority value in the heap.
 
         Returns:
             Return The highest priority value in the heap.
         """
-        return super().extract_min()[1]
+        result = super().extract_min()
+        if result is None:
+            return None
+        return result[1]
 
-    def extract_min_pair(self) -> tuple:
+    def dequeue_pair(self) -> tuple | None:
         """
         Return and remove the highest priority value pair in the heap.
 
         Returns:
             Return the highest priority, value pair (tuple) in the heap.
         """
-        return super().extract_min()
+        result = super().extract_min()
+        if result is None:
+            return None
+        return result
 
     def peek(self):
         """
@@ -369,16 +388,22 @@ class PriorityQueue(MinHeap):
         Returns:
             Return The highest priority value in the heap.
         """
-        return super().peek()[1]
+        result = super().peek()
+        if result is None:
+            return None
+        return result[1]
 
-    def peek_pair(self) -> tuple:
+    def peek_pair(self) -> tuple | None:
         """
         Return the highest priority value pair in the heap.
 
         Returns:
             Return the highest priority, value pair (tuple) in the heap.
         """
-        return super().peek()
+        result = super().peek()
+        if result is None:
+            return None
+        return result
 
     def to_string_with_priority(self):
         """
@@ -387,7 +412,7 @@ class PriorityQueue(MinHeap):
         temp_array = self._array[:]
         result = []
         while not self.is_empty():
-            result.append(str(self.extract_min_pair()))
+            result.append(str(self.dequeue_pair()))
         self._array = temp_array
 
         return "[" + " ".join(result) + "]"

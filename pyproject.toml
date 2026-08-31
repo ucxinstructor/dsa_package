@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ucxdsa"
-version = "2026.08.26"
+version = "2026.08.31"
 description = "Data Structures and Algorithms Source Code"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -28,7 +28,7 @@ classifiers = [
 Homepage = "https://github.com/ucxinstructor/dsa_package"
 
 [tool.hatch.envs.default.scripts]
-lint = "ruff check src/dsa"
+lint = "ruff check {args:src/dsa} src/dsa"
 tests = "python -m unittest discover -s tests"
 publish-test = "hatch publish --repo test"
 

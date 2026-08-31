@@ -1,6 +1,7 @@
 """ Module to access functions for sort benchmarking. """
 import random
 
+
 def rand_int_array(n: int, maxnum: int) -> list:
     """ 
     Return an array of n integers of random numbers from 0 to maxnum.

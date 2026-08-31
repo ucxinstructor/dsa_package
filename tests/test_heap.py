@@ -1,11 +1,11 @@
 import unittest
 
-from dsa.heap import Heap, MinHeap, PriorityQueue
+from dsa.heap import Heap, MaxHeap, MinHeap, PriorityQueue
 from dsa.tree import TreeNode
 
 class TestHeap(unittest.TestCase):
     def test_create(self):
-        mxh = Heap()
+        mxh = MaxHeap()
         mnh = MinHeap()
         self.assertEqual(mxh.count(), 0)
         self.assertEqual(mnh.count(), 0)
@@ -25,7 +25,7 @@ class TestHeap(unittest.TestCase):
         self.assertEqual(h.to_sorted_list(), [10, 20])
 
     def test_add(self):
-        mxh = Heap()
+        mxh = MaxHeap()
         mnh = MinHeap()
 
         for _ in range(20):
@@ -38,7 +38,7 @@ class TestHeap(unittest.TestCase):
         self.assertEqual(mnh.peek(), 0)
 
     def test_delete(self):
-        mxh = Heap()
+        mxh = MaxHeap()
         mnh = MinHeap()
 
         for _ in range(20):
@@ -94,11 +94,11 @@ class TestHeap(unittest.TestCase):
 
     def test_pq(self):
         pq = PriorityQueue()
-        pq.insert(2, "a")
-        pq.insert(1, "b")
-        pq.insert(3, "c")
-        pq.insert(4, "d")
-        pq.insert(5, "e")
+        pq.enqueue(2, "a")
+        pq.enqueue(1, "b")
+        pq.enqueue(3, "c")
+        pq.enqueue(4, "d")
+        pq.enqueue(5, "e")
 
         self.assertEqual(pq.peek(), "b")
         self.assertEqual(pq.peek_pair(), (1, "b"))
@@ -107,29 +107,29 @@ class TestHeap(unittest.TestCase):
 
         while not pq.is_empty():
             v1 = pq.peek()
-            v2 = pq.extract_min()
+            v2 = pq.dequeue()
             self.assertEqual(v1, v2)
 
     def test_pq_pair(self):
         pq = PriorityQueue()
-        pq.insert(2, "a")
-        pq.insert(1, "b")
-        pq.insert(3, "c")
-        pq.insert(4, "d")
-        pq.insert(5, "e")
+        pq.enqueue(2, "a")
+        pq.enqueue(1, "b")
+        pq.enqueue(3, "c")
+        pq.enqueue(4, "d")
+        pq.enqueue(5, "e")
 
         while not pq.is_empty():
             v1 = pq.peek()
-            v2 = pq.extract_min()
+            v2 = pq.dequeue()
             self.assertEqual(v1, v2)
 
     def test_pq_misc_types(self):
         pq = PriorityQueue()
-        pq.insert(3, TreeNode("a"))
-        pq.insert(2, TreeNode(" "))
-        pq.insert(1, TreeNode("m"))
-        pq.insert(0, TreeNode("n"))
-        pq.insert(4, TreeNode("p"))
+        pq.enqueue(3, TreeNode("a"))
+        pq.enqueue(2, TreeNode(" "))
+        pq.enqueue(1, TreeNode("m"))
+        pq.enqueue(0, TreeNode("n"))
+        pq.enqueue(4, TreeNode("p"))
 
     def test_eq(self):
         h1 = Heap.from_list([5, 3, 8, 1])
@@ -148,20 +148,20 @@ class TestHeap(unittest.TestCase):
         pq2 = PriorityQueue()
         pq3 = PriorityQueue()
         for p, v in [(2, "a"), (1, "b"), (3, "c")]:
-            pq1.insert(p, v)
-            pq2.insert(p, v)
+            pq1.enqueue(p, v)
+            pq2.enqueue(p, v)
         for p, v in [(1, "x"), (2, "y")]:
-            pq3.insert(p, v)
+            pq3.enqueue(p, v)
         self.assertEqual(pq1, pq2)
         self.assertNotEqual(pq1, pq3)
 
     def test_to_string_with_priority(self):
         pq = PriorityQueue()
-        pq.insert(2, "a")
-        pq.insert(1, "b")
-        pq.insert(3, "c")
-        pq.insert(4, "d")
-        pq.insert(5, "e")
+        pq.enqueue(2, "a")
+        pq.enqueue(1, "b")
+        pq.enqueue(3, "c")
+        pq.enqueue(4, "d")
+        pq.enqueue(5, "e")
 
         expected_string = "[(1, 'b') (2, 'a') (3, 'c') (4, 'd') (5, 'e')]"
         self.assertEqual(pq.to_string_with_priority(), expected_string)

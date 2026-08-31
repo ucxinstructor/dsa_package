@@ -1,6 +1,7 @@
 """ Module to access functions for a clearer visual representation of certain data structures. """
 import math
 
+
 def heap_print(heap):
     """
     Print a heap from root to leaves.

@@ -1,6 +1,16 @@
 """ Module containing queue classes. """
 from dsa.array import CircularArray
 
+
+class QueueError(Exception): ...
+
+class EmptyQueueError(QueueError, IndexError):
+    """Raised when attempting to pop/peek an empty queue."""
+
+class QueueFullError(QueueError, IndexError):
+    """Raised when attempting to push to a full queue.""" 
+
+
 class Queue:
     """ 
     A static queue implementation. 
@@ -30,13 +40,13 @@ class Queue:
             element: The element to enqueue.
 
         Raises:
-            Exception: When trying to enqueue more elements than the capacity.
+            QueueFullError: When trying to enqueue more elements than the capacity.
 
         Returns:
             None
         """
         if self.count >= len(self._array):
-            raise Exception("Capacity Reached")
+            raise QueueFullError("Capacity Reached")
 
         index = (self._front + self.count) % len(self._array)
         self._array[index] = element
@@ -47,13 +57,13 @@ class Queue:
         Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.
 
         Raises:
-            Exception: When there are no elements to dequeue.
+            EmptyQueueError: When there are no elements to dequeue.
 
         Returns:
             The from element in the queue.
         """
         if self.is_empty():
-            raise Exception("Empty Queue")
+            raise EmptyQueueError("Empty Queue")
 
         element = self._array[self._front]
         self._front += 1
@@ -71,10 +81,10 @@ class Queue:
             The element in front of the queue.
 
         Raises:
-            Exception: When the queue is empty.
+            EmptyQueueError: When the queue is empty.
         """
         if self.is_empty():
-            raise Exception("Empty Queue")
+            raise EmptyQueueError("Empty Queue")
 
         return self._array[self._front]
 
@@ -265,13 +275,13 @@ class CircularQueue(CircularArray):
         Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.
 
         Raises:
-            Exception: When there are no elements to dequeue.
+            EmptyQueueError: When there are no elements to dequeue.
 
         Returns:
             The from element in the queue.
         """
         if self.is_empty():
-            raise Exception("Empty Queue")
+            raise EmptyQueueError("Empty Queue")
 
         element = self._array[self._start]
         self._start = (self._start + 1) % len(self._array)
@@ -286,9 +296,9 @@ class CircularQueue(CircularArray):
             The element in front of the queue.
 
         Raises:
-            Exception: When the queue is empty.
+            EmptyQueueError: When the queue is empty.
         """
         if self.is_empty():
-            raise Exception("Empty Queue")
+            raise EmptyQueueError("Empty Queue")
 
         return self._array[self._start]

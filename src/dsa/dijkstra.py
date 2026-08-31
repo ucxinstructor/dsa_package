@@ -1,6 +1,7 @@
 """ Module to access functions for Dijkstra's Algorithm. """
-from dsa.heap import PriorityQueue
 from dsa.graph import Graph
+from dsa.heap import PriorityQueue
+
 
 def dijkstra_tables(graph: Graph, start: str, end: str, debug: bool = False) -> tuple:
     """ 
@@ -18,9 +19,9 @@ def dijkstra_tables(graph: Graph, start: str, end: str, debug: bool = False) -> 
     Returns:
         A tuple of a weight table hashtable and a predecessor hashtable.
     """
-    if start not in graph:
+    if start not in graph.vertices():
         raise KeyError(f"Start vertex {start} not in graph.")
-    if end not in graph:
+    if end not in graph.vertices():
         raise KeyError(f"End vertex {end} not in graph.")
 
     dist_table = {}
@@ -35,10 +36,10 @@ def dijkstra_tables(graph: Graph, start: str, end: str, debug: bool = False) -> 
     dist_table[start] = 0
 
     # insert starting vertex with weight 0
-    pq.insert(0, start)
+    pq.enqueue(0, start)
     
     while not pq.is_empty():
-        current_dist, current_vertex = pq.extract_min_pair()
+        current_dist, current_vertex = pq.dequeue_pair()
         if current_vertex in finished:
             continue
         finished.add(current_vertex)
@@ -55,7 +56,7 @@ def dijkstra_tables(graph: Graph, start: str, end: str, debug: bool = False) -> 
             if new_dist < dist_table[neighbor]:
                 dist_table[neighbor] = new_dist
                 pred_table[neighbor] = current_vertex
-                pq.insert(new_dist, neighbor)
+                pq.enqueue(new_dist, neighbor)
                 if debug:
                     print(dist_table)
     

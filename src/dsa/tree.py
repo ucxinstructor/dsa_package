@@ -1,5 +1,8 @@
 """ Module containing tree class. """
 
+from __future__ import annotations
+
+
 class TreeNode:
     """ 
     A binary tree node implementation.
@@ -170,7 +173,7 @@ class Tree:
         self.root = self.delete_node(self.root, value)
         return self.root
         
-    def delete_node(self, node, value):
+    def delete_node(self, node, value) -> TreeNode | None:
         """ 
         Helper function to delete a value from the binary search tree. (Use delete() instead)
 
@@ -186,7 +189,6 @@ class Tree:
         """ 
         if node is None:
             raise ValueError("Value not found in the tree")
-            return None
         
         if value < node.value:
             node.left = self.delete_node(node.left, value)
@@ -203,12 +205,14 @@ class Tree:
                 return subtree
             
             successor = self.successor_node(node.right)
+            if successor is None:
+                return None
             node.value = successor.value
             node.right = self.delete_node(node.right, successor.value)
             
         return node
     
-    def successor_node(self, node=None):
+    def successor_node(self, node=None) -> TreeNode | None:
         """ 
         Return the successor node (the minimum value in a binary search tree's right subtree).
 
@@ -225,12 +229,15 @@ class Tree:
         if node is None:
             node = self.root
         
+        if node is None:
+            return None
+
         if node.left is None:
             return node
         else:
             return self.successor_node(node.left)
     
-    def predecessor_node(self, node=None):
+    def predecessor_node(self, node=None) -> TreeNode | None:
         """ 
         Return the predecessor node (the maximum value in a binary search tree's left subtree).
 
@@ -246,7 +253,10 @@ class Tree:
         """
         if node is None:
             node = self.root
-        
+
+        if node is None:
+            return None
+
         if node.right is None:
             return node
         else:
@@ -318,7 +328,10 @@ class Tree:
         """ 
         Print the values in the BST.
         """
-        self.root.print()
+        if self.root is None:
+            print("Tree is empty")
+        else:
+            self.root.print()
         
     def __len__(self):
         """ 
@@ -356,3 +369,5 @@ class Tree:
             )
         return nodes_equal(self.root, other.root)
 
+# alias for Tree to BST for clarity
+BST = Tree

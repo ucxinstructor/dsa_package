@@ -39,6 +39,12 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.08.31
+* Aliased MaxHeap to Heap and BST to Tree
+* Renamed Priority Queue insert method to enqueue and extract_min to dequeue
+* Added custom exceptions to Stack, Queue, Deque and Heap
+* Lint cleanup
+
 ## 2026.08.26
 * Made Graph() a factory for ease of use
 * Updated all of the tets and notebooks

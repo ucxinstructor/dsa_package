@@ -2,6 +2,7 @@
 from dsa.graph import Graph
 from dsa.heap import PriorityQueue
 
+
 def prim(graph: Graph, start: str, debug: bool = False) -> tuple:
     """ 
     Helper function that returns a weight table and a predecessor table for Prim's Algorithm.
@@ -31,11 +32,11 @@ def prim(graph: Graph, start: str, debug: bool = False) -> tuple:
         pred_table[vertex] = None
 
     # insert starting vertex with weight 0
-    pq.insert(0, start)
+    pq.enqueue(0, start)
     dist_table[start] = 0
 
     while not pq.is_empty():
-        current_weight, current_vertex = pq.extract_min_pair()
+        current_vertex = pq.dequeue()
         if current_vertex in visited:
             continue
         visited.add(current_vertex)
@@ -51,7 +52,7 @@ def prim(graph: Graph, start: str, debug: bool = False) -> tuple:
             if new_dist < dist_table[adjacent]:
                 dist_table[adjacent] = new_dist
                 pred_table[adjacent] = current_vertex
-                pq.insert(new_dist, adjacent)
+                pq.enqueue(new_dist, adjacent)
                 if debug:
                     print(dist_table)
     return dist_table, pred_table
@@ -116,7 +117,7 @@ def prim_simple(graph, start: str, mst_graph = None) -> Graph:
         visited.add(node)
         for adjacent, weight in graph[node].items():
             if adjacent not in visited:
-                pq.insert(weight, (node, adjacent))  # Push edge with weight as priority
+                pq.enqueue(weight, (node, adjacent))  # Push edge with weight as priority
 
     if mst_graph is None:
         mst_graph = Graph.create_adjacency_list(directed=False, weighted=True)
@@ -129,7 +130,7 @@ def prim_simple(graph, start: str, mst_graph = None) -> Graph:
 
     # While the priority queue is not empty and we haven't visited all vertices
     while not pq.is_empty() and len(visited) < total_vertices:
-        weight, edge = pq.extract_min_pair()
+        edge = pq.dequeue()
         start, end = edge
         # If the end vertex has not been visited, add edge to the MST
         if end not in visited:

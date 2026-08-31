@@ -1,19 +1,21 @@
+import random
+
 from dsa.array import Array, DynamicArray
-from dsa.stack import Stack, DynamicStack
-from dsa.queue import Queue, DynamicQueue
 from dsa.deque import Deque
-
-from dsa.singlylinkedlist import LinkedList
 from dsa.doublylinkedlist import DoublyLinkedList
-
-from dsa.tree import Tree, TreeNode
+from dsa.graph import (
+    AdjacencyListGraph,
+    AdjacencyListWeightedGraph,
+    AdjacencyMatrixGraph,
+    AdjacencyMatrixWeightedGraph,
+)
 from dsa.heap import Heap
+from dsa.queue import DynamicQueue, Queue
+from dsa.singlylinkedlist import LinkedList
+from dsa.stack import DynamicStack, Stack
+from dsa.tree import Tree, TreeNode
 from dsa.trie import Trie
 
-from dsa.graph import AdjacencyListGraph, AdjacencyListWeightedGraph
-from dsa.graph import AdjacencyMatrixGraph, AdjacencyMatrixWeightedGraph
-
-import random
 
 def random_array(size: int, min_val: int=0, max_val=100) -> Array:
     """

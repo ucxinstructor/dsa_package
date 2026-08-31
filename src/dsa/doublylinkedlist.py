@@ -1,5 +1,8 @@
 """Module containing doubly linked list class."""
+from __future__ import annotations
+
 from dsa.singlylinkedlist import LinkedList
+
 
 class Node:
     """

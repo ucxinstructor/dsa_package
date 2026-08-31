@@ -1,6 +1,7 @@
 """ Module to access functions for Huffman Compression. """
-from dsa.tree import Tree, TreeNode
 from dsa.heap import PriorityQueue
+from dsa.tree import Tree, TreeNode
+
 
 def character_frequency(s: str) -> dict:
     """ 
@@ -35,7 +36,7 @@ def build_frequency_table(s: str) -> PriorityQueue:
     pq = PriorityQueue()
 
     for char, count in frequency_dictionary.items():
-        pq.insert(count, TreeNode(char))#, None, None))
+        pq.enqueue(count, TreeNode(char))#, None, None))
 
     return pq
 
@@ -50,12 +51,12 @@ def build_huffman_tree(pq: PriorityQueue) -> Tree:
         A Huffman Tree.
     """
     while len(pq) > 1:
-        priority1, node1 = pq.extract_min_pair()
-        priority2, node2 = pq.extract_min_pair()
+        priority1, node1 = pq.dequeue_pair()
+        priority2, node2 = pq.dequeue_pair()
         node = TreeNode(node1.value + node2.value, node1, node2)
-        pq.insert(priority1 + priority2, node)
+        pq.enqueue(priority1 + priority2, node)
 
-    return Tree(pq.extract_min())
+    return Tree(pq.dequeue())
 
 def build_huffman_dictionary(node: TreeNode, bit_string: str="") -> dict:
     """

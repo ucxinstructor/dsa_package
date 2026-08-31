@@ -2,6 +2,7 @@
 
 from abc import ABC, abstractmethod
 
+
 class Graph(ABC):
     """
     Abstract base class for graph representations. This class provides a factory method to create specific graph objects based on the specified parameters.
@@ -30,7 +31,6 @@ class Graph(ABC):
         Args:
             label (str): The vertex label to add.
         """
-        pass
 
     @abstractmethod
     def add_edge(self, start_label: str, end_label: str, weight=None, directed=None):
@@ -43,7 +43,6 @@ class Graph(ABC):
             weight: The weight of the edge (if applicable).
             directed: Whether the edge is directed (if applicable).
         """
-        pass
 
     @abstractmethod
     def adjacents(self, vertex: str) -> list:
@@ -53,14 +52,12 @@ class Graph(ABC):
         Args:
             vertex: starting vertex label 
         """
-        pass
 
     @abstractmethod
     def vertices(self) -> list:
         """
         Return a list of vertex labels of the graph
         """
-        pass
 
     @abstractmethod
     def has_edge(self, start_label: str, end_label: str) -> bool:
@@ -73,7 +70,6 @@ class Graph(ABC):
         Returns:
             A boolean of whether there is an edge from start to end.
         """
-        pass
 
     def weight(self, start_label: str, end_label: str):
         """Get the weight of an edge. Defaults to 1 for unweighted graphs if edge exists."""
@@ -89,7 +85,6 @@ class Graph(ABC):
         Args:
             label (str): The vertex label to delete.
         """
-        pass
 
     @abstractmethod
     def delete_edge(self, start_label: str, end_label: str, directed=None):
@@ -101,7 +96,6 @@ class Graph(ABC):
             end_label (str): Ending vertex label.
             directed (bool): Whether the edge is directed.
         """
-        pass
 
     @staticmethod
     def create(representation: str = "list", directed: bool = False, weighted: bool = False, vertices = None, **kwargs) -> object:
@@ -686,7 +680,7 @@ class AdjacencyListGraph(Graph):
         """
         if label in self._adjacents:
             del self._adjacents[label]
-        for key in self._adjacents.keys():
+        for key in self._adjacents:
             if label in self._adjacents[key]:
                 self._adjacents[key].remove(label)
         
@@ -810,7 +804,7 @@ class AdjacencyListGraph(Graph):
             int: The number of edges in the graph.
         """
         edge_count = 0
-        for start in self._adjacents.keys():
+        for start in self._adjacents:
             edge_count += len(self.adjacents(start))
         if not self.is_directed:
             edge_count = edge_count // 2
@@ -847,7 +841,7 @@ class AdjacencyListGraph(Graph):
         Return a list of edges in the graph. Each edge is represented by a tuple (start, end)
         """
         edges = []
-        for start in self._adjacents.keys():
+        for start in self._adjacents:
             for end in self.adjacents(start):
                 if start != end:  
                     edges.append((start, end))
@@ -858,7 +852,7 @@ class AdjacencyListGraph(Graph):
         Return a list of undirected edges in the graph. Each edge is represented by a tuple (start, end)
         """
         edges = []
-        for start in self._adjacents.keys():
+        for start in self._adjacents:
             for end in self.adjacents(start):
                 if start != end and (end, start) not in edges:  
                     edges.append((start, end))

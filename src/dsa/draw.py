@@ -1,11 +1,12 @@
 """ Module to access graphic drawing functions for Trees, Heaps, Tries and Graphs. """
 
-from dsa.tree import Tree, TreeNode
+import matplotlib.pyplot as plt
+import networkx as nx
+
 from dsa.heap import Heap
+from dsa.tree import Tree, TreeNode
 from dsa.trie import Trie
 
-import networkx as nx
-import matplotlib.pyplot as plt
 
 class Draw:
     """
@@ -28,7 +29,6 @@ class Draw:
         Args:
             **kwargs: Additional keyword arguments.
         """
-        pass
 
     def set_figsize(self, figsize):
         """
@@ -287,12 +287,17 @@ class TrieDraw(Draw):
         if root is None:
             root = next(iter(nx.topological_sort(G)))
     
-        def _hierarchical_pos(G, node, width: float=1., vert_gap: float=0.2, vert_loc:float=0, xcenter:float=0.5, pos=None, parent=None, parsed=[]):
+        def _hierarchical_pos(G, node, width: float=1., vert_gap: float=0.2, vert_loc:float=0, xcenter:float=0.5, pos=None, parent=None, parsed=None):
             if pos is None:
                 pos = {node: (xcenter, vert_loc)}
             else:
                 pos[node] = (xcenter, vert_loc)
-    
+
+            if parsed is None:
+                parsed = {node}
+            else:
+                parsed.add(node)
+
             children = list(G.neighbors(node))
             if not isinstance(G, nx.DiGraph) and parent is not None:
                 children.remove(parent)
