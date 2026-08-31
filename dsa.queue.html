@@ -176,7 +176,7 @@
 <dd><p>Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>Exception</strong> – When there are no elements to dequeue.</p>
+<dd class="field-odd"><p><a class="reference internal" href="#dsa.queue.EmptyQueueError" title="dsa.queue.EmptyQueueError"><strong>EmptyQueueError</strong></a> – When there are no elements to dequeue.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The from element in the queue.</p>
@@ -205,7 +205,7 @@
 <dd class="field-odd"><p>The element in front of the queue.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – When the queue is empty.</p>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.queue.EmptyQueueError" title="dsa.queue.EmptyQueueError"><strong>EmptyQueueError</strong></a> – When the queue is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -249,6 +249,12 @@
 </dl>
 </dd></dl>
 </dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.queue.EmptyQueueError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.queue.</span></span><span class="sig-name descname"><span class="pre">EmptyQueueError</span></span></dt>
+<dd><p>Bases: <a class="reference internal" href="#dsa.queue.QueueError" title="dsa.queue.QueueError"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueueError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></p>
+<p>Raised when attempting to pop/peek an empty queue.</p>
+</dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.queue.Queue">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.queue.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span></dt>
@@ -275,7 +281,7 @@
 <dd><p>Dequeue an element from the queue. Raise Exception when there are no elements to dequeue.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>Exception</strong> – When there are no elements to dequeue.</p>
+<dd class="field-odd"><p><a class="reference internal" href="#dsa.queue.EmptyQueueError" title="dsa.queue.EmptyQueueError"><strong>EmptyQueueError</strong></a> – When there are no elements to dequeue.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The from element in the queue.</p>
@@ -291,7 +297,7 @@
 <dd class="field-odd"><p><strong>element</strong> – The element to enqueue.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – When trying to enqueue more elements than the capacity.</p>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.queue.QueueFullError" title="dsa.queue.QueueFullError"><strong>QueueFullError</strong></a> – When trying to enqueue more elements than the capacity.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
@@ -330,7 +336,7 @@
 <dd class="field-odd"><p>The element in front of the queue.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – When the queue is empty.</p>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.queue.EmptyQueueError" title="dsa.queue.EmptyQueueError"><strong>EmptyQueueError</strong></a> – When the queue is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -358,6 +364,17 @@
 </dl>
 </dd></dl>
 </dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.queue.QueueError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.queue.</span></span><span class="sig-name descname"><span class="pre">QueueError</span></span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.queue.QueueFullError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.queue.</span></span><span class="sig-name descname"><span class="pre">QueueFullError</span></span></dt>
+<dd><p>Bases: <a class="reference internal" href="#dsa.queue.QueueError" title="dsa.queue.QueueError"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueueError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></p>
+<p>Raised when attempting to push to a full queue.</p>
+</dd></dl>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
@@ -374,6 +391,7 @@
 <li><a :data-current="activeSection === '#dsa.queue.DynamicQueue.grow'" class="reference internal" href="#dsa.queue.DynamicQueue.grow"><code class="docutils literal notranslate"><span class="pre">DynamicQueue.grow()</span></code></a></li>
 </ul>
 </li>
+<li><a :data-current="activeSection === '#dsa.queue.EmptyQueueError'" class="reference internal" href="#dsa.queue.EmptyQueueError"><code class="docutils literal notranslate"><span class="pre">EmptyQueueError</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.queue.Queue'" class="reference internal" href="#dsa.queue.Queue"><code class="docutils literal notranslate"><span class="pre">Queue</span></code></a><ul>
 <li><a :data-current="activeSection === '#dsa.queue.Queue.capacity'" class="reference internal" href="#dsa.queue.Queue.capacity"><code class="docutils literal notranslate"><span class="pre">Queue.capacity()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.queue.Queue.count'" class="reference internal" href="#dsa.queue.Queue.count"><code class="docutils literal notranslate"><span class="pre">Queue.count</span></code></a></li>
@@ -386,6 +404,8 @@
 <li><a :data-current="activeSection === '#dsa.queue.Queue.to_ordered_list'" class="reference internal" href="#dsa.queue.Queue.to_ordered_list"><code class="docutils literal notranslate"><span class="pre">Queue.to_ordered_list()</span></code></a></li>
 </ul>
 </li>
+<li><a :data-current="activeSection === '#dsa.queue.QueueError'" class="reference internal" href="#dsa.queue.QueueError"><code class="docutils literal notranslate"><span class="pre">QueueError</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.queue.QueueFullError'" class="reference internal" href="#dsa.queue.QueueFullError"><code class="docutils literal notranslate"><span class="pre">QueueFullError</span></code></a></li>
 </ul>
 </div>
 </aside>

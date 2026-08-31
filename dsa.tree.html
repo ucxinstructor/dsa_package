@@ -165,6 +165,11 @@
 <section id="module-dsa.tree">
 <span id="dsa-tree-module"></span><h1>dsa.tree module</h1>
 <p>Module containing tree class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dsa.tree.BST">
+<span class="sig-prename descclassname"><span class="pre">dsa.tree.</span></span><span class="sig-name descname"><span class="pre">BST</span></span></dt>
+<dd><p>alias of <a class="reference internal" href="#dsa.tree.Tree" title="dsa.tree.Tree"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tree</span></code></a></p>
+</dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.tree.Tree">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.tree.</span></span><span class="sig-name descname"><span class="pre">Tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
@@ -213,11 +218,14 @@
 <li><p><strong>node</strong> – The current node.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The new subtree root after deletion.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#dsa.tree.TreeNode" title="dsa.tree.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – if value is not found.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The new subtree root after deletion.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -265,12 +273,15 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>node</strong> – The starting node.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>node with the lowest value in the BST
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#dsa.tree.TreeNode" title="dsa.tree.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>node with the lowest value in the BST
 None if not found</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – if value is not found.</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -303,12 +314,15 @@ None if not found</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>node</strong> – The starting node.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>node with the lowest value in the BST
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#dsa.tree.TreeNode" title="dsa.tree.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>node with the lowest value in the BST
 None if not found</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – if value is not found.</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if value is not found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -338,6 +352,7 @@ None if not found</p>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
+<li><a :data-current="activeSection === '#dsa.tree.BST'" class="reference internal" href="#dsa.tree.BST"><code class="docutils literal notranslate"><span class="pre">BST</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.tree.Tree'" class="reference internal" href="#dsa.tree.Tree"><code class="docutils literal notranslate"><span class="pre">Tree</span></code></a><ul>
 <li><a :data-current="activeSection === '#dsa.tree.Tree.delete'" class="reference internal" href="#dsa.tree.Tree.delete"><code class="docutils literal notranslate"><span class="pre">Tree.delete()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.tree.Tree.delete_iterative'" class="reference internal" href="#dsa.tree.Tree.delete_iterative"><code class="docutils literal notranslate"><span class="pre">Tree.delete_iterative()</span></code></a></li>

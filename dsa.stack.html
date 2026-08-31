@@ -214,6 +214,12 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <dd><p>Helper method to halve the capacity of the current array.</p>
 </dd></dl>
 </dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.stack.EmptyStackError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.stack.</span></span><span class="sig-name descname"><span class="pre">EmptyStackError</span></span></dt>
+<dd><p>Bases: <a class="reference internal" href="#dsa.stack.StackError" title="dsa.stack.StackError"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></p>
+<p>Raised when attempting to pop/peek an empty stack.</p>
+</dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.stack.Stack">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.stack.</span></span><span class="sig-name descname"><span class="pre">Stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span></dt>
@@ -253,7 +259,7 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <dd class="field-odd"><p>The top element in the stack.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – When the stack is empty.</p>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.stack.EmptyStackError" title="dsa.stack.EmptyStackError"><strong>EmptyStackError</strong></a> – When the stack is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -266,7 +272,7 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <dd class="field-odd"><p>The top element in the stack.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – When the stack is empty.</p>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.stack.EmptyStackError" title="dsa.stack.EmptyStackError"><strong>EmptyStackError</strong></a> – When the stack is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -279,7 +285,7 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <dd class="field-odd"><p><strong>element</strong> – The element to push.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – When the capacity is reached.</p>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.stack.StackFullError" title="dsa.stack.StackFullError"><strong>StackFullError</strong></a> – When the capacity is reached.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -294,6 +300,17 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <dd><p>Return the top index of the stack.</p>
 </dd></dl>
 </dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.stack.StackError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.stack.</span></span><span class="sig-name descname"><span class="pre">StackError</span></span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.stack.StackFullError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.stack.</span></span><span class="sig-name descname"><span class="pre">StackFullError</span></span></dt>
+<dd><p>Bases: <a class="reference internal" href="#dsa.stack.StackError" title="dsa.stack.StackError"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></p>
+<p>Raised when attempting to push to a full stack.</p>
+</dd></dl>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
@@ -306,6 +323,7 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <li><a :data-current="activeSection === '#dsa.stack.DynamicStack.shrink'" class="reference internal" href="#dsa.stack.DynamicStack.shrink"><code class="docutils literal notranslate"><span class="pre">DynamicStack.shrink()</span></code></a></li>
 </ul>
 </li>
+<li><a :data-current="activeSection === '#dsa.stack.EmptyStackError'" class="reference internal" href="#dsa.stack.EmptyStackError"><code class="docutils literal notranslate"><span class="pre">EmptyStackError</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.stack.Stack'" class="reference internal" href="#dsa.stack.Stack"><code class="docutils literal notranslate"><span class="pre">Stack</span></code></a><ul>
 <li><a :data-current="activeSection === '#dsa.stack.Stack.capacity'" class="reference internal" href="#dsa.stack.Stack.capacity"><code class="docutils literal notranslate"><span class="pre">Stack.capacity()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.stack.Stack.count'" class="reference internal" href="#dsa.stack.Stack.count"><code class="docutils literal notranslate"><span class="pre">Stack.count</span></code></a></li>
@@ -318,6 +336,8 @@ If count &lt;= 1/4 of capacity, shrink the array</p>
 <li><a :data-current="activeSection === '#dsa.stack.Stack.top'" class="reference internal" href="#dsa.stack.Stack.top"><code class="docutils literal notranslate"><span class="pre">Stack.top()</span></code></a></li>
 </ul>
 </li>
+<li><a :data-current="activeSection === '#dsa.stack.StackError'" class="reference internal" href="#dsa.stack.StackError"><code class="docutils literal notranslate"><span class="pre">StackError</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.stack.StackFullError'" class="reference internal" href="#dsa.stack.StackFullError"><code class="docutils literal notranslate"><span class="pre">StackFullError</span></code></a></li>
 </ul>
 </div>
 </aside>

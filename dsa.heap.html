@@ -165,6 +165,12 @@
 <section id="module-dsa.heap">
 <span id="dsa-heap-module"></span><h1>dsa.heap module</h1>
 <p>Module containing heap (max heap), min heap and priority queue classes.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.heap.EmptyHeapError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.heap.</span></span><span class="sig-name descname"><span class="pre">EmptyHeapError</span></span></dt>
+<dd><p>Bases: <a class="reference internal" href="#dsa.heap.HeapError" title="dsa.heap.HeapError"><code class="xref py py-class docutils literal notranslate"><span class="pre">HeapError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></p>
+<p>Raised when attempting to extract from an empty heap.</p>
+</dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.heap.Heap">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.heap.</span></span><span class="sig-name descname"><span class="pre">Heap</span></span></dt>
@@ -200,6 +206,9 @@
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Return the value from the root node.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#dsa.heap.EmptyHeapError" title="dsa.heap.EmptyHeapError"><strong>EmptyHeapError</strong></a> – When the heap is empty.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -422,6 +431,16 @@ None if count is 0.</p>
 </dl>
 </dd></dl>
 </dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="dsa.heap.HeapError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.heap.</span></span><span class="sig-name descname"><span class="pre">HeapError</span></span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dsa.heap.MaxHeap">
+<span class="sig-prename descclassname"><span class="pre">dsa.heap.</span></span><span class="sig-name descname"><span class="pre">MaxHeap</span></span></dt>
+<dd><p>alias of <a class="reference internal" href="#dsa.heap.Heap" title="dsa.heap.Heap"><code class="xref py py-class docutils literal notranslate"><span class="pre">Heap</span></code></a></p>
+</dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dsa.heap.MinHeap">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.heap.</span></span><span class="sig-name descname"><span class="pre">MinHeap</span></span></dt>
@@ -461,10 +480,10 @@ None if count is 0.</p>
 <dt class="sig sig-object py" id="dsa.heap.PriorityQueue">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">dsa.heap.</span></span><span class="sig-name descname"><span class="pre">PriorityQueue</span></span></dt>
 <dd><p>Bases: <a class="reference internal" href="#dsa.heap.MinHeap" title="dsa.heap.MinHeap"><code class="xref py py-class docutils literal notranslate"><span class="pre">MinHeap</span></code></a></p>
-<p>A priority queue implementation in Python.</p>
+<p>A priority queue implementation using a min-heap.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.heap.PriorityQueue.extract_min">
-<span class="sig-name descname"><span class="pre">extract_min</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dt class="sig sig-object py" id="dsa.heap.PriorityQueue.dequeue">
+<span class="sig-name descname"><span class="pre">dequeue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Return and remove the highest priority value in the heap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -473,12 +492,12 @@ None if count is 0.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.heap.PriorityQueue.extract_min_pair">
-<span class="sig-name descname"><span class="pre">extract_min_pair</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dt class="sig sig-object py" id="dsa.heap.PriorityQueue.dequeue_pair">
+<span class="sig-name descname"><span class="pre">dequeue_pair</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Return and remove the highest priority value pair in the heap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Return the highest priority, value pair (tuple) in the heap.</p>
@@ -486,8 +505,8 @@ None if count is 0.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="dsa.heap.PriorityQueue.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">priority</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span></dt>
+<dt class="sig sig-object py" id="dsa.heap.PriorityQueue.enqueue">
+<span class="sig-name descname"><span class="pre">enqueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">priority</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Insert an item with a priority into the priority queue.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -514,7 +533,7 @@ None if count is 0.</p>
 <dd><p>Return the highest priority value pair in the heap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Return the highest priority, value pair (tuple) in the heap.</p>
@@ -531,6 +550,7 @@ None if count is 0.</p>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
+<li><a :data-current="activeSection === '#dsa.heap.EmptyHeapError'" class="reference internal" href="#dsa.heap.EmptyHeapError"><code class="docutils literal notranslate"><span class="pre">EmptyHeapError</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.Heap'" class="reference internal" href="#dsa.heap.Heap"><code class="docutils literal notranslate"><span class="pre">Heap</span></code></a><ul>
 <li><a :data-current="activeSection === '#dsa.heap.Heap.count'" class="reference internal" href="#dsa.heap.Heap.count"><code class="docutils literal notranslate"><span class="pre">Heap.count()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.Heap.enumerate'" class="reference internal" href="#dsa.heap.Heap.enumerate"><code class="docutils literal notranslate"><span class="pre">Heap.enumerate()</span></code></a></li>
@@ -554,6 +574,8 @@ None if count is 0.</p>
 <li><a :data-current="activeSection === '#dsa.heap.Heap.to_sorted_list'" class="reference internal" href="#dsa.heap.Heap.to_sorted_list"><code class="docutils literal notranslate"><span class="pre">Heap.to_sorted_list()</span></code></a></li>
 </ul>
 </li>
+<li><a :data-current="activeSection === '#dsa.heap.HeapError'" class="reference internal" href="#dsa.heap.HeapError"><code class="docutils literal notranslate"><span class="pre">HeapError</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.heap.MaxHeap'" class="reference internal" href="#dsa.heap.MaxHeap"><code class="docutils literal notranslate"><span class="pre">MaxHeap</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.MinHeap'" class="reference internal" href="#dsa.heap.MinHeap"><code class="docutils literal notranslate"><span class="pre">MinHeap</span></code></a><ul>
 <li><a :data-current="activeSection === '#dsa.heap.MinHeap.extract_min'" class="reference internal" href="#dsa.heap.MinHeap.extract_min"><code class="docutils literal notranslate"><span class="pre">MinHeap.extract_min()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.MinHeap.heapify_down'" class="reference internal" href="#dsa.heap.MinHeap.heapify_down"><code class="docutils literal notranslate"><span class="pre">MinHeap.heapify_down()</span></code></a></li>
@@ -561,9 +583,9 @@ None if count is 0.</p>
 </ul>
 </li>
 <li><a :data-current="activeSection === '#dsa.heap.PriorityQueue'" class="reference internal" href="#dsa.heap.PriorityQueue"><code class="docutils literal notranslate"><span class="pre">PriorityQueue</span></code></a><ul>
-<li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.extract_min'" class="reference internal" href="#dsa.heap.PriorityQueue.extract_min"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.extract_min()</span></code></a></li>
-<li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.extract_min_pair'" class="reference internal" href="#dsa.heap.PriorityQueue.extract_min_pair"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.extract_min_pair()</span></code></a></li>
-<li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.insert'" class="reference internal" href="#dsa.heap.PriorityQueue.insert"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.insert()</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.dequeue'" class="reference internal" href="#dsa.heap.PriorityQueue.dequeue"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.dequeue()</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.dequeue_pair'" class="reference internal" href="#dsa.heap.PriorityQueue.dequeue_pair"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.dequeue_pair()</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.enqueue'" class="reference internal" href="#dsa.heap.PriorityQueue.enqueue"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.enqueue()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.peek'" class="reference internal" href="#dsa.heap.PriorityQueue.peek"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.peek()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.peek_pair'" class="reference internal" href="#dsa.heap.PriorityQueue.peek_pair"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.peek_pair()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.heap.PriorityQueue.to_string_with_priority'" class="reference internal" href="#dsa.heap.PriorityQueue.to_string_with_priority"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.to_string_with_priority()</span></code></a></li>
