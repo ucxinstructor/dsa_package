@@ -23,20 +23,20 @@ class TestTrie(unittest.TestCase):
         self.assertFalse(t.search("python"))
         self.assertIsNone(t.search_node("python"))
 
-        # prefix
-        words = t.prefix("a")
+        # starts_with
+        words = t.starts_with("a")
         self.assertEqual(len(words), 1)
-        words = t.prefix("apple")
+        words = t.starts_with("apple")
         self.assertEqual(len(words), 1)
-        words = t.prefix("Apple")
+        words = t.starts_with("Apple")
         self.assertIsNone(words, 0)
 
-        words = t.prefix("p")
+        words = t.starts_with("p")
         self.assertEqual(len(words), 2)
-        words = t.prefix("py")
+        words = t.starts_with("py")
         self.assertEqual(len(words), 1)
         t.insert("python")
-        words = t.prefix("py")
+        words = t.starts_with("py")
         self.assertEqual(len(words), 2)
 
         # suggest
@@ -144,23 +144,23 @@ class TestTrie(unittest.TestCase):
         self.trie.insert("teach")
 
         # Test prefix with full word
-        words = self.trie.prefix("test")
+        words = self.trie.starts_with("test")
         self.assertEqual(sorted(words), ["test", "tester", "testing"])
 
         # Test prefix with prefix
-        words = self.trie.prefix("te")
+        words = self.trie.starts_with("te")
         self.assertEqual(sorted(words), ["teach", "team", "test", "tester", "testing"])
 
         # Test prefix with single character prefix
-        words = self.trie.prefix("t")
+        words = self.trie.starts_with("t")
         self.assertEqual(sorted(words), ["teach", "team", "test", "tester", "testing"])
 
         # Test prefix with no matching prefix
-        words = self.trie.prefix("toast")
+        words = self.trie.starts_with("toast")
         self.assertIsNone(words)
 
         # Test prefix with empty string
-        words = self.trie.prefix("")
+        words = self.trie.starts_with("")
         self.assertIsNone(words)
 #        self.assertEqual(sorted(words), ["goodbye", "heaven", "hell", "hello"])
 

@@ -157,7 +157,7 @@ class Trie:
                 self.build_word_list(next_node, word + key, words)
         return words
     
-    def prefix(self, prefix: str):
+    def starts_with(self, prefix: str):
         """ 
         Return a list of words that begin with a given prefix.
         
@@ -192,7 +192,7 @@ class Trie:
         """        
         if prefix is None or len(prefix) == 0:
             return None
-        suggestions = self.prefix(prefix)
+        suggestions = self.starts_with(prefix)
         if suggestions is None or len(suggestions) == 0:
             return self.suggest(prefix[:-1])
         else:

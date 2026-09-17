@@ -39,6 +39,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.09.17
+* Renamed Trie method prefix to starts_with
+
 ## 2026.08.31
 * Aliased MaxHeap to Heap and BST to Tree
 * Renamed Priority Queue insert method to enqueue and extract_min to dequeue
