@@ -257,23 +257,6 @@
 </dd>
 </dl>
 </dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="dsa.trie.Trie.prefix">
-<span class="sig-name descname"><span class="pre">prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Return a list of words that begin with a given prefix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>prefix</strong> (<em>str</em>) – The prefix to search for.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of words that begin with a given prefix.
-None if there are no matching words.</p>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If no words are found.</p>
-</dd>
-</dl>
-</dd></dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="dsa.trie.Trie.root">
 <span class="sig-name descname"><span class="pre">root</span></span></dt>
@@ -309,6 +292,23 @@ None if there are no matching words.</p>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>TriedNode where the substring begins
 None if the substring is not found</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="dsa.trie.Trie.starts_with">
+<span class="sig-name descname"><span class="pre">starts_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Return a list of words that begin with a given prefix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prefix</strong> (<em>str</em>) – The prefix to search for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of words that begin with a given prefix.
+None if there are no matching words.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no words are found.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -353,10 +353,10 @@ None if there are no matching words.</p>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.end_marker'" class="reference internal" href="#dsa.trie.Trie.end_marker"><code class="docutils literal notranslate"><span class="pre">Trie.end_marker</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.insert'" class="reference internal" href="#dsa.trie.Trie.insert"><code class="docutils literal notranslate"><span class="pre">Trie.insert()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.list_words'" class="reference internal" href="#dsa.trie.Trie.list_words"><code class="docutils literal notranslate"><span class="pre">Trie.list_words()</span></code></a></li>
-<li><a :data-current="activeSection === '#dsa.trie.Trie.prefix'" class="reference internal" href="#dsa.trie.Trie.prefix"><code class="docutils literal notranslate"><span class="pre">Trie.prefix()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.root'" class="reference internal" href="#dsa.trie.Trie.root"><code class="docutils literal notranslate"><span class="pre">Trie.root</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.search'" class="reference internal" href="#dsa.trie.Trie.search"><code class="docutils literal notranslate"><span class="pre">Trie.search()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.search_node'" class="reference internal" href="#dsa.trie.Trie.search_node"><code class="docutils literal notranslate"><span class="pre">Trie.search_node()</span></code></a></li>
+<li><a :data-current="activeSection === '#dsa.trie.Trie.starts_with'" class="reference internal" href="#dsa.trie.Trie.starts_with"><code class="docutils literal notranslate"><span class="pre">Trie.starts_with()</span></code></a></li>
 <li><a :data-current="activeSection === '#dsa.trie.Trie.suggest'" class="reference internal" href="#dsa.trie.Trie.suggest"><code class="docutils literal notranslate"><span class="pre">Trie.suggest()</span></code></a></li>
 </ul>
 </li>
