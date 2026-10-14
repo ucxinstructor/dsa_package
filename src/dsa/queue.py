@@ -210,7 +210,8 @@ class DynamicQueue(Queue):
         
         # copy elements
         for i in range(self.count):
-            new_array[i] = self._array[i + self._front]
+            original_index = (self._front + i) % len(self._array)
+            new_array[i] = self._array[original_index]
         self._front = 0
         self._array = new_array
 
@@ -221,7 +222,7 @@ class DynamicQueue(Queue):
         Returns:
             None
         """
-        if self._front + self.count >= len(self._array):
+        if self.count >= len(self._array):
             self.grow()
 
     def enqueue(self, element):
@@ -235,7 +236,7 @@ class DynamicQueue(Queue):
             None
         """
         self.check_capacity()
-        index = self._front + self.count
+        index = (self._front + self.count) % len(self._array)
         self._array[index] = element
         self.count += 1
 

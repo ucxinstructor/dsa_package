@@ -39,6 +39,9 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.10.14
+* Updated DynamicQueue enqueue and grow to match the algorithm in class more closely
+
 ## 2026.09.17
 * Renamed Trie method prefix to starts_with
 

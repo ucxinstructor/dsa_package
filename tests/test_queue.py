@@ -31,6 +31,56 @@ class TestQueue(unittest.TestCase):
         dq.enqueue(20)
         self.assertGreater(dq.capacity(), 10)
 
+
+        # test wrapping around with smaller capacity using Queue
+        q = Queue(capacity=5)
+        for _ in range(10, 60, 10):
+            q.enqueue(_)
+        self.assertEqual(q.count, 5)
+        self.assertEqual(q.peek(), 10)
+        q.dequeue()
+        q.dequeue()
+        self.assertEqual(q.count, 3)
+        q.enqueue(60)
+        q.enqueue(70)
+        self.assertEqual(q.count, 5)
+        self.assertEqual(q.peek(), 30)
+        self.assertEqual(q.to_ordered_list(), [30, 40, 50, 60, 70])
+        self.assertEqual(q.raw_view(), [60, 70, 30, 40, 50])
+
+        # test wrapping around with smaller capacity
+        dq = DynamicQueue(capacity=5)
+        for _ in range(10, 60, 10):
+            dq.enqueue(_)
+        self.assertEqual(dq.count, 5)
+        self.assertEqual(dq.peek(), 10)
+        dq.dequeue()
+        dq.dequeue()
+        self.assertEqual(dq.count, 3)
+        dq.enqueue(60)
+        dq.enqueue(70)
+        self.assertEqual(dq.count, 5)
+        self.assertEqual(dq.peek(), 30)
+        self.assertEqual(dq.to_ordered_list(), [30, 40, 50, 60, 70])
+        self.assertEqual(dq.raw_view(), [60, 70, 30, 40, 50])
+
+        # test growing and wrapping around with smaller capacity of DynamicQueue
+        dq = DynamicQueue(capacity=5)
+        for _ in range(10, 60, 10):
+            dq.enqueue(_)
+        self.assertEqual(dq.count, 5)
+        self.assertEqual(dq.peek(), 10)
+        dq.dequeue()
+        dq.dequeue()
+        self.assertEqual(dq.count, 3)
+        dq.enqueue(60)
+        dq.enqueue(70)
+        dq.enqueue(80)
+        self.assertEqual(dq.count, 6)
+        self.assertEqual(dq.peek(), 30)
+        self.assertEqual(dq.to_ordered_list(), [30, 40, 50, 60, 70, 80])
+        self.assertEqual(dq.raw_view(), [30, 40, 50, 60, 70, 80, None, None, None, None])
+
     def test_delete(self):
         q = Queue()
         self.assertRaises(Exception, q.dequeue)
