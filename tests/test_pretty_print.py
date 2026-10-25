@@ -2,7 +2,8 @@ import unittest
 
 from dsa.tree import Tree
 from dsa.heap import Heap
-from dsa.pretty_print import heap_print, tree_print
+from dsa.trie import Trie
+from dsa.pretty_print import heap_print, tree_print, trie_print
 
 class TestPrettyPrint(unittest.TestCase):
     def test_tree(self):
@@ -41,3 +42,16 @@ class TestPrettyPrint(unittest.TestCase):
 
         h.insert(35)
         heap_print(h)
+
+    def test_trie(self):
+        t = Trie()
+        trie_print(t)
+
+        t.insert("app")
+        trie_print(t)
+
+        t.insert("apple")
+        trie_print(t)
+
+        t.insert("bat")
+        trie_print(t)
