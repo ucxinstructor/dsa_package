@@ -39,6 +39,10 @@ pip show ucxdsa
 
 ***
 # Revision History
+## 2026.10.27
+* Removed debugging print statements in the prim's class
+* Refactored graph, dijkstra and prims classes 
+
 ## 2026.10.14
 * Updated DynamicQueue enqueue and grow to match the algorithm in class more closely
 

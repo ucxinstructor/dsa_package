@@ -418,15 +418,15 @@ class AdjacencyMatrixGraph(Graph):
             
     def order(self) -> int:
         """
-        Return the number of nodes in the graph.
+        Return the number of vertices in the graph.
         Returns:
-            int: The number of nodes in the graph.
+            int: The number of vertices in the graph.
         """
         return len(self.labels)
     
     def __len__(self):
         """
-        Return the number of nodes in the graph.
+        Return the number of vertices in the graph.
         """
         return len(self.labels)
             
@@ -452,8 +452,8 @@ class AdjacencyMatrixGraph(Graph):
         
         Returns:
             A dictionary representing the adjacency matrix of the graph.
-            - Unweighted: {vertex: [neighbor1, neighbor2, ...]}
-            - Weighted: {vertex: {neighbor1: weight1, neighbor2: weight2, ...}}
+            - Unweighted: {vertex: [adjacent1, adjacent2, ...]}
+            - Weighted: {vertex: {adjacent1: weight1, adjacent2: weight2, ...}}
         """
         matrix_dict = {}
         
@@ -486,9 +486,9 @@ class AdjacencyMatrixGraph(Graph):
         """
         vertices = list(data.keys())
         graph = cls(directed=directed, vertices=vertices)
-        for start_node, neighbors in data.items():
-            for end_node in neighbors:
-                graph.add_edge(start_node, end_node)
+        for start_vertex, adjacents in data.items():
+            for end_vertex in adjacents:
+                graph.add_edge(start_vertex, end_vertex)
         return graph
 
 class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
@@ -629,9 +629,9 @@ class AdjacencyMatrixWeightedGraph(AdjacencyMatrixGraph):
         """
         vertices = list(data.keys())
         graph = cls(directed=directed, vertices=vertices)
-        for start_node, neighbors in data.items():
-            for end_node, weight in neighbors.items():
-                graph.add_edge(start_node, end_node, weight)
+        for start_vertex, adjacents in data.items():
+            for end_vertex, weight in adjacents.items():
+                graph.add_edge(start_vertex, end_vertex, weight)
         return graph
 
 class AdjacencyListGraph(Graph):
@@ -812,18 +812,18 @@ class AdjacencyListGraph(Graph):
 
     def __len__(self):
         """
-        Return the number of nodes in the graph.
+        Return the number of vertices in the graph.
         Returns:
-            int: The number of nodes in the graph.
+            int: The number of vertices in the graph.
         """
         return len(self._adjacents)
 
 
     def order(self) -> int:
         """
-        Return the number of nodes in the graph.
+        Return the number of vertices in the graph.
         Returns:
-            int: The number of nodes in the graph.
+            int: The number of vertices in the graph.
         """
         return len(self._adjacents)
 
@@ -867,8 +867,8 @@ class AdjacencyListGraph(Graph):
         
         Returns:
             A dictionary representing the adjacency list of the graph.
-            - Unweighted: {vertex: [neighbor1, neighbor2, ...]}
-            - Weighted: {vertex: {neighbor1: weight1, neighbor2: weight2, ...}}
+            - Unweighted: {vertex: [adjacent1, adjacent2, ...]}
+            - Weighted: {vertex: {adjacent1: weight1, adjacent2: weight2, ...}}
         """
         return {key: values.copy() for key, values in self._adjacents.items()}
     
@@ -886,9 +886,9 @@ class AdjacencyListGraph(Graph):
         """
         vertices = list(data.keys())
         graph = cls(directed=directed, vertices=vertices)
-        for start_node, neighbors in data.items():
-            for end_node in neighbors:
-                graph.add_edge(start_node, end_node)
+        for start_vertex, adjacents in data.items():
+            for end_vertex in adjacents:
+                graph.add_edge(start_vertex, end_vertex)
         return graph
     
 class AdjacencyListWeightedGraph(AdjacencyListGraph):
@@ -999,10 +999,10 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
 
     def __len__(self):
         """
-        Return the number of nodes in the graph.
+        Return the number of vertices in the graph.
 
         Returns:
-            int: The number of nodes in the graph.
+            int: The number of vertices in the graph.
         """
         return len(self._adjacents)
 
@@ -1044,8 +1044,8 @@ class AdjacencyListWeightedGraph(AdjacencyListGraph):
         """
         vertices = list(data.keys())
         graph = cls(directed=directed, vertices=vertices)
-        for start_node, neighbors in data.items():
-            for end_node, weight in neighbors.items():
-                graph.add_edge(start_node, end_node, weight)
+        for start_vertex, adjacents in data.items():
+            for end_vertex, weight in adjacents.items():
+                graph.add_edge(start_vertex, end_vertex, weight)
         return graph
 

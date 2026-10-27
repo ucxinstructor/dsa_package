@@ -48,15 +48,15 @@ def dijkstra_tables(graph: Graph, start: str, end: str, debug: bool = False) -> 
         if current_vertex == end:
             break
 
-        for neighbor in graph.adjacents(current_vertex):
-            weight = graph.weight(current_vertex, neighbor)
+        for adjacent in graph.adjacents(current_vertex):
+            weight = graph.weight(current_vertex, adjacent)
             new_dist = current_dist + weight
             if debug:
-                print("current_vertex ", current_vertex, " adjacent ", neighbor, " weight ", weight, " new_dist ", new_dist, " predecessor ", pred_table)
-            if new_dist < dist_table[neighbor]:
-                dist_table[neighbor] = new_dist
-                pred_table[neighbor] = current_vertex
-                pq.enqueue(new_dist, neighbor)
+                print("current_vertex ", current_vertex, " adjacent ", adjacent, " weight ", weight, " new_dist ", new_dist, " predecessor ", pred_table)
+            if new_dist < dist_table[adjacent]:
+                dist_table[adjacent] = new_dist
+                pred_table[adjacent] = current_vertex
+                pq.enqueue(new_dist, adjacent)
                 if debug:
                     print(dist_table)
     

@@ -75,7 +75,6 @@ def reconstruct_mst(dist_table: dict, pred_table: dict, representation: str = "l
 
         # If dist_table is provided, use it to get the weight of the edge; otherwise, default to 1
         w = dist_table[vertex] if dist_table else 1
-        print(vertex, connection, w)
         mst.add_edge(connection, vertex, w)
 
     return mst
@@ -112,12 +111,12 @@ def prim_simple(graph, start: str, mst_graph = None) -> Graph:
     Returns:
         AdjacencyListWeightedGraph: the MST of the graph.
     """
-    def add_adjacent(graph, pq: PriorityQueue, visited: set, node: str):
+    def add_adjacent(graph, pq: PriorityQueue, visited: set, vertex: str):
         """Add all adjacent vertices from the given node to the priority queue."""
-        visited.add(node)
-        for adjacent, weight in graph[node].items():
+        visited.add(vertex)
+        for adjacent, weight in graph[vertex].items():
             if adjacent not in visited:
-                pq.enqueue(weight, (node, adjacent))  # Push edge with weight as priority
+                pq.enqueue(weight, (vertex, adjacent))  # Push edge with weight as priority
 
     if mst_graph is None:
         mst_graph = Graph.create_adjacency_list(directed=False, weighted=True)
